@@ -26,6 +26,29 @@ class User < ApplicationRecord
 
     before_validation :ensure_session_token
 
+    # FIGVAPEBRR
+
+    def self.find_by_credentials(credential, password)
+        email_regex = URI::MailTo::EMAIL_REGEXP
+        if (email_regex.match(credential))
+            user = User.find_by(email: credential)
+        else
+            user = User.find_by(username: credential)
+        end
+
+        if !user
+            return nil
+        else
+            return user.authenticate(password)
+        end
+    end
+
+    def reset_session_token!
+        self.session_token = generate_unique_session_token
+        self.save!
+        return self.session_token
+    end
+
     private
 
     def generate_unique_session_token
