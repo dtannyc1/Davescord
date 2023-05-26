@@ -37,8 +37,8 @@ export const loginUser = user => async dispatch => {
             throw res
         }
     } catch (error) {
-        let errors = await error.json();
-        throw errors
+        // let errors = await error.json();
+        throw error
     }
 }
 
@@ -104,7 +104,11 @@ const sessionReducer = (state = initialState, action) => {
     let nextState = {...state}
     switch (action.type) {
         case SET_CURRENT_USER:
-            nextState["currentUserId"] = action.user.id;
+            if (action.user) {
+                nextState["currentUserId"] = action.user.id;
+            } else {
+                nextState["currentUserId"] = null;
+            }
             return nextState;
         case REMOVE_CURRENT_USER:
             nextState["currentUserId"] = null;
