@@ -18,7 +18,7 @@ function Root() {
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </Provider>
+       </Provider>
     );
   }
 
