@@ -89,6 +89,7 @@ GEM
     erubi (1.12.0)
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
+    ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.13.0)
@@ -166,6 +167,8 @@ GEM
     redis-client (0.14.1)
       connection_pool
     rouge (4.1.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     thor (1.2.2)
     timeout (0.3.2)
     tzinfo (2.0.6)
@@ -192,6 +195,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   redis
+  sassc
   tzinfo-data
 
 RUBY VERSION
