@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import './css_reset.css';
 import './index.css';
 import App from './App';
 import configureStore from './store';
@@ -16,20 +17,20 @@ if (process.env.NODE_ENV !== 'production') {
 
 function Root() {
     return (
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-       </Provider>
+        <Provider store={store}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </Provider>
     );
-  }
+}
 
 const renderApp = () => {
     ReactDOM.render(
-    <React.StrictMode>
-        <Root />
-    </React.StrictMode>,
-    document.getElementById('root')
+        <React.StrictMode>
+            <Root />
+        </React.StrictMode>,
+        document.getElementById('root')
     );
 }
 
