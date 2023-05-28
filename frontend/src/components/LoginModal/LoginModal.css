@@ -1,0 +1,73 @@
+.login-modal-holder {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
+}
+
+.login-modal {
+    width: 480px;
+    height: 400px;
+    background-color: #313338;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    >* {
+        background-color: inherit;
+
+        >*{
+            background-color: inherit;
+        }
+    }
+
+    > h3 {
+        font-size: 24px;
+        color: #F2F3F5;
+        margin-bottom: 8px;
+    }
+
+    > p{
+        font-size: 16px;
+        color: #B5BAC1;
+        margin-bottom: 8px;
+    }
+}
+
+.login-form{
+    font-size: 12px;
+    width: 416px;
+
+    > label {
+        color: #B5BAC1;
+        margin-bottom: 8px;
+    }
+
+    > button {
+        color: #F2F3F5;
+        width: 100%;
+    }
+}
+
+.login-form a{
+    color: #00A8FC;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+.login-form a:hover{
+    text-decoration: underline;
+}
