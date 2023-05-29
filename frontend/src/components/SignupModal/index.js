@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import { signupUser } from "../../store/session";
 import { Link } from "react-router-dom";
 import "./SignupModal.css"
+import ModalBackground from "../ModalBackground";
 
 const SignUpModal = props => {
     const dispatch = useDispatch();
@@ -65,6 +66,7 @@ const SignUpModal = props => {
 
     return (
         <div className="signup-modal-holder">
+            <ModalBackground/>
             <div className="signup-modal">
                 <h3>Create an account</h3>
                 <form className="signup-form" onSubmit={handleSignup}>

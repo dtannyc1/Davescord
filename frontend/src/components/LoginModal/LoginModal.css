@@ -10,6 +10,7 @@
     background-color: #5865f2;
 
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    overflow: hidden;
 }
 
 @keyframes fadein {

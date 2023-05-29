@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import { loginUser } from "../../store/session";
 import { Link } from "react-router-dom";
 import "./LoginModal.css"
+import ModalBackground from "../ModalBackground";
 
 const LoginModal = props => {
     const dispatch = useDispatch();
@@ -58,6 +59,7 @@ const LoginModal = props => {
 
     return (
         <div className="login-modal-holder">
+            <ModalBackground/>
             <div className="login-modal">
                 <h3>Welcome back!</h3>
                 <p>We're so excited to see you again!</p>
