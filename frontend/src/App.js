@@ -3,6 +3,7 @@ import Splash from "./components/Splash";
 import LoginModal from "./components/LoginModal";
 import SignUpModal from "./components/SignupModal";
 
+// if logged in, redirects should happen on /login and /register
 
 function App() {
     return (

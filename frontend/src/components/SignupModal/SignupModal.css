@@ -12,6 +12,20 @@
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+@keyframes fadein {
+    0% {
+        top: -100px;
+        transform: scale(1.1);
+        opacity: 50%;
+    }
+
+    100% {
+        top: 0px;
+        transform: scale(1);
+        opacity: 100%;
+    }
+}
+
 .signup-modal {
     width: 480px;
     height: 480px;
@@ -23,6 +37,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    position: relative;
+    animation-name: fadein;
+    animation-duration: 0.25s;
 
     >* {
         background-color: inherit;

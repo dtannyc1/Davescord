@@ -2,6 +2,8 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import MainLogo from "../MainLogo";
 import './NavBar.css'
 
+// if logged in, log in button should say "Open Discord"
+
 const NavBar = () => {
     return (
         <nav className="navbar">
