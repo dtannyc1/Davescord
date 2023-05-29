@@ -1,6 +1,7 @@
 import { Route } from "react-router-dom";
 import Splash from "./components/Splash";
 import LoginModal from "./components/LoginModal";
+import SignUpModal from "./components/SignupModal";
 
 
 function App() {
@@ -11,6 +12,9 @@ function App() {
             </Route>
             <Route path="/login">
                 <LoginModal/>
+            </Route>
+            <Route path="/signup">
+                <SignUpModal/>
             </Route>
         </>
     );
