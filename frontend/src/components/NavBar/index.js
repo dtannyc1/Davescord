@@ -8,15 +8,10 @@ const NavBar = () => {
             <div className="navbar-holder">
                 <MainLogo/>
                 <div className="navbar-links">
-                    <Link to="#">Download</Link>
-                    <Link to="#">Nitro</Link>
-                    <Link to="#">Discover</Link>
-                    <Link to="#">Safety</Link>
-                    <Link to="#">Support</Link>
-                    <Link to="#">Blog</Link>
-                    <Link to="#">Careers</Link>
+                    <Link to="#">Github</Link>
+                    <Link to="#">LinkedIn</Link>
                 </div>
-                <Link to="/login" className="navbar-login">Open Discord</Link>
+                <Link to="/login" className="navbar-login">Log In</Link>
             </div>
         </nav>
     )
