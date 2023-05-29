@@ -72,7 +72,7 @@ const LoginModal = props => {
                     <br/>
                     <button>Log In</button>
                     <div className="login-bottom">
-                        <p>Need an account? <Link to="/signup">Register</Link></p>
+                        <p>Need an account? <Link to="/register">Register</Link></p>
                         <p>Login as the <span onClick={demoLogin}>Demo User</span></p>
                     </div>
                 </form>

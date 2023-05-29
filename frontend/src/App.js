@@ -13,7 +13,7 @@ function App() {
             <Route path="/login">
                 <LoginModal/>
             </Route>
-            <Route path="/signup">
+            <Route path="/register">
                 <SignUpModal/>
             </Route>
         </>
