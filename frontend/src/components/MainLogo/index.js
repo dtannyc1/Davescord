@@ -1,4 +1,4 @@
-import logo from '../../assets/discord-logo-white.svg';
+import logo from '../../assets/Davescord-logo.svg';
 import './MainLogo.css'
 
 const MainLogo = props => {
