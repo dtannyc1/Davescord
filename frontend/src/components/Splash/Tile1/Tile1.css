@@ -10,10 +10,10 @@
     position: relative;
     overflow: hidden;
 
-
-    .tile1-background1 {
+    > * {
         position: absolute;
         z-index: 0;
+        background-color: transparent;
     }
 }
 
@@ -45,4 +45,17 @@
         padding-top: 40px;
         background-color: transparent;
     }
+}
+
+.tile1-shoes {
+    /* left: -275px; */
+    position: relative;
+    left: -330px;
+    bottom: -137px;
+}
+
+.tile1-sipping {
+    position: relative;
+    right: -330px;
+    bottom: -137px;
 }
