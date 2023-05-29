@@ -1,0 +1,48 @@
+
+.tile1-holder {
+    width: 100%;
+    height: 626px;
+    background-color: #404eed;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+
+    .tile1-background1 {
+        position: absolute;
+        z-index: 0;
+    }
+}
+
+.tile1-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 780px;
+    z-index: 10;
+    background-color: transparent;
+
+    > h3 {
+        color: white;
+        font-family: 'Archivo Black', sans-serif;
+        font-size: 70px;
+        transform: scaleY(75%);
+        text-align: center;
+        letter-spacing: -2px;
+        background-color: transparent;
+    }
+
+    > p {
+        color: white;
+        font-size: 18.5px;
+        font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 300;
+        text-align: center;
+        line-height: 2;
+        padding-top: 40px;
+        background-color: transparent;
+    }
+}

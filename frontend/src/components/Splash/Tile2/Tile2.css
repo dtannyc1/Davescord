@@ -1,0 +1,9 @@
+.tile2-holder {
+    width: 100%;
+    height: 626px;
+    background-color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
