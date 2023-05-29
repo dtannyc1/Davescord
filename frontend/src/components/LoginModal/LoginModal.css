@@ -69,6 +69,15 @@
         font-weight: 800;
         letter-spacing: 0.7px;
         font-size: 10.5px;
+
+        > p {
+            font-style: italic;
+            font-weight: 300;
+        }
+    }
+
+    .login-error {
+        color:#FA777C;
     }
 
     > input {
@@ -121,7 +130,7 @@
                 cursor: pointer;
             }
 
-            > button {
+            > span {
                 font-weight: 400;
                 font-size: 12px;
                 border: none;
@@ -131,7 +140,7 @@
                 cursor: pointer;
             }
 
-            > button:hover {
+            > span:hover {
                 text-decoration: underline;
             }
         }
@@ -152,4 +161,8 @@
 .login-form > a {
     display: flex;
     margin-bottom: 8px;
+}
+
+.login-error{
+    color: #FA777C;
 }
