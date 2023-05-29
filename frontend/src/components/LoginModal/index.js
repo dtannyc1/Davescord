@@ -19,7 +19,6 @@ const LoginModal = props => {
             setPassword('')
             setCredential('')
         } catch (err) {
-            console.log(err.errors)
             setErrors(err.errors)
         }
     }

@@ -106,6 +106,7 @@
         border-radius: 5px;
         cursor: pointer;
         margin-bottom: 10px;
+        margin-top: 10px;
         transition: background-color 0.25s;
     }
 
@@ -116,8 +117,9 @@
 
     .signup-bottom {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
-        align-items: center;
+        margin-top: 5px;
 
         > p {
             color: #B5BAC1;

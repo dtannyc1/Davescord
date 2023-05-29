@@ -19,14 +19,24 @@ const SignUpModal = props => {
             await dispatch(signupUser({email, username, password}))
             setPassword('')
             setUsername('')
+            setEmail('')
         } catch (err) {
-            console.log(err.errors)
-            setErrors(err.errors)
+            let tmpArr = Array(3).fill('');
+            err.errors.forEach(error => {
+                if (error.includes('Email') && tmpArr[0] === '') {
+                    tmpArr[0] = error;
+                } else if (error.includes('Username') && tmpArr[1] === '') {
+                    tmpArr[1] = error;
+                } else if (error.includes('Password') && tmpArr[2] === '') {
+                    tmpArr[2] = error;
+                }
+            });
+            setErrors(tmpArr)
         }
     }
 
     const createLabelEmail = () => {
-        if (errors.length > 0) {
+        if (errors.length > 0 && errors[0] !== '') {
             return <label htmlFor="email-input" className='signup-error'>EMAIL<p className='signup-error'>&nbsp;&ndash; {errors[0]}</p></label>
         } else {
             return (
@@ -36,8 +46,8 @@ const SignUpModal = props => {
     }
 
     const createLabelUsername = () => {
-        if (errors.length > 0) {
-            return <label htmlFor="username-input" className='signup-error'>USERNAME<p className='signup-error'>&nbsp;&ndash; {errors[0]}</p></label>
+        if (errors.length > 0 && errors[1] !== '') {
+            return <label htmlFor="username-input" className='signup-error'>USERNAME<p className='signup-error'>&nbsp;&ndash; {errors[1]}</p></label>
         } else {
             return (
                 <label htmlFor="username-input">USERNAME <p className='signup-error'>&nbsp;*</p></label>
@@ -46,8 +56,8 @@ const SignUpModal = props => {
     }
 
     const createLabelPassword = () => {
-        if (errors.length > 0) {
-            return <label htmlFor="password-input" className='signup-error'>PASSWORD <p className='signup-error'>&nbsp;&ndash; {errors[0]}</p></label>
+        if (errors.length > 0 && errors[2] !== '') {
+            return <label htmlFor="password-input" className='signup-error'>PASSWORD <p className='signup-error'>&nbsp;&ndash; {errors[2]}</p></label>
         } else {
             return <label htmlFor="password-input">PASSWORD <p className='signup-error'>&nbsp;*</p></label>
         }
@@ -70,6 +80,9 @@ const SignUpModal = props => {
                     <button>Continue</button>
                     <div className="signup-bottom">
                         <p><Link to="/login">Already have an account?</Link></p>
+                        <br/>
+                        <br/>
+                        <p>By registering, you agree to consider hiring me for a job: <Link to="/login">LinkedIn</Link> & <Link to="/login">Github</Link></p>
                     </div>
                 </form>
             </div>
