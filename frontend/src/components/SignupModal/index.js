@@ -82,7 +82,11 @@ const SignUpModal = props => {
                         <p><Link to="/login">Already have an account?</Link></p>
                         <br/>
                         <br/>
-                        <p>By registering, you agree to consider hiring me for a job: <Link to="/login">LinkedIn</Link> & <Link to="/login">Github</Link></p>
+                        <p>By registering, you agree to consider hiring me for a
+                            job: <Link to={{pathname: "http://www.linkedin.com/in/dtannyc1/"}}
+                                target="_blank">LinkedIn</Link> &
+                            <Link to={{pathname: "https://github.com/dtannyc1/Davescord"}}
+                                target="_blank">Github</Link></p>
                     </div>
                 </form>
             </div>
