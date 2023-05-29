@@ -1,4 +1,6 @@
 .modal-background {
     position: absolute;
-    top: 0;
+    scale: 85%;
+    top: -96px;
+    left: -120px;
 }
