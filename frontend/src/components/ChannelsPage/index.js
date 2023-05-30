@@ -64,8 +64,8 @@ const ChannelsPage = () => {
     return (
         <div className="channels-page">
             <div className="channels-column1">
-                <Link to='/channels/@me'>
-                    <img className={(serverId === "@me") ? "icon selected" : "icon"} src={icon} alt="davescord-icon"/>
+                <Link to='/channels/@me' className={(serverId === "@me") ? "icon selected" : "icon"}>
+                    <img src={icon} alt="davescord-icon"/>
                 </Link>
                 <hr className="channels-divider"/>
                 <ServerList activeServer={serverId}/>
