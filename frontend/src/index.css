@@ -2,7 +2,7 @@
 
 * {
     font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #404eed;
+    background-color: inherit;
 }
 
 #root {

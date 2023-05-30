@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/session";
 import { useHistory } from "react-router-dom";
+import './ChannelsPage.css'
 
 const ChannelsPage = ({server_id, channel_id, private_chat_id}) => {
     const dispatch = useDispatch();
@@ -19,10 +20,17 @@ const ChannelsPage = ({server_id, channel_id, private_chat_id}) => {
 
     return (
         <div className="channels-page">
-            <div>
-                Hello from channels page
+            <div className="channels-column1">
+                {/* logo  */}
+                {/* server list */}
             </div>
-            <button className="logout-button" onClick={handleLogout}>Logout</button>
+            <div className="channels-column2">
+                Hello from channels page
+                <button className="logout-button" onClick={handleLogout}>Logout</button>
+            </div>
+            <div className="channels-column3">
+
+            </div>
         </div>
     )
 }

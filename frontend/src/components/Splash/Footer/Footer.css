@@ -9,13 +9,13 @@
     > * {
         background-color: transparent;
         > * {
-            background-color: transparent;
+            background-color: inherit;
             > * {
-                background-color: transparent;
+                background-color: inherit;
                 > * {
-                    background-color: transparent;
+                    background-color: inherit;
                     > * {
-                        background-color: transparent;
+                        background-color: inherit;
                     }
                 }
             }
