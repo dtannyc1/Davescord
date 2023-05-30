@@ -5,7 +5,7 @@
     height: 100%;
     display: grid;
 
-    grid-template-columns: 72px 200px auto;
+    grid-template-columns: 72px 240px auto;
 }
 
 .channels-column1{
@@ -15,6 +15,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
+    margin-top: 5px;
 }
 
 .channels-column2{
@@ -29,9 +31,41 @@
     grid-column-start: 3;
     grid-column-end: 4;
     background-color: rgb(49, 51, 56);
-
 }
 
+.icon {
+    width: 27px;
+    height: 27px;
+    padding: 12px;
+    margin: 5px;
+    border-radius: 25.5px;
+    background-color: rgb(43, 45, 49);
+    transition: background-color 0.2s, border-radius 0.2s;
+}
+
+.icon:hover {
+    background-color: #5865f2;
+    border-radius: 18px;
+    transition: background-color 0.2s, border-radius 0.2s;
+}
+
+.icon.selected {
+    background-color: #5865f2;
+    border-radius: 18px;
+    transition: background-color 0.2s, border-radius 0.2s;
+}
+
+.channels-divider {
+    width: 28px;
+    position: relative;
+    bottom: 0px;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(49, 51, 56);
+    outline: none;
+    height: 3px;
+    border: none;
+}
 
 .logout-button{
     color: #b9bbbe;

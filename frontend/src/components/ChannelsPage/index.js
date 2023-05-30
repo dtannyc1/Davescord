@@ -1,16 +1,47 @@
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/session";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import './ChannelsPage.css'
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import icon from '../../assets/Davescord-icon.svg'
 
-const ChannelsPage = ({server_id, channel_id, private_chat_id}) => {
+const ChannelsPage = () => {
+    const {serverId, channelId} = useParams();
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const history = useHistory();
 
-    if (private_chat_id) console.log(private_chat_id);
-    if (server_id) console.log(server_id);
-    if (channel_id) console.log(channel_id);
+    // notes:
+    // use serverId and channelId to determine what to render
+
+    // column 1:
+        // always show list of servers
+        // each server links to /channels/:serverId/
+        // selected icon has:
+            // small rect next to it 8x40, small border radius
+            // different border radius
+        // hovered icon also has small rect
+            // animated small rect, opacity & scale
+            // animated different border radius,
+            // animated show server name, opacity
+
+    // column 2:
+        // if serverId === "@me"
+            // render friends list
+        // else
+            // render channels
+
+    // column 3:
+        // if serverId === "@me"
+            // if channelId
+                // render private messages
+            // else
+                // render friends list
+        // else
+            // if channelId
+                // render messages
+            // else
+                // find list of channels for server, then redirect to first channel
 
     const handleLogout = e => {
         e.preventDefault();
@@ -21,6 +52,13 @@ const ChannelsPage = ({server_id, channel_id, private_chat_id}) => {
     return (
         <div className="channels-page">
             <div className="channels-column1">
+                <Link to='/channels/@me'>
+                    <img className={(serverId === "@me") ? "icon selected" : "icon"} src={icon} alt="davescord-icon"/>
+                </Link>
+                <hr className="channels-divider"/>
+                <Link to='/channels/@me'>
+                    <img className={(serverId === "@me") ? "icon selected" : "icon"} src={icon} alt="davescord-icon"/>
+                </Link>
                 {/* logo  */}
                 {/* server list */}
             </div>

@@ -23,19 +23,11 @@ function App() {
                 {currentUserId ? <Redirect to="/channels/@me"/> : <SignUpModal/>}
             </Route>
             <Switch>
-                <Route exact path="/channels/@me">
-                    {currentUserId ? <ChannelsPage/> : <Redirect to="/login"/>}
-                </Route>
-
-                <Route exact path="/channels/@me/:privateChatId">
+                <Route exact path="/channels/:serverId/:channelId">
                     {currentUserId ? <ChannelsPage/> : <Redirect to="/login"/>}
                 </Route>
 
                 <Route exact path="/channels/:serverId">
-                    {currentUserId ? <ChannelsPage/> : <Redirect to="/login"/>}
-                </Route>
-
-                <Route exact path="/channels/:serverId/:channel_id">
                     {currentUserId ? <ChannelsPage/> : <Redirect to="/login"/>}
                 </Route>
             </Switch>
