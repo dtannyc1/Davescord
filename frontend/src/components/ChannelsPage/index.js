@@ -4,6 +4,7 @@ import { useHistory, Link } from "react-router-dom";
 import './ChannelsPage.css'
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import icon from '../../assets/Davescord-icon.svg'
+import ServerList from "../ServerList";
 
 const ChannelsPage = () => {
     const {serverId, channelId} = useParams();
@@ -11,6 +12,7 @@ const ChannelsPage = () => {
     const currentUserId = useSelector(state => state.session.currentUserId);
     const history = useHistory();
 
+    if (channelId) console.log(channelId)
     // notes:
     // use serverId and channelId to determine what to render
 
@@ -59,6 +61,7 @@ const ChannelsPage = () => {
                 <Link to='/channels/@me'>
                     <img className={(serverId === "@me") ? "icon selected" : "icon"} src={icon} alt="davescord-icon"/>
                 </Link>
+                <ServerList/>
                 {/* logo  */}
                 {/* server list */}
             </div>
