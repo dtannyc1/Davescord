@@ -11,11 +11,13 @@ ApplicationRecord.transaction do
     # Unnecessary if using `rails db:seed:replant`
     User.destroy_all
     Server.destroy_all
+    Subscription.destroy_all
 
     puts "Resetting primary keys..."
     # For easy testing, so that after seeding, the first `User` has `id` of 1
     ApplicationRecord.connection.reset_pk_sequence!('users')
     ApplicationRecord.connection.reset_pk_sequence!('servers')
+    ApplicationRecord.connection.reset_pk_sequence!('subscriptions')
 
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
@@ -36,10 +38,27 @@ ApplicationRecord.transaction do
 
     puts "Creating servers..."
     5.times do
+        owner_id = rand(0...10);
+
         Server.create!({
             server_name: Faker::Fantasy::Tolkien.location,
-            owner_id: rand(0...10),
+            owner_id: owner_id,
         })
+
+        Subscription.create!({
+            subscriber_id: owner_id,
+            server_id: Server.last.id
+        })
+    end
+
+    puts "Creating subscriptions..."
+    [1,2,4,5].each do |server_num|
+        if (Server.find(server_num).owner_id != 1)
+            Subscription.create!({
+                subscriber_id: 1,
+                server_id: server_num
+            })
+        end
     end
 
     puts "Done!"
