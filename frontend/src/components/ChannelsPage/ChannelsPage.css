@@ -43,13 +43,7 @@
     transition: background-color 0.2s, border-radius 0.2s;
 }
 
-.icon:hover {
-    background-color: #5865f2;
-    border-radius: 18px;
-    transition: background-color 0.2s, border-radius 0.2s;
-}
-
-.icon.selected {
+.icon.selected, .icon:hover {
     background-color: #5865f2;
     border-radius: 18px;
     transition: background-color 0.2s, border-radius 0.2s;

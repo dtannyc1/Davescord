@@ -12,7 +12,6 @@ const ChannelsPage = () => {
     const currentUserId = useSelector(state => state.session.currentUserId);
     const history = useHistory();
 
-    if (channelId) console.log(channelId)
     // notes:
     // use serverId and channelId to determine what to render
 
@@ -58,12 +57,7 @@ const ChannelsPage = () => {
                     <img className={(serverId === "@me") ? "icon selected" : "icon"} src={icon} alt="davescord-icon"/>
                 </Link>
                 <hr className="channels-divider"/>
-                <Link to='/channels/@me'>
-                    <img className={(serverId === "@me") ? "icon selected" : "icon"} src={icon} alt="davescord-icon"/>
-                </Link>
-                <ServerList/>
-                {/* logo  */}
-                {/* server list */}
+                <ServerList activeServer={serverId}/>
             </div>
             <div className="channels-column2">
                 Hello from channels page

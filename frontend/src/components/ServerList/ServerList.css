@@ -1,0 +1,28 @@
+
+.server-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 51px;
+        height: 51px;
+        border-radius: 25.5px;
+        margin: 5px;
+        color: white;
+        background-color: rgb(43, 45, 49);
+        text-decoration: none;
+        font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 24px;
+        transition: background-color 0.2s, border-radius 0.2s;
+    }
+
+    > a:hover, a.selected {
+        border-radius: 18px;
+        background-color: #5865f2;
+        transition: background-color 0.2s, border-radius 0.2s;
+    }
+}
