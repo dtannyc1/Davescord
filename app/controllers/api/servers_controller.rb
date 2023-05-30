@@ -17,9 +17,13 @@ class Api::ServersController < ApplicationController
     end
 
     def create
+        # servers should be created with current user as owner,
+        # after that, subscription should be created so currentuser is subscribed
+        params[:server][:owner_id] = current_user.id
         @server = Server.new(server_params)
-
         if @server.save
+            Subscription.create!({subscriber_id: current_user.id,
+                        server_id: @server.id})
             render :show
         else
             render json: @server.errors.full_messages, status: 422
