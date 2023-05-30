@@ -131,6 +131,11 @@
     margin: 0px 20px;
 }
 
+.current-user-profile {
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
 .logout-button{
     color: #b9bbbe;
 }

@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchServers } from "../../store/server";
 import icon from '../../assets/Davescord-icon.svg'
 import ServerList from "../ServerList";
+import CurrentUserProfile from "../CurrentUserProfile";
 
 const ChannelsPage = () => {
     const {serverId, channelId} = useParams();
@@ -77,6 +78,7 @@ const ChannelsPage = () => {
                     <div className="channels-server-name">{currentServer.serverName}</div> :
                     <div className="channels-searchbar">searchbar</div>}
                 <button className="logout-button" onClick={handleLogout}>Logout</button>
+                <CurrentUserProfile/>
             </div>
             <div className="channels-column3">
 
