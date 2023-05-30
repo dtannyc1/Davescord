@@ -26,6 +26,11 @@ class User < ApplicationRecord
 
     before_validation :ensure_session_token
 
+    has_many(:servers,
+        primary_key: :id,
+        foreign_key: :owner_id,
+        class_name: :Server)
+
     # FIGVAPEBRR
 
     def self.find_by_credentials(credential, password)
