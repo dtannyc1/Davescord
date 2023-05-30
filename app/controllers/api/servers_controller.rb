@@ -1,7 +1,8 @@
 class Api::ServersController < ApplicationController
+    before_action(:require_logged_in, only: [:index, :show, :create, :update, :destroy])
 
     def index
-        @servers = Server.all
+        @servers = current_user.subscribed_servers
         render :index
     end
 

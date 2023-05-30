@@ -30,13 +30,19 @@ class User < ApplicationRecord
         primary_key: :id,
         foreign_key: :owner_id,
         class_name: :Server,
+        inverse_of: :owner,
         dependent: :destroy)
 
     has_many(:subscriptions,
         primary_key: :id,
         foreign_key: :subscriber_id,
         class_name: :Subscription,
+        inverse_of: :subscriber,
         dependent: :destroy)
+
+    has_many(:subscribed_servers,
+        through: :subscriptions,
+        source: :server)
 
     # FIGVAPEBRR
 
