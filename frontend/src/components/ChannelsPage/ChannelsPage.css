@@ -15,8 +15,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
     margin-top: 5px;
+
+    overflow-y: scroll;
+
+
+    /* hiding scroll bar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.channels-column1::-webkit-scrollbar {
+    display: none;
 }
 
 .channels-column2{

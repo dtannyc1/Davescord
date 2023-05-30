@@ -28,21 +28,23 @@ ApplicationRecord.transaction do
     )
 
     # More users
-    10.times do
+    10.times do |ii|
       User.create!({
         username: Faker::Internet.unique.username(specifier: 3),
         email: Faker::Internet.unique.email,
-        password: 'password'
+        password: 'password',
+        profile_picture: "https://loremflickr.com/50/50/dog?random=" + ii.to_s
       })
     end
 
     puts "Creating servers..."
-    5.times do
-        owner_id = rand(0...10);
+    25.times do |ii|
+        owner_id = rand(1...10);
 
         Server.create!({
             server_name: Faker::Fantasy::Tolkien.location,
             owner_id: owner_id,
+            server_image: "https://loremflickr.com/50/50/icon?random=" + ii.to_s
         })
 
         Subscription.create!({
@@ -52,7 +54,7 @@ ApplicationRecord.transaction do
     end
 
     puts "Creating subscriptions..."
-    [1,2,4,5].each do |server_num|
+    [1,2,4,5,8,11,12,16,17,18,19].each do |server_num|
         if (Server.find(server_num).owner_id != 1)
             Subscription.create!({
                 subscriber_id: 1,

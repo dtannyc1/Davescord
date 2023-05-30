@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
 
-    > a{
+    > a, > a > img{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -20,9 +20,15 @@
         transition: background-color 0.2s, border-radius 0.2s;
     }
 
-    > a:hover, a.selected {
+    > a:hover, > a.selected{
         border-radius: 18px;
         background-color: #5865f2;
         transition: background-color 0.2s, border-radius 0.2s;
+
+        > img {
+            border-radius: 18px;
+            background-color: #5865f2;
+            transition: background-color 0.2s, border-radius 0.2s;
+        }
     }
 }
