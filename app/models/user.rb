@@ -29,7 +29,14 @@ class User < ApplicationRecord
     has_many(:servers,
         primary_key: :id,
         foreign_key: :owner_id,
-        class_name: :Server)
+        class_name: :Server,
+        dependent: :destroy)
+
+    has_many(:subscriptions,
+        primary_key: :id,
+        foreign_key: :subscriber_id,
+        class_name: :Subscription,
+        dependent: :destroy)
 
     # FIGVAPEBRR
 
