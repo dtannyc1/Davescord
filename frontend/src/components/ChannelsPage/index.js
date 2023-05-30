@@ -59,6 +59,7 @@ const ChannelsPage = () => {
         history.push('/')
     }
 
+    // if (!currentServer) return null;
     return (
         <div className="channels-page">
             <div className="channels-column1">
@@ -67,9 +68,12 @@ const ChannelsPage = () => {
                 </Link>
                 <hr className="channels-divider"/>
                 <ServerList activeServer={serverId}/>
+                <div className="channels-add-server-button">
+                    <div>+</div>
+                </div>
             </div>
             <div className="channels-column2">
-                {(serverId !== "@me") ?
+                {(currentServer) ?
                     <div className="channels-server-name">{currentServer.serverName}</div> :
                     <div className="channels-searchbar">searchbar</div>}
                 <button className="logout-button" onClick={handleLogout}>Logout</button>

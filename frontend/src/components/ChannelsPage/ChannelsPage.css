@@ -63,12 +63,37 @@
     width: 28px;
     position: relative;
     bottom: 0px;
-    margin: 0;
-    padding: 0;
+    margin: 1px;
+    padding: 1px;
     background-color: rgb(49, 51, 56);
     outline: none;
-    height: 3px;
+    height: 1px;
     border: none;
+}
+
+.channels-add-server-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 51px;
+    min-height: 51px;
+    border-radius: 25.5px;
+    margin: 5px;
+    margin-bottom: 10px;
+    color: rgb(35, 165, 89);
+    background-color: rgb(43, 45, 49);
+    text-decoration: none;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 36px;
+    font-weight: 200;
+    transition: background-color 0.2s, border-radius 0.2s;
+}
+
+.channels-add-server-button:hover {
+    color: white;
+    background-color: rgb(35, 165, 89);
+    border-radius: 18px;
+    transition: background-color 0.2s, border-radius 0.2s;
 }
 
 .channels-server-name {
