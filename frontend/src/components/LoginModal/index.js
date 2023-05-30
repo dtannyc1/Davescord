@@ -70,7 +70,7 @@ const LoginModal = props => {
                     {createLabelPassword()}
                     <input id="password-input"type="password" autoComplete="current-password" value={password} onChange={e => setPassword(e.target.value)}/>
 
-                    <Link to="#">Forgot your password?</Link>
+                    <Link to="#"> </Link>
                     <br/>
                     <button>Log In</button>
                     <div className="login-bottom">

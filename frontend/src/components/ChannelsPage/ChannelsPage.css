@@ -71,6 +71,34 @@
     border: none;
 }
 
+.channels-server-name {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: #202225 solid 2px;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    margin: 0px 20px;
+}
+
+.channels-searchbar {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: #202225 solid 2px;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    margin: 0px 20px;
+}
+
 .logout-button{
     color: #b9bbbe;
 }

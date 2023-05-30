@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/session";
 import { useHistory, Link } from "react-router-dom";
-import './ChannelsPage.css'
+import './ChannelsPage.css';
+import { useEffect } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { fetchServers } from "../../store/server";
 import icon from '../../assets/Davescord-icon.svg'
 import ServerList from "../ServerList";
 
@@ -10,8 +12,15 @@ const ChannelsPage = () => {
     const {serverId, channelId} = useParams();
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
+    const currentServer = useSelector(state => state.servers[serverId])
     const history = useHistory();
 
+    useEffect(() => {
+        dispatch(fetchServers())
+    }, [dispatch])
+
+    // console.log(serverId)
+    // console.log(currentServer.serverName)
     // notes:
     // use serverId and channelId to determine what to render
 
@@ -60,7 +69,9 @@ const ChannelsPage = () => {
                 <ServerList activeServer={serverId}/>
             </div>
             <div className="channels-column2">
-                Hello from channels page
+                {(serverId !== "@me") ?
+                    <div className="channels-server-name">{currentServer.serverName}</div> :
+                    <div className="channels-searchbar">searchbar</div>}
                 <button className="logout-button" onClick={handleLogout}>Logout</button>
             </div>
             <div className="channels-column3">
