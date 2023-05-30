@@ -10,10 +10,12 @@ ApplicationRecord.transaction do
     puts "Destroying tables..."
     # Unnecessary if using `rails db:seed:replant`
     User.destroy_all
+    Server.destroy_all
 
     puts "Resetting primary keys..."
     # For easy testing, so that after seeding, the first `User` has `id` of 1
     ApplicationRecord.connection.reset_pk_sequence!('users')
+    ApplicationRecord.connection.reset_pk_sequence!('servers')
 
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
@@ -30,6 +32,14 @@ ApplicationRecord.transaction do
         email: Faker::Internet.unique.email,
         password: 'password'
       })
+    end
+
+    puts "Creating servers..."
+    5.times do
+        Server.create!({
+            server_name: Faker::Fantasy::Tolkien.location,
+            owner_id: rand(0...10),
+        })
     end
 
     puts "Done!"

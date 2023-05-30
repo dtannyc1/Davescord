@@ -6,7 +6,7 @@ class Api::ServersController < ApplicationController
     end
 
     def show
-        @server = Server.find(params[:serverId])
+        @server = Server.find(params[:id])
 
         if @server
             render :show
