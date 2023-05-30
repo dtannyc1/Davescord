@@ -16,15 +16,31 @@ class Api::ServersController < ApplicationController
     end
 
     def create
+        @server = Server.new(server_params)
 
+        if @server.save
+            render :show
+        else
+            render json: @server.errors.full_messages, status: 422
+        end
     end
 
     def update
+        @server = Server.find(params[:id])
 
+        if @server
+            if @server.update(server_params)
+                render :show
+            end
+        else
+            render json: @server.errors.full_messages, status: 422
+        end
     end
 
     def destroy
-
+        @server = Server.find(params[:id])
+        @server.destroy
+        render :index
     end
 
     private
