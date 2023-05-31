@@ -57,6 +57,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 
     > img {
         width: 30px;
@@ -68,6 +69,25 @@
     background-color: #5865f2;
     border-radius: 18px;
     transition: background-color 0.2s, border-radius 0.2s;
+
+    .channels-left-selector{
+        opacity: 0%;
+        transform: scale(0.5);
+        transition: opacity 0.2s, transform 0.2s;
+    }
+}
+
+.icon.selected .channels-left-selector{
+    position: absolute;
+    background-color: white;
+    min-width: 6px;
+    height: 40px;
+    top: 5.5px;
+    left: -13px;
+    border-radius: 4px;
+    opacity: 100%;
+    transform: scale(1);
+    transition: opacity 0.2s, transform 0.2s;
 }
 
 .channels-divider {

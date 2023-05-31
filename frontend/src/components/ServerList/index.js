@@ -22,12 +22,14 @@ const ServerList = ({activeServer}) => {
                 if (server.serverImage) {
                     return <Link key={server.id} to={`/channels/${server.id}`} className={(activeServer == server.id) ? "selected" : null}>
                             <img src={server.serverImage} alt={server.serverName}/>
+                            <div className="channels-left-selector"></div>
                         </Link>
                 } else{
                     return <Link key={server.id} to={`/channels/${server.id}`} className={(activeServer == server.id) ? "selected" : null}>
                             <div className="server-image">
                                 {server.serverName.toUpperCase().charAt(0)}
                             </div>
+                            <div className="channels-left-selector"></div>
                         </Link>
                 }
             })}
