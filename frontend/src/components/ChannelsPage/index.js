@@ -70,7 +70,7 @@ const ChannelsPage = () => {
             <div className="channels-column2">
                 {(currentServer) ?
                     <div className="channels-server-name">{currentServer.serverName}</div> :
-                    <div className="channels-searchbar">searchbar</div>}
+                    <div className="channels-searchbar">searchbar goes here</div>}
                 <CurrentUserProfile/>
             </div>
             <div className="channels-column3">

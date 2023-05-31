@@ -16,6 +16,8 @@ const CurrentUserProfile = () => {
         history.push('/')
     }
 
+    if (!currentUser) return null;
+
     return (
         <div className="current-user-profile">
             <div>
