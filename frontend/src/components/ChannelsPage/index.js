@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../../store/session";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './ChannelsPage.css';
 import { useEffect } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
@@ -15,12 +14,11 @@ const ChannelsPage = () => {
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
-    const history = useHistory();
 
     useEffect(() => {
         dispatch(fetchServers())
         dispatch(fetchUser(currentUserId))
-    }, [dispatch])
+    }, [dispatch, currentUserId])
 
     // console.log(serverId)
     // console.log(currentServer.serverName)
@@ -56,12 +54,6 @@ const ChannelsPage = () => {
             // else
                 // find list of channels for server, then redirect to first channel
 
-    const handleLogout = e => {
-        e.preventDefault();
-        dispatch(logoutUser(currentUserId))
-        history.push('/')
-    }
-
     // if (!currentServer) return null;
     return (
         <div className="channels-page">
@@ -79,7 +71,6 @@ const ChannelsPage = () => {
                 {(currentServer) ?
                     <div className="channels-server-name">{currentServer.serverName}</div> :
                     <div className="channels-searchbar">searchbar</div>}
-                <button className="logout-button" onClick={handleLogout}>Logout</button>
                 <CurrentUserProfile/>
             </div>
             <div className="channels-column3">
