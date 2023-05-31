@@ -8,28 +8,30 @@ const ServerList = ({activeServer}) => {
     const dispatch = useDispatch();
     // const currentUserId = useSelector(state => state.session.currentUserId);
     const servers = useSelector(state => Object.values(state.servers));
-    useEffect(() => {
-        dispatch(fetchServers())
-    }, [dispatch])
+
+    // already fetching in ChannelsPage
+    // useEffect(() => {
+    //     dispatch(fetchServers())
+    // }, [dispatch])
 
     if (!servers) return null;
 
     return (
-        <ul className="server-list">
+        <div className="server-list">
             {servers.map(server => {
                 if (server.serverImage) {
-                    return <Link to={`/channels/${server.id}`} className={(activeServer == server.id) ? "selected" : null}>
+                    return <Link key={server.id} to={`/channels/${server.id}`} className={(activeServer == server.id) ? "selected" : null}>
                             <img src={server.serverImage} alt={server.serverName}/>
                         </Link>
                 } else{
-                    return <Link to={`/channels/${server.id}`} className={(activeServer == server.id) ? "selected" : null}>
+                    return <Link key={server.id} to={`/channels/${server.id}`} className={(activeServer == server.id) ? "selected" : null}>
                             <div className="server-image">
                                 {server.serverName.toUpperCase().charAt(0)}
                             </div>
                         </Link>
                 }
             })}
-        </ul>
+        </div>
     )
 }
 

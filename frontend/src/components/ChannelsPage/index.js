@@ -8,16 +8,19 @@ import { fetchServers } from "../../store/server";
 import icon from '../../assets/Davescord-icon.svg'
 import ServerList from "../ServerList";
 import CurrentUserProfile from "../CurrentUserProfile";
+import { fetchUser } from "../../store/user";
 
 const ChannelsPage = () => {
     const {serverId, channelId} = useParams();
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
-    const currentServer = useSelector(state => state.servers[serverId])
+    const currentServer = useSelector(state => state.servers[serverId]);
+    const currentUser = useSelector(state => state.users[currentUserId]);
     const history = useHistory();
 
     useEffect(() => {
         dispatch(fetchServers())
+        dispatch(fetchUser(currentUserId))
     }, [dispatch])
 
     // console.log(serverId)
