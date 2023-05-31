@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { REMOVE_CURRENT_USER } from './session.js';
 
 // action types
 const ADD_SERVER = 'servers/ADD_SERVER';
@@ -50,7 +51,9 @@ const serverReducer = (state = {}, action) => {
             nextState[action.server.id] = action.server;
             return nextState;
         case ADD_SERVERS:
-            return {...nextState, ...action.servers}
+            return {...nextState, ...action.servers};
+        case REMOVE_CURRENT_USER:
+            return ({});
         default:
             return state;
     }
