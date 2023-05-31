@@ -4,12 +4,13 @@ import './CreateServerModal.css'
 import background from '../../../assets/create_server_background.svg';
 import image_upload from '../../../assets/create_server_image_upload.svg';
 import { createServer } from "../../../store/server";
+import { useEffect } from "react";
 
 const CreateServerModal = ({visible, setVisible}) => {
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentUser = useSelector(state => state.users[currentUserId]);
-    const defaultServerName = (currentUser) ? `${currentUser.username}'s server` : '';
+    let defaultServerName = (currentUser) ? `${currentUser.username}'s server` : '';
     const [newServerName, setNewServerName] = useState(defaultServerName);
 
     const handleServerCreation = e => {
@@ -22,6 +23,11 @@ const CreateServerModal = ({visible, setVisible}) => {
             setVisible(false)
         }
     }
+
+    useEffect(() => {
+        defaultServerName = (currentUser) ? `${currentUser.username}'s server` : '';
+        setNewServerName(defaultServerName);
+    }, [currentUser])
 
     return (
         <div className={(visible) ? "server-modal-holder" : "server-modal-holder hidden"}>
