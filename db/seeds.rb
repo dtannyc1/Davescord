@@ -24,7 +24,8 @@ ApplicationRecord.transaction do
     User.create!(
       username: 'demo-login',
       email: 'demo@user.io',
-      password: 'password'
+      password: 'password',
+      profile_picture: "https://loremflickr.com/50/50/dog?random=0"
     )
 
     # More users

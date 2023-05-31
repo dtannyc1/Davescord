@@ -15,7 +15,6 @@ const ChannelsPage = () => {
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
-    const currentUser = useSelector(state => state.users[currentUserId]);
     const history = useHistory();
 
     useEffect(() => {
