@@ -131,6 +131,7 @@
     font-size: 36px;
     font-weight: 200;
     transition: background-color 0.2s, border-radius 0.2s;
+    cursor: pointer;
 }
 
 .channels-add-server-button:hover {
