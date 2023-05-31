@@ -144,33 +144,37 @@
 .channels-server-name {
     grid-row-start: 1;
     grid-row-end: 2;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    height: 32px;
+    display: inline;
+    position: relative;
+    top: 18px;
     border-bottom: #202225 solid 2px;
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-weight: 600;
     color: white;
-    margin: 0px 20px;
+    padding: 0px 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .channels-searchbar {
     grid-row-start: 1;
     grid-row-end: 2;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    height: 32px;
+    display: inline;
+    position: relative;
+    top: 18px;
     border-bottom: #202225 solid 2px;
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-weight: 600;
     color: white;
-    margin: 0px 20px;
+    padding: 0px 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .current-user-profile {
