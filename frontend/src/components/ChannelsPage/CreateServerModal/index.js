@@ -3,6 +3,7 @@ import { useState } from "react";
 import './CreateServerModal.css'
 import background from '../../../assets/create_server_background.svg';
 import image_upload from '../../../assets/create_server_image_upload.svg';
+import { createServer } from "../../../store/server";
 
 const CreateServerModal = ({visible, setVisible}) => {
     const dispatch = useDispatch();
@@ -10,6 +11,12 @@ const CreateServerModal = ({visible, setVisible}) => {
 
     const handleServerCreation = e => {
         e.preventDefault();
+
+        if (newServerName.length > 0) {
+            let server = {server_name: newServerName}
+            dispatch(createServer(server))
+            setVisible(false)
+        }
     }
 
     return (
@@ -41,7 +48,7 @@ const CreateServerModal = ({visible, setVisible}) => {
                         <div className="server-modal-main-bottom">
                             <button className="server-modal-back-button" onClick={e => setVisible(false)}>Back</button>
 
-                            <button className="server-modal-create-button">Create</button>
+                            <button className="server-modal-create-button" onClick={handleServerCreation}>Create</button>
                         </div>
                     </div>
                 </div>
