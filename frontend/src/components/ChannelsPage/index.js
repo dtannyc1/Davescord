@@ -8,12 +8,15 @@ import icon from '../../assets/Davescord-icon.svg'
 import ServerList from "../ServerList";
 import CurrentUserProfile from "../CurrentUserProfile";
 import { fetchUser } from "../../store/user";
+import { useState } from "react";
+import CreateServerModal from "./CreateServerModal";
 
 const ChannelsPage = () => {
     const {serverId, channelId} = useParams();
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
+    const [showServerModal, setShowServerModal] = useState(false);
 
     useEffect(() => {
         dispatch(fetchServers())
@@ -55,8 +58,10 @@ const ChannelsPage = () => {
                 // find list of channels for server, then redirect to first channel
 
     // if (!currentServer) return null;
+
     return (
         <div className="channels-page">
+            <CreateServerModal visible={showServerModal}/>
             <div className="channels-column1">
                 <Link to='/channels/@me' className={(serverId === "@me") ? "icon selected" : "icon"}>
                     <img src={icon} alt="davescord-icon"/>
@@ -64,7 +69,7 @@ const ChannelsPage = () => {
                 </Link>
                 <hr className="channels-divider"/>
                 <ServerList activeServer={serverId}/>
-                <div className="channels-add-server-button">
+                <div className="channels-add-server-button" onClick={e => setShowServerModal(true)}>
                     <div>+</div>
                 </div>
             </div>
