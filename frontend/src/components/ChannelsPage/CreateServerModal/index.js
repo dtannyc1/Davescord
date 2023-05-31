@@ -9,7 +9,8 @@ const CreateServerModal = ({visible, setVisible}) => {
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentUser = useSelector(state => state.users[currentUserId]);
-    const [newServerName, setNewServerName] = useState(`${currentUser.username}'s server`);
+    const defaultServerName = (currentUser) ? `${currentUser.username}'s server` : '';
+    const [newServerName, setNewServerName] = useState(defaultServerName);
 
     const handleServerCreation = e => {
         e.preventDefault();
@@ -17,7 +18,7 @@ const CreateServerModal = ({visible, setVisible}) => {
         if (newServerName.length > 0) {
             let server = {server_name: newServerName}
             dispatch(createServer(server))
-            setNewServerName(`${currentUser.username}'s server`);
+            setNewServerName(defaultServerName);
             setVisible(false)
         }
     }
@@ -45,11 +46,11 @@ const CreateServerModal = ({visible, setVisible}) => {
                         </div>
 
                         <div className="server-modal-main-exit">
-                            <button onClick={e => {setNewServerName(`${currentUser.username}'s server`); setVisible(false)}}>X</button>
+                            <button onClick={e => {setNewServerName(defaultServerName); setVisible(false)}}>X</button>
                         </div>
 
                         <div className="server-modal-main-bottom">
-                            <button className="server-modal-back-button" onClick={e => {setNewServerName(`${currentUser.username}'s server`); setVisible(false)}}>Back</button>
+                            <button className="server-modal-back-button" onClick={e => {setNewServerName(defaultServerName); setVisible(false)}}>Back</button>
 
                             <button className="server-modal-create-button" onClick={handleServerCreation}>Create</button>
                         </div>
