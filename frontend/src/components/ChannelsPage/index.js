@@ -23,20 +23,11 @@ const ChannelsPage = () => {
         dispatch(fetchUser(currentUserId))
     }, [dispatch, currentUserId])
 
-    // console.log(serverId)
-    // console.log(currentServer.serverName)
     // notes:
     // use serverId and channelId to determine what to render
 
     // column 1:
-        // always show list of servers
-        // each server links to /channels/:serverId/
-        // selected icon has:
-            // small rect next to it 8x40, small border radius
-            // different border radius
         // hovered icon also has small rect
-            // animated small rect, opacity & scale
-            // animated different border radius,
             // animated show server name, opacity
 
     // column 2:
@@ -61,7 +52,7 @@ const ChannelsPage = () => {
 
     return (
         <div className="channels-page">
-            <CreateServerModal visible={showServerModal}/>
+            <CreateServerModal visible={showServerModal} setVisible={setShowServerModal}/>
             <div className="channels-column1">
                 <Link to='/channels/@me' className={(serverId === "@me") ? "icon selected" : "icon"}>
                     <img src={icon} alt="davescord-icon"/>

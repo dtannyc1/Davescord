@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import './CreateServerModal.css'
+import background from '../../../assets/create_server_background.svg';
+import image_upload from '../../../assets/create_server_image_upload.svg';
 
-const CreateServerModal = ({visible}) => {
+const CreateServerModal = ({visible, setVisible}) => {
     const dispatch = useDispatch();
     const [newServerName, setNewServerName] = useState('');
 
@@ -14,7 +16,7 @@ const CreateServerModal = ({visible}) => {
         <div className={(visible) ? "server-modal-holder" : "server-modal-holder hidden"}>
                 <div className="server-modal">
                     <div className='server-modal-left-image'>
-                        image placeholder
+                        <img src={background} alt="create-server-background"/>
                     </div>
 
                     <div className="server-modal-main-content">
@@ -23,7 +25,7 @@ const CreateServerModal = ({visible}) => {
                             <p>Give your new server a personality with a name
                                 and an icon. You can always change it later.
                             </p>
-                            <img src="#" alt="upload-image"/>
+                            <img className="server-modal-image-upload" src={image_upload} alt="upload-image"/>
                             <form>
                                 <label htmlFor="new-server-input">SERVER NAME </label>
 
@@ -33,11 +35,11 @@ const CreateServerModal = ({visible}) => {
                         </div>
 
                         <div className="server-modal-main-exit">
-                            <button>X</button>
+                            <button onClick={e => setVisible(false)}>X</button>
                         </div>
 
                         <div className="server-modal-main-bottom">
-                            <button className="server-modal-back-button">Back</button>
+                            <button className="server-modal-back-button" onClick={e => setVisible(false)}>Back</button>
 
                             <button className="server-modal-create-button">Create</button>
                         </div>

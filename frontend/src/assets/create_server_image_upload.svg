@@ -1,0 +1,20 @@
+<svg width="80" height="80" version="1.1" viewBox="0 0 21.167 21.167" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(0 -275.83)">
+  <circle cx="10.583" cy="286.42" r="10.195" fill="none" stroke="#000" stroke-dasharray="3.17499997,3.17499997" stroke-linecap="round" stroke-linejoin="round" stroke-width=".52917" style="paint-order:fill markers stroke"/>
+  <g transform="matrix(.026624 0 0 .026624 6.8612 277.2)">
+   <g>
+    <g>
+     <rect x="92.162" y="202.77" width="95.283" height="53.793" ry="11.185" stroke="#000" stroke-width="1.0109"/>
+     <rect x="32.262" y="219.69" width="215.08" height="155.17" ry="32.262" stroke="#000" stroke-width="2.5795"/>
+     <circle cx="139.8" cy="297.27" r="48.803" fill="none" stroke="#fff" stroke-width="10.63"/>
+    </g>
+    <circle cx="66.172" cy="256.45" r="11.237" fill="#fff" stroke-width="0"/>
+   </g>
+  </g>
+  <g>
+   <text x="4.998631" y="290.44727" fill="#000000" font-family="'Franklin Gothic Heavy'" font-size="2.4323px" letter-spacing="0px" stroke-width=".20269" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="4.998631" y="290.44727" font-family="'Archivo Black'" stroke-width=".20269">UPLOAD</tspan></text>
+   <circle cx="18.025" cy="278.98" r="3.1419" fill="#5865f2" style="paint-order:fill markers stroke"/>
+   <text x="16.443439" y="280.76425" fill="#ffffff" font-family="'Franklin Gothic Heavy'" font-size="3.175px" letter-spacing="0px" stroke-width=".26458" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="16.443439" y="280.76425" fill="#ffffff" font-family="Calibri" font-size="6.35px" stroke-width=".26458">+</tspan></text>
+  </g>
+ </g>
+</svg>
