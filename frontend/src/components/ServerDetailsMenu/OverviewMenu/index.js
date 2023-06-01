@@ -8,9 +8,11 @@ const OverviewMenu = () => {
     const {serverId} = useParams();
     const currentServer = useSelector(state => state.servers[serverId]);
     const [serverName, setServerName] = useState(currentServer ? currentServer.serverName : '');
+    let originalServerName = currentServer?.serverName;
 
     useEffect(() => {
-        setServerName(currentServer?.serverName)
+        originalServerName = currentServer?.serverName;
+        setServerName(originalServerName)
     }, [currentServer])
 
     return (
@@ -25,6 +27,13 @@ const OverviewMenu = () => {
                     <form>
                         <input className='overview-input' type='text' value={serverName} onChange={e => setServerName(e.target.value)}/>
                     </form>
+                </div>
+                <div className={(originalServerName === serverName) ? 'save-button-holder hidden' : 'save-button-holder'}>
+                    <div>Careful - you have unsaved changes!</div>
+                    <div>
+                        <button className='overview-reset-button' onClick={e => setServerName(originalServerName)}>Reset</button>
+                        <button className='overview-save-button'>Save Changes</button>
+                    </div>
                 </div>
             </div>
         </div>
