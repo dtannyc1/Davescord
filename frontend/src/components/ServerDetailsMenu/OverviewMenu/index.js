@@ -4,7 +4,7 @@ import './OverviewMenu.css'
 import { useEffect, useState } from 'react';
 import { updateServer } from '../../../store/server';
 
-const OverviewMenu = ({visibilitySetter}) => {
+const OverviewMenu = ({visibility, visibilitySetter}) => {
     const dispatch = useDispatch();
     const {serverId} = useParams();
     const currentServer = useSelector(state => state.servers[serverId]);
@@ -15,6 +15,12 @@ const OverviewMenu = ({visibilitySetter}) => {
         originalServerName = currentServer?.serverName;
         setServerName(originalServerName)
     }, [currentServer])
+
+    useEffect(() => {
+        if (!visibility){
+            setServerName(originalServerName);
+        }
+    }, [visibility])
 
     const changeServer = e => {
         e.preventDefault();

@@ -4,7 +4,7 @@ import { REMOVE_CURRENT_USER } from './session.js';
 // action types
 const ADD_SERVER = 'servers/ADD_SERVER';
 const ADD_SERVERS = 'servers/ADD_SERVERS';
-// const REMOVE_SERVERS = 'servers/REMOVE_SERVERS';
+const REMOVE_SERVER = 'servers/REMOVE_SERVER';
 
 // action creators
 const addServer = server => {
@@ -18,6 +18,13 @@ const addServers = servers => {
     return ({
         type: ADD_SERVERS,
         servers
+    })
+}
+
+const removeServer = serverId => {
+    return ({
+        type: REMOVE_SERVER,
+        serverId
     })
 }
 
@@ -57,6 +64,17 @@ export const updateServer = (server) => async dispatch => {
     }
 }
 
+export const destroyServer = (serverId) => async dispatch => {
+    let res = await csrfFetch(`/api/servers/`, {
+        method: "DELETE",
+        body: JSON.stringify({id: serverId})
+    })
+
+    if (res.ok) {
+        dispatch(removeServer(serverId))
+    }
+}
+
 // reducer
 const serverReducer = (state = {}, action) => {
     const nextState = {...state};
@@ -66,6 +84,9 @@ const serverReducer = (state = {}, action) => {
             return nextState;
         case ADD_SERVERS:
             return {...nextState, ...action.servers};
+        case REMOVE_SERVER:
+            delete nextState[action.serverId];
+            return nextState;
         case REMOVE_CURRENT_USER:
             return ({});
         default:

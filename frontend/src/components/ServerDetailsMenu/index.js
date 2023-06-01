@@ -44,7 +44,7 @@ const ServerDetailsMenu = ({visible, setVisible}) => {
                 </div>
             </div>
             <div className="server-details-right">
-                {showOverview ? <OverviewMenu visibilitySetter={setVisible}/> : null}
+                {showOverview ? <OverviewMenu visibility={visible} visibilitySetter={setVisible}/> : null}
             </div>
             <div className="server-details-exit" onClick={e => setVisible(false)}>
                 X
