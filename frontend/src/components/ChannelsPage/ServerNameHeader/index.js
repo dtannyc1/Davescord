@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import './ServerNameHeader.css';
 import { useState } from "react";
 import { useEffect } from "react";
+import ServerDetailsMenu from "../../ServerDetailsMenu";
 
-const ServerNameHeader = () => {
+const ServerNameHeader = ({setDetailVisibility}) => {
     const {serverId} = useParams();
     const currentServer = useSelector(state => state.servers[serverId]);
     const [visible, setVisible] = useState(false);
@@ -27,7 +28,7 @@ const ServerNameHeader = () => {
     const openSettingsPage = e => {
         e.preventDefault()
         e.stopPropagation();
-        console.log("settings page")
+        setDetailVisibility(true);
     }
 
     return (

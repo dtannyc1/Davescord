@@ -1,0 +1,103 @@
+.server-details-menu {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    z-index: 20;
+    position: relative;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+.server-details-left {
+    position: relative;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 45%;
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 20;
+    background-color: rgb(43, 45, 49);
+    transform: rotate(0deg);
+}
+
+.server-details-sidebar {
+    width: 240px;
+    padding: 6px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    > ul{
+        padding-left: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        > li {
+            color: rgb(219, 222, 225);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 15px;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        >li.selected {
+            background-color: rgba(78, 80, 88, 0.6);
+            color: white;
+        }
+
+        > li:hover {
+            background-color: rgba(78, 80, 88, 0.3);
+        }
+
+        >li.server-details-title {
+            font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 12px;
+            color: rgb(148, 155, 164);
+            cursor: default;
+        }
+
+        > li.server-details-title:hover {
+            background-color: transparent;
+        }
+    }
+}
+
+.server-details-divider {
+    width: 144px;
+    position: relative;
+    bottom: 0px;
+    margin: 1px;
+    margin-left: 40px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 1px;
+    background-color: rgb(49, 51, 56);
+    outline: none;
+    height: 1px;
+    border: none;
+}
+
+.server-details-right{
+    /* width: calc(100vw - 240px); */
+    width: 100%;
+    background-color: rgb(49, 51, 56);
+}
+
+.server-details-exit {
+    position: absolute;
+    background-color: transparent;
+    color: white;
+    font-size: 60px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}

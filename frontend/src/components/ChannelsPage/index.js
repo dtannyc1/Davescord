@@ -13,6 +13,7 @@ import CreateServerModal from "./CreateServerModal";
 import ServerNameHeader from "./ServerNameHeader";
 import Searchbar from "./Searchbar";
 import ChannelsList from "./ChannelsList";
+import ServerDetailsMenu from "../ServerDetailsMenu";
 
 const ChannelsPage = () => {
     const {serverId, channelId} = useParams();
@@ -20,6 +21,7 @@ const ChannelsPage = () => {
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
     const [showServerModal, setShowServerModal] = useState(false);
+    const [showServerDetail, setShowServerDetail] = useState(false);
 
     useEffect(() => {
         dispatch(fetchServers())
@@ -56,6 +58,7 @@ const ChannelsPage = () => {
     return (
         <div className="channels-page">
             <CreateServerModal visible={showServerModal} setVisible={setShowServerModal}/>
+            <ServerDetailsMenu visible={showServerDetail} setVisible={setShowServerDetail} />
             <div className="channels-column1-holder">
                 <div className="channels-column1">
 
@@ -77,7 +80,7 @@ const ChannelsPage = () => {
             </div>
             <div className="channels-column2-holder">
                 <div className="channels-column2">
-                    {(currentServer) ? <ServerNameHeader/> : <Searchbar/>}
+                    {(currentServer) ? <ServerNameHeader setDetailVisibility={setShowServerDetail}/> : <Searchbar/>}
 
                     <ChannelsList/>
 
