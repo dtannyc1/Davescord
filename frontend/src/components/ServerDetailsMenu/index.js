@@ -29,7 +29,7 @@ const ServerDetailsMenu = ({visible, setVisible}) => {
             <div className="server-details-left">
                 <div className="server-details-sidebar">
                     <ul>
-                        <li className="server-details-title">{currentServer.serverName}</li>
+                        <li className="server-details-title">{currentServer?.serverName}</li>
                         <li className={showOverview ? "selected" : null} onClick={e => setMenu("overview")}>Overview</li>
                     </ul>
                     <hr className="server-details-divider"/>
