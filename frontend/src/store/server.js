@@ -65,10 +65,9 @@ export const updateServer = (server) => async dispatch => {
 }
 
 export const destroyServer = (serverId) => async dispatch => {
-    let res = await csrfFetch(`/api/servers/`, {
-        method: "DELETE",
-        body: JSON.stringify({id: serverId})
-    })
+    let res = await csrfFetch(`/api/servers/${serverId}`, {
+        method: "DELETE"
+    });
 
     if (res.ok) {
         dispatch(removeServer(serverId))

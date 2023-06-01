@@ -3,9 +3,12 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import OverviewMenu from './OverviewMenu';
-
+import { destroyServer } from '../../store/server';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const ServerDetailsMenu = ({visible, setVisible}) => {
+    const dispatch = useDispatch();
+    const history = useHistory();
     const {serverId} = useParams();
     const [showOverview, setShowOverview] = useState(true);
     const [showMembers, setShowMembers] = useState(false);
@@ -24,6 +27,13 @@ const ServerDetailsMenu = ({visible, setVisible}) => {
         }
     }
 
+    const handleDeletion = e => {
+        e.preventDefault();
+        dispatch(destroyServer(serverId))
+        setVisible(false);
+        history.push(`/channels/@me`)
+    }
+
     return (
         <div className={visible ? "server-details-menu" : "server-details-menu hidden"}>
             <div className="server-details-left">
@@ -33,13 +43,13 @@ const ServerDetailsMenu = ({visible, setVisible}) => {
                         <li className={showOverview ? "selected" : null} onClick={e => setMenu("overview")}>Overview</li>
                     </ul>
                     <hr className="server-details-divider"/>
-                    {/* <ul>
+                    <ul>
                         <li className="server-details-title">user management</li>
                         <li className={showMembers ? "selected" : null} onClick={e => setMenu("members")}>Members</li>
                     </ul>
-                    <hr className="server-details-divider"/> */}
+                    <hr className="server-details-divider"/>
                     <ul>
-                        <li>Delete Server</li>
+                        <li onClick={handleDeletion}>Delete Server</li>
                     </ul>
                 </div>
             </div>

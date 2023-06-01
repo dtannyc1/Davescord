@@ -46,7 +46,7 @@ class Api::ServersController < ApplicationController
     def destroy
         @server = Server.find(params[:id])
         @server.destroy
-        render :index
+        render json: nil
     end
 
     private
