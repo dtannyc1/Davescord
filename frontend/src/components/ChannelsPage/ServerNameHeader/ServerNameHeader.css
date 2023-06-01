@@ -1,18 +1,45 @@
-.channels-server-name {
+.server-name-holder {
+    border-bottom: #202225 solid 2px;
+    display: flex;
+    align-items: center;
     grid-row-start: 1;
     grid-row-end: 2;
-    height: 32px;
-    display: inline;
+    min-height: 32px;
+    min-width: 200px;
     position: relative;
-    top: 18px;
-    border-bottom: #202225 solid 2px;
+    cursor: pointer;
+}
+
+.server-name {
+    display: inline;
+    /* top: 18px; */
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-weight: 600;
     color: white;
-    padding: 0px 20px;
+    /* padding: 0px 20px; */
+    padding-left: 20px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    width: 200px;
+    width: calc(200px - 20px - 20px);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.server-fake-dropdown {
+    padding-left: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(180, 180, 180);
+    transform: scale(1.7, 0.7);
+    position: relative;
+    right: -20px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.server-name-holder:hover {
+    background-color: rgba(78, 80, 88, 0.3);
 }

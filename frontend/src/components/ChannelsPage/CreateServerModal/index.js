@@ -5,22 +5,25 @@ import background from '../../../assets/create_server_background.svg';
 import image_upload from '../../../assets/create_server_image_upload.svg';
 import { createServer } from "../../../store/server";
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const CreateServerModal = ({visible, setVisible}) => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentUser = useSelector(state => state.users[currentUserId]);
     let defaultServerName = (currentUser) ? `${currentUser.username}'s server` : '';
     const [newServerName, setNewServerName] = useState(defaultServerName);
 
-    const handleServerCreation = e => {
+    const handleServerCreation = async e => {
         e.preventDefault();
 
         if (newServerName.length > 0) {
             let server = {server_name: newServerName}
-            dispatch(createServer(server))
+            let newServer = await dispatch(createServer(server))
             setNewServerName(defaultServerName);
             setVisible(false)
+            history.push(`/channels/${newServer.id}`)
         }
     }
 

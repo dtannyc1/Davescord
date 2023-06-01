@@ -187,6 +187,7 @@
     opacity: 100%;
     transition: opacity 0.2s;
     z-index: 40;
+    display: block;
 }
 
 .current-user-profile {

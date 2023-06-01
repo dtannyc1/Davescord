@@ -84,7 +84,8 @@ a.selected > .channels-left-selector{
 
 a:hover + .tooltip{
     opacity: 100%;
-    transition: opacity 0.2s;
+    display: block;
+    transition: opacity 0.2s, display 0.2s;
 }
 
 .tooltip {
@@ -96,6 +97,7 @@ a:hover + .tooltip{
     z-index: 10;
     opacity: 0%;
     transition: opacity 0.2s;
+    display: none;
 
     width: fit-content;
     white-space: nowrap;
@@ -104,6 +106,7 @@ a:hover + .tooltip{
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-weight: 400;
+    cursor: unset;
 }
 
 .tooltip:before{
