@@ -1,31 +1,35 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import './ServerNameHeader.css';
+import { useState } from "react";
 
 const ServerNameHeader = () => {
     const {serverId} = useParams();
     const currentServer = useSelector(state => state.servers[serverId]);
+    const [visible, setVisible] = useState(false);
 
     const hideDetails = e => {
         e.preventDefault()
         e.stopPropagation();
-        console.log("hiding details")
+        setVisible(false);
+        // console.log("hiding details")
     }
 
     const openSettingsPage = e => {
         e.preventDefault()
         e.stopPropagation();
+        setVisible(false);
         console.log("settings page")
     }
 
     return (
         <>
-            <div className="server-name-holder">
+            <div className="server-name-holder" onClick={e => setVisible(true)}>
                 <div className="server-name">{currentServer.serverName}</div>
                 <div className="server-fake-dropdown">v</div>
             </div>
-            <div className="server-details-holder">
-                <img className="transparentfill" onClick={hideDetails}/>
+            <div className={visible ? "server-details-holder" : "server-details-holder hidden"} onClick={hideDetails}>
+                {/* <img className="transparentfill" onClick={hideDetails}/> */}
                 <div className="server-details-dropdown">
                     <div className="server-details-option" onClick={openSettingsPage}>
                         <span>Server Settings</span>
