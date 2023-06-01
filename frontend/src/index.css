@@ -3,6 +3,7 @@
 * {
     font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: inherit;
+    z-index: inherit;
 }
 
 #root {

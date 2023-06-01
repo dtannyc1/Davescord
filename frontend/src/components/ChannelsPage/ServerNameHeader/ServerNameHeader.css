@@ -43,3 +43,59 @@
 .server-name-holder:hover {
     background-color: rgba(78, 80, 88, 0.3);
 }
+
+.server-details-holder {
+    position: absolute;
+    background-color: transparent;
+    left: -72px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+
+    > .transparentfill {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+    }
+}
+
+.server-details-dropdown {
+    position: absolute;
+    top: 56px;
+    left: 81px;
+    min-width: 206px;
+    background-color: black;
+
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgb(173, 173, 173);
+    padding: 7px;
+    border-radius: 5px;
+    box-shadow: #202225 0px 0px 10px;
+}
+
+.server-details-option {
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 7px;
+    cursor: pointer;
+
+    > svg {
+        height: 15px;
+        width: 15px;
+        fill: rgb(173, 173, 173);
+    }
+}
+
+.server-details-option:hover {
+    background-color: #5865f2;
+    color: white;
+
+    > svg{
+        fill: white;
+    }
+}
