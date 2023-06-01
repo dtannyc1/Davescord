@@ -21,16 +21,16 @@ const ServerList = ({activeServer}) => {
         <>
             {servers.map(server => {
                 if (server.serverImage) {
-                    return <div className="server-item">
-                        <Link key={server.id} to={`/channels/${server.id}`} className={(activeServer == server.id) ? "selected" : null}>
+                    return <div className="server-item" key={server.id} >
+                        <Link to={`/channels/${server.id}`} className={(activeServer == server.id) ? "selected" : null}>
                             <img src={server.serverImage} alt={server.serverName}/>
                             <div className="channels-left-selector"></div>
                         </Link>
                         <span className="tooltip">{server.serverName}</span>
                     </div>
                 } else{
-                    return <div className="server-item">
-                        <Link key={server.id} to={`/channels/${server.id}`} className={(activeServer == server.id) ? "selected" : null}>
+                    return <div className="server-item" key={server.id} >
+                        <Link to={`/channels/${server.id}`} className={(activeServer == server.id) ? "selected" : null}>
                             <div className="server-image">
                                 {server.serverName.toUpperCase().charAt(0)}
                             </div>

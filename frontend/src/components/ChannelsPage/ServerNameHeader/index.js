@@ -2,23 +2,31 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import './ServerNameHeader.css';
 import { useState } from "react";
+import { useEffect } from "react";
 
 const ServerNameHeader = () => {
     const {serverId} = useParams();
     const currentServer = useSelector(state => state.servers[serverId]);
     const [visible, setVisible] = useState(false);
 
-    const hideDetails = e => {
-        e.preventDefault()
-        e.stopPropagation();
-        setVisible(false);
-        // console.log("hiding details")
-    }
+    useEffect(() => {
+        const hideDetails = e => {
+            e.preventDefault()
+            e.stopPropagation();
+            if (e.target.className !== "server-details-dropdown" && visible) {
+                setVisible(false);
+            }
+        }
+
+        document.removeEventListener('click', hideDetails)
+        document.addEventListener('click', hideDetails)
+
+        return e => document.removeEventListener('click', hideDetails)
+    }, [visible])
 
     const openSettingsPage = e => {
         e.preventDefault()
         e.stopPropagation();
-        setVisible(false);
         console.log("settings page")
     }
 
@@ -28,8 +36,7 @@ const ServerNameHeader = () => {
                 <div className="server-name">{currentServer.serverName}</div>
                 <div className="server-fake-dropdown">v</div>
             </div>
-            <div className={visible ? "server-details-holder" : "server-details-holder hidden"} onClick={hideDetails}>
-                {/* <img className="transparentfill" onClick={hideDetails}/> */}
+            <div className={visible ? "server-details-holder" : "server-details-holder hidden"}>
                 <div className="server-details-dropdown">
                     <div className="server-details-option" onClick={openSettingsPage}>
                         <span>Server Settings</span>

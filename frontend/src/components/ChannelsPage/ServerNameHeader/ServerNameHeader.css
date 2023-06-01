@@ -51,15 +51,6 @@
     width: 100vw;
     height: 100vh;
     z-index: 10;
-
-    > .transparentfill {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 10;
-        border: none;
-        box-shadow: none;
-    }
 }
 
 .server-details-dropdown {
