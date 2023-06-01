@@ -44,6 +44,19 @@ export const createServer = (server) => async dispatch => {
     }
 }
 
+export const updateServer = (server) => async dispatch => {
+    let res = await csrfFetch(`/api/servers/${server.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({server: server})
+    })
+
+    if (res.ok) {
+        let data = await res.json();
+        dispatch(addServer(data))
+        return data
+    }
+}
+
 // reducer
 const serverReducer = (state = {}, action) => {
     const nextState = {...state};

@@ -2,8 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import './OverviewMenu.css'
 import { useEffect, useState } from 'react';
+import { updateServer } from '../../../store/server';
 
-const OverviewMenu = () => {
+const OverviewMenu = ({visibilitySetter}) => {
     const dispatch = useDispatch();
     const {serverId} = useParams();
     const currentServer = useSelector(state => state.servers[serverId]);
@@ -14,6 +15,13 @@ const OverviewMenu = () => {
         originalServerName = currentServer?.serverName;
         setServerName(originalServerName)
     }, [currentServer])
+
+    const changeServer = e => {
+        e.preventDefault();
+        currentServer.serverName = serverName;
+        dispatch(updateServer(currentServer));
+        visibilitySetter(false);
+    }
 
     return (
         <div className="overview-menu">
@@ -32,7 +40,7 @@ const OverviewMenu = () => {
                     <div>Careful - you have unsaved changes!</div>
                     <div>
                         <button className='overview-reset-button' onClick={e => setServerName(originalServerName)}>Reset</button>
-                        <button className='overview-save-button'>Save Changes</button>
+                        <button className='overview-save-button' onClick={changeServer}>Save Changes</button>
                     </div>
                 </div>
             </div>
