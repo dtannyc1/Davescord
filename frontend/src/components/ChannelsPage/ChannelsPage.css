@@ -13,10 +13,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    /* z-index: -10; */
     width: 100%;
-    /* background-color: #202225; */
-
 }
 
 .channels-column1{
@@ -30,8 +27,6 @@
     overflow-y: scroll;
     width: calc(100vw - 9px);
     height: 100vh;
-    /* z-index: -10; */
-
 
     /* hiding scroll bar */
     -ms-overflow-style: none;
@@ -40,6 +35,14 @@
 
 .channels-column1::-webkit-scrollbar {
     display: none;
+}
+
+.channels-column2-holder {
+    position: absolute;
+    top: 0;
+    left: 72px;
+    bottom: 0;
+    width: calc(100% - 72px);
 }
 
 .channels-column2{
@@ -52,6 +55,17 @@
     display: grid;
     grid-template-rows: 50px auto 50px;
     z-index: 1;
+    position: absolute;
+    height: 100vh;
+    width: 240px;
+}
+
+.channels-column3-holder {
+    position: absolute;
+    top: 0;
+    left: calc(72px + 240px);
+    bottom: 0;
+    width: calc(100% - 72px - 240px);
 }
 
 .channels-column3{
@@ -59,6 +73,9 @@
     grid-column-end: 4;
     background-color: rgb(49, 51, 56);
     z-index: 1;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
 }
 
 .icon {
@@ -170,24 +187,6 @@
     opacity: 100%;
     transition: opacity 0.2s;
     z-index: 40;
-}
-
-.channels-server-name {
-    grid-row-start: 1;
-    grid-row-end: 2;
-    height: 32px;
-    display: inline;
-    position: relative;
-    top: 18px;
-    border-bottom: #202225 solid 2px;
-    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: white;
-    padding: 0px 20px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
 }
 
 .channels-searchbar {

@@ -10,6 +10,7 @@ import CurrentUserProfile from "../CurrentUserProfile";
 import { fetchUser } from "../../store/user";
 import { useState } from "react";
 import CreateServerModal from "./CreateServerModal";
+import ServerNameHeader from "./ServerNameHeader";
 
 const ChannelsPage = () => {
     const {serverId, channelId} = useParams();
@@ -72,14 +73,21 @@ const ChannelsPage = () => {
 
                 </div>
             </div>
-            <div className="channels-column2">
-                {(currentServer) ?
-                    <div className="channels-server-name">{currentServer.serverName}</div> :
-                    <div className="channels-searchbar">searchbar goes here</div>}
-                <CurrentUserProfile/>
-            </div>
-            <div className="channels-column3">
+            <div className="channels-column2-holder">
+                <div className="channels-column2">
+                    {(currentServer) ?
+                        <ServerNameHeader/> :
+                        <div className="channels-searchbar">searchbar goes here</div>}
 
+
+
+                    <CurrentUserProfile/>
+                </div>
+            </div>
+            <div className="channels-column3-holder">
+                <div className="channels-column3">
+
+                </div>
             </div>
         </div>
     )
