@@ -53,15 +53,23 @@ const ChannelsPage = () => {
     return (
         <div className="channels-page">
             <CreateServerModal visible={showServerModal} setVisible={setShowServerModal}/>
-            <div className="channels-column1">
-                <Link to='/channels/@me' className={(serverId === "@me") ? "icon selected" : "icon"}>
-                    <img src={icon} alt="davescord-icon"/>
-                    <div className="channels-left-selector"></div>
-                </Link>
-                <hr className="channels-divider"/>
-                <ServerList activeServer={serverId}/>
-                <div className="channels-add-server-button" onClick={e => setShowServerModal(true)}>
-                    <div>+</div>
+            <div className="channels-column1-holder">
+                <div className="channels-column1">
+
+                    <Link to='/channels/@me' className={(serverId === "@me") ? "icon selected" : "icon"}>
+                        <img src={icon} alt="davescord-icon"/>
+                        <div className="channels-left-selector"></div>
+                    </Link>
+                    <span className="tooltip">Direct Messages</span>
+                    <hr className="channels-divider"/>
+
+                    <ServerList activeServer={serverId}/>
+
+                    <div className="channels-add-server-button" onClick={e => setShowServerModal(true)}>
+                        <div>+</div>
+                        <span className="tooltip">Add a Server</span>
+                    </div>
+
                 </div>
             </div>
             <div className="channels-column2">

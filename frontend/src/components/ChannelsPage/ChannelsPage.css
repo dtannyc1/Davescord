@@ -3,9 +3,20 @@
     background-color: #202225;
     width: 100%;
     height: 100%;
-
+    /* z-index: -10; */
+    position: absolute;
     display: grid;
     grid-template-columns: 72px 240px auto;
+}
+
+.channels-column1-holder {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    /* z-index: -10; */
+    width: 100%;
+    /* background-color: #202225; */
+
 }
 
 .channels-column1{
@@ -14,10 +25,12 @@
     background-color: rgb(31, 31, 34);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 5px;
-
+    align-items: flex-start;
+    position: absolute;
     overflow-y: scroll;
+    width: calc(100vw - 9px);
+    height: 100vh;
+    /* z-index: -10; */
 
 
     /* hiding scroll bar */
@@ -38,19 +51,23 @@
 
     display: grid;
     grid-template-rows: 50px auto 50px;
+    z-index: 1;
 }
 
 .channels-column3{
     grid-column-start: 3;
     grid-column-end: 4;
     background-color: rgb(49, 51, 56);
+    z-index: 1;
 }
 
 .icon {
     width: 27px;
     height: 27px;
     padding: 12px;
-    margin: 5px;
+    margin-left: 9px;
+    margin-top: 9px;
+    margin-bottom: 9px;
     border-radius: 25.5px;
     background-color: rgb(43, 45, 49);
     transition: background-color 0.2s, border-radius 0.2s;
@@ -103,11 +120,18 @@
     transition: opacity 0.2s, transform 0.2s;
 }
 
+.icon + .tooltip {
+    top: 20px;
+    left: 78px;
+}
+
 .channels-divider {
     width: 28px;
     position: relative;
     bottom: 0px;
     margin: 1px;
+    margin-left: 20px;
+    margin-bottom: 9px;
     padding: 1px;
     background-color: rgb(49, 51, 56);
     outline: none;
@@ -119,11 +143,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     width: 51px;
     min-height: 51px;
     border-radius: 25.5px;
-    margin: 5px;
-    margin-bottom: 10px;
+    margin-left: 9px;
+    margin-bottom: 8px;
     color: rgb(35, 165, 89);
     background-color: rgb(43, 45, 49);
     text-decoration: none;
@@ -139,6 +164,12 @@
     background-color: rgb(35, 165, 89);
     border-radius: 18px;
     transition: background-color 0.2s, border-radius 0.2s;
+}
+
+.channels-add-server-button:hover > .tooltip{
+    opacity: 100%;
+    transition: opacity 0.2s;
+    z-index: 40;
 }
 
 .channels-server-name {
