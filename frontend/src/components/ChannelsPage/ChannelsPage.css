@@ -72,7 +72,7 @@
     grid-column-start: 3;
     grid-column-end: 4;
     background-color: rgb(49, 51, 56);
-    z-index: 1;
+    z-index: 2;
     position: absolute;
     height: 100vh;
     width: 100%;
@@ -187,24 +187,6 @@
     opacity: 100%;
     transition: opacity 0.2s;
     z-index: 40;
-}
-
-.channels-searchbar {
-    grid-row-start: 1;
-    grid-row-end: 2;
-    height: 32px;
-    display: inline;
-    position: relative;
-    top: 18px;
-    border-bottom: #202225 solid 2px;
-    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: white;
-    padding: 0px 20px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
 }
 
 .current-user-profile {

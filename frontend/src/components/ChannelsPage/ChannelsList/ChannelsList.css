@@ -1,0 +1,5 @@
+.channels-list-holder {
+    width: calc(100vw - 72px);
+    height: 100%;
+    /* background-color: blue; */
+}
