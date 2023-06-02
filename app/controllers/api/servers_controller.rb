@@ -4,12 +4,12 @@ class Api::ServersController < ApplicationController
     wrap_parameters include: Server.attribute_names
 
     def index
-        @servers = current_user.subscribed_servers
+        @servers = current_user.subscribed_servers.includes(:channels)
         render :index
     end
 
     def show
-        @server = Server.find(params[:id])
+        @server = Server.includes(:channels).find(params[:id])
 
         if @server
             render :show
