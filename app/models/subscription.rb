@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: subscriptions
+#
+#  id            :bigint           not null, primary key
+#  subscriber_id :bigint           not null
+#  server_id     :bigint           not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
 class Subscription < ApplicationRecord
     validates(:subscriber_id, :server_id, presence: true)
     validates(:subscriber_id, uniqueness: {scope: :server_id})
