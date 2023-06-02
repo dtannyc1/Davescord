@@ -1,8 +1,9 @@
+import { addChannels } from "./channel";
 import csrfFetch from "./csrf";
 import { REMOVE_CURRENT_USER } from './session.js';
 
 // action types
-const ADD_SERVER = 'servers/ADD_SERVER';
+export const ADD_SERVER = 'servers/ADD_SERVER';
 const ADD_SERVERS = 'servers/ADD_SERVERS';
 const REMOVE_SERVER = 'servers/REMOVE_SERVER';
 
@@ -35,6 +36,17 @@ export const fetchServers = () => async dispatch => {
     if (res.ok) {
         let data = await res.json();
         dispatch(addServers(data.servers))
+    }
+}
+
+export const fetchServer = (serverId) => async dispatch => {
+    let res = await csrfFetch(`/api/servers/${serverId}`)
+
+    if (res.ok) {
+        let data = await res.json();
+        dispatch(addChannels(data.channels))
+        data.channels = Object.values(data.channels).map(channel => channel.id)
+        dispatch(addServer(data))
     }
 }
 

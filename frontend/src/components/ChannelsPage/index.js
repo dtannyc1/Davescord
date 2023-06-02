@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import './ChannelsPage.css';
 import { useEffect } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { fetchServers } from "../../store/server";
+import { fetchServer, fetchServers } from "../../store/server";
 import icon from '../../assets/Davescord-icon.svg'
 import ServerList from "../ServerList";
 import CurrentUserProfile from "../CurrentUserProfile";
@@ -27,6 +27,12 @@ const ChannelsPage = () => {
         dispatch(fetchServers())
         dispatch(fetchUser(currentUserId))
     }, [dispatch, currentUserId])
+
+    useEffect(() => {
+        if (serverId !== "@me") {
+            dispatch(fetchServer(serverId))
+        }
+    }, [dispatch, serverId])
 
     // notes:
     // use serverId and channelId to determine what to render
