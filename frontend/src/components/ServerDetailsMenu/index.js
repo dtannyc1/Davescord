@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import OverviewMenu from './OverviewMenu';
 import { destroyServer } from '../../store/server';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import exitButton from '../../assets/menu-exit-button.svg';
 
 const ServerDetailsMenu = ({visible, setVisible}) => {
     const dispatch = useDispatch();
@@ -43,10 +44,10 @@ const ServerDetailsMenu = ({visible, setVisible}) => {
                         <li className={showOverview ? "selected" : null} onClick={e => setMenu("overview")}>Overview</li>
                     </ul>
                     <hr className="server-details-divider"/>
-                    <ul>
+                    {/* <ul>
                         <li className="server-details-title">user management</li>
                         <li className={showMembers ? "selected" : null} onClick={e => setMenu("members")}>Members</li>
-                    </ul>
+                    </ul> */}
                     <hr className="server-details-divider"/>
                     <ul>
                         <li onClick={handleDeletion}>Delete Server</li>
@@ -55,9 +56,7 @@ const ServerDetailsMenu = ({visible, setVisible}) => {
             </div>
             <div className="server-details-right">
                 {showOverview ? <OverviewMenu visibility={visible} visibilitySetter={setVisible}/> : null}
-            </div>
-            <div className="server-details-exit" onClick={e => setVisible(false)}>
-                X
+                <img src={exitButton} className="server-details-exit" onClick={e => setVisible(false)}/>
             </div>
         </div>
     )

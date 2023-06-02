@@ -13,7 +13,7 @@
     left: 0;
     top: 0;
     bottom: 0;
-    width: 45%;
+    width: 31%;
     min-width: 240px;
     display: flex;
     flex-direction: column;
@@ -85,17 +85,29 @@
 
 .server-details-right{
     /* width: calc(100vw - 240px); */
-    width: 100%;
+    width: calc(100% - max(31%, 240px));
     background-color: rgb(49, 51, 56);
+    position: absolute;
+    left: calc(max(31%, 240px));
 }
 
 .server-details-exit {
     position: absolute;
     background-color: transparent;
-    color: white;
     font-size: 60px;
-    right: 0px;
+    left: 740px;
+    top: 60px;
     cursor: pointer;
+    width: 36px;
+    filter: invert(99%) sepia(1%) saturate(2416%) hue-rotate(176deg) brightness(97%) contrast(82%);
+}
+
+.server-details-exit:hover {
+    filter: invert(89%) sepia(91%) saturate(2625%) hue-rotate(183deg) brightness(124%) contrast(87%);
+}
+
+.server-details-exit g {
+    fill: white;
 }
 
 .hidden {

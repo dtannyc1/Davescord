@@ -9,10 +9,10 @@ const OverviewMenu = ({visibility, visibilitySetter}) => {
     const {serverId} = useParams();
     const currentServer = useSelector(state => state.servers[serverId]);
     const [serverName, setServerName] = useState(currentServer ? currentServer.serverName : '');
-    let originalServerName = currentServer?.serverName;
+    let originalServerName = currentServer ? currentServer.serverName : '';
 
     useEffect(() => {
-        originalServerName = currentServer?.serverName;
+        originalServerName =  currentServer ? currentServer.serverName : '';
         setServerName(originalServerName)
     }, [currentServer])
 

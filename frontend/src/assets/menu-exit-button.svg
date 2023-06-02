@@ -1,0 +1,10 @@
+<svg width="100" height="147.89" version="1.1" viewBox="0 0 26.458 39.129" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(4.1723e-7 -270.54)">
+  <g fill="none" stroke="#000">
+   <ellipse cx="13.229" cy="283.77" rx="12.843" ry="12.843" stroke-dashoffset="310" stroke-linecap="round" stroke-linejoin="round" stroke-width=".77331" style="paint-order:fill markers stroke"/>
+   <path d="m7.8714 278.41 10.716 10.716" stroke-width=".79375"/>
+   <path d="m7.8714 289.13 10.716-10.716" stroke-width=".79375"/>
+  </g>
+  <text x="2.8497825" y="309.47318" fill="#000000" font-family="'Franklin Gothic Heavy'" font-size="3.175px" letter-spacing="0px" stroke-width=".26458" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="2.8497825" y="309.47318" font-family="Helvetica" font-size="9.8778px" font-weight="bold" stroke-width=".26458">ESC</tspan></text>
+ </g>
+</svg>
