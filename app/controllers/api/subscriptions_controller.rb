@@ -4,9 +4,11 @@ class Api::SubscriptionsController < ApplicationController
 
     def create
         @subscription = Subscription.new(subscription_params)
+        @subscription.subscriber_id = current_user.id
 
         if (@subscription.save)
-            render :show
+            @server = @subscription.server
+            render 'api/servers/show'
         else
             render json: {errors: @subscription.errors.full_messages}, status: 422
         end

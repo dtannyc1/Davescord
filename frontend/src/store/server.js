@@ -7,7 +7,7 @@ const ADD_SERVERS = 'servers/ADD_SERVERS';
 const REMOVE_SERVER = 'servers/REMOVE_SERVER';
 
 // action creators
-const addServer = server => {
+export const addServer = server => {
     return ({
         type: ADD_SERVER,
         server
@@ -21,7 +21,7 @@ const addServers = servers => {
     })
 }
 
-const removeServer = serverId => {
+export const removeServer = serverId => {
     return ({
         type: REMOVE_SERVER,
         serverId
