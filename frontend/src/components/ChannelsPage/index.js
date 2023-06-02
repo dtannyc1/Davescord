@@ -16,7 +16,7 @@ import ChannelsList from "./ChannelsList";
 import ServerDetailsMenu from "../ServerDetailsMenu";
 
 const ChannelsPage = () => {
-    const {serverId, channelId} = useParams();
+    const {serverId} = useParams();
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
