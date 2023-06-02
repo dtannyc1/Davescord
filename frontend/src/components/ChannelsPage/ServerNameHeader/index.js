@@ -2,6 +2,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import './ServerNameHeader.css';
 import { useState, useEffect } from "react";
+import { removeSubscription } from "../../../store/subscription";
 
 
 const ServerNameHeader = ({setDetailVisibility}) => {
@@ -38,6 +39,7 @@ const ServerNameHeader = ({setDetailVisibility}) => {
         e.preventDefault();
         e.stopPropagation();
         // logic for leaving a server
+        dispatch(removeSubscription(serverId))
         history.push('/channels/@me')
     }
 
