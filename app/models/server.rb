@@ -28,4 +28,6 @@ class Server < ApplicationRecord
         foreign_key: :server_id,
         class_name: :Channel,
         dependent: :destroy)
+
+    has_one_attached :photo
 end
