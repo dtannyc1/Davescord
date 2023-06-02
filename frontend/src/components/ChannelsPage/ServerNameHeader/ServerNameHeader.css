@@ -92,3 +92,28 @@
         fill: white;
     }
 }
+
+.server-leave-option{
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 7px;
+    cursor: pointer;
+    color: #ED4245;
+
+    > svg {
+        height: 15px;
+        width: 15px;
+        fill: #ED4245;
+    }
+}
+
+.server-leave-option:hover {
+    background-color: #ED4245;
+    color: white;
+
+    > svg{
+        fill: white;
+    }
+}

@@ -82,7 +82,7 @@ const ChannelsPage = () => {
                 <div className="channels-column2">
                     {(currentServer) ? <ServerNameHeader setDetailVisibility={setShowServerDetail}/> : <Searchbar/>}
 
-                    <ChannelsList/>
+                    {(serverId === "@me") ? <div>Friends list here</div>: <ChannelsList/>}
 
                     <CurrentUserProfile/>
                 </div>
