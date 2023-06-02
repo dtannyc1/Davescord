@@ -1,9 +1,19 @@
 import './ChannelsList.css'
+import { useSelector } from "react-redux";
+
 
 const ChannelsList = () => {
+    const channels = useSelector(state => Object.values(state.channels));
+
+    if (channels.length === 0) return null;
+
     return (
         <div className='channels-list-holder'>
-            Channels List goes here
+            {channels.map(channel => {
+                return (
+                    <span>{`# ${channel.channelName}`}</span>
+                )
+            })}
         </div>
     )
 }
