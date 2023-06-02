@@ -15,8 +15,8 @@ class Api::SubscriptionsController < ApplicationController
     end
 
     def destroy
-        @subscription = Subscription.find_by(subscriber_id: current_user.id, server_id: params[:server_id])
-        debugger
+        @subscription = Subscription.find_by(subscriber_id: current_user.id, server_id: params[:id])
+        @subscription.destroy
         render json: nil
     end
 

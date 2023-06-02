@@ -8,7 +8,7 @@ import App from './App';
 import configureStore from './store';
 import * as sessionActions from './store/session'
 import csrfFetch from './store/csrf';
-import { addSubscription } from './store/subscription';
+import { addSubscription, removeSubscription } from './store/subscription';
 
 const store = configureStore();
 
@@ -17,6 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions;
   window.addSubscription = addSubscription;
+  window.removeSubscription = removeSubscription;
 }
 
 function Root() {

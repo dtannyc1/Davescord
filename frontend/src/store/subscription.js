@@ -12,12 +12,20 @@ export const addSubscription = (serverId) => async dispatch  => {
         body: JSON.stringify({subscription: {serverId: serverId}})
     })
 
-    debugger
-
     if (res.ok) {
         let data = await res.json();
         dispatch(addServer(data))
         return data
+    }
+}
+
+export const removeSubscription = (serverId) => async dispatch => {
+    let res = await csrfFetch(`/api/subscriptions/${serverId}`, {
+        method: "DELETE"
+    })
+
+    if (res.ok) {
+        dispatch(removeServer(serverId))
     }
 }
 
