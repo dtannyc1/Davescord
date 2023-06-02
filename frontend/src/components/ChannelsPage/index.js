@@ -14,9 +14,10 @@ import ServerNameHeader from "./ServerNameHeader";
 import Searchbar from "./Searchbar";
 import ChannelsList from "./ChannelsList";
 import ServerDetailsMenu from "../ServerDetailsMenu";
+import ChannelNameHeader from "./ChannelNameHeader";
 
 const ChannelsPage = () => {
-    const {serverId} = useParams();
+    const {serverId, channelId} = useParams();
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
@@ -95,7 +96,7 @@ const ChannelsPage = () => {
             </div>
             <div className="channels-column3-holder">
                 <div className="channels-column3">
-
+                    {(serverId === "@me") ? <div>Friends list</div> : <ChannelNameHeader/>}
                 </div>
             </div>
         </div>

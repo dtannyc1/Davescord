@@ -1,0 +1,30 @@
+.channel-name-holder {
+    border-bottom: #20222585 solid 2px;
+    display: flex;
+    align-items: center;
+    min-height: 49px;
+    min-width: 200px;
+    position: relative;
+    cursor: pointer;
+}
+
+.channel-server-name {
+    color: white;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    position: relative;
+    left: 50px;
+}
+
+.channel-server-name:before {
+    content: '#';
+    position: absolute;
+    left: -30px;
+    top: -8px;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(148, 155, 164);
+    font-size: 28px;
+    font-weight: 400;
+    transform: scale(1.25, 1);
+}
