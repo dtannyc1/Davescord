@@ -35,8 +35,12 @@ class Api::ServersController < ApplicationController
     def update
         @server = Server.find(params[:id])
         if @server
-            if @server.update(server_params)
-                render :show
+            if (@server.owner_id == current_user.id)
+                if @server.update(server_params)
+                    render :show
+                end
+            else
+                render json: {errors: 'Unauthorized, must be owner to update server'}, status: :unauthorized
             end
         else
             render json: @server.errors.full_messages, status: 422
@@ -45,8 +49,12 @@ class Api::ServersController < ApplicationController
 
     def destroy
         @server = Server.find(params[:id])
-        @server.destroy
-        render json: nil
+        if (@server.owner_id == current_user.id)
+            @server.destroy
+            render json: nil
+        else
+            render json: {errors: 'Unauthorized, must be owner to delete server'}, status: :unauthorized
+        end
     end
 
     private
