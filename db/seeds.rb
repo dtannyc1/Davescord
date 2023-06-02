@@ -18,6 +18,7 @@ ApplicationRecord.transaction do
     ApplicationRecord.connection.reset_pk_sequence!('users')
     ApplicationRecord.connection.reset_pk_sequence!('servers')
     ApplicationRecord.connection.reset_pk_sequence!('subscriptions')
+    ApplicationRecord.connection.reset_pk_sequence!('channels')
 
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
@@ -60,6 +61,18 @@ ApplicationRecord.transaction do
             Subscription.create!({
                 subscriber_id: 1,
                 server_id: server_num
+            })
+        end
+    end
+
+    puts "Creating channels..."
+    (1..25).to_a.each do |server_num|
+        rand(1..5).times do
+            Channel.create!({
+                channel_name: Faker::Movie.title,
+                server_id: server_num,
+                category_name: "general",
+                description: Faker::TvShows::Stargate.quote
             })
         end
     end
