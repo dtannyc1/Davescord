@@ -19,7 +19,7 @@ class Api::ChannelsController < ApplicationController
                     render :show
                 end
             else
-                render json: {errors: 'Unauthorized, must be owner to update server'}, status: :unauthorized
+                render json: {errors: 'Unauthorized, must be owner to update channel'}, status: :unauthorized
             end
         else
             render json: {errors: "Channel not found"}, status: 404
@@ -27,7 +27,13 @@ class Api::ChannelsController < ApplicationController
     end
 
     def destroy
-
+        @channel = Channel.find(params[:id])
+        if (@channel.server.owner_id == current_user.id)
+            @channel.destroy
+            render json: nil
+        else
+            render json: {errors: 'Unauthorized, must be owner to delete channel'}, status: :unauthorized
+        end
     end
 
     private
