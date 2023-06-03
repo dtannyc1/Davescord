@@ -35,6 +35,12 @@ const ChannelsPage = () => {
         }
     }, [dispatch, serverId])
 
+    useEffect(()=> {
+        if (channelId === null && serverId !== "@me"){
+            console.log('redirect')
+        }
+    }, [serverId, channelId])
+
     // notes:
     // use serverId and channelId to determine what to render
 

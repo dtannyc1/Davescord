@@ -24,22 +24,22 @@ const ChannelsList = () => {
 
     return (
         <div className='channels-list-holder'>
-            {Object.values(categories).map(categoryArray => {
+            {Object.values(categories).map((categoryArray, ii) => {
                 return (
-                    <>
+                    <div key={ii}>
                         <div className="channels-category-name-holder">
                             <div className='channels-category-name'>{`${categoryArray[0].categoryName}`}</div>
                             <div className="channels-plus-sign">+</div>
                         </div>
                         {categoryArray.map(channel => {
                             return (
-                                <span className={(channelId == channel.id) ? 'channels-channel-item selected' : 'channels-channel-item'} onClick={e => history.push(`/channels/${serverId}/${channel.id}`)}>
+                                <span key={channel.id} className={(channelId == channel.id) ? 'channels-channel-item selected' : 'channels-channel-item'} onClick={e => history.push(`/channels/${serverId}/${channel.id}`)}>
                                     <span className='channels-hashtag'>#</span>
                                     <span className='channels-channel-name'>{`${channel.channelName.replace(/\s+/g, '-').toLowerCase()}`}</span>
                                 </span>
                             )
                         })}
-                    </>
+                    </div>
                 )
             })}
         </div>

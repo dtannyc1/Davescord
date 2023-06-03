@@ -1,11 +1,14 @@
 .channel-name-holder {
     border-bottom: #20222585 solid 2px;
     display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
     min-height: 49px;
     min-width: 200px;
-    position: relative;
-    cursor: pointer;
+    position: absolute;
+    cursor: default;
+    width: 100%;
 }
 
 .channel-server-name {
@@ -14,17 +17,46 @@
     font-size: 16px;
     font-weight: 600;
     position: relative;
-    left: 50px;
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+    width: calc(100% - 30px);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .channel-server-name:before {
     content: '#';
-    position: absolute;
-    left: -30px;
-    top: -8px;
+    position: relative;
+    left: -12px;
+    /* top: 0px; */
+    bottom: 0px;
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: rgb(148, 155, 164);
-    font-size: 28px;
+    font-size: 25px;
     font-weight: 400;
     transform: scale(1.25, 1);
+}
+
+.channel-server-description {
+    position: relative;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(148, 155, 164);
+    font-size: 14px;
+    font-weight: 400;
+    left: 24px;
+    display: flex;
+    align-items: center;
+    top: 2px;
+}
+
+.channel-server-description:before{
+    content: '|';
+    position: relative;
+    left: -12px;
+    top: -4px;
+    font-size: 24px;
+    color: rgba(148, 155, 164, 0.25);
+
 }
