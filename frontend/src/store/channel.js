@@ -1,9 +1,9 @@
 import csrfFetch from "./csrf";
 
 // action types
-const ADD_CHANNEL = 'channels/ADD_CHANNEL';
+export const ADD_CHANNEL = 'channels/ADD_CHANNEL';
 const ADD_CHANNELS = 'channels/ADD_CHANNELS';
-const REMOVE_CHANNEL = 'channels/REMOVE_CHANNEL';
+export const REMOVE_CHANNEL = 'channels/REMOVE_CHANNEL';
 
 // action creators
 export const addChannels = channels => {
@@ -67,7 +67,8 @@ const channelsReducer = (state = {}, action) => {
     let nextState = {...state}
     switch (action.type) {
         case ADD_CHANNEL:
-            return {...nextState, ...action.channel}
+            nextState[action.channel.id] = action.channel
+            return nextState
         case ADD_CHANNELS:
             return {...action.channels}
         case REMOVE_CHANNEL:

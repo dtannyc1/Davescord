@@ -3,10 +3,18 @@ class Api::ChannelsController < ApplicationController
     def create
         @channel = Channel.new(channel_params)
 
-        if (@channel.save)
-            render :show
+        if (@channel.server)
+            if (@channel.server.owner_id == current_user.id)
+                if (@channel.save)
+                    render :show
+                else
+                    render json: {errors: @channel.errors.full_messages}, status: 422
+                end
+            else
+                render json: {errors: 'Unauthorized, must be owner to create channel'}, status: :unauthorized
+            end
         else
-            render json: {errors: @channel.errors.full_messages}, status: 422
+            render json: {errors: 'Invalid Input'}, status: 422
         end
     end
 

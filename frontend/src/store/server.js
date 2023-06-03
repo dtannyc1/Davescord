@@ -45,7 +45,9 @@ export const fetchServer = (serverId) => async dispatch => {
     if (res.ok) {
         let data = await res.json();
         dispatch(addChannels(data.channels))
-        data.channels = Object.values(data.channels).map(channel => channel.id)
+        if (data.channels) {
+            data.channels = Object.values(data.channels).map(channel => channel.id)
+        }
         dispatch(addServer(data))
     }
 }
