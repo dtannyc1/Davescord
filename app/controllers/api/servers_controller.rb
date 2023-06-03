@@ -43,7 +43,7 @@ class Api::ServersController < ApplicationController
                 render json: {errors: 'Unauthorized, must be owner to update server'}, status: :unauthorized
             end
         else
-            render json: @server.errors.full_messages, status: 422
+            render json: {errors: "Server not found"}, status: 404
         end
     end
 
