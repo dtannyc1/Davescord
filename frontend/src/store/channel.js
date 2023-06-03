@@ -1,3 +1,4 @@
+import csrfFetch from "./csrf";
 
 // action types
 const ADD_CHANNEL = 'channels/ADD_CHANNEL';
@@ -27,6 +28,39 @@ export const removeChannel = channelId => {
 }
 
 // thunk action creators
+export const createChannel = (channel) => async dispatch => {
+    let res = await csrfFetch(`/api/channels`, {
+        method: "POST",
+        body: JSON.stringify({channel: channel})
+    });
+
+    if (res.ok) {
+        let data = await res.json();
+        dispatch(addChannel(data))
+    }
+}
+
+export const updateChannel = (channel) => async dispatch => {
+    let res = await csrfFetch(`/api/channels/${channel.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({channel: channel})
+    })
+
+    if (res.ok){
+        let data = await res.json();
+        dispatch(addChannel(data))
+    }
+}
+
+export const deleteChannel = (channelId) => async dispatch => {
+    let res = await csrfFetch(`/api/channels/${channelId}`, {
+        method: "DELETE"
+    })
+
+    if (res.ok) {
+        dispatch(removeChannel(channelId))
+    }
+}
 
 // reducer
 const channelsReducer = (state = {}, action) => {
