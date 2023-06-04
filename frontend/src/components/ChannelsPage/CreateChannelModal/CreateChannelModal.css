@@ -1,0 +1,165 @@
+
+.channel-modal-holder {
+    position: absolute;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.channel-modal {
+    background-color: white;
+    border-radius: 5px;
+    width: 680px;
+    height: 464px;
+    display: flex;
+    overflow: hidden;
+}
+
+.channel-modal-left-image {
+    min-width: 240px;
+    height: 100%;
+    background-color: #3461df;
+    overflow: hidden;
+}
+
+.channel-modal-main-content {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.channel-modal-main-top {
+    height: 394px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    > h3 {
+        font-size: 22px;
+        font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        color: rgb(6,6,7);
+    }
+
+    > p {
+        font-size: 15px;
+        font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        color: rgb(126, 129, 141);
+        margin-top: 8px;
+        text-align: center;
+        width: 90%;
+        line-height: 1.5;
+    }
+
+    > img {
+        width: 80px;
+        height: 80px;
+        padding-top: 16px;
+        padding-bottom: 20px;
+        cursor: pointer;
+    }
+
+    > form {
+        > label {
+            font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            display: flex;
+            margin-bottom: 8px;
+            color: rgb(78, 80, 88);
+        }
+
+        > input {
+            width: 388px;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: 400;
+            background-color: rgb(227, 229, 232);
+            color: rgb(109, 113, 124);
+            border: none;
+            border-radius: 3px;
+        }
+    }
+}
+
+.channel-modal-main-exit {
+    position: absolute;
+    top: 12px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+
+    > button {
+        border: none;
+        color: rgb(134, 139, 153);
+        font-size: 21px;
+        font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        transform: scale(1.3,1);
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    > button:hover {
+        color: black;
+        transition: color 0.2s;
+    }
+}
+
+.channel-modal-main-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 38px;
+    padding: 16px;
+    background-color: rgb(242, 243, 245);
+}
+
+.channel-modal-back-button {
+    color: black;
+    font-size: 13px;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    border: none;
+    cursor: pointer;
+    padding: 2px 32px;
+    padding-left: 0px;
+    height: 38px;
+}
+
+.channel-modal-create-button {
+    width: 96px;
+    height: 38px;
+    padding: 2px 16px;
+    background-color: rgb(88,101,242);
+    color: white;
+    font-size: 13px;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+}
+
+.channel-modal-create-button:hover {
+    background-color: rgb(65, 75, 182);
+    transition: background-color 0.2s;
+}
+
+.hidden {
+    display: none;
+}

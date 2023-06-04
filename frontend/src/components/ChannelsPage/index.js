@@ -15,6 +15,7 @@ import Searchbar from "./Searchbar";
 import ChannelsList from "./ChannelsList";
 import ServerDetailsMenu from "../ServerDetailsMenu";
 import ChannelNameHeader from "./ChannelNameHeader";
+import CreateChannelModal from "./CreateChannelModal";
 
 const ChannelsPage = () => {
     const {serverId, channelId} = useParams();
@@ -22,6 +23,7 @@ const ChannelsPage = () => {
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
     const [showServerModal, setShowServerModal] = useState(false);
+    const [showChannelModal, setShowChannelModal] = useState(true);
     const [showServerDetail, setShowServerDetail] = useState(false);
 
     useEffect(() => {
@@ -71,6 +73,7 @@ const ChannelsPage = () => {
     return (
         <div className="channels-page">
             <CreateServerModal visible={showServerModal} setVisible={setShowServerModal}/>
+            <CreateChannelModal visible={showChannelModal} setVisible={setShowChannelModal}/>
             <ServerDetailsMenu visible={showServerDetail} setVisible={setShowServerDetail} />
             <div className="channels-column1-holder">
                 <div className="channels-column1">
