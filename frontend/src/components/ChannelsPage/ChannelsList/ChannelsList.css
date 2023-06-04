@@ -40,7 +40,7 @@
 }
 
 .channels-plus-sign:hover {
-    color: white;
+    color: rgb(207, 216, 226);
     transition: color 0.2s;
 }
 
@@ -49,11 +49,11 @@
     position: absolute;
     display: flex;
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     background-color: black;
     color: rgb(207, 216, 226);
     right: -10px;
-    top: -35px;
+    top: -37px;
     z-index: 20;
     padding: 10px;
     border-radius: 5px;
@@ -87,6 +87,8 @@
 
 .channels-channel-item.selected{
     background-color: rgba(148, 155, 164, 0.25);
+    padding-right: 30px;
+    width: 180px;
     .channels-channel-name {
         color: white;
     }
@@ -118,12 +120,17 @@
 }
 
 .channels-edit-sign {
-    color: white;
+    fill: rgb(148, 155, 164);
     background-color: transparent;
     position: absolute;
     right: 20px;
     z-index: 20;
     white-space: nowrap;
+    width: 12px;
+}
+
+.channels-edit-sign:hover {
+    fill: rgb(207, 216, 226);
 }
 
 .channels-edit-sign:hover:before {
@@ -131,11 +138,11 @@
     position: absolute;
     display: flex;
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     background-color: black;
     color: rgb(207, 216, 226);
     right: -10px;
-    top: -40px;
+    top: -42px;
     z-index: 20;
     padding: 10px;
     border-radius: 5px;
