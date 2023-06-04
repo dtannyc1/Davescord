@@ -4,7 +4,8 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    min-height: 49px;
+    min-height: 48px;
+    height: 48px;
     min-width: 200px;
     position: absolute;
     cursor: default;
