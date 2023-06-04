@@ -12,18 +12,20 @@ const ServerDetailsMenu = ({visible, setVisible}) => {
     const history = useHistory();
     const {serverId} = useParams();
     const [showOverview, setShowOverview] = useState(true);
-    const [showMembers, setShowMembers] = useState(false);
+    // const [showMembers, setShowMembers] = useState(false);
     const currentServer = useSelector(state => state.servers[serverId]);
 
     const setMenu = menuName => {
         setShowOverview(false)
-        setShowMembers(false)
+        // setShowMembers(false)
         switch (menuName) {
             case "overview":
                 setShowOverview(true)
                 break;
-            case "members":
-                setShowMembers(true)
+            // case "members":
+            //     setShowMembers(true)
+            //     break;
+            default:
                 break;
         }
     }
@@ -56,7 +58,7 @@ const ServerDetailsMenu = ({visible, setVisible}) => {
             </div>
             <div className="server-details-right">
                 {showOverview ? <OverviewMenu visibility={visible} visibilitySetter={setVisible}/> : null}
-                <img src={exitButton} className="server-details-exit" onClick={e => setVisible(false)}/>
+                <img src={exitButton} alt="exit icon" className="server-details-exit" onClick={e => setVisible(false)}/>
             </div>
         </div>
     )

@@ -1,38 +1,42 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import './ChannelOverviewMenu.css'
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { updateChannel } from '../../../../store/channel';
 
 const ChannelMenu = ({visibility, visibilitySetter}) => {
     const dispatch = useDispatch();
     const {channelId} = useParams();
     const currentChannel = useSelector(state => state.channels[channelId]);
-    let originalChannelName = currentChannel ? currentChannel.channelName : '';
-    let originalChannelCategory = currentChannel ? currentChannel.categoryName : '';
-    let originalChannelTopicName = currentChannel ? currentChannel.description : '';
-    const [channelName, setChannelName] = useState(originalChannelName);
-    const [category, setCategory] = useState(originalChannelCategory);
-    const [description, setDescription] = useState(originalChannelTopicName);
+    let originalChannelName = useRef(currentChannel ? currentChannel.channelName : '');
+    let originalChannelCategory = useRef(currentChannel ? currentChannel.categoryName : '');
+    let originalChannelTopicName = useRef(currentChannel ? currentChannel.description : '');
+    const [channelName, setChannelName] = useState(originalChannelName.current);
+    const [category, setCategory] = useState(originalChannelCategory.current);
+    const [description, setDescription] = useState(originalChannelTopicName.current);
+
+    const resetFields = () => {
+        setChannelName(originalChannelName.current);
+        setCategory(originalChannelCategory.current);
+        setDescription(originalChannelTopicName.current);
+    }
 
     useEffect(() => {
-        originalChannelName =  currentChannel ? currentChannel.channelName : '';
-        originalChannelCategory = currentChannel ? currentChannel.categoryName : '';
-        originalChannelTopicName = currentChannel ? currentChannel.description : '';
-        resetFields();
+        originalChannelName.current =  currentChannel ? currentChannel.channelName : '';
+        originalChannelCategory.current = currentChannel ? currentChannel.categoryName : '';
+        originalChannelTopicName.current = currentChannel ? currentChannel.description : '';
+        setChannelName(originalChannelName.current);
+        setCategory(originalChannelCategory.current);
+        setDescription(originalChannelTopicName.current);
     }, [currentChannel])
 
     useEffect(() => {
         if (!visibility){
-            resetFields();
+            setChannelName(originalChannelName.current);
+            setCategory(originalChannelCategory.current);
+            setDescription(originalChannelTopicName.current);
         }
     }, [visibility])
-
-    const resetFields = () => {
-        setChannelName(originalChannelName);
-        setCategory(originalChannelCategory);
-        setDescription(originalChannelTopicName);
-    }
 
     const changeChannel = e => {
         e.preventDefault();
@@ -63,9 +67,9 @@ const ChannelMenu = ({visibility, visibilitySetter}) => {
                         <input className='channel-overview-input' type='text' value={description} onChange={e => setDescription(e.target.value)}/>
                     </form>
                 </div>
-                <div className={(originalChannelName !== channelName ||
-                                 originalChannelCategory !== category ||
-                                 originalChannelTopicName !== description )
+                <div className={(originalChannelName.current !== channelName ||
+                                 originalChannelCategory.current !== category ||
+                                 originalChannelTopicName.current !== description )
                         ? 'save-button-holder' : 'save-button-holder hidden'}>
                     <div>Careful - you have unsaved changes!</div>
                     <div>

@@ -20,6 +20,8 @@ const ChannelDetailsMenu = ({visible, setVisible}) => {
             case "overview":
                 setShowOverview(true)
                 break;
+            default:
+                break;
         }
     }
 
@@ -48,7 +50,7 @@ const ChannelDetailsMenu = ({visible, setVisible}) => {
             </div>
             <div className="channel-details-right">
                 {showOverview ? <ChannelOverviewMenu visibility={visible} visibilitySetter={setVisible}/> : null}
-                <img src={exitButton} className="channel-details-exit" onClick={e => setVisible(false)}/>
+                <img src={exitButton} alt="exit icon" className="channel-details-exit" onClick={e => setVisible(false)}/>
             </div>
         </div>
     )

@@ -1,24 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import './OverviewMenu.css'
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { updateServer } from '../../../store/server';
 
 const OverviewMenu = ({visibility, visibilitySetter}) => {
     const dispatch = useDispatch();
     const {serverId} = useParams();
     const currentServer = useSelector(state => state.servers[serverId]);
-    const [serverName, setServerName] = useState(currentServer ? currentServer.serverName : '');
-    let originalServerName = currentServer ? currentServer.serverName : '';
+    let originalServerName = useRef(currentServer ? currentServer.serverName : '');
+    const [serverName, setServerName] = useState(originalServerName.current);
 
     useEffect(() => {
-        originalServerName =  currentServer ? currentServer.serverName : '';
-        setServerName(originalServerName)
+        originalServerName.current =  currentServer ? currentServer.serverName : '';
+        setServerName(originalServerName.current)
     }, [currentServer])
 
     useEffect(() => {
         if (!visibility){
-            setServerName(originalServerName);
+            setServerName(originalServerName.current);
         }
     }, [visibility])
 
@@ -42,10 +42,10 @@ const OverviewMenu = ({visibility, visibilitySetter}) => {
                         <input className='overview-input' type='text' value={serverName} onChange={e => setServerName(e.target.value)}/>
                     </form>
                 </div>
-                <div className={(originalServerName === serverName) ? 'save-button-holder hidden' : 'save-button-holder'}>
+                <div className={(originalServerName.current === serverName) ? 'save-button-holder hidden' : 'save-button-holder'}>
                     <div>Careful - you have unsaved changes!</div>
                     <div>
-                        <button className='overview-reset-button' onClick={e => setServerName(originalServerName)}>Reset</button>
+                        <button className='overview-reset-button' onClick={e => setServerName(originalServerName.current)}>Reset</button>
                         <button className='overview-save-button' onClick={changeServer}>Save Changes</button>
                     </div>
                 </div>
