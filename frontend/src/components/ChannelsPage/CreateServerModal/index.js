@@ -6,6 +6,7 @@ import image_upload from '../../../assets/create_server_image_upload.svg';
 import { createServer } from "../../../store/server";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { createChannel } from "../../../store/channel";
 
 const CreateServerModal = ({visible, setVisible}) => {
     const dispatch = useDispatch();
@@ -21,9 +22,16 @@ const CreateServerModal = ({visible, setVisible}) => {
         if (newServerName.length > 0) {
             let server = {server_name: newServerName}
             let newServer = await dispatch(createServer(server))
+            let channel = {
+                channel_name: "general",
+                serverId: newServer.id,
+                categoryName: "Text Channels",
+                description: ''
+            }
+            let newChannel = await dispatch(createChannel(channel))
             setNewServerName(defaultServerName);
             setVisible(false)
-            history.push(`/channels/${newServer.id}`)
+            history.push(`/channels/${newServer.id}/${newChannel.id}`)
         }
     }
 
