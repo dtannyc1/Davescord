@@ -1,14 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import './ChannelsPage.css';
-import { useEffect } from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import { fetchServer, fetchServers } from "../../store/server";
 import icon from '../../assets/Davescord-icon.svg'
 import ServerList from "../ServerList";
 import CurrentUserProfile from "../CurrentUserProfile";
 import { fetchUser } from "../../store/user";
-import { useState } from "react";
 import CreateServerModal from "./CreateServerModal";
 import ServerNameHeader from "./ServerNameHeader";
 import Searchbar from "./Searchbar";
@@ -17,6 +15,7 @@ import ServerDetailsMenu from "../ServerDetailsMenu";
 import ChannelNameHeader from "./ChannelNameHeader";
 import CreateChannelModal from "./CreateChannelModal";
 import ChannelDetailsMenu from "./ChannelDetailMenu";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 const ChannelsPage = () => {
     const {serverId, channelId} = useParams();
@@ -40,38 +39,11 @@ const ChannelsPage = () => {
         }
     }, [dispatch, serverId])
 
-    useEffect(()=> {
-        if (channelId === null && serverId !== "@me"){
-            console.log('redirect')
-        }
-    }, [serverId, channelId])
-
-    // notes:
-    // use serverId and channelId to determine what to render
-
-    // column 1:
-        // hovered icon also has small rect
-            // animated show server name, opacity
-
-    // column 2:
-        // if serverId === "@me"
-            // render friends list
-        // else
-            // render channels
-
-    // column 3:
-        // if serverId === "@me"
-            // if channelId
-                // render private messages
-            // else
-                // render friends list
-        // else
-            // if channelId
-                // render messages
-            // else
-                // find list of channels for server, then redirect to first channel
-
-    // if (!currentServer) return null;
+    if (serverId !== "@me" && channelId === undefined && currentServer && currentServer.channels && currentServer.channels.length > 0) {
+        return (
+            <Redirect to={`/channels/${serverId}/${currentServer?.channels[0]}`}/>
+        )
+    }
 
     return (
         <div className="channels-page">

@@ -4,7 +4,7 @@ import './ChannelOverviewMenu.css'
 import { useEffect, useRef, useState } from 'react';
 import { updateChannel } from '../../../../store/channel';
 
-const ChannelMenu = ({visibility, visibilitySetter}) => {
+const ChannelOverviewMenu = ({visibility, visibilitySetter}) => {
     const dispatch = useDispatch();
     const {channelId} = useParams();
     const currentChannel = useSelector(state => state.channels[channelId]);
@@ -82,4 +82,4 @@ const ChannelMenu = ({visibility, visibilitySetter}) => {
         )
 }
 
-export default ChannelMenu;
+export default ChannelOverviewMenu;

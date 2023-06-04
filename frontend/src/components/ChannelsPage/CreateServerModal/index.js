@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import './CreateServerModal.css'
 import background from '../../../assets/create_server_background.svg';
 import image_upload from '../../../assets/create_server_image_upload.svg';
 import { createServer } from "../../../store/server";
-import { useEffect } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { createChannel } from "../../../store/channel";
 
@@ -13,7 +12,7 @@ const CreateServerModal = ({visible, setVisible}) => {
     const history = useHistory();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentUser = useSelector(state => state.users[currentUserId]);
-    let defaultServerName = (currentUser) ? `${currentUser.username}'s server` : '';
+    let defaultServerName = useRef((currentUser) ? `${currentUser.username}'s server` : '');
     const [newServerName, setNewServerName] = useState(defaultServerName);
 
     const handleServerCreation = async e => {
@@ -26,18 +25,18 @@ const CreateServerModal = ({visible, setVisible}) => {
                 channel_name: "general",
                 serverId: newServer.id,
                 categoryName: "Text Channels",
-                description: ''
+                description: ""
             }
             let newChannel = await dispatch(createChannel(channel))
-            setNewServerName(defaultServerName);
+            setNewServerName(defaultServerName.current);
             setVisible(false)
             history.push(`/channels/${newServer.id}/${newChannel.id}`)
         }
     }
 
     useEffect(() => {
-        defaultServerName = (currentUser) ? `${currentUser.username}'s server` : '';
-        setNewServerName(defaultServerName);
+        defaultServerName.current = (currentUser) ? `${currentUser.username}'s server` : '';
+        setNewServerName(defaultServerName.current);
     }, [currentUser])
 
     return (
@@ -53,7 +52,7 @@ const CreateServerModal = ({visible, setVisible}) => {
                             <p>Give your new server a personality with a name
                                 and an icon. You can always change it later.
                             </p>
-                            <img className="server-modal-image-upload" src={image_upload} alt="upload-image"/>
+                            <img className="server-modal-image-upload" src={image_upload} alt="upload"/>
                             <form>
                                 <label htmlFor="new-server-input">SERVER NAME </label>
 
@@ -63,11 +62,11 @@ const CreateServerModal = ({visible, setVisible}) => {
                         </div>
 
                         <div className="server-modal-main-exit">
-                            <button onClick={e => {setNewServerName(defaultServerName); setVisible(false)}}>X</button>
+                            <button onClick={e => {setNewServerName(defaultServerName.current); setVisible(false)}}>X</button>
                         </div>
 
                         <div className="server-modal-main-bottom">
-                            <button className="server-modal-back-button" onClick={e => {setNewServerName(defaultServerName); setVisible(false)}}>Back</button>
+                            <button className="server-modal-back-button" onClick={e => {setNewServerName(defaultServerName.current); setVisible(false)}}>Back</button>
 
                             <button className="server-modal-create-button" onClick={handleServerCreation}>Create</button>
                         </div>
