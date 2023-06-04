@@ -44,6 +44,36 @@
     transition: color 0.2s;
 }
 
+.channels-plus-sign:hover:before {
+    content: 'Create Channel';
+    position: absolute;
+    display: flex;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    background-color: black;
+    color: rgb(207, 216, 226);
+    right: -10px;
+    top: -35px;
+    z-index: 20;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
+    white-space: nowrap;
+    text-transform: capitalize;
+}
+
+.channels-plus-sign:hover:after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    right: 2px;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
+}
+
 .channels-channel-item {
     margin: 1px 10px;
     padding: 5px 10px;
@@ -85,4 +115,41 @@
     .channels-channel-name {
         color: white;
     }
+}
+
+.channels-edit-sign {
+    color: white;
+    background-color: transparent;
+    position: absolute;
+    right: 20px;
+    z-index: 20;
+    white-space: nowrap;
+}
+
+.channels-edit-sign:hover:before {
+    content: 'Edit Channel';
+    position: absolute;
+    display: flex;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    background-color: black;
+    color: rgb(207, 216, 226);
+    right: -10px;
+    top: -40px;
+    z-index: 20;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
+}
+
+.channels-edit-sign:hover:after {
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: 0px;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
 }

@@ -22,6 +22,16 @@ const ChannelsList = () => {
 
     // }, [channels])
 
+    const handleAddChannel = e => {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    const handleEditChannel = channel => e => {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
     if (channels.length === 0) return null;
 
     return (
@@ -34,14 +44,15 @@ const ChannelsList = () => {
                                 {`${categoryArray[0].categoryName}`}
                             </div>
                             {(currentServer.ownerId === currentUserId) ?
-                                <div className="channels-plus-sign">+</div> : null}
+                                <div className="channels-plus-sign" onClick={handleAddChannel}>+</div> : null}
                         </div>
                         {categoryArray.map(channel => {
                             return (
-                                <span key={channel.id} className={(channelId == channel.id) ? 'channels-channel-item selected' : 'channels-channel-item'} onClick={e => history.push(`/channels/${serverId}/${channel.id}`)}>
+                                <span key={channel.id} className={(parseInt(channelId) === channel.id) ? 'channels-channel-item selected' : 'channels-channel-item'} onClick={e => history.push(`/channels/${serverId}/${channel.id}`)}>
                                     <span className='channels-hashtag'>#</span>
                                     <span className='channels-channel-name'>{`${channel.channelName.replace(/\s+/g, '-').toLowerCase()}`}</span>
-
+                                    {(currentServer.ownerId === currentUserId && parseInt(channelId) === channel.id) ?
+                                        <span className="channels-edit-sign" onClick={handleEditChannel(channel)}>+</span> : null}
                                 </span>
                             )
                         })}
