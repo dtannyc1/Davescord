@@ -7,6 +7,8 @@ const ChannelsList = () => {
     const history = useHistory();
     const {serverId, channelId} = useParams();
     const channels = useSelector(state => Object.values(state.channels));
+    const currentUserId = useSelector(state => state.session.currentUserId);
+    const currentServer = useSelector(state => state.servers[serverId]);
     let categories = {};
     channels.forEach(channel => {
         if (categories[channel.categoryName]){
@@ -28,14 +30,18 @@ const ChannelsList = () => {
                 return (
                     <div key={ii}>
                         <div className="channels-category-name-holder">
-                            <div className='channels-category-name'>{`${categoryArray[0].categoryName}`}</div>
-                            <div className="channels-plus-sign">+</div>
+                            <div className='channels-category-name'>
+                                {`${categoryArray[0].categoryName}`}
+                            </div>
+                            {(currentServer.ownerId === currentUserId) ?
+                                <div className="channels-plus-sign">+</div> : null}
                         </div>
                         {categoryArray.map(channel => {
                             return (
                                 <span key={channel.id} className={(channelId == channel.id) ? 'channels-channel-item selected' : 'channels-channel-item'} onClick={e => history.push(`/channels/${serverId}/${channel.id}`)}>
                                     <span className='channels-hashtag'>#</span>
                                     <span className='channels-channel-name'>{`${channel.channelName.replace(/\s+/g, '-').toLowerCase()}`}</span>
+
                                 </span>
                             )
                         })}

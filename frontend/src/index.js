@@ -8,8 +8,6 @@ import App from './App';
 import configureStore from './store';
 import * as sessionActions from './store/session'
 import csrfFetch from './store/csrf';
-import { addSubscription, removeSubscription } from './store/subscription';
-import { createChannel, deleteChannel, updateChannel } from './store/channel';
 
 const store = configureStore();
 
@@ -17,11 +15,6 @@ if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions;
-  window.addSubscription = addSubscription;
-  window.removeSubscription = removeSubscription;
-  window.createChannel = createChannel;
-  window.updateChannel = updateChannel;
-  window.deleteChannel = deleteChannel;
 }
 
 function Root() {

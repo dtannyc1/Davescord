@@ -35,6 +35,13 @@
     font-weight: 400;
     position: absolute;
     right: 20px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.channels-plus-sign:hover {
+    color: white;
+    transition: color 0.2s;
 }
 
 .channels-channel-item {
