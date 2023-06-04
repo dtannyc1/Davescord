@@ -10,7 +10,7 @@
     > h3 {
         color: white;
         font-size: 20px;
-        padding-bottom: 20px;
+        padding-bottom: 4px;
         cursor: default;
     }
 }
@@ -23,7 +23,8 @@
     color: rgb(148, 155, 164);
     cursor: default;
     display: block;
-    padding-bottom: 12px;
+    padding-top: 24px;
+    padding-bottom: 10px;
 }
 
 .channel-overview-menu .channel-overview-input {
@@ -32,7 +33,7 @@
     border: none;
     border-radius: 5px;
     padding: 10px;
-    width: 320px;
+    width: 640px;
 }
 
 .save-button-holder {
