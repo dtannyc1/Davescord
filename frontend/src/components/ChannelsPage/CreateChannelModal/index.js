@@ -38,7 +38,7 @@ const CreateChannelModal = ({visible, setVisible, categoryName}) => {
 
     const closeMenu = () => {
         setNewChannelName('');
-        setNewCategoryName('');
+        setNewCategoryName(categoryName ? categoryName : '');
         setNewDescription('');
         setVisible(false);
     }
