@@ -160,3 +160,12 @@
     border-color: black transparent transparent transparent;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
 }
+
+.channels-channel-item:hover>.channels-edit-sign.hidden {
+    display: flex;
+    opacity: 100%;
+}
+
+.channels-channel-item:hover>.channels-edit-sign.hidden + .channels-channel-name {
+    width: 160px;
+}
