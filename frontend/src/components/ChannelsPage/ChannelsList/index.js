@@ -2,7 +2,7 @@ import './ChannelsList.css'
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
-const ChannelsList = ({showCreateChannel, setCategoryName}) => {
+const ChannelsList = ({showCreateChannel, setCategoryName, setShowChannelDetail}) => {
     const history = useHistory();
     const {serverId, channelId} = useParams();
     const channels = useSelector(state => Object.values(state.channels));
@@ -31,6 +31,8 @@ const ChannelsList = ({showCreateChannel, setCategoryName}) => {
     const handleEditChannelClick = channel => e => {
         e.preventDefault();
         e.stopPropagation();
+        history.push(`/channels/${serverId}/${channel.id}`)
+        setShowChannelDetail(true)
     }
 
     if (channels.length === 0) return null;

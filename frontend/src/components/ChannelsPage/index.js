@@ -16,6 +16,7 @@ import ChannelsList from "./ChannelsList";
 import ServerDetailsMenu from "../ServerDetailsMenu";
 import ChannelNameHeader from "./ChannelNameHeader";
 import CreateChannelModal from "./CreateChannelModal";
+import ChannelDetailsMenu from "./ChannelDetailMenu";
 
 const ChannelsPage = () => {
     const {serverId, channelId} = useParams();
@@ -25,6 +26,7 @@ const ChannelsPage = () => {
     const [showServerModal, setShowServerModal] = useState(false);
     const [showChannelModal, setShowChannelModal] = useState(false);
     const [showServerDetail, setShowServerDetail] = useState(false);
+    const [showChannelDetail, setShowChannelDetail] = useState(false);
     const [categoryName, setCategoryName] = useState('');
 
     useEffect(() => {
@@ -76,6 +78,7 @@ const ChannelsPage = () => {
             <CreateServerModal visible={showServerModal} setVisible={setShowServerModal}/>
             <CreateChannelModal visible={showChannelModal} setVisible={setShowChannelModal} categoryName={categoryName}/>
             <ServerDetailsMenu visible={showServerDetail} setVisible={setShowServerDetail} />
+            <ChannelDetailsMenu visible={showChannelDetail} setVisible={setShowChannelDetail} />
             <div className="channels-column1-holder">
                 <div className="channels-column1">
 
@@ -99,7 +102,7 @@ const ChannelsPage = () => {
                 <div className="channels-column2">
                     {(currentServer) ? <ServerNameHeader setDetailVisibility={setShowServerDetail}/> : <Searchbar/>}
 
-                    {(serverId === "@me") ? <div>Friends list here</div>: <ChannelsList showCreateChannel={setShowChannelModal} setCategoryName={setCategoryName}/>}
+                    {(serverId === "@me") ? <div>Friends list here</div>: <ChannelsList showCreateChannel={setShowChannelModal} setCategoryName={setCategoryName} setShowChannelDetail={setShowChannelDetail}/>}
 
                     <CurrentUserProfile/>
                 </div>
