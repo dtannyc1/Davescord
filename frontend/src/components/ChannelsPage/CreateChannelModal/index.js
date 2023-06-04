@@ -53,13 +53,14 @@ const CreateChannelModal = ({visible, setVisible, categoryName}) => {
                             </p>
                             <form>
                                 <label htmlFor="new-channel-name-input">channel name</label>
-                                <input id="new-channel-name-input" type="text" value={newChannelName} placeholder="new-channel" onChange={e => setNewChannelName(e.target.value)}/>
+                                <input id="new-channel-name-input" type="text" value={newChannelName.replace(/\s+/g, '-').toLowerCase()} placeholder="new-channel" onChange={e => setNewChannelName(e.target.value)}/>
+                                <div className="new-channel-hashtag">#</div>
 
                                 <label htmlFor="new-channel-category-input">category </label>
-                                <input id="new-channel-category-input" type="text" value={newCategoryName} placeholder="category" onChange={e => setNewCategoryName(e.target.value)}/>
+                                <input id="new-channel-category-input" type="text" value={newCategoryName} placeholder="Category" onChange={e => setNewCategoryName(e.target.value)}/>
 
-                                <label htmlFor="new-channel-description-input">description </label>
-                                <input id="new-channel-description-input" type="text" value={newDescription} placeholder="description" onChange={e => setNewDescription(e.target.value)}/>
+                                <label htmlFor="new-channel-description-input">channel topic </label>
+                                <input id="new-channel-description-input" type="textarea" value={newDescription} placeholder="Let everyone know how to use this channel!" onChange={e => setNewDescription(e.target.value)}/>
 
                             </form>
                         </div>
@@ -71,7 +72,7 @@ const CreateChannelModal = ({visible, setVisible, categoryName}) => {
                         <div className="channel-modal-main-bottom">
                             <button className="channel-modal-back-button" onClick={closeMenu}>Cancel</button>
 
-                            <button className="channel-modal-create-button" disabled={(newChannelName.length > 0) ? null : true} onClick={handleChannelCreation}>Create</button>
+                            <button className="channel-modal-create-button" disabled={(newChannelName.length > 0) ? null : true} onClick={handleChannelCreation}>Create Channel</button>
                         </div>
                     </div>
                 </div>

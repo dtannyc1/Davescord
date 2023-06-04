@@ -13,8 +13,8 @@
 }
 
 .channel-modal {
-    background-color: white;
-    border-radius: 5px;
+    background-color: rgb(49, 51, 56);
+    border-radius: 15px;
     width: 440px;
     height: 464px;
     display: flex;
@@ -35,32 +35,26 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: left;
+    padding-left: 15px;
 
     > h3 {
         font-size: 22px;
         font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-weight: 700;
-        color: rgb(6,6,7);
+        font-weight: 400;
+        color: white;
     }
 
     > p {
-        font-size: 15px;
+        font-size: 12px;
         font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-weight: 400;
         color: rgb(126, 129, 141);
         margin-top: 8px;
-        text-align: center;
+        text-align: left;
         width: 90%;
         line-height: 1.5;
-    }
-
-    > img {
-        width: 80px;
-        height: 80px;
-        padding-top: 16px;
-        padding-bottom: 20px;
-        cursor: pointer;
+        padding-bottom: 10px;
     }
 
     > form {
@@ -69,22 +63,45 @@
             font-size: 12px;
             font-weight: 800;
             display: flex;
-            margin-bottom: 8px;
-            color: rgb(78, 80, 88);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: rgb(181, 185, 201);
+            text-transform: uppercase;
         }
 
         > input {
             width: 388px;
             padding: 10px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 400;
-            background-color: rgb(227, 229, 232);
-            color: rgb(109, 113, 124);
+            background-color: rgb(31, 31, 34);
+            color: rgb(222, 225, 235);
             border: none;
             border-radius: 3px;
         }
+
+        > input::placeholder {
+            color: rgb(109, 113, 124);
+        }
     }
 }
+
+#new-channel-name-input{
+    padding-left: 30px;
+    width: 368px;
+    position: relative;
+}
+
+.new-channel-hashtag {
+    color: rgb(222, 225, 235);
+    position: absolute;
+    left: 27px;
+    top: 154px;
+    font-size: 25px;
+    background-color: transparent;
+    transform: scale(1, 0.8);
+}
+
 
 .channel-modal-main-exit {
     position: absolute;
@@ -106,23 +123,23 @@
     }
 
     > button:hover {
-        color: black;
+        color: rgb(181, 185, 201);
         transition: color 0.2s;
     }
 }
 
 .channel-modal-main-bottom {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     height: 38px;
     padding: 16px;
-    background-color: rgb(242, 243, 245);
+    background-color: rgb(43, 45, 49);
 }
 
 .channel-modal-back-button {
-    color: black;
-    font-size: 13px;
+    color: white;
+    font-size: 14px;
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
     border: none;
@@ -132,8 +149,12 @@
     height: 38px;
 }
 
+.channel-modal-back-button:hover{
+    text-decoration: underline;
+}
+
 .channel-modal-create-button {
-    width: 96px;
+    width: 130px;
     height: 38px;
     padding: 2px 16px;
     background-color: rgb(88,101,242);
@@ -154,7 +175,8 @@
 }
 
 .channel-modal-create-button:disabled {
-    background-color: rgb(139, 146, 233);
+    background-color: rgba(88,101,242, 0.5);
+    color: rgba(255,255,255,0.5);
     cursor: not-allowed;
 }
 
