@@ -2,7 +2,7 @@ import './ChannelsList.css'
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
-const ChannelsList = () => {
+const ChannelsList = ({showCreateChannel, setCategoryName}) => {
     const history = useHistory();
     const {serverId, channelId} = useParams();
     const channels = useSelector(state => Object.values(state.channels));
@@ -10,10 +10,10 @@ const ChannelsList = () => {
     const currentServer = useSelector(state => state.servers[serverId]);
     let categories = {};
     channels.forEach(channel => {
-        if (categories[channel.categoryName]){
-            categories[channel.categoryName].push(channel);
+        if (categories[channel.categoryName.toUpperCase()]){
+            categories[channel.categoryName.toUpperCase()].push(channel);
         } else {
-            categories[channel.categoryName] = [channel];
+            categories[channel.categoryName.toUpperCase()] = [channel];
         }
     });
     // useEffect(() => {
@@ -24,6 +24,8 @@ const ChannelsList = () => {
     const handleAddChannelClick = categoryName => e => {
         e.preventDefault();
         e.stopPropagation();
+        setCategoryName(categoryName)
+        showCreateChannel(true);
     }
 
     const handleEditChannelClick = channel => e => {

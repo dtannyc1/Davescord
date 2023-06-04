@@ -1,19 +1,24 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import './CreateChannelModal.css'
 import { createChannel } from "../../../store/channel";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
-const CreateChannelModal = ({visible, setVisible}) => {
+const CreateChannelModal = ({visible, setVisible, categoryName}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const {serverId} = useParams();
-    const currentUserId = useSelector(state => state.session.currentUserId);
-    const currentUser = useSelector(state => state.users[currentUserId]);
+    // const currentUserId = useSelector(state => state.session.currentUserId);
+    // const currentUser = useSelector(state => state.users[currentUserId]);
     const [newChannelName, setNewChannelName] = useState('');
-    const [newCategoryName, setNewCategoryName] = useState('');
+    const [newCategoryName, setNewCategoryName] = useState(categoryName ? categoryName : '');
     const [newDescription, setNewDescription] = useState('');
+
+    useEffect(() => {
+        setNewCategoryName(categoryName ? categoryName : '');
+    }, [categoryName])
 
     const handleChannelCreation = async e => {
         e.preventDefault();
@@ -26,10 +31,16 @@ const CreateChannelModal = ({visible, setVisible}) => {
                 description: newDescription
             }
             let newChannel = await dispatch(createChannel(channel))
-            setNewChannelName('');
-            setVisible(false)
-            history.push(`/channels/${newChannel.id}`)
+            closeMenu();
+            history.push(`/channels/${serverId}/${newChannel.id}`)
         }
+    }
+
+    const closeMenu = () => {
+        setNewChannelName('');
+        setNewCategoryName('');
+        setNewDescription('');
+        setVisible(false);
     }
 
     return (
@@ -48,19 +59,19 @@ const CreateChannelModal = ({visible, setVisible}) => {
                                 <input id="new-channel-category-input" type="text" value={newCategoryName} placeholder="category" onChange={e => setNewCategoryName(e.target.value)}/>
 
                                 <label htmlFor="new-channel-description-input">description </label>
-                                <input id="new-channel-description-input" type="textarea" value={newDescription} placeholder="description" onChange={e => setNewDescription(e.target.value)}/>
+                                <input id="new-channel-description-input" type="text" value={newDescription} placeholder="description" onChange={e => setNewDescription(e.target.value)}/>
 
                             </form>
                         </div>
 
                         <div className="channel-modal-main-exit">
-                            <button onClick={e => {setNewChannelName(''); setVisible(false)}}>X</button>
+                            <button onClick={closeMenu}>X</button>
                         </div>
 
                         <div className="channel-modal-main-bottom">
-                            <button className="channel-modal-back-button" onClick={e => {setNewChannelName(''); setVisible(false)}}>Cancel</button>
+                            <button className="channel-modal-back-button" onClick={closeMenu}>Cancel</button>
 
-                            <button className="channel-modal-create-button" onClick={handleChannelCreation}>Create</button>
+                            <button className="channel-modal-create-button" disabled={(newChannelName.length > 0) ? null : true} onClick={handleChannelCreation}>Create</button>
                         </div>
                     </div>
                 </div>
