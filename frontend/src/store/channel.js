@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { ADD_MESSAGE } from "./message";
 import { REMOVE_CURRENT_USER } from "./session";
 
 // action types
@@ -78,6 +79,9 @@ const channelsReducer = (state = {}, action) => {
             return nextState
         case REMOVE_CURRENT_USER:
             return ({});
+        case ADD_MESSAGE:
+            nextState[action.channelId].messages.push(action.message.id)
+            return nextState
         default:
             return state
     }

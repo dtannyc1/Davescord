@@ -2,15 +2,16 @@ import csrfFetch from "./csrf";
 import { REMOVE_CURRENT_USER } from "./session";
 
 // action types
-const ADD_MESSAGE = 'messages/ADD_MESSAGE';
+export const ADD_MESSAGE = 'messages/ADD_MESSAGE';
 const ADD_MESSAGES = 'messages/ADD_MESSAGES';
 const REMOVE_MESSAGE = 'message/REMOVE_MESSAGE';
 
 // action creators
-export const addMessage = message => {
+export const addMessage = (message, channelId) => {
     return {
         type: ADD_MESSAGE,
-        message
+        message,
+        channelId
     }
 }
 
@@ -46,7 +47,7 @@ export const createMessage = (channelId, body) => async dispatch => {
 
     if (res.ok) {
         let data = await res.json();
-        dispatch(addMessage(data))
+        dispatch(addMessage(data, channelId))
     }
 }
 

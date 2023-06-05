@@ -1,27 +1,42 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import './MessageList.css';
 import Message from './Message';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { createMessage } from '../../../store/message';
 
 const MessageList = () => {
+    const dispatch = useDispatch();
     const {channelId} = useParams();
     const channel = useSelector(state => state.channels[channelId])
     const messages = useSelector(state => state.messages)
     let [messageList, setMessageList] = useState([]);
+    let [body, setBody] = useState('');
 
     useEffect(() => {
         if (channel) {
             setMessageList(channel.messages);
         }
-    }, [channel])
+    }, [channel, messages])
+
+    const handleMessageSubmit = e => {
+        e.preventDefault();
+        dispatch(createMessage(channelId, body));
+        setMessageList([])
+        setBody('');
+    }
 
     return (
-        <div className="message-list-holder">
-            {messageList.map(messageId => {
-                return <Message key={messageId} message={messages[messageId]}/>
-            })}
+        <div className='messages-panel'>
+            <div className="message-list-holder">
+                {messageList.map(messageId => {
+                    return <Message key={messageId} message={messages[messageId]}/>
+                })}
+            </div>
+            <form className="message-input-form" onSubmit={handleMessageSubmit}>
+                <input type="text" value={body} placeholder={`Message # ${channel?.channelName}`} onChange={e => setBody(e.target.value)}/>
+            </form>
         </div>
     )
 }
