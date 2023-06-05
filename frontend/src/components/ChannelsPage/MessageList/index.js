@@ -29,8 +29,8 @@ const MessageList = () => {
     return (
         <div className='messages-panel'>
             <div className="message-list-holder">
-                {messageList.map(messageId => {
-                    return <Message key={messageId} message={messages[messageId]}/>
+                {messageList.map((messageId, ii) => {
+                    return <Message key={messageId} message={messages[messageId]} prevMessage={(ii > 0) ? messages[messageList[ii-1]] : null}/>
                 })}
             </div>
             <form className="message-input-form" onSubmit={handleMessageSubmit}>

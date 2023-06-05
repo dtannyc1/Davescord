@@ -1,7 +1,7 @@
 import './Message.css'
 import { useSelector } from 'react-redux';
 
-const Message = ({message}) => {
+const Message = ({message, prevMessage}) => {
     const users = useSelector(state => state.users);
 
     const formatDate = (dateString) => {
@@ -30,18 +30,36 @@ const Message = ({message}) => {
         return formattedDateTime
     }
 
-    return (
-        <div className='message-holder'>
-            <img className='user-item-img' src={users[message.authorId].profilePicture} alt={users[message.authorId].username}/>
-            <div className='message-main'>
-                <span className='message-user-info'>
-                    {users[message.authorId].username}
-                    <span className='message-datetime'>{formatDate(message.createdAt)}</span>
-                </span>
-                <span className='message-body'>{message.body}</span>
+    const formatTime = (dateString) => {
+        const date = new Date(dateString);
+        const formattedTime = date.toLocaleTimeString([], {timeStyle: 'short'}) // "1:15 AM"
+        return formattedTime
+    }
+
+    if (prevMessage && prevMessage.authorId !== message.authorId) {
+        return (
+            <div className='message-holder'>
+                <img className='user-item-img' src={users[message.authorId].profilePicture} alt={users[message.authorId].username}/>
+                <div className='message-main'>
+                    <span className='message-user-info'>
+                        {users[message.authorId].username}
+                        <span className='message-datetime'>{formatDate(message.createdAt)}</span>
+                    </span>
+                    <span className='message-body'>{message.body}</span>
+                </div>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return (
+            <div className='message-holderV2'>
+                <span className='message-time'>{formatTime(message.createdAt)}</span>
+                <div className='message-main'>
+                    <span className='message-body'>{message.body}</span>
+                </div>
+            </div>
+        )
+    }
+
 }
 
 export default Message
