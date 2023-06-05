@@ -23,6 +23,10 @@ class Server < ApplicationRecord
         class_name: :Subscription,
         dependent: :destroy)
 
+    has_many(:subscribers,
+        through: :subscriptions,
+        source: :subscriber)
+
     has_many(:channels,
         primary_key: :id,
         foreign_key: :server_id,

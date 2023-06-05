@@ -3,12 +3,20 @@ import { REMOVE_CURRENT_USER } from './session.js';
 
 // action types
 const ADD_USER = 'users/ADD_USER';
+const ADD_USERS = 'users/ADD_USERS';
 
 // action creators
 export const addUser = (user) => {
     return {
         type: ADD_USER,
         user
+    }
+}
+
+export const addUsers = users => {
+    return {
+        type: ADD_USERS,
+        users
     }
 }
 
@@ -29,6 +37,8 @@ const usersReducer = (state = {}, action) => {
         case ADD_USER:
             nextState[action.user.id] = action.user;
             return nextState;
+        case ADD_USERS:
+            return {...nextState, ...action.users}
         case REMOVE_CURRENT_USER:
             return ({});
         default:

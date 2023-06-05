@@ -9,7 +9,7 @@ class Api::ServersController < ApplicationController
     end
 
     def show
-        @server = Server.includes(channels: [:messages]).find(params[:id])
+        @server = Server.includes(channels: [:messages]).includes(:subscribers).find(params[:id])
 
         if @server
             render :show
@@ -33,7 +33,7 @@ class Api::ServersController < ApplicationController
     end
 
     def update
-        @server = Server.find(params[:id])
+        @server = Server.includes(channels: [:messages]).includes(:subscribers).find(params[:id])
         if @server
             if (@server.owner_id == current_user.id)
                 if @server.update(server_params)

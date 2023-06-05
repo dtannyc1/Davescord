@@ -14,3 +14,11 @@ json.channels do
         end
     end
 end
+
+json.subscribers do
+    @server.subscribers.each do |subscriber|
+        json.set! subscriber.id do
+            json.extract!(subscriber, :id, :username, :profile_picture, :status)
+        end
+    end
+end
