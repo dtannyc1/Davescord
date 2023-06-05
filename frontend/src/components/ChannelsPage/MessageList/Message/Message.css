@@ -1,6 +1,8 @@
 .message-holder {
     color: rgba(255, 255, 255, 0.9);
-    padding: 0px 5px;
+    padding-left: 6px;
+    margin-left: 4px;
+    margin-right: 4px;
     margin-top: 12px;
     display: flex;
     justify-content: flex-start;
@@ -13,7 +15,9 @@
 
 .message-holderV2 {
     color: rgba(255, 255, 255, 0.9);
-    padding: 0px 5px;
+    padding-left: 6px;
+    margin-left: 4px;
+    margin-right: 4px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;

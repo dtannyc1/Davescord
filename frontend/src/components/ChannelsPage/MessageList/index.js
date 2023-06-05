@@ -19,14 +19,15 @@ const MessageList = () => {
     useEffect(() => {
         if (channel) {
             setMessageList(channel.messages);
-            listEnd.current?.scrollIntoView({behavior: 'smooth'})
+            listEnd.current?.scrollIntoView({behavior: 'instant'})
         }
-    }, [channel])
+    }, [channel, messageList, messages])
 
     const handleMessageSubmit = e => {
         e.preventDefault();
         dispatch(createMessage(channelId, body));
         setBody('');
+        listEnd.current?.scrollIntoView({behavior: 'instant'});
     }
 
     return (
@@ -35,8 +36,8 @@ const MessageList = () => {
                 {messageList.map((messageId, ii) => {
                     return <Message key={messageId} message={messages[messageId]} prevMessage={(ii > 0) ? messages[messageList[ii-1]] : null}/>
                 })}
+                <div ref={listEnd} className="message-end"/>
             </div>
-            <div ref={listEnd}/>
             <form className="message-input-form" onSubmit={handleMessageSubmit}>
                 <input type="text" value={body} placeholder={`Message # ${channel?.channelName}`} onChange={e => setBody(e.target.value)}/>
             </form>
