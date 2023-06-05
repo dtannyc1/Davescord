@@ -16,7 +16,6 @@ import ChannelNameHeader from "./ChannelNameHeader";
 import CreateChannelModal from "./CreateChannelModal";
 import ChannelDetailsMenu from "./ChannelDetailMenu";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-import { fetchMessages } from "../../store/message";
 import MessageList from "./MessageList";
 
 const ChannelsPage = () => {
@@ -39,11 +38,11 @@ const ChannelsPage = () => {
         if (serverId !== "@me") {
             dispatch(fetchServer(serverId))
 
-            if (channelId !== undefined) {
-                dispatch(fetchMessages(channelId))
-            }
+            // if (channelId !== undefined) {
+            //     dispatch(fetchMessages(channelId))
+            // }
         }
-    }, [dispatch, serverId, channelId])
+    }, [dispatch, serverId])
 
     if (serverId !== "@me" && channelId === undefined && currentServer && currentServer.channels && currentServer.channels.length > 0) {
         return (
