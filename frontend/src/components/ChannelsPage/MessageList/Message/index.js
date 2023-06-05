@@ -32,7 +32,14 @@ const Message = ({message}) => {
 
     return (
         <div className='message-holder'>
-            {users[message.authorId].username}: {message.body}, {formatDate(message.createdAt)}
+            <img className='user-item-img' src={users[message.authorId].profilePicture} alt={users[message.authorId].username}/>
+            <div className='message-main'>
+                <span className='message-user-info'>
+                    {users[message.authorId].username}
+                    <span className='message-datetime'>{formatDate(message.createdAt)}</span>
+                </span>
+                <span className='message-body'>{message.body}</span>
+            </div>
         </div>
     )
 }

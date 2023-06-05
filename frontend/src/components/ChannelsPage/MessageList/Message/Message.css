@@ -1,4 +1,40 @@
 .message-holder {
-    color: white;
-    padding: 5px;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0px 5px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.message-holder:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.message-main {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-top: 2px;
+    line-height: 1.5;
+    background-color: transparent;
+}
+
+.message-user-info {
+    display: flex;
+    align-items: flex-end;
+    font-weight: 400;
+}
+
+.message-datetime {
+    text-transform: uppercase;
+    font-size: 10px;
+    padding-left: 7px;
+    padding-bottom: 2px;
+    color: rgb(148, 155, 164);
+
 }
