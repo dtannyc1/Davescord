@@ -1,8 +1,19 @@
 .subscriber-list-holder {
     color: #b9bbbe;
     width: 240px;
+    height: 100%;
+    overflow-y: scroll;
     background-color: rgb(43, 45, 49);
+
+    /* hiding scroll bar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
+
+.subscriber-list-holder::-webkit-scrollbar {
+    display: none;
+}
+
 
 .role-title {
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;

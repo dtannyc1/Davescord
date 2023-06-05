@@ -13,6 +13,14 @@
     width: 100%;
     height: 100%;
     overflow-y: scroll;
+
+    /* hiding scroll bar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.message-list-holder::-webkit-scrollbar {
+    display: none;
 }
 
 .message-input-form{
