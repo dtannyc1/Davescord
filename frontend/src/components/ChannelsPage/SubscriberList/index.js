@@ -21,7 +21,7 @@ const SubscriberList = () => {
                         if (subscriberId !== currentServer.ownerId) {
                             return <UserItem key={subscriberId} user={users[subscriberId]}/>
                         } else {
-                            return <></>
+                            return <div key={subscriberId}/>
                         }
                     })}
                 </>
