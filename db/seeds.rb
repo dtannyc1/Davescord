@@ -89,13 +89,30 @@ ApplicationRecord.transaction do
     end
 
     puts "Creating messages..."
-    (1..10).to_a.each do |channel_id|
-        rand(1..10).times do
-            Message.create!({
-                author_id: rand(1...10),
-                channel_id: channel_id,
-                body: Faker::Movies::StarWars.quote
-            })
+    # (1..10).to_a.each do |channel_id|
+    #     rand(1..10).times do
+    #         Message.create!({
+    #             author_id: rand(1...10),
+    #             channel_id: channel_id,
+    #             body: Faker::Movies::StarWars.quote
+    #         })
+    #     end
+    # end
+
+    rand(1..3).times do
+        Subscription.all.each do |subscription|
+            subscriber = User.find(subscription.subscriber_id)
+            channels = Server.find(subscription.server_id).channels
+            if (channels.length > 0)
+                rand(1..5).times do
+                    channel = channels.sample
+                    Message.create!({
+                        author_id: subscriber.id,
+                        channel_id: channel.id,
+                        body: Faker::Movies::StarWars.quote
+                    })
+                end
+            end
         end
     end
 

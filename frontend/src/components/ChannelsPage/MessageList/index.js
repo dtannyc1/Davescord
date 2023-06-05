@@ -4,6 +4,7 @@ import Message from './Message';
 
 const MessageList = () => {
     const messages = useSelector(state => Object.values(state.messages))
+
     return (
         <div className="message-list-holder">
             {messages.map(message => {
