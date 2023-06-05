@@ -7,7 +7,7 @@
     min-height: 48px;
     height: 48px;
     min-width: 200px;
-    position: absolute;
+    position: relative;
     cursor: default;
     width: 100%;
 }

@@ -1,6 +1,8 @@
 import './Message.css'
+import { useSelector } from 'react-redux';
 
 const Message = ({message}) => {
+    const users = useSelector(state => state.users);
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -30,7 +32,7 @@ const Message = ({message}) => {
 
     return (
         <div className='message-holder'>
-            {message.body}, {formatDate(message.createdAt)}
+            {users[message.authorId].username}: {message.body}, {formatDate(message.createdAt)}
         </div>
     )
 }

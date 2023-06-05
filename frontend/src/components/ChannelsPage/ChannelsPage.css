@@ -195,3 +195,14 @@
     grid-row-start: 3;
     grid-row-end: 4;
 }
+
+
+.channels-column3-main-content{
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    height: calc(100% - 50px);
+    /* width: 200px; */
+}

@@ -17,6 +17,7 @@ import CreateChannelModal from "./CreateChannelModal";
 import ChannelDetailsMenu from "./ChannelDetailMenu";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import MessageList from "./MessageList";
+import SubscriberList from "./SubscriberList";
 
 const ChannelsPage = () => {
     const {serverId, channelId} = useParams();
@@ -87,7 +88,10 @@ const ChannelsPage = () => {
             <div className="channels-column3-holder">
                 <div className="channels-column3">
                     {(serverId === "@me") ? <div>Friends list</div> : <ChannelNameHeader/>}
-                    {(serverId === "@me") ? <div>DMs</div> : <MessageList/>}
+                    <div className="channels-column3-main-content">
+                        {(serverId === "@me") ? <div>DMs</div> : <MessageList/>}
+                        {(serverId === "@me") ? null : <SubscriberList/>}
+                    </div>
                 </div>
             </div>
         </div>

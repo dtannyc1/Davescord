@@ -68,9 +68,9 @@ export const fetchServer = (serverId) => async dispatch => {
         }
 
         // store info about channels, messages, and users separately
+        dispatch(addUsers(subscribers))
         dispatch(addChannels(data.channels))
         dispatch(addMessages(messages))
-        dispatch(addUsers(subscribers))
 
         if (data.channels) {
             data.channels = Object.values(data.channels).map(channel => channel.id)
