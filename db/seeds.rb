@@ -39,6 +39,17 @@ ApplicationRecord.transaction do
       })
     end
 
+    Server.create!({
+        server_name: Faker::Fantasy::Tolkien.location,
+        owner_id: 1,
+        server_image: "https://loremflickr.com/50/50/icon?random=0"
+    })
+
+    Subscription.create!({
+        subscriber_id: 1,
+        server_id: Server.last.id
+    })
+
     puts "Creating servers..."
     25.times do |ii|
         owner_id = rand(1...10);
@@ -73,6 +84,17 @@ ApplicationRecord.transaction do
                 server_id: server_num,
                 category_name: "general",
                 description: Faker::TvShows::Stargate.quote
+            })
+        end
+    end
+
+    puts "Creating messages..."
+    (1..5).to_a.each do |channel_id|
+        rand(1..10).times do
+            Message.create!({
+                author_id: rand(1...10),
+                channel_id: channel_id,
+                body: Faker::TvShows::Stargate.quote
             })
         end
     end
