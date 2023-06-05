@@ -30,7 +30,7 @@ ApplicationRecord.transaction do
     )
 
     # More users
-    10.times do |ii|
+    20.times do |ii|
       User.create!({
         username: Faker::Internet.unique.username(specifier: 3),
         email: Faker::Internet.unique.email,
@@ -76,6 +76,24 @@ ApplicationRecord.transaction do
         end
     end
 
+    User.all.each do |user|
+        if (user.id != 1)
+            subscriptions = []
+            10.times do
+                subscriptions.push(rand(1...26))
+            end
+            subscriptions = subscriptions.uniq
+            subscriptions.each do |server_num|
+                if (Server.find(server_num).owner_id != user.id)
+                    Subscription.create!({
+                        subscriber_id: user.id,
+                        server_id: server_num
+                    })
+                end
+            end
+        end
+    end
+
     puts "Creating channels..."
     (1..25).to_a.each do |server_num|
         rand(1..5).times do
@@ -89,16 +107,6 @@ ApplicationRecord.transaction do
     end
 
     puts "Creating messages..."
-    # (1..10).to_a.each do |channel_id|
-    #     rand(1..10).times do
-    #         Message.create!({
-    #             author_id: rand(1...10),
-    #             channel_id: channel_id,
-    #             body: Faker::Movies::StarWars.quote
-    #         })
-    #     end
-    # end
-
     rand(1..3).times do
         Subscription.all.each do |subscription|
             subscriber = User.find(subscription.subscriber_id)
