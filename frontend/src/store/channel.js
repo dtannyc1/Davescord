@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { REMOVE_CURRENT_USER } from "./session";
 
 // action types
 export const ADD_CHANNEL = 'channels/ADD_CHANNEL';
@@ -75,6 +76,8 @@ const channelsReducer = (state = {}, action) => {
         case REMOVE_CHANNEL:
             delete nextState[action.channelId]
             return nextState
+        case REMOVE_CURRENT_USER:
+            return ({});
         default:
             return state
     }

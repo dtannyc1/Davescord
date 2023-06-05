@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { REMOVE_CURRENT_USER } from "./session";
 
 // action types
 const ADD_MESSAGE = 'messages/ADD_MESSAGE';
@@ -84,6 +85,8 @@ const messagesReducer = (state = {}, action) => {
         case REMOVE_MESSAGE:
             delete nextState[action.messageId]
             return nextState
+        case REMOVE_CURRENT_USER:
+            return ({});
         default:
             return state
     }
