@@ -48,6 +48,8 @@ export const fetchServer = (serverId) => async dispatch => {
         let data = await res.json();
         let messages = {};
         let subscribers = {};
+
+        // parse information about channels into its own slice of state
         if (data.channels){
             for (const [key, channel] of Object.entries(data.channels)){
                 if (channel.messages) {
@@ -58,13 +60,18 @@ export const fetchServer = (serverId) => async dispatch => {
                 }
             }
         }
+
+        // parse information about subscribers into its own slice of state
         if (data.subscribers) {
             subscribers = data.subscribers;
             data.subscribers = Object.values(data.subscribers).map(subscriber => subscriber.id)
         }
+
+        // store info about channels, messages, and users separately
         dispatch(addChannels(data.channels))
         dispatch(addMessages(messages))
         dispatch(addUsers(subscribers))
+
         if (data.channels) {
             data.channels = Object.values(data.channels).map(channel => channel.id)
         }
