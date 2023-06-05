@@ -18,12 +18,11 @@ const MessageList = () => {
         if (channel) {
             setMessageList(channel.messages);
         }
-    }, [channel, messages])
+    }, [channel])
 
     const handleMessageSubmit = e => {
         e.preventDefault();
         dispatch(createMessage(channelId, body));
-        setMessageList([])
         setBody('');
     }
 
