@@ -44,6 +44,13 @@ class User < ApplicationRecord
         through: :subscriptions,
         source: :server)
 
+    has_many(:messages,
+        primary_key: :id,
+        foreign_key: :author_id,
+        class_name: :Message,
+        inverse_of: :author,
+        dependent: :destroy)
+
     # FIGVAPEBRR
 
     def self.find_by_credentials(credential, password)
