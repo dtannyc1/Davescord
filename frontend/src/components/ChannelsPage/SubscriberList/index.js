@@ -19,7 +19,7 @@ const SubscriberList = () => {
                     <div className="role-title">Subscribers &nbsp;&mdash;&nbsp; {currentServer.subscribers.length-1}</div>
                     {currentServer.subscribers.map(subscriberId => {
                         if (subscriberId !== currentServer.ownerId) {
-                            return <UserItem user={users[subscriberId]}/>
+                            return <UserItem key={subscriberId} user={users[subscriberId]}/>
                         } else {
                             return <></>
                         }

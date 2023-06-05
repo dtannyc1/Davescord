@@ -5,6 +5,7 @@ import Message from './Message';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { createMessage } from '../../../store/message';
+import { useRef } from 'react';
 
 const MessageList = () => {
     const dispatch = useDispatch();
@@ -13,10 +14,12 @@ const MessageList = () => {
     const messages = useSelector(state => state.messages)
     let [messageList, setMessageList] = useState([]);
     let [body, setBody] = useState('');
+    const listEnd = useRef();
 
     useEffect(() => {
         if (channel) {
             setMessageList(channel.messages);
+            listEnd.current?.scrollIntoView({behavior: 'smooth'})
         }
     }, [channel])
 
@@ -33,6 +36,7 @@ const MessageList = () => {
                     return <Message key={messageId} message={messages[messageId]} prevMessage={(ii > 0) ? messages[messageList[ii-1]] : null}/>
                 })}
             </div>
+            <div ref={listEnd}/>
             <form className="message-input-form" onSubmit={handleMessageSubmit}>
                 <input type="text" value={body} placeholder={`Message # ${channel?.channelName}`} onChange={e => setBody(e.target.value)}/>
             </form>
