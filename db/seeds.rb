@@ -89,12 +89,12 @@ ApplicationRecord.transaction do
     end
 
     puts "Creating messages..."
-    (1..5).to_a.each do |channel_id|
+    (1..10).to_a.each do |channel_id|
         rand(1..10).times do
             Message.create!({
                 author_id: rand(1...10),
                 channel_id: channel_id,
-                body: Faker::TvShows::Stargate.quote
+                body: Faker::Movies::StarWars.quote
             })
         end
     end
