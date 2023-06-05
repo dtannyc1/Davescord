@@ -16,6 +16,8 @@ import ChannelNameHeader from "./ChannelNameHeader";
 import CreateChannelModal from "./CreateChannelModal";
 import ChannelDetailsMenu from "./ChannelDetailMenu";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { fetchMessages } from "../../store/message";
+import MessageList from "./MessageList";
 
 const ChannelsPage = () => {
     const {serverId, channelId} = useParams();
@@ -36,8 +38,12 @@ const ChannelsPage = () => {
     useEffect(() => {
         if (serverId !== "@me") {
             dispatch(fetchServer(serverId))
+
+            if (channelId !== undefined) {
+                dispatch(fetchMessages(channelId))
+            }
         }
-    }, [dispatch, serverId])
+    }, [dispatch, serverId, channelId])
 
     if (serverId !== "@me" && channelId === undefined && currentServer && currentServer.channels && currentServer.channels.length > 0) {
         return (
@@ -82,6 +88,7 @@ const ChannelsPage = () => {
             <div className="channels-column3-holder">
                 <div className="channels-column3">
                     {(serverId === "@me") ? <div>Friends list</div> : <ChannelNameHeader/>}
+                    {(serverId === "@me") ? <div>DMs</div> : <MessageList/>}
                 </div>
             </div>
         </div>
