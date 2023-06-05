@@ -1,5 +1,6 @@
 import { addChannels } from "./channel";
 import csrfFetch from "./csrf";
+import { addMessages } from "./message";
 import { REMOVE_CURRENT_USER } from './session.js';
 
 // action types
@@ -44,7 +45,19 @@ export const fetchServer = (serverId) => async dispatch => {
 
     if (res.ok) {
         let data = await res.json();
+        let messages = {};
+        if (data.channels){
+            for (const [key, channel] of Object.entries(data.channels)){
+                if (channel.messages) {
+                    messages = {...messages, ...channel.messages};
+                    data.channels[key].messages = Object.values(channel.messages).map(message => message.id)
+                } else {
+                    data.channels[key].messages = [];
+                }
+            }
+        }
         dispatch(addChannels(data.channels))
+        dispatch(addMessages(messages))
         if (data.channels) {
             data.channels = Object.values(data.channels).map(channel => channel.id)
         }

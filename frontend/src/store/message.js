@@ -80,7 +80,7 @@ const messagesReducer = (state = {}, action) => {
             nextState[action.message.id] = action.message;
             return nextState
         case ADD_MESSAGES:
-            return {...action.messages}
+            return {...nextState, ...action.messages}
         case REMOVE_MESSAGE:
             delete nextState[action.messageId]
             return nextState
