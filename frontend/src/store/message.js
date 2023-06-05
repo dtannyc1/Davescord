@@ -28,6 +28,49 @@ export const removeMessage = messageId => {
 }
 
 // thunk action creators
+export const fetchMessages = (channelId) => async dispatch => {
+    let res = await csrfFetch(`/api/channels/${channelId}/messages`);
+
+    if (res.ok) {
+        let data = await res.json();
+        dispatch(addMessages(data.messages));
+    }
+}
+
+export const createMessage = (channelId, body) => async dispatch => {
+    let res = await csrfFetch(`/api/channels/${channelId}/messages`, {
+        method: "POST",
+        body: JSON.stringify({message: {body: body}})
+    });
+
+    if (res.ok) {
+        let data = await res.json();
+        dispatch(addMessage(data))
+    }
+}
+
+export const updateMessage = (message) => async dispatch => {
+    let res = await csrfFetch(`/api/messages/${message.id}`, {
+        method: "PUT",
+        body: JSON.stringify({message: message})
+    });
+
+    if (res.ok) {
+        let data = await res.json();
+        dispatch(addMessage(data))
+    }
+}
+
+export const deleteMessage = (messageId) => async dispatch => {
+    let res = await csrfFetch(`/api/messages/${messageId}`, {
+        method: "DELETE"
+    });
+
+    if (res.ok){
+        dispatch(removeMessage(messageId))
+    }
+}
+
 
 // reducer
 const messagesReducer = (state = {}, action) => {
