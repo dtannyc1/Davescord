@@ -79,8 +79,12 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+# production:
+#   <<: *default
+#   database: Davescord_production
+#   username: Davescord
+#   password: <%= ENV["DAVESCORD_DATABASE_PASSWORD"] %>
+
 production:
   <<: *default
-  database: Davescord_production
-  username: Davescord
-  password: <%= ENV["DAVESCORD_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
