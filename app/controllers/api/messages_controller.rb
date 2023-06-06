@@ -25,6 +25,7 @@ class Api::MessagesController < ApplicationController
         if (@message)
             if (@message.author_id == current_user.id)
                 if @message.update(message_params)
+                    ChannelsChannel.broadcast_to(@message.channel, from_template('api/messages/_new_show', message: @message))
                     render :show
                 end
             else
