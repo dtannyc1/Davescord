@@ -4,7 +4,7 @@ import './MessageList.css';
 import Message from './Message';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { createMessage } from '../../../store/message';
+import { createMessage, removeMessage } from '../../../store/message';
 import { useRef } from 'react';
 import consumer from '../../../consumer';
 import { addMessage } from '../../../store/message';
@@ -31,8 +31,15 @@ const MessageList = () => {
         const subscription = consumer.subscriptions.create(
             { channel: 'ChannelsChannel', id: channelId },
             {
-              received: message => {
-                dispatch(addMessage(message, message.channelId))
+              received: ({type, message, messageId, channelId}) => {
+                switch (type) {
+                    case 'RECEIVE_MESSAGE':
+                        dispatch(addMessage(message, channelId));
+                        break;
+                    case 'DESTROY_MESSAGE':
+                        dispatch(removeMessage(messageId, channelId))
+                        break;
+                }
               }
             }
         );

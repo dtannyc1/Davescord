@@ -12,7 +12,7 @@ class Api::MessagesController < ApplicationController
         @message.author_id = current_user.id
 
         if (@message.save)
-            ChannelsChannel.broadcast_to(@message.channel, from_template('api/messages/_new_show', message: @message))
+            ChannelsChannel.broadcast_to(@message.channel, type: 'RECEIVE_MESSAGE', channelId: @message.channel.id, message: from_template('api/messages/_new_show', message: @message))
             render :show
         else
             render json: {errors: @message.errors.full_messages}, status: 422
@@ -25,7 +25,7 @@ class Api::MessagesController < ApplicationController
         if (@message)
             if (@message.author_id == current_user.id)
                 if @message.update(message_params)
-                    ChannelsChannel.broadcast_to(@message.channel, from_template('api/messages/_new_show', message: @message))
+                    ChannelsChannel.broadcast_to(@message.channel, type: 'RECEIVE_MESSAGE', channelId: @message.channel.id, message: from_template('api/messages/_new_show', message: @message))
                     render :show
                 end
             else
@@ -41,6 +41,7 @@ class Api::MessagesController < ApplicationController
         if (@message)
             server_owner = @message.channel.server.owner
             if (@message.author_id == current_user.id || server_owner.id == current_user.id)
+                ChannelsChannel.broadcast_to(@message.channel, type: 'DESTROY_MESSAGE', messageId: @message.id, channelId: @message.channel.id)
                 @message.destroy
                 render json: nil
             else

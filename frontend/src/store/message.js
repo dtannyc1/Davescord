@@ -69,9 +69,9 @@ export const deleteMessage = (messageId, channelId) => async dispatch => {
         method: "DELETE"
     });
 
-    if (res.ok){
-        dispatch(removeMessage(messageId, channelId))
-    }
+    // if (res.ok){
+    //     dispatch(removeMessage(messageId, channelId))
+    // }
 }
 
 
