@@ -137,3 +137,14 @@
     right: -5px;
     top: 1px;
 }
+
+.message-editor > input {
+    background-color: rgba(128, 128, 128, 0.10);
+    width: calc(100% - 30px - 55px);
+    border-radius: 5px;
+    padding: 10px 15px;
+    border: none;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+}
