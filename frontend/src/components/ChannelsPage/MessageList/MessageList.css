@@ -17,6 +17,7 @@
     /* hiding scroll bar */
     /* -ms-overflow-style: none;
     scrollbar-width: none; */
+    scrollbar-color: rgb(31, 31, 34) rgb(43, 45, 49);
 }
 
 /* .message-list-holder::-webkit-scrollbar {

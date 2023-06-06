@@ -39,7 +39,7 @@ const MessageList = () => {
                 <div ref={listEnd} className="message-end"/>
             </div>
             <form className="message-input-form" onSubmit={handleMessageSubmit}>
-                <input type="text" value={body} placeholder={`Message # ${channel?.channelName}`} onChange={e => setBody(e.target.value)}/>
+                <input type="text" value={body} placeholder={`Message # ${channel?.channelName.replace(/\s+/g, '-').toLowerCase()}`} onChange={e => setBody(e.target.value)}/>
             </form>
         </div>
     )
