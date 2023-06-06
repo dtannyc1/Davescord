@@ -6,31 +6,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
-    > * {
-        background-color: transparent;
-    }
+.tile3-holder > * {
+    background-color: transparent;
 }
 
 .tile3-text {
     width: 420px;
     padding-right: 100px;
-    > * {
-        background-color: transparent;
-    }
+}
 
-    > h3 {
-        font-size: 46px;
-        font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-weight: 800;
-        line-height: 1.2;
-        padding-bottom: 30px;
-    }
+.tile3-text > * {
+    background-color: transparent;
+}
 
-    > p{
-        font-size: 18px;
-        font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        line-height: 2;
-        font-weight: 300;
-    }
+.tile3-text > h3 {
+    font-size: 46px;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    line-height: 1.2;
+    padding-bottom: 30px;
+}
+
+.tile3-text > p{
+    font-size: 18px;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 2;
+    font-weight: 300;
 }

@@ -24,18 +24,18 @@
 .navbar-links {
     margin: 10px;
     padding: 10px;
+}
 
-    > a {
-        margin: 10px;
-        padding: 10px;
+.navbar-links > a {
+    margin: 10px;
+    padding: 10px;
 
-        text-decoration: none;
-        color: white;
-    }
+    text-decoration: none;
+    color: white;
+}
 
-    > a:hover {
-        text-decoration: underline;
-    }
+.navbar-links > a:hover {
+    text-decoration: underline;
 }
 
 .navbar-login {
