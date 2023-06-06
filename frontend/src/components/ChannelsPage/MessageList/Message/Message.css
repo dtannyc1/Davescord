@@ -102,6 +102,7 @@
     right: -5px;
     top: 1px;
     transition: fill 0.2s;
+    cursor: pointer;
 }
 
 .message-edit-button:hover {
@@ -117,6 +118,7 @@
     right: -35px;
     top: -9px;
     transition: fill 0.2s;
+    cursor: pointer;
 }
 
 .message-delete-button:hover {

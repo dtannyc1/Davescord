@@ -4,7 +4,7 @@ import { REMOVE_CURRENT_USER } from "./session";
 // action types
 export const ADD_MESSAGE = 'messages/ADD_MESSAGE';
 const ADD_MESSAGES = 'messages/ADD_MESSAGES';
-const REMOVE_MESSAGE = 'message/REMOVE_MESSAGE';
+export const REMOVE_MESSAGE = 'message/REMOVE_MESSAGE';
 
 // action creators
 export const addMessage = (message, channelId) => {
@@ -22,10 +22,11 @@ export const addMessages = messages => {
     }
 }
 
-export const removeMessage = messageId => {
+export const removeMessage = (messageId, channelId) => {
     return {
         type: REMOVE_MESSAGE,
-        messageId
+        messageId,
+        channelId
     }
 }
 
@@ -63,13 +64,13 @@ export const updateMessage = (message) => async dispatch => {
     }
 }
 
-export const deleteMessage = (messageId) => async dispatch => {
+export const deleteMessage = (messageId, channelId) => async dispatch => {
     let res = await csrfFetch(`/api/messages/${messageId}`, {
         method: "DELETE"
     });
 
     if (res.ok){
-        dispatch(removeMessage(messageId))
+        dispatch(removeMessage(messageId, channelId))
     }
 }
 
