@@ -1,7 +1,7 @@
 import './Message.css'
 import { useSelector } from 'react-redux';
 
-const Message = ({message, prevMessage}) => {
+const Message = ({message, prevMessage, buttonsVisible}) => {
     const users = useSelector(state => state.users);
 
     const formatDate = (dateString) => {
@@ -46,6 +46,7 @@ const Message = ({message, prevMessage}) => {
                         <span className='message-datetime'>{formatDate(message.createdAt)}</span>
                     </span>
                     <span className='message-body'>{message.body}</span>
+                    {buttonsVisible ? <div className="message-button-holder">button</div> : null}
                 </div>
             </div>
         )
@@ -55,6 +56,7 @@ const Message = ({message, prevMessage}) => {
                 <span className='message-time'>{formatTime(message.createdAt)}</span>
                 <div className='message-main'>
                     <span className='message-body'>{message.body}</span>
+                    {buttonsVisible ? <div className="message-button-holder">button</div> : null}
                 </div>
             </div>
         )

@@ -77,3 +77,8 @@
     padding-bottom: 2px;
     color: rgb(148, 155, 164);
 }
+
+.message-button-holder {
+    position: relative;
+    left: 0px;
+}
