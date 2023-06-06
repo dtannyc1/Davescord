@@ -45,10 +45,10 @@ export const createMessage = (channelId, body) => async dispatch => {
         body: JSON.stringify({message: {body: body}})
     });
 
-    if (res.ok) {
-        let data = await res.json();
-        dispatch(addMessage(data, channelId))
-    }
+    // if (res.ok) {
+    //     let data = await res.json();
+    //     dispatch(addMessage(data, channelId))
+    // }
 }
 
 export const updateMessage = (message) => async dispatch => {

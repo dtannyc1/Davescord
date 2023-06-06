@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { createMessage } from '../../../store/message';
 import { useRef } from 'react';
+import consumer from '../../../consumer';
+import { addMessage } from '../../../store/message';
 
 const MessageList = () => {
     const dispatch = useDispatch();
@@ -22,6 +24,19 @@ const MessageList = () => {
             listEnd.current?.scrollIntoView({behavior: 'instant'})
         }
     }, [channel, messageList, messages])
+
+    useEffect(() => {
+        const subscription = consumer.subscriptions.create(
+            { channel: 'ChannelsChannel', id: channelId },
+            {
+              received: message => {
+                dispatch(addMessage(message, message.channelId))
+              }
+            }
+        );
+
+        return () => subscription?.unsubscribe();
+    }, [channelId, dispatch])
 
     const handleMessageSubmit = e => {
         e.preventDefault();
