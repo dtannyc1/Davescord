@@ -90,7 +90,14 @@
     min-width: 55px;
 }
 
-.message-holder:hover .message-button-holder, .message-holderV2:hover .message-button-holder {
+.message-button-holderV2 {
+    position: relative;
+    display: none;
+    min-width: 26px;
+}
+
+.message-holder:hover .message-button-holder, .message-holderV2:hover .message-button-holder,
+.message-holder:hover .message-button-holderV2, .message-holderV2:hover .message-button-holderV2 {
     display: block;
 }
 
@@ -124,4 +131,9 @@
 .message-delete-button:hover {
     fill: white;
     transition: fill 0.2s;
+}
+
+.message-button-holderV2 .message-delete-button {
+    right: -5px;
+    top: 1px;
 }

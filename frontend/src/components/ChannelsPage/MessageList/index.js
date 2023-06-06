@@ -55,8 +55,9 @@ const MessageList = () => {
                                 key={messageId}
                                 message={messages[messageId]}
                                 prevMessage={(ii > 0) ? messages[messageList[ii-1]] : null}
-                                buttonsVisible={messages[messageId].authorId === currentUserId ||
-                                                currentUserId === serverOwnerId}/>
+                                deleteButtonVisible={messages[messageId].authorId === currentUserId ||
+                                                currentUserId === serverOwnerId}
+                                editButtonVisible={messages[messageId].authorId === currentUserId}/>
                 })}
                 <div ref={listEnd} className="message-end"/>
             </div>
