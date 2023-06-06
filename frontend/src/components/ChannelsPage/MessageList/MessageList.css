@@ -60,3 +60,9 @@
 .message-end {
     height: 20px;
 }
+
+@media (max-width: 1080px) {
+    .messages-panel {
+        width: 100%;
+    }
+}
