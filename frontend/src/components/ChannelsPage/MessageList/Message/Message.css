@@ -62,6 +62,7 @@
     padding-top: 2px;
     line-height: 1.5;
     background-color: transparent;
+    width: 100%;
 }
 
 .message-user-info {
@@ -78,7 +79,47 @@
     color: rgb(148, 155, 164);
 }
 
+.message-body {
+    display: flex;
+    justify-content: space-between;
+}
+
 .message-button-holder {
     position: relative;
-    left: 0px;
+    display: none;
+    min-width: 55px;
+}
+
+.message-holder:hover .message-button-holder, .message-holderV2:hover .message-button-holder {
+    display: block;
+}
+
+.message-edit-button {
+    width: 10px;
+    height: 10px;
+    fill: rgba(255, 255, 255, 0.7);
+    position: relative;
+    right: -5px;
+    top: 1px;
+    transition: fill 0.2s;
+}
+
+.message-edit-button:hover {
+    fill: white;
+    transition: fill 0.2s;
+}
+
+.message-delete-button {
+    width: 10px;
+    height: 10px;
+    fill: rgba(255, 255, 255, 0.7);
+    position: relative;
+    right: -35px;
+    top: -9px;
+    transition: fill 0.2s;
+}
+
+.message-delete-button:hover {
+    fill: white;
+    transition: fill 0.2s;
 }
