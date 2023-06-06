@@ -52,7 +52,7 @@ const LoginModal = props => {
             setCredential('')
         } catch (err) {
             // console.log("demo-login error")
-            console.log(err.errors)
+            // console.log(err.errors)
             setErrors(err.errors)
         }
     }
