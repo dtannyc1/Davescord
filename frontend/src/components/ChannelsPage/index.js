@@ -18,6 +18,8 @@ import ChannelDetailsMenu from "./ChannelDetailMenu";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import MessageList from "./MessageList";
 import SubscriberList from "./SubscriberList";
+import consumer from '../../consumer';
+import { addMessage, removeMessage } from '../../store/message';
 
 const ChannelsPage = () => {
     const {serverId, channelId} = useParams();
@@ -39,9 +41,33 @@ const ChannelsPage = () => {
         if (serverId !== "@me") {
             dispatch(fetchServer(serverId))
 
-            // if (channelId !== undefined) {
-            //     dispatch(fetchMessages(channelId))
-            // }
+            let allSubscriptions = [];
+            currentServer.channels?.forEach(channelId => {
+                    const subscription = consumer.subscriptions.create(
+                        { channel: 'ChannelsChannel', id: channelId },
+                        {
+                        received: ({type, message, messageId, channelId}) => {
+                            switch (type) {
+                                case 'RECEIVE_MESSAGE':
+                                    dispatch(addMessage(message, channelId));
+                                    break;
+                                case 'DESTROY_MESSAGE':
+                                    dispatch(removeMessage(messageId, channelId))
+                                    break;
+                            }
+                        }
+                        }
+                    )
+
+                    allSubscriptions.push(subscription)
+                }
+            )
+
+            return () => {
+                allSubscriptions.forEach(subscription => {
+                    subscription?.unsubscribe();
+                })
+            }
         }
     }, [dispatch, serverId])
 

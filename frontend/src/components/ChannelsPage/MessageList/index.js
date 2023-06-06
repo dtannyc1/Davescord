@@ -4,10 +4,9 @@ import './MessageList.css';
 import Message from './Message';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { createMessage, removeMessage } from '../../../store/message';
+import { createMessage } from '../../../store/message';
 import { useRef } from 'react';
-import consumer from '../../../consumer';
-import { addMessage } from '../../../store/message';
+// import consumer from '../../../consumer';
 
 const MessageList = () => {
     const dispatch = useDispatch();
@@ -27,25 +26,25 @@ const MessageList = () => {
         }
     }, [channel, messageList, messages])
 
-    useEffect(() => {
-        const subscription = consumer.subscriptions.create(
-            { channel: 'ChannelsChannel', id: channelId },
-            {
-              received: ({type, message, messageId, channelId}) => {
-                switch (type) {
-                    case 'RECEIVE_MESSAGE':
-                        dispatch(addMessage(message, channelId));
-                        break;
-                    case 'DESTROY_MESSAGE':
-                        dispatch(removeMessage(messageId, channelId))
-                        break;
-                }
-              }
-            }
-        );
+    // useEffect(() => {
+    //     const subscription = consumer.subscriptions.create(
+    //         { channel: 'ChannelsChannel', id: channelId },
+    //         {
+    //           received: ({type, message, messageId, channelId}) => {
+    //             switch (type) {
+    //                 case 'RECEIVE_MESSAGE':
+    //                     dispatch(addMessage(message, channelId));
+    //                     break;
+    //                 case 'DESTROY_MESSAGE':
+    //                     dispatch(removeMessage(messageId, channelId))
+    //                     break;
+    //             }
+    //           }
+    //         }
+    //     );
 
-        return () => subscription?.unsubscribe();
-    }, [channelId, dispatch])
+    //     return () => subscription?.unsubscribe();
+    // }, [channelId, dispatch])
 
     const handleMessageSubmit = e => {
         e.preventDefault();
