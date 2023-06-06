@@ -43,16 +43,17 @@
 .message-input-form{
     width: calc(100% - 32px);
     margin-left: 16px;
-    >input {
-        width: calc(100% - 40px);
-        border-radius: 5px;
-        background-color: rgba(128, 128, 128, 0.10);
-        color: rgba(255, 255, 255, 0.8);
-        padding: 10px 20px;
-        border: none;
-        /* margin-top: 20px; */
-        font-size: 14px;
-    }
+}
+
+.message-input-form >input {
+    width: calc(100% - 40px);
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.10);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border: none;
+    /* margin-top: 20px; */
+    font-size: 14px;
 }
 
 .message-end {

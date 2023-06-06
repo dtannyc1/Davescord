@@ -1,10 +1,3 @@
-
-/* .server-list { */
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
-/* } */
-
 .server-item {
     width: 51px;
     padding: 0px;
@@ -12,35 +5,35 @@
     margin-bottom: 9px;
     z-index: 10;
     position: relative;
+}
 
-    > a, > a > img{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 51px;
-        height: 51px;
-        border-radius: 25.5px;
-        /* margin: 5px; */
-        color: white;
-        background-color: rgb(43, 45, 49);
-        text-decoration: none;
-        font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 24px;
-        transition: background-color 0.2s, border-radius 0.2s;
-        position: relative;
-    }
+.server-item > a, .server-item > a > img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 51px;
+    height: 51px;
+    border-radius: 25.5px;
+    /* margin: 5px; */
+    color: white;
+    background-color: rgb(43, 45, 49);
+    text-decoration: none;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    transition: background-color 0.2s, border-radius 0.2s;
+    position: relative;
+}
 
-    > a:hover, > a.selected{
-        border-radius: 18px;
-        background-color: #5865f2;
-        transition: background-color 0.2s, border-radius 0.2s;
+.server-item > a:hover, .server-item > a.selected{
+    border-radius: 18px;
+    background-color: #5865f2;
+    transition: background-color 0.2s, border-radius 0.2s;
+}
 
-        > img {
-            border-radius: 18px;
-            background-color: #5865f2;
-            transition: background-color 0.2s, border-radius 0.2s;
-        }
-    }
+.server-item > a:hover > img, .server-item > a.selected > img {
+    border-radius: 18px;
+    background-color: #5865f2;
+    transition: background-color 0.2s, border-radius 0.2s;
 }
 
 a > .channels-left-selector{

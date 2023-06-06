@@ -42,136 +42,118 @@
     position: relative;
     animation-name: fadein;
     animation-duration: 0.25s;
+}
 
-    >* {
-        background-color: inherit;
+.login-modal > h3 {
+    font-size: 24px;
+    color: #F2F3F5;
+    margin: 8px;
+    cursor: default;
+}
 
-        >*{
-            background-color: inherit;
-
-            >*{
-                background-color: inherit;
-
-                >*{
-                    background-color: inherit;
-                }
-            }
-        }
-    }
-
-    > h3 {
-        font-size: 24px;
-        color: #F2F3F5;
-        margin: 8px;
-        cursor: default;
-    }
-
-    > p{
-        font-size: 15px;
-        color: #B5BAC1;
-        margin: 8px;
-        font-weight: 300;
-        cursor: default;
-    }
+.login-modal > p{
+    font-size: 15px;
+    color: #B5BAC1;
+    margin: 8px;
+    font-weight: 300;
+    cursor: default;
 }
 
 .login-form{
     font-size: 12px;
     width: 416px;
+}
 
-    > label {
-        color: #B5BAC1;
-        margin: 5px 0px;
-        padding: 7px 0px;
-        display: flex;
-        width: 100%;
-        margin-top: 8px;
-        font-weight: 800;
-        letter-spacing: 0.7px;
-        font-size: 10.5px;
+.login-form > label {
+    color: #B5BAC1;
+    margin: 5px 0px;
+    padding: 7px 0px;
+    display: flex;
+    width: 100%;
+    margin-top: 8px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    font-size: 10.5px;
+}
 
-        > p {
-            font-style: italic;
-            font-weight: 300;
-        }
-    }
+.login-form > label > p {
+    font-style: italic;
+    font-weight: 300;
+}
 
-    .login-error {
-        color:#FA777C;
-    }
+.login-form .login-error {
+    color:#FA777C;
+}
 
-    > input {
-        width: calc(100% - 20px);
-        margin-bottom: 10px;
-        padding: 10px;
-        background-color: #1E1F22;
-        border-radius: 5px;
-        color: #B5BAC1;
-        font-size: 16px;
-        border: none;
-    }
+.login-form > input {
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #1E1F22;
+    border-radius: 5px;
+    color: #B5BAC1;
+    font-size: 16px;
+    border: none;
+}
 
-    > input:focus-visible{
-        outline: #00A8FC solid 4px;
-        border-radius: 4px;
-    }
+.login-form > input:focus-visible{
+    outline: #00A8FC solid 4px;
+    border-radius: 4px;
+}
 
-    > button {
-        color: #F2F3F5;
-        width: 100%;
-        background-color: #5865f2;
-        border: none;
-        line-height: 40px;
-        font-size: 14.5px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-bottom: 10px;
-        transition: background-color 0.25s;
-    }
+.login-form > button {
+    color: #F2F3F5;
+    width: 100%;
+    background-color: #5865f2;
+    border: none;
+    line-height: 40px;
+    font-size: 14.5px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background-color 0.25s;
+}
 
-    > button:hover {
-        background-color: #4650be;
-        transition: background-color 0.25s;
-    }
+.login-form > button:hover {
+    background-color: #4650be;
+    transition: background-color 0.25s;
+}
 
-    .login-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+.login-form .login-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        > p {
-            color: #B5BAC1;
-            font-weight: 300;
-            cursor: default;
+.login-form .login-bottom > p {
+    color: #B5BAC1;
+    font-weight: 300;
+    cursor: default;
+}
 
+.login-form .login-bottom > p > a {
+    font-weight: 400;
+    cursor: pointer;
+}
 
-            > a {
-                font-weight: 400;
-                cursor: pointer;
-            }
+.login-form .login-bottom > p > span {
+    font-weight: 400;
+    font-size: 12px;
+    border: none;
+    text-decoration: none;
+    color: #00A8FC;
+    padding: 0px;
+    cursor: pointer;
+}
 
-            > span {
-                font-weight: 400;
-                font-size: 12px;
-                border: none;
-                text-decoration: none;
-                color: #00A8FC;
-                padding: 0px;
-                cursor: pointer;
-            }
-
-            > span:hover {
-                text-decoration: underline;
-            }
-        }
-    }
+.login-form .login-bottom > p > span:hover {
+    text-decoration: underline;
 }
 
 .login-form a{
     color: #00A8FC;
     text-decoration: none;
     cursor: pointer;
-
 }
 
 .login-form a:hover{

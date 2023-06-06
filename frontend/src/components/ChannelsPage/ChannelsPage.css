@@ -93,11 +93,11 @@
     justify-content: center;
     align-items: center;
     position: relative;
+}
 
-    > img {
-        width: 30px;
-        height: 30px;
-    }
+.icon > img {
+    width: 30px;
+    height: 30px;
 }
 
 .icon.selected, .icon:hover {

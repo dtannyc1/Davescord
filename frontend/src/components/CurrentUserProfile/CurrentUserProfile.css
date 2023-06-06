@@ -4,21 +4,21 @@
     background-color: rgb(35, 36, 40);
     display: flex;
     justify-content: space-between;
+}
 
-    > div {
-        display: flex;
-        align-items: flex-end;
-        font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 13px;
-        font-weight: 600;
+.current-user-profile > div {
+    display: flex;
+    align-items: flex-end;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+}
 
-        > img {
-            width: 34px;
-            height: 34px;
-            margin: 8px;
-            border-radius: 15px;
-        }
-    }
+.current-user-profile > div > img {
+    width: 34px;
+    height: 34px;
+    margin: 8px;
+    border-radius: 15px;
 }
 
 .current-profile-small-text{

@@ -6,13 +6,13 @@
 
     padding: 60px 40px;
     height: calc(100vh - 120px);
+}
 
-    > h3 {
-        color: white;
-        font-size: 20px;
-        padding-bottom: 20px;
-        cursor: default;
-    }
+.overview-menu > h3 {
+    color: white;
+    font-size: 20px;
+    padding-bottom: 20px;
+    cursor: default;
 }
 
 .overview-menu .overview-input-title {
@@ -48,12 +48,12 @@
     cursor: default;
     font-size: 15px;
     transition: opacity 0.2s;
+}
 
-    > div{
-        color: white;
-        padding-left: 5px;
-        background-color: transparent;
-    }
+.save-button-holder > div{
+    color: white;
+    padding-left: 5px;
+    background-color: transparent;
 }
 
 .overview-reset-button{

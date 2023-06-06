@@ -89,9 +89,10 @@
     background-color: rgba(148, 155, 164, 0.25);
     padding-right: 30px;
     width: 180px;
-    .channels-channel-name {
-        color: white;
-    }
+}
+
+.channels-channel-item.selected .channels-channel-name {
+    color: white;
 }
 
 .channels-channel-name {
@@ -113,10 +114,10 @@
 
 .channels-channel-item:hover {
     background-color: rgba(148, 155, 164, 0.25);
+}
 
-    .channels-channel-name {
-        color: white;
-    }
+.channels-channel-item:hover .channels-channel-name {
+    color: white;
 }
 
 .channels-edit-sign {
