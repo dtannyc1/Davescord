@@ -29,9 +29,9 @@
 
 .message-time {
     text-transform: uppercase;
+    width: 50px;
+    min-width: 50px;
     font-size: 12px;
-    padding-left: 2px;
-    padding-right: 3px;
     font-weight: 400;
     position: relative;
     top: 7px;
@@ -39,6 +39,8 @@
     opacity: 0%;
     background-color: transparent;
     white-space: nowrap;
+    display: flex;
+    justify-content: center;
 }
 
 .message-holder:hover {
