@@ -40,7 +40,11 @@ const ChannelsPage = () => {
     useEffect(() => {
         if (serverId !== "@me") {
             dispatch(fetchServer(serverId))
+        }
+    }, [dispatch, serverId])
 
+    useEffect(() => {
+        if (serverId !== "@me") {
             let allSubscriptions = [];
             currentServer.channels?.forEach(channelId => {
                     const subscription = consumer.subscriptions.create(
@@ -69,7 +73,7 @@ const ChannelsPage = () => {
                 })
             }
         }
-    }, [dispatch, serverId])
+    }, [currentServer])
 
     if (serverId !== "@me" && channelId === undefined && currentServer && currentServer.channels && currentServer.channels.length > 0) {
         return (
