@@ -27,6 +27,7 @@ const ChannelsPage = () => {
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
+    const subscribedServers = useSelector(state => Object.values(state.servers))
     const [showServerModal, setShowServerModal] = useState(false);
     const [showChannelModal, setShowChannelModal] = useState(false);
     const [showServerDetail, setShowServerDetail] = useState(false);
@@ -45,9 +46,9 @@ const ChannelsPage = () => {
     }, [dispatch, serverId])
 
     useEffect(() => {
-        if (serverId !== "@me") {
-            let allSubscriptions = [];
-            currentServer?.channels?.forEach(channelId => {
+        let allSubscriptions = [];
+        subscribedServers?.forEach(server => {
+            server.channels?.forEach(channelId => {
                     const subscription = consumer.subscriptions.create(
                         { channel: 'ChannelsChannel', id: channelId },
                         { received: ({type, message, messageId, channelId, serverId}) => {
@@ -67,14 +68,14 @@ const ChannelsPage = () => {
                     allSubscriptions.push(subscription)
                 }
             )
+        })
 
-            return () => {
-                allSubscriptions.forEach(subscription => {
-                    subscription?.unsubscribe();
-                })
-            }
+        return () => {
+            allSubscriptions.forEach(subscription => {
+                subscription?.unsubscribe();
+            })
         }
-    }, [currentServer])
+    }, [subscribedServers])
 
     if (serverId !== "@me" && channelId === undefined && currentServer && currentServer.channels && currentServer.channels.length > 0) {
         return (

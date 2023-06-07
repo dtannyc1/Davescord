@@ -80,12 +80,16 @@ const channelsReducer = (state = {}, action) => {
         case REMOVE_CURRENT_USER:
             return ({});
         case ADD_MESSAGE:
-            nextState[action.channelId].messages.push(action.message.id)
-            nextState[action.channelId].messages = [...new Set(nextState[action.channelId].messages)]
+            if (nextState[action.channelId]) {
+                nextState[action.channelId].messages.push(action.message.id)
+                nextState[action.channelId].messages = [...new Set(nextState[action.channelId].messages)]
+            }
             return nextState
         case REMOVE_MESSAGE:
-            let index = nextState[action.channelId].messages.indexOf(action.messageId)
-            nextState[action.channelId].messages.splice(index, 1)
+            if (nextState[action.channelId]){
+                let index = nextState[action.channelId].messages.indexOf(action.messageId)
+                nextState[action.channelId].messages.splice(index, 1)
+            }
             return nextState
         default:
             return state
