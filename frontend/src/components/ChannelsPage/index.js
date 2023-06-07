@@ -18,6 +18,7 @@ import ChannelDetailsMenu from "./ChannelDetailMenu";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import MessageList from "./MessageList";
 import SubscriberList from "./SubscriberList";
+import { addSubscription } from "../../store/subscription";
 
 const ChannelsPage = ({setWebsocketRestart}) => {
     const {serverId, channelId} = useParams();
@@ -37,6 +38,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
 
     useEffect(() => {
         if (serverId !== "@me") {
+            dispatch(addSubscription(serverId))
             dispatch(fetchServer(serverId))
         }
     }, [dispatch, serverId])
@@ -50,7 +52,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     return (
         <div className="channels-page">
             <CreateServerModal visible={showServerModal} setVisible={setShowServerModal} setWebsocketRestart={setWebsocketRestart}/>
-            <CreateChannelModal visible={showChannelModal} setVisible={setShowChannelModal} categoryName={categoryName} />
+            <CreateChannelModal visible={showChannelModal} setVisible={setShowChannelModal} categoryName={categoryName} setWebsocketRestart={setWebsocketRestart}/>
             <ServerDetailsMenu visible={showServerDetail} setVisible={setShowServerDetail} />
             <ChannelDetailsMenu visible={showChannelDetail} setVisible={setShowChannelDetail} />
             <div className="channels-column1-holder">

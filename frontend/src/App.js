@@ -34,7 +34,7 @@ function App() {
                     : <Redirect to="/login"/>}
             </Route>
             {(subscribedServers && subscribedServers.length > 0) ?
-                    <WebSocketListeners websocketRestart={websocketRestart}/>
+                    <WebSocketListeners websocketRestart={websocketRestart} setWebsocketRestart={setWebsocketRestart}/>
                  : null}
         </WebsocketContext.Provider>
     );

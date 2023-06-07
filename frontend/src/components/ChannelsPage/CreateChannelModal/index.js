@@ -5,8 +5,10 @@ import { createChannel } from "../../../store/channel";
 // import { useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { useContext } from "react";
+import { WebsocketContext } from "../../../App";
 
-const CreateChannelModal = ({visible, setVisible, categoryName}) => {
+const CreateChannelModal = ({visible, setVisible, categoryName, setWebsocketRestart}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const {serverId} = useParams();
@@ -15,6 +17,7 @@ const CreateChannelModal = ({visible, setVisible, categoryName}) => {
     const [newChannelName, setNewChannelName] = useState('');
     const [newCategoryName, setNewCategoryName] = useState(categoryName ? categoryName : '');
     const [newDescription, setNewDescription] = useState('');
+    const websocketRestart = useContext(WebsocketContext);
 
     useEffect(() => {
         setNewCategoryName(categoryName ? categoryName : '');
@@ -33,6 +36,7 @@ const CreateChannelModal = ({visible, setVisible, categoryName}) => {
             let newChannel = await dispatch(createChannel(channel))
             closeMenu();
             history.push(`/channels/${serverId}/${newChannel.id}`)
+            setWebsocketRestart(!websocketRestart) // force restart websockets
         }
     }
 

@@ -8,7 +8,8 @@ const SubscriberList = () => {
     const currentServer = useSelector(state => state.servers[serverId]);
     const users = useSelector(state => state.users)
 
-    if (!currentServer) return null;
+    if (!currentServer || !currentServer.subscribers) return null;
+    // debugger
     return (
         <div className="subscriber-list-holder">
             <div className="role-title">Owner &nbsp;&mdash;&nbsp; 1</div>

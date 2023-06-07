@@ -1,4 +1,4 @@
-import { addServer, removeServer } from "./server"
+import { addServer, parseServerData, removeServer } from "./server"
 import csrfFetch from "./csrf";
 
 // action types
@@ -7,6 +7,7 @@ import csrfFetch from "./csrf";
 
 // thunk action creators
 export const addSubscription = (serverId) => async dispatch  => {
+    try {
     let res = await csrfFetch('/api/subscriptions', {
         method: "POST",
         body: JSON.stringify({subscription: {serverId: serverId}})
@@ -14,8 +15,11 @@ export const addSubscription = (serverId) => async dispatch  => {
 
     if (res.ok) {
         let data = await res.json();
-        dispatch(addServer(data))
+        parseServerData(data, dispatch);
         return data
+    }}
+    catch(err) {
+        return false;
     }
 }
 

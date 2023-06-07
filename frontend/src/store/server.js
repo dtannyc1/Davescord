@@ -79,6 +79,41 @@ export const fetchServer = (serverId) => async dispatch => {
     }
 }
 
+export const parseServerData = (data, dispatch) => {
+    let messages = {};
+    let subscribers = {};
+
+    // parse information about channels into its own slice of state
+    if (data.channels){
+        for (const [key, channel] of Object.entries(data.channels)){
+            if (channel.messages) {
+                messages = {...messages, ...channel.messages};
+                data.channels[key].messages = Object.values(channel.messages).map(message => message.id)
+            } else {
+                data.channels[key].messages = [];
+            }
+        }
+    }
+
+    // parse information about subscribers into its own slice of state
+    if (data.subscribers) {
+        subscribers = data.subscribers;
+        data.subscribers = Object.values(data.subscribers).map(subscriber => subscriber.id)
+    }
+
+    // store info about channels, messages, and users separately
+    dispatch(addUsers(subscribers))
+    dispatch(addChannels(data.channels || []))
+    dispatch(addMessages(messages))
+
+    if (data.channels) {
+        data.channels = Object.values(data.channels).map(channel => channel.id)
+    } else {
+        data.channels = []
+    }
+    dispatch(addServer(data))
+}
+
 export const createServer = (server) => async dispatch => {
     let res = await csrfFetch('/api/servers', {
         method: "POST",
@@ -87,36 +122,7 @@ export const createServer = (server) => async dispatch => {
 
     if (res.ok) {
         let data = await res.json();
-        let messages = {};
-        let subscribers = {};
-
-        // parse information about channels into its own slice of state
-        if (data.channels){
-            for (const [key, channel] of Object.entries(data.channels)){
-                if (channel.messages) {
-                    messages = {...messages, ...channel.messages};
-                    data.channels[key].messages = Object.values(channel.messages).map(message => message.id)
-                } else {
-                    data.channels[key].messages = [];
-                }
-            }
-        }
-
-        // parse information about subscribers into its own slice of state
-        if (data.subscribers) {
-            subscribers = data.subscribers;
-            data.subscribers = Object.values(data.subscribers).map(subscriber => subscriber.id)
-        }
-
-        // store info about channels, messages, and users separately
-        dispatch(addUsers(subscribers))
-        dispatch(addChannels(data.channels))
-        dispatch(addMessages(messages))
-
-        if (data.channels) {
-            data.channels = Object.values(data.channels).map(channel => channel.id)
-        }
-        dispatch(addServer(data))
+        parseServerData(data, dispatch);
         return data
     }
 }
@@ -129,48 +135,19 @@ export const updateServer = (server) => async dispatch => {
 
     if (res.ok) {
         let data = await res.json();
-        let messages = {};
-        let subscribers = {};
-
-        // parse information about channels into its own slice of state
-        if (data.channels){
-            for (const [key, channel] of Object.entries(data.channels)){
-                if (channel.messages) {
-                    messages = {...messages, ...channel.messages};
-                    data.channels[key].messages = Object.values(channel.messages).map(message => message.id)
-                } else {
-                    data.channels[key].messages = [];
-                }
-            }
-        }
-
-        // parse information about subscribers into its own slice of state
-        if (data.subscribers) {
-            subscribers = data.subscribers;
-            data.subscribers = Object.values(data.subscribers).map(subscriber => subscriber.id)
-        }
-
-        // store info about channels, messages, and users separately
-        dispatch(addUsers(subscribers))
-        dispatch(addChannels(data.channels))
-        dispatch(addMessages(messages))
-
-        if (data.channels) {
-            data.channels = Object.values(data.channels).map(channel => channel.id)
-        }
-        dispatch(addServer(data))
+        parseServerData(data, dispatch);
         return data
     }
 }
 
 export const destroyServer = (serverId) => async dispatch => {
-    let res = await csrfFetch(`/api/servers/${serverId}`, {
+    await csrfFetch(`/api/servers/${serverId}`, {
         method: "DELETE"
     });
 
-    if (res.ok) {
-        dispatch(removeServer(serverId))
-    }
+    // if (res.ok) {
+    //     dispatch(removeServer(serverId))
+    // }
 }
 
 // reducer

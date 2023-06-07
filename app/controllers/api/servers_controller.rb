@@ -26,6 +26,9 @@ class Api::ServersController < ApplicationController
         if @server.save
             Subscription.create!({subscriber_id: current_user.id,
                         server_id: @server.id})
+            ServersChannel.broadcast_to(@server,
+                        type: 'RECEIVE_SERVER',
+                        serverId: @server.id)
             render :show
         else
             render json: @server.errors.full_messages, status: 422
@@ -49,11 +52,16 @@ class Api::ServersController < ApplicationController
 
     def destroy
         @server = Server.find(params[:id])
-        if (@server.owner_id == current_user.id)
-            @server.destroy
-            render json: nil
-        else
-            render json: {errors: 'Unauthorized, must be owner to delete server'}, status: :unauthorized
+        if @server
+            if (@server.owner_id == current_user.id)
+                ServersChannel.broadcast_to(@server,
+                    type: 'DESTROY_SERVER',
+                    serverId: @server.id)
+                @server.destroy
+                render json: nil
+            else
+                render json: {errors: 'Unauthorized, must be owner to delete server'}, status: :unauthorized
+            end
         end
     end
 

@@ -3,9 +3,9 @@ import { useState, useEffect, useRef } from "react";
 import './CreateServerModal.css'
 import background from '../../../assets/create_server_background.svg';
 import image_upload from '../../../assets/create_server_image_upload.svg';
-import { createServer } from "../../../store/server";
+import { createServer, fetchServer } from "../../../store/server";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { createChannel } from "../../../store/channel";
+import { addChannel, createChannel } from "../../../store/channel";
 import { useContext } from "react";
 import { WebsocketContext } from "../../../App";
 
@@ -30,10 +30,14 @@ const CreateServerModal = ({visible, setVisible, setWebsocketRestart}) => {
                 categoryName: "Text Channels",
                 description: ""
             }
-            let newChannel = await dispatch(createChannel(channel))
+
             setNewServerName(defaultServerName.current);
             setVisible(false)
+            let newChannel = await dispatch(createChannel(channel))
+            dispatch(addChannel(newChannel))
+
             history.push(`/channels/${newServer.id}/${newChannel.id}`)
+
             debugger
             setWebsocketRestart(!websocketRestart) // force restart websockets
         }

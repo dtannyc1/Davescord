@@ -38,7 +38,6 @@ export const createChannel = (channel) => async dispatch => {
 
     if (res.ok) {
         let data = await res.json();
-        // dispatch(addChannel(data));
         return data
     }
 }
@@ -54,10 +53,6 @@ export const deleteChannel = (channelId) => async dispatch => {
     await csrfFetch(`/api/channels/${channelId}`, {
         method: "DELETE"
     })
-
-    // if (res.ok) {
-    //     dispatch(removeChannel(channelId))
-    // }
 }
 
 // reducer
@@ -76,6 +71,7 @@ const channelsReducer = (state = {}, action) => {
             return ({});
         case ADD_MESSAGE:
             if (nextState[action.channelId]) {
+                nextState[action.channelId].messages ||= []
                 nextState[action.channelId].messages.push(action.message.id)
                 nextState[action.channelId].messages = [...new Set(nextState[action.channelId].messages)]
             }
