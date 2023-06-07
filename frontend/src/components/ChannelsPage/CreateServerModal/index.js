@@ -35,7 +35,7 @@ const CreateServerModal = ({visible, setVisible, setWebsocketRestart}) => {
             setVisible(false)
             history.push(`/channels/${newServer.id}/${newChannel.id}`)
             debugger
-            setWebsocketRestart(!websocketRestart)
+            setWebsocketRestart(!websocketRestart) // force restart websockets
         }
     }
 

@@ -34,6 +34,24 @@ const WebSocketListeners = ({websocketRestart}) => {
                     allSubscriptions.push(subscription)
                 }
             )
+
+            const subscription = consumer.subscriptions.create(
+                { channel: 'ServersChannel', id: server.id },
+                { received: ({type, channelId, serverId}) => {
+                        switch (type) {
+                            case 'RECEIVE_CHANNEL':
+
+                                break;
+                            case 'DESTROY_CHANNEL':
+
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            )
+            allSubscriptions.push(subscription)
         })
 
         return () => {
