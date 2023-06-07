@@ -5,11 +5,13 @@ import SignUpModal from "./components/SignupModal";
 import ChannelsPage from "./components/ChannelsPage";
 import { useSelector } from "react-redux";
 import { Redirect, Switch } from "react-router-dom/cjs/react-router-dom.min";
+import WebSocketListeners from "./components/ChannelsPage/WebSocketListeners";
 
 // if logged in, redirects should happen on /login and /register
 
 function App() {
     const currentUserId = useSelector(state => state.session.currentUserId);
+    const subscribedServers = useSelector(state => Object.values(state.servers));
 
     return (
         <>
@@ -22,15 +24,10 @@ function App() {
             <Route path="/register">
                 {currentUserId ? <Redirect to="/channels/@me"/> : <SignUpModal/>}
             </Route>
-            <Switch>
-                <Route exact path="/channels/:serverId/:channelId">
-                    {currentUserId ? <ChannelsPage/> : <Redirect to="/login"/>}
-                </Route>
-
-                <Route exact path="/channels/:serverId">
-                    {currentUserId ? <ChannelsPage/> : <Redirect to="/login"/>}
-                </Route>
-            </Switch>
+            <Route path="/channels/:serverId/:channelId?">
+                {currentUserId ? <ChannelsPage/> : <Redirect to="/login"/>}
+            </Route>
+            {(subscribedServers && subscribedServers.length > 0) ? <WebSocketListeners/> : null}
         </>
     );
 }

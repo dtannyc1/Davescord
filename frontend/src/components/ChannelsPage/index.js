@@ -18,16 +18,12 @@ import ChannelDetailsMenu from "./ChannelDetailMenu";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import MessageList from "./MessageList";
 import SubscriberList from "./SubscriberList";
-import consumer from '../../consumer';
-import { addMessage, removeMessage } from '../../store/message';
-import { setUnreadChannel, setUnreadServer } from "../../store/unread";
 
 const ChannelsPage = () => {
     const {serverId, channelId} = useParams();
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
-    const subscribedServers = useSelector(state => Object.values(state.servers))
     const [showServerModal, setShowServerModal] = useState(false);
     const [showChannelModal, setShowChannelModal] = useState(false);
     const [showServerDetail, setShowServerDetail] = useState(false);
@@ -44,40 +40,6 @@ const ChannelsPage = () => {
             dispatch(fetchServer(serverId))
         }
     }, [dispatch, serverId])
-
-    useEffect(() => {
-        let allSubscriptions = [];
-        subscribedServers?.forEach(server => {
-            server.channels?.forEach(channelId => {
-                    const subscription = consumer.subscriptions.create(
-                        { channel: 'ChannelsChannel', id: channelId },
-                        { received: ({type, message, messageId, channelId, serverId}) => {
-                                switch (type) {
-                                    case 'RECEIVE_MESSAGE':
-                                        dispatch(addMessage(message, channelId));
-                                        dispatch(setUnreadChannel(channelId));
-                                        dispatch(setUnreadServer(serverId));
-                                        break;
-                                    case 'DESTROY_MESSAGE':
-                                        dispatch(removeMessage(messageId, channelId))
-                                        break;
-                                    default:
-                                        break;
-                                }
-                            }
-                        }
-                    )
-                    allSubscriptions.push(subscription)
-                }
-            )
-        })
-
-        return () => {
-            allSubscriptions.forEach(subscription => {
-                subscription?.unsubscribe();
-            })
-        }
-    }, [subscribedServers, dispatch])
 
     if (serverId !== "@me" && channelId === undefined && currentServer && currentServer.channels && currentServer.channels.length > 0) {
         return (
