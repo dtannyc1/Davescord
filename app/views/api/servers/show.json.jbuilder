@@ -18,7 +18,7 @@ end
 json.subscribers do
     @server.subscribers.each do |subscriber|
         json.set! subscriber.id do
-            json.extract!(subscriber, :id, :username, :profile_picture, :status)
+            json.extract!(subscriber, :id, :username, :profile_picture, :status, :color)
         end
     end
 end

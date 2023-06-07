@@ -14,6 +14,22 @@
     border-radius: 15px;
 }
 
+.user-item-img-placeholder {
+    min-width: 34px;
+    min-height: 34px;
+    width: 34px;
+    height: 34px;
+    margin: 8px;
+    display: flex;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+}
+
 .user-item-text {
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
