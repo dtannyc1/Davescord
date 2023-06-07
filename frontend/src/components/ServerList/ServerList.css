@@ -49,6 +49,19 @@ a > .channels-left-selector{
     transition: opacity 0.2s, transform 0.2s;
 }
 
+.unread .channels-left-selector{
+    position: absolute;
+    background-color: white;
+    min-width: 6px;
+    height: 40px;
+    top: 5.5px;
+    left: -13px;
+    border-radius: 20px;
+    opacity: 100%;
+    transform: scale(1, 0.3);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
 a:hover .channels-left-selector{
     position: absolute;
     background-color: white;

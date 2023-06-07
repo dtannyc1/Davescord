@@ -4,14 +4,17 @@ import './ServerList.css'
 
 const ServerList = ({activeServer}) => {
     const servers = useSelector(state => Object.values(state.servers));
+    const unreadServers = useSelector(state => state.unread.servers);
 
     if (!servers) return null;
 
     return (
         <>
             {servers.map(server => {
+                let unreadStatus = (unreadServers[server.id]) ? " unread" : "";
+
                 if (server.serverImage) {
-                    return <div className="server-item" key={server.id} >
+                    return <div className={`server-item${unreadStatus}`} key={server.id} >
                         <Link to={`/channels/${server.id}`} className={(parseInt(activeServer) === server.id) ? "selected" : null}>
                             <img src={server.serverImage} alt={server.serverName}/>
                             <div className="channels-left-selector"></div>
@@ -19,7 +22,7 @@ const ServerList = ({activeServer}) => {
                         <span className="tooltip">{server.serverName}</span>
                     </div>
                 } else{
-                    return <div className="server-item" key={server.id} >
+                    return <div className={`server-item${unreadStatus}`} key={server.id} >
                         <Link to={`/channels/${server.id}`} className={(parseInt(activeServer) === server.id) ? "selected" : null}>
                             <div className="server-image">
                                 {server.serverName.toUpperCase().charAt(0)}
