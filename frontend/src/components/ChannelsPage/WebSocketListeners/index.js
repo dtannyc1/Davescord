@@ -45,6 +45,9 @@ const WebSocketListeners = ({websocketRestart}) => {
                             case 'DESTROY_CHANNEL':
 
                                 break;
+                            case 'DESTROY_SERVER':
+
+                                break
                             default:
                                 break;
                         }
