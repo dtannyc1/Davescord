@@ -8,6 +8,8 @@ const ChannelsList = ({showCreateChannel, setCategoryName, setShowChannelDetail}
     const channels = useSelector(state => Object.values(state.channels));
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
+    const unreadChannels = useSelector(state => state.unread.channels)
+
     let categories = {};
     channels.forEach(channel => {
         if (categories[channel.categoryName.toUpperCase()]){
@@ -50,8 +52,10 @@ const ChannelsList = ({showCreateChannel, setCategoryName, setShowChannelDetail}
                                 <div className="channels-plus-sign" onClick={handleAddChannelClick(categoryArray[0].categoryName)}>+</div> : null}
                         </div>
                         {categoryArray.map(channel => {
+                            let unreadStatus = (unreadChannels[channel.id]) ? " unread" : "";
+
                             return (
-                                <span key={channel.id} className={(parseInt(channelId) === channel.id) ? 'channels-channel-item selected' : 'channels-channel-item'} onClick={e => history.push(`/channels/${serverId}/${channel.id}`)}>
+                                <span key={channel.id} className={(parseInt(channelId) === channel.id) ? `channels-channel-item selected${unreadStatus}` : `channels-channel-item${unreadStatus}`} onClick={e => history.push(`/channels/${serverId}/${channel.id}`)}>
                                     <span className='channels-hashtag'>#</span>
                                     {(currentServer?.ownerId === currentUserId) ?
                                         ((parseInt(channelId) === channel.id) ?

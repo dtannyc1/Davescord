@@ -170,3 +170,27 @@
 .channels-channel-item:hover>.channels-edit-sign.hidden + .channels-channel-name {
     width: 160px;
 }
+
+.channels-channel-item.unread {
+    color: white;
+    margin-left: 5px;
+}
+
+.channels-channel-item.unread:before {
+    content: '';
+    display: block;
+    width:0;
+    height:0;
+    position: relative;
+
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 5px solid white;
+
+    left:-14px;
+    top:0px;
+}
+
+.channels-channel-item.unread .channels-hashtag {
+    color: rgb(148, 155, 164);
+}

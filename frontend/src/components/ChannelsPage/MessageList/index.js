@@ -27,7 +27,7 @@ const MessageList = () => {
             setMessageList(channel.messages);
             dispatch(removeUnreadChannel(channelId))
 
-            if (channelList.every(channelNum => !unreadChannels[channelNum])) {
+            if (channelList?.every(channelNum => !unreadChannels[channelNum])) {
                 dispatch(removeUnreadServer(serverId))
             }
         }
