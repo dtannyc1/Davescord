@@ -6,15 +6,18 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { createMessage } from '../../../store/message';
 import { useRef } from 'react';
+import { removeUnreadChannel, removeUnreadServer } from '../../../store/unread';
 // import consumer from '../../../consumer';
 
 const MessageList = () => {
     const dispatch = useDispatch();
     const {serverId, channelId} = useParams();
+    const channelList = useSelector(state => state.servers[serverId]?.channels)
     const serverOwnerId = useSelector(state => state.servers[serverId]?.ownerId);
     const currentUserId = useSelector(state => state.session.currentUserId);
     const channel = useSelector(state => state.channels[channelId])
     const messages = useSelector(state => state.messages)
+    const unreadChannels = useSelector(state => state.unread.channels)
     let [messageList, setMessageList] = useState([]);
     let [body, setBody] = useState('');
     const listEnd = useRef();
@@ -22,29 +25,17 @@ const MessageList = () => {
     useEffect(() => {
         if (channel) {
             setMessageList(channel.messages);
-            listEnd.current?.scrollIntoView({behavior: 'instant'})
+            dispatch(removeUnreadChannel(channelId))
+
+            if (channelList.every(channelNum => !unreadChannels[channelNum])) {
+                dispatch(removeUnreadServer(serverId))
+            }
         }
-    }, [channel, messageList, messages])
+    }, [channel, messages])
 
-    // useEffect(() => {
-    //     const subscription = consumer.subscriptions.create(
-    //         { channel: 'ChannelsChannel', id: channelId },
-    //         {
-    //           received: ({type, message, messageId, channelId}) => {
-    //             switch (type) {
-    //                 case 'RECEIVE_MESSAGE':
-    //                     dispatch(addMessage(message, channelId));
-    //                     break;
-    //                 case 'DESTROY_MESSAGE':
-    //                     dispatch(removeMessage(messageId, channelId))
-    //                     break;
-    //             }
-    //           }
-    //         }
-    //     );
-
-    //     return () => subscription?.unsubscribe();
-    // }, [channelId, dispatch])
+    useEffect(() => {
+        listEnd.current?.scrollIntoView({behavior: 'instant'})
+    }, [messageList])
 
     const handleMessageSubmit = e => {
         e.preventDefault();

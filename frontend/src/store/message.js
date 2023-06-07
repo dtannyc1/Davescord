@@ -41,39 +41,24 @@ export const fetchMessages = (channelId) => async dispatch => {
 }
 
 export const createMessage = (channelId, body) => async () => {
-    csrfFetch(`/api/channels/${channelId}/messages`, {
+    await csrfFetch(`/api/channels/${channelId}/messages`, {
         method: "POST",
         body: JSON.stringify({message: {body: body}})
     });
-
-    // if (res.ok) {
-    //     let data = await res.json();
-    //     dispatch(addMessage(data, channelId))
-    // }
 }
 
-export const updateMessage = (message) => async dispatch => {
-    let res = await csrfFetch(`/api/messages/${message.id}`, {
+export const updateMessage = (message) => async () => {
+    await csrfFetch(`/api/messages/${message.id}`, {
         method: "PUT",
         body: JSON.stringify({message: message})
     });
-
-    // if (res.ok) {
-    //     let data = await res.json();
-    //     dispatch(addMessage(data))
-    // }
 }
 
-export const deleteMessage = (messageId, channelId) => async dispatch => {
-    let res = await csrfFetch(`/api/messages/${messageId}`, {
+export const deleteMessage = (messageId) => async () => {
+    await csrfFetch(`/api/messages/${messageId}`, {
         method: "DELETE"
     });
-
-    // if (res.ok){
-    //     dispatch(removeMessage(messageId, channelId))
-    // }
 }
-
 
 // reducer
 const messagesReducer = (state = {}, action) => {
