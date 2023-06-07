@@ -6,15 +6,19 @@ import ChannelsPage from "./components/ChannelsPage";
 import { useSelector } from "react-redux";
 import { Redirect, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import WebSocketListeners from "./components/ChannelsPage/WebSocketListeners";
+import { useState, createContext } from "react";
 
 // if logged in, redirects should happen on /login and /register
+
+export const WebsocketContext = createContext(true);
 
 function App() {
     const currentUserId = useSelector(state => state.session.currentUserId);
     const subscribedServers = useSelector(state => Object.values(state.servers));
+    const [websocketRestart, setWebsocketRestart] = useState(true);
 
     return (
-        <>
+        <WebsocketContext.Provider value={websocketRestart}>
             <Route exact path="/">
                 <Splash/>
             </Route>
@@ -25,10 +29,14 @@ function App() {
                 {currentUserId ? <Redirect to="/channels/@me"/> : <SignUpModal/>}
             </Route>
             <Route path="/channels/:serverId/:channelId?">
-                {currentUserId ? <ChannelsPage/> : <Redirect to="/login"/>}
+                {currentUserId ?
+                    <ChannelsPage setWebsocketRestart={setWebsocketRestart}/>
+                    : <Redirect to="/login"/>}
             </Route>
-            {(subscribedServers && subscribedServers.length > 0) ? <WebSocketListeners/> : null}
-        </>
+            {(subscribedServers && subscribedServers.length > 0) ?
+                    <WebSocketListeners websocketRestart={websocketRestart}/>
+                 : null}
+        </WebsocketContext.Provider>
     );
 }
 

@@ -24,7 +24,7 @@ const MessageList = () => {
 
     useEffect(() => {
         if (channel) {
-            setMessageList(channel.messages);
+            setMessageList(channel.messages || []);
             dispatch(removeUnreadChannel(channel.id))
 
             if (channelList?.every(channelNum => !unreadChannels[channelNum])) {

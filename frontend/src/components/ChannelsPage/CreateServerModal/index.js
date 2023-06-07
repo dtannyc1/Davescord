@@ -6,14 +6,17 @@ import image_upload from '../../../assets/create_server_image_upload.svg';
 import { createServer } from "../../../store/server";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { createChannel } from "../../../store/channel";
+import { useContext } from "react";
+import { WebsocketContext } from "../../../App";
 
-const CreateServerModal = ({visible, setVisible}) => {
+const CreateServerModal = ({visible, setVisible, setWebsocketRestart}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentUser = useSelector(state => state.users[currentUserId]);
     let defaultServerName = useRef((currentUser) ? `${currentUser.username}'s server` : '');
     const [newServerName, setNewServerName] = useState(defaultServerName);
+    const websocketRestart = useContext(WebsocketContext);
 
     const handleServerCreation = async e => {
         e.preventDefault();
@@ -31,6 +34,8 @@ const CreateServerModal = ({visible, setVisible}) => {
             setNewServerName(defaultServerName.current);
             setVisible(false)
             history.push(`/channels/${newServer.id}/${newChannel.id}`)
+            debugger
+            setWebsocketRestart(!websocketRestart)
         }
     }
 

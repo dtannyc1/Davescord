@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import consumer from '../../../consumer';
 import { addMessage, removeMessage } from '../../../store/message';
 import { setUnreadChannel, setUnreadServer } from "../../../store/unread";
 
-const WebSocketListeners = () => {
+const WebSocketListeners = ({websocketRestart}) => {
     const dispatch = useDispatch();
     const subscribedServers = useSelector(state => Object.values(state.servers))
 
@@ -41,7 +41,8 @@ const WebSocketListeners = () => {
                 subscription?.unsubscribe();
             })
         }
-    }, [])
+    }, [websocketRestart])
+
     return (
         <div className="mounted-websockets"></div>
     )

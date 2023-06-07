@@ -19,7 +19,7 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import MessageList from "./MessageList";
 import SubscriberList from "./SubscriberList";
 
-const ChannelsPage = () => {
+const ChannelsPage = ({setWebsocketRestart}) => {
     const {serverId, channelId} = useParams();
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
@@ -49,8 +49,8 @@ const ChannelsPage = () => {
 
     return (
         <div className="channels-page">
-            <CreateServerModal visible={showServerModal} setVisible={setShowServerModal}/>
-            <CreateChannelModal visible={showChannelModal} setVisible={setShowChannelModal} categoryName={categoryName}/>
+            <CreateServerModal visible={showServerModal} setVisible={setShowServerModal} setWebsocketRestart={setWebsocketRestart}/>
+            <CreateChannelModal visible={showChannelModal} setVisible={setShowChannelModal} categoryName={categoryName} />
             <ServerDetailsMenu visible={showServerDetail} setVisible={setShowServerDetail} />
             <ChannelDetailsMenu visible={showChannelDetail} setVisible={setShowChannelDetail} />
             <div className="channels-column1-holder">
