@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import consumer from '../../../consumer';
 import { addMessage, removeMessage } from '../../../store/message';
 import { setUnreadChannel, setUnreadServer } from "../../../store/unread";
-import { addChannel } from "../../../store/channel";
+import { addChannel, removeChannel } from "../../../store/channel";
 
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const DESTROY_MESSAGE = 'DESTROY_MESSAGE';
@@ -44,13 +44,13 @@ const WebSocketListeners = ({websocketRestart}) => {
 
             const subscription = consumer.subscriptions.create(
                 { channel: 'ServersChannel', id: server.id },
-                { received: ({type, channel, serverId}) => {
+                { received: ({type, channel, channelId, serverId}) => {
                         switch (type) {
                             case RECEIVE_CHANNEL:
                                 dispatch(addChannel(channel))
                                 break;
                             case DESTROY_CHANNEL:
-
+                                dispatch(removeChannel(channelId))
                                 break;
                             case DESTROY_SERVER:
 
