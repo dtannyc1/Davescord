@@ -25,13 +25,13 @@ const MessageList = () => {
     useEffect(() => {
         if (channel) {
             setMessageList(channel.messages);
-            dispatch(removeUnreadChannel(channelId))
+            dispatch(removeUnreadChannel(channel.id))
 
             if (channelList?.every(channelNum => !unreadChannels[channelNum])) {
                 dispatch(removeUnreadServer(serverId))
             }
         }
-    }, [channel, messages])
+    }, [channel, messages, dispatch])
 
     useEffect(() => {
         listEnd.current?.scrollIntoView({behavior: 'instant'})

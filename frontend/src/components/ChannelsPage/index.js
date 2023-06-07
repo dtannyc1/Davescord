@@ -61,6 +61,8 @@ const ChannelsPage = () => {
                                     case 'DESTROY_MESSAGE':
                                         dispatch(removeMessage(messageId, channelId))
                                         break;
+                                    default:
+                                        break;
                                 }
                             }
                         }
@@ -75,7 +77,7 @@ const ChannelsPage = () => {
                 subscription?.unsubscribe();
             })
         }
-    }, [subscribedServers])
+    }, [subscribedServers, dispatch])
 
     if (serverId !== "@me" && channelId === undefined && currentServer && currentServer.channels && currentServer.channels.length > 0) {
         return (
