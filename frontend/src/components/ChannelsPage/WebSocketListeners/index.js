@@ -3,6 +3,13 @@ import { useEffect } from "react";
 import consumer from '../../../consumer';
 import { addMessage, removeMessage } from '../../../store/message';
 import { setUnreadChannel, setUnreadServer } from "../../../store/unread";
+import { addChannel } from "../../../store/channel";
+
+export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
+export const DESTROY_MESSAGE = 'DESTROY_MESSAGE';
+export const RECEIVE_CHANNEL = 'RECEIVE_CHANNEL';
+export const DESTROY_CHANNEL = 'DESTROY_CHANNEL';
+export const DESTROY_SERVER = 'DESTROY_SERVER';
 
 const WebSocketListeners = ({websocketRestart}) => {
     const dispatch = useDispatch();
@@ -17,12 +24,12 @@ const WebSocketListeners = ({websocketRestart}) => {
                         { channel: 'ChannelsChannel', id: channelId },
                         { received: ({type, message, messageId, channelId, serverId}) => {
                                 switch (type) {
-                                    case 'RECEIVE_MESSAGE':
+                                    case RECEIVE_MESSAGE:
                                         dispatch(setUnreadChannel(channelId));
                                         dispatch(setUnreadServer(serverId));
                                         dispatch(addMessage(message, channelId));
                                         break;
-                                    case 'DESTROY_MESSAGE':
+                                    case DESTROY_MESSAGE:
                                         dispatch(removeMessage(messageId, channelId))
                                         break;
                                     default:
@@ -37,15 +44,15 @@ const WebSocketListeners = ({websocketRestart}) => {
 
             const subscription = consumer.subscriptions.create(
                 { channel: 'ServersChannel', id: server.id },
-                { received: ({type, channelId, serverId}) => {
+                { received: ({type, channel, serverId}) => {
                         switch (type) {
-                            case 'RECEIVE_CHANNEL':
+                            case RECEIVE_CHANNEL:
+                                dispatch(addChannel(channel))
+                                break;
+                            case DESTROY_CHANNEL:
 
                                 break;
-                            case 'DESTROY_CHANNEL':
-
-                                break;
-                            case 'DESTROY_SERVER':
+                            case DESTROY_SERVER:
 
                                 break
                             default:

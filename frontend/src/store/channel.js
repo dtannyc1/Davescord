@@ -38,7 +38,7 @@ export const createChannel = (channel) => async dispatch => {
 
     if (res.ok) {
         let data = await res.json();
-        dispatch(addChannel(data));
+        // dispatch(addChannel(data));
         return data
     }
 }
@@ -49,10 +49,10 @@ export const updateChannel = (channel) => async dispatch => {
         body: JSON.stringify({channel: channel})
     })
 
-    if (res.ok){
-        let data = await res.json();
-        dispatch(addChannel(data))
-    }
+    // if (res.ok){
+    //     let data = await res.json();
+    //     dispatch(addChannel(data))
+    // }
 }
 
 export const deleteChannel = (channelId) => async dispatch => {

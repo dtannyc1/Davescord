@@ -6,6 +6,10 @@ class Api::ChannelsController < ApplicationController
         if (@channel.server)
             if (@channel.server.owner_id == current_user.id)
                 if (@channel.save)
+                    ServersChannel.broadcast_to(@channel.server,
+                        type: 'RECEIVE_CHANNEL',
+                        serverId: @channel.server.id,
+                        channel: from_template('api/channels/_show', channel: @channel))
                     render :show
                 else
                     render json: {errors: @channel.errors.full_messages}, status: 422
@@ -24,6 +28,10 @@ class Api::ChannelsController < ApplicationController
         if @channel
             if (@channel.server.owner_id == current_user.id)
                 if @channel.update(channel_params)
+                    ServersChannel.broadcast_to(@channel.server,
+                        type: 'RECEIVE_CHANNEL',
+                        serverId: @channel.server.id,
+                        channel: from_template('api/channels/_show', channel: @channel))
                     render :show
                 end
             else
