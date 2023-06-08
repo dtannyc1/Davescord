@@ -12,8 +12,9 @@
 }
 
 .splashfooter-text {
-    padding: 80px 0px;
+    padding: 80px 20px;
     max-width: 1180px;
+    width: calc(100% - 40px);
     position: relative;
 }
 
@@ -61,7 +62,7 @@
 .footer-bottom{
     height: 71px;
     max-width: 1180px;
-    width: 1180px;
+    width: 100%;
     display: flex;
 
     justify-content: space-between;
@@ -78,4 +79,11 @@
     font-size: 13px;
     font-weight: 400;
     margin-left: 111px;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.footer-signup:hover {
+    background-color: #8690f5;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 15px;
+    transition: background-color 0.2s, box-shadow 0.2s;
 }
