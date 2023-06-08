@@ -9,7 +9,7 @@ const Tile1 = () => {
             <img src={backgroundImg} className="tile1-background1" alt="mountains-background"/>
             <div className="tile1-text">
                 <h3>IMAGINE A PLACE...</h3>
-                <p>...where you can belong to a school club, a gaming group, or a worldwide art community. Where just you and a handful of friends can spend time together. A place that makes it easy to talk every day and hang out more often.</p>
+                <p>...where you can find friends for a gaming group, join a small, disorganized juggling cult, or be part of a worldwide coding community. Where just you and a few friends named David can spend time together. A place that makes it easy to talk and hang out more often.</p>
             </div>
 
             <img src={shoes} className="tile1-shoes" alt="characters-in-shoes"/>
