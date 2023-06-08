@@ -19,6 +19,7 @@ import { Redirect, useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import MessageList from "./MessageList";
 import SubscriberList from "./SubscriberList";
 import { addSubscription } from "../../store/subscription";
+import FriendsNameHeader from "./FriendsNameHeader";
 
 const ChannelsPage = ({setWebsocketRestart}) => {
     const {serverId, channelId} = useParams();
@@ -44,11 +45,11 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                 dispatch(addSubscription(serverId))
                 dispatch(fetchServer(serverId))
                     .catch(error => {
-                        history.push('/channels/@me')
+                        history.push('/channels/@me/')
                         return null;
                     })
             } catch (errors) {
-                history.push('/channels/@me')
+                history.push('/channels/@me/')
                 return null;
             }
         }
@@ -57,7 +58,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     if ((serverId !== "@me" && channelId === undefined &&
         currentServer && currentServer.channels &&
         currentServer.channels.length > 0) ||
-        (currentChannels && currentChannels[channelId] === undefined &&
+        (serverId !== "@me" && currentChannels && currentChannels[channelId] === undefined &&
         Object.keys(currentChannels).length > 0)) {
 
             if (Object.values(currentChannels).length > 0){
@@ -77,7 +78,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
             <div className="channels-column1-holder">
                 <div className="channels-column1">
 
-                    <Link to='/channels/@me' className={(serverId === "@me") ? "icon selected" : "icon"}>
+                    <Link to='/channels/@me' preventScrollReset={true} className={(serverId === "@me") ? "icon selected" : "icon"}>
                         <img src={icon} alt="davescord-icon"/>
                         <div className="channels-left-selector"></div>
                     </Link>
@@ -104,7 +105,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
             </div>
             <div className="channels-column3-holder">
                 <div className="channels-column3">
-                    {(serverId === "@me") ? <div>Friends list</div> : <ChannelNameHeader/>}
+                    {(serverId === "@me") ? <FriendsNameHeader/> : <ChannelNameHeader/>}
                     <div className="channels-column3-main-content">
                         {(serverId === "@me") ? <div>DMs</div> : <MessageList/>}
                         {(serverId === "@me") ? null : <SubscriberList/>}
