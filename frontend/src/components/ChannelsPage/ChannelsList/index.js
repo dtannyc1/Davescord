@@ -49,14 +49,17 @@ const ChannelsList = ({showCreateChannel, setCategoryName, setShowChannelDetail}
                                 {`${categoryArray[0].categoryName}`}
                             </div>
                             {(currentServer?.ownerId === currentUserId) ?
-                                <div className="channels-plus-sign" onClick={handleAddChannelClick(categoryArray[0].categoryName)}>+</div> : null}
+                                    <div className="channels-plus-sign" onClick={handleAddChannelClick(categoryArray[0].categoryName)}>+</div> : null}
                         </div>
                         {categoryArray.map(channel => {
                             let unreadStatus = (unreadChannels[channel.id]) ? " unread" : "";
 
                             return (
                                 <span key={channel.id} className={(parseInt(channelId) === channel.id) ? `channels-channel-item selected${unreadStatus}` : `channels-channel-item${unreadStatus}`} onClick={e => history.push(`/channels/${serverId}/${channel.id}`)}>
-                                    <span className='channels-hashtag'>#</span>
+                                    <div className="channels-main-text">
+                                        <div className='channels-hashtag'>#</div>
+                                        <div className='channels-channel-name'>{`${channel.channelName.replace(/\s+/g, '-').toLowerCase()}`}</div>
+                                    </div>
                                     {(currentServer?.ownerId === currentUserId) ?
                                         ((parseInt(channelId) === channel.id) ?
                                             <span className="channels-edit-sign" onClick={handleEditChannelClick(channel)}>
@@ -70,7 +73,6 @@ const ChannelsList = ({showCreateChannel, setCategoryName, setShowChannelDetail}
                                                 </svg>
                                             </span>)
                                         : null}
-                                    <span className='channels-channel-name'>{`${channel.channelName.replace(/\s+/g, '-').toLowerCase()}`}</span>
                                 </span>
                             )
                         })}

@@ -54,7 +54,7 @@ const ChannelOverviewMenu = ({visibility, visibilitySetter}) => {
                 <div>
                     <span className='channel-overview-input-title'>channel name</span>
                     <form>
-                        <input className='channel-overview-input' type='text' value={channelName} onChange={e => setChannelName(e.target.value)}/>
+                        <input className='channel-overview-input' type='text' value={channelName.replace(/\s+/g, '-').toLowerCase()} onChange={e => setChannelName(e.target.value)}/>
                     </form>
 
                     <span className='channel-overview-input-title'>category</span>
@@ -67,7 +67,7 @@ const ChannelOverviewMenu = ({visibility, visibilitySetter}) => {
                         <input className='channel-overview-input' type='text' value={description} onChange={e => setDescription(e.target.value)}/>
                     </form>
                 </div>
-                <div className={(originalChannelName.current !== channelName ||
+                <div className={(originalChannelName.current.replace(/\s+/g, '-').toLowerCase() !== channelName.replace(/\s+/g, '-').toLowerCase() ||
                                  originalChannelCategory.current !== category ||
                                  originalChannelTopicName.current !== description )
                         ? 'save-button-holder' : 'save-button-holder hidden'}>
