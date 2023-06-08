@@ -11,6 +11,7 @@
 #  status          :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  color           :string
 #
 class User < ApplicationRecord
     has_secure_password
@@ -51,6 +52,19 @@ class User < ApplicationRecord
         inverse_of: :author,
         dependent: :destroy)
 
+    has_many(:private_chats_1,
+        primary_key: :id,
+        foreign_key: :user_1_id,
+        class_name: :PrivateChat,
+        inverse_of: :user_1,
+        dependent: :destroy)
+
+    has_many(:private_chats_2,
+        primary_key: :id,
+        foreign_key: :user_2_id,
+        class_name: :PrivateChat,
+        inverse_of: :user_2,
+        dependent: :destroy)
     # FIGVAPEBRR
 
     def self.find_by_credentials(credential, password)

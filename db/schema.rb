@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_07_022340) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_08_134643) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_022340) do
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_messages_on_author_id"
     t.index ["channel_id"], name: "index_messages_on_channel_id"
+  end
+
+  create_table "private_chats", force: :cascade do |t|
+    t.bigint "user_1_id", null: false
+    t.bigint "user_2_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_1_id", "user_2_id"], name: "index_private_chats_on_user_1_id_and_user_2_id", unique: true
+    t.index ["user_1_id"], name: "index_private_chats_on_user_1_id"
+    t.index ["user_2_id"], name: "index_private_chats_on_user_2_id"
   end
 
   create_table "servers", force: :cascade do |t|
