@@ -8,6 +8,7 @@
     min-width: 200px;
     position: relative;
     cursor: pointer;
+    z-index: 2;
 }
 
 .server-name {

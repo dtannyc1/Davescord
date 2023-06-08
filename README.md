@@ -38,7 +38,7 @@ Any user who is logged in has the option to create their own server. The UI prev
 
 __Channel Creation and Editing__
 
-As the owner of a server, users will have the option either add a new channel to a server or edit any of the channels they have created within a server. The UI allows for quick access to channel edits while the user is inside the server
+As the owner of a server, users will have the option either add a new channel to a server or edit any of the channels they have created within a server. The UI allows for quick access to channel edits on hover while the user is inside the server.
 
 ```
 

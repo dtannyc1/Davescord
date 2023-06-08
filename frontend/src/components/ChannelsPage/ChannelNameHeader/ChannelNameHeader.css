@@ -10,6 +10,7 @@
     position: relative;
     cursor: default;
     width: 100%;
+    z-index: inherit;
 }
 
 .channel-server-name {

@@ -1,11 +1,15 @@
 .channels-list-holder {
     width: calc(100vw - 72px);
     height: 100%;
-    /* background-color: blue; */
     display: flex;
     flex-direction: column;
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: relative;
+    padding-top: 50px;
     overflow-y: scroll;
+    top: -50px;
+    background-color: transparent;
+    z-index: unset;
 }
 
 .channels-category-name-holder {
@@ -63,7 +67,7 @@
     color: rgb(207, 216, 226);
     right: -10px;
     top: -37px;
-    z-index: 20;
+    z-index: 4;
     padding: 10px;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
@@ -81,6 +85,7 @@
     border-style: solid;
     border-color: black transparent transparent transparent;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
+    z-index: 4;
 }
 
 .channels-main-text {
