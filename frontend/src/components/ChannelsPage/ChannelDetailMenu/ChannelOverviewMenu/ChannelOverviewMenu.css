@@ -6,6 +6,11 @@
 
     padding: 60px 40px;
     height: calc(100vh - 120px);
+    width: calc(100% - 80px);
+}
+
+.channel-overview-menu div {
+    width: 100%;
 }
 
 .channel-overview-menu > h3 {
@@ -33,13 +38,15 @@
     border: none;
     border-radius: 5px;
     padding: 10px;
-    width: 640px;
+    max-width: 640px;
+    width: calc(100% - 40px);
 }
 
-.save-button-holder {
+.channel-overview-menu div .save-button-holder {
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 5px;
-    width: 600px;
+    max-width: 630px;
+    width: calc(100% - 130px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -51,7 +58,7 @@
     transition: opacity 0.2s;
 }
 
-.save-button-holder > div{
+.channel-overview-menu .save-button-holder > div{
     color: white;
     padding-left: 5px;
     background-color: transparent;
@@ -80,6 +87,8 @@
     cursor: pointer;
     font-size: 14px;
     background-color: rgb(36, 128, 70);
+    white-space: nowrap;
+
 }
 
 .channel-overview-save-button:hover{
@@ -89,4 +98,17 @@
 .hidden {
     opacity: 0;
     transition: opacity 0.2s;
+}
+
+.channel-overview-menu .save-button-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 267px;
+    width: auto;
+}
+
+.channel-overview-menu .buttons {
+    width: fit-content;
+    display: flex;
 }

@@ -98,7 +98,7 @@
     position: absolute;
     background-color: transparent;
     font-size: 60px;
-    left: 740px;
+    left: min(calc(100% - 96px), 740px);
     top: 60px;
     cursor: pointer;
     width: 36px;

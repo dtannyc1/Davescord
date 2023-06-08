@@ -95,8 +95,8 @@
     position: absolute;
     background-color: transparent;
     font-size: 60px;
-    left: 740px;
-    top: 60px;
+    /* left: 740px; */
+    /* top: 60px; */
     cursor: pointer;
     width: 36px;
     filter: invert(99%) sepia(1%) saturate(2416%) hue-rotate(176deg) brightness(97%) contrast(82%);

@@ -71,8 +71,8 @@ const ChannelOverviewMenu = ({visibility, visibilitySetter}) => {
                                  originalChannelCategory.current !== category ||
                                  originalChannelTopicName.current !== description )
                         ? 'save-button-holder' : 'save-button-holder hidden'}>
-                    <div>Careful - you have unsaved changes!</div>
-                    <div>
+                    <div className="save-button-text">Careful - you have unsaved changes!</div>
+                    <div className="buttons">
                         <button className='channel-overview-reset-button' onClick={e => resetFields()}>Reset</button>
                         <button className='channel-overview-save-button' onClick={changeChannel}>Save Changes</button>
                     </div>
