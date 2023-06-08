@@ -49,9 +49,13 @@ const Message = ({message, prevMessage, deleteButtonVisible, editButtonVisible})
 
     const handleUpdateMessage = e => {
         e.preventDefault();
-        message.body = newBody;
-        dispatch(updateMessage(message))
-        setEditMessage(false);
+        if (newBody.length > 0){
+            message.body = newBody;
+            dispatch(updateMessage(message))
+            setEditMessage(false);
+        } else {
+            dispatch(deleteMessage(message.id, message.channelId));
+        }
     }
 
     const resetMessage = e => {

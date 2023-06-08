@@ -39,9 +39,11 @@ const MessageList = () => {
 
     const handleMessageSubmit = e => {
         e.preventDefault();
-        dispatch(createMessage(channelId, body));
-        setBody('');
-        listEnd.current?.scrollIntoView({behavior: 'instant'});
+        if (body.length > 0) {
+            dispatch(createMessage(channelId, body));
+            setBody('');
+            listEnd.current?.scrollIntoView({behavior: 'instant'});
+        }
     }
 
     return (
