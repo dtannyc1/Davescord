@@ -39,7 +39,7 @@ const OverviewMenu = ({visibility, visibilitySetter}) => {
                         <input className='overview-input' type='text' value={serverName} onChange={e => setServerName(e.target.value)}/>
                     </form>
                 </div>
-                <div className={(originalServerName.current === serverName) ?
+                <div className={(originalServerName.current === serverName || serverName.length === 0) ?
                         'save-button-holder hidden' : 'save-button-holder'}>
                     <div className="save-button-text">Careful - you have unsaved changes!</div>
                     <div className="buttons">
