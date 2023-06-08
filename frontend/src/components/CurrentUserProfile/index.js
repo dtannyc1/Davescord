@@ -27,8 +27,10 @@ const CurrentUserProfile = () => {
                 <div style={{backgroundColor: currentUser.color}} className='user-item-img-placeholder'>{`${currentUser.username.toUpperCase().charAt(0)}`}</div> :
                 <div className='user-item-img-placeholder'>{`${currentUser.username.toUpperCase().charAt(0)}`}</div>)
                 }
-                <div>
-                    {currentUser.username}
+                <div className="current-user-text">
+                    <div className="current-user-main-text">
+                        {currentUser.username}
+                    </div>
                     <div className="current-profile-small-text">
                         {currentUser.username}#{currentUserId.toString().padStart(4,'0')}
                     </div>

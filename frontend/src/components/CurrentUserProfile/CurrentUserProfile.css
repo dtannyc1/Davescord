@@ -39,11 +39,29 @@
     color: white;
 }
 
+.current-user-text {
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+}
+
+.current-user-main-text {
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+    width: 100%;
+}
+
 .current-profile-small-text{
     font-size: 10px;
     font-weight: 300;
     padding-top: 5px;
     padding-bottom: 8px;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 }
 
 
