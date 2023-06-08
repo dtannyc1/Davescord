@@ -54,16 +54,18 @@ const ChannelsPage = ({setWebsocketRestart}) => {
         }
     }, [dispatch, serverId, history])
 
-    if (serverId !== "@me" && channelId === undefined &&
+    if ((serverId !== "@me" && channelId === undefined &&
         currentServer && currentServer.channels &&
-        currentServer.channels.length > 0 ||
-        currentChannels && currentChannels[channelId] === undefined &&
-        Object.keys(currentChannels).length > 0) {
+        currentServer.channels.length > 0) ||
+        (currentChannels && currentChannels[channelId] === undefined &&
+        Object.keys(currentChannels).length > 0)) {
 
-            let firstChannelId = Object.values(currentChannels)[0].id;
-            return (
-                <Redirect to={`/channels/${serverId}/${firstChannelId}`}/>
-            )
+            if (Object.values(currentChannels).length > 0){
+                let firstChannelId = Object.values(currentChannels)[0].id;
+                return (
+                    <Redirect to={`/channels/${serverId}/${firstChannelId}`}/>
+                )
+            }
     }
 
     return (

@@ -4,7 +4,7 @@ import LoginModal from "./components/LoginModal";
 import SignUpModal from "./components/SignupModal";
 import ChannelsPage from "./components/ChannelsPage";
 import { useSelector } from "react-redux";
-import { Redirect, Switch } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import WebSocketListeners from "./components/ChannelsPage/WebSocketListeners";
 import { useState, createContext } from "react";
 
