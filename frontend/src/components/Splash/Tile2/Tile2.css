@@ -35,3 +35,8 @@
     line-height: 2;
     font-weight: 300;
 }
+
+.tile2-image {
+    width: calc(100% - 500px);
+    max-width: 678px;
+}
