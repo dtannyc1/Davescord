@@ -112,7 +112,7 @@
 
 } */
 
-.channels-channel-item.selected .channels-channel-name {
+.channels-channel-item.selected .channels-channel-name.owner {
     color: white;
     max-width: 160px;
 }

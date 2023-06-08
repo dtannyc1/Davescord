@@ -58,7 +58,7 @@ const ChannelsList = ({showCreateChannel, setCategoryName, setShowChannelDetail}
                                 <span key={channel.id} className={(parseInt(channelId) === channel.id) ? `channels-channel-item selected${unreadStatus}` : `channels-channel-item${unreadStatus}`} onClick={e => history.push(`/channels/${serverId}/${channel.id}`)}>
                                     <div className="channels-main-text">
                                         <div className='channels-hashtag'>#</div>
-                                        <div className='channels-channel-name'>{`${channel.channelName.replace(/\s+/g, '-').toLowerCase()}`}</div>
+                                        <div className={`channels-channel-name${currentServer?.ownerId === currentUserId ? " owner" : ""}`}>{`${channel.channelName.replace(/\s+/g, '-').toLowerCase()}`}</div>
                                     </div>
                                     {(currentServer?.ownerId === currentUserId) ?
                                         ((parseInt(channelId) === channel.id) ?
