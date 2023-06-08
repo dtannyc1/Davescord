@@ -22,7 +22,8 @@
     border: none;
     color: rgb(194, 203, 214);
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 7px 10px 7px;
+    width: 82%;
 }
 
 .channels-searchbar > input::placeholder {

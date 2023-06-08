@@ -1,0 +1,2 @@
+class PrivateChat < ApplicationRecord
+end
