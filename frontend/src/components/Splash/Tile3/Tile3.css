@@ -15,6 +15,7 @@
 .tile3-text {
     width: 420px;
     padding-right: 100px;
+    margin-left: 20px;
 }
 
 .tile3-text > * {
@@ -34,4 +35,9 @@
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 2;
     font-weight: 300;
+}
+
+.tile3-image {
+    width: calc(100% - 540px);
+    max-width: 678px;
 }

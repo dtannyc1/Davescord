@@ -8,7 +8,7 @@ const Tile3 = () => {
                 <h3>Where hanging out is easy</h3>
                 <p>Grab a seat in a voice channel when you’re free. Friends in your server can see you’re around and instantly pop in to talk without having to call.</p>
             </div>
-            <img src={voice_channel} alt="davescord voice channel demo"/>
+            <img className="tile3-image" src={voice_channel} alt="davescord voice channel demo"/>
         </div>
     )
 }
