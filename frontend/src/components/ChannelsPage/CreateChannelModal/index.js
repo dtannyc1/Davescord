@@ -77,7 +77,7 @@ const CreateChannelModal = ({visible, setVisible, categoryName, setWebsocketRest
                         <div className="channel-modal-main-bottom">
                             <button className="channel-modal-back-button" onClick={closeMenu}>Cancel</button>
 
-                            <button className="channel-modal-create-button" disabled={(newChannelName.length > 0) ? null : true} onClick={handleChannelCreation}>Create Channel</button>
+                            <button className="channel-modal-create-button" disabled={(newChannelName.length > 0 && newCategoryName.length > 0) ? null : true} onClick={handleChannelCreation}>Create Channel</button>
                         </div>
                     </div>
                 </div>
