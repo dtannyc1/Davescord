@@ -5,23 +5,23 @@ import { useHistory, useParams } from "react-router-dom";
 const ChannelsList = ({showCreateChannel, setCategoryName, setShowChannelDetail}) => {
     const history = useHistory();
     const {serverId, channelId} = useParams();
-    const channels = useSelector(state => Object.values(state.channels));
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
+    const currentChannelIds = currentServer ? currentServer.channels : [];
+    const channels = useSelector(state => state.channels);
     const unreadChannels = useSelector(state => state.unread.channels)
 
     let categories = {};
-    channels.forEach(channel => {
-        if (categories[channel.categoryName.toUpperCase()]){
-            categories[channel.categoryName.toUpperCase()].push(channel);
-        } else {
-            categories[channel.categoryName.toUpperCase()] = [channel];
+    currentChannelIds.forEach(channelId => {
+        let channel = channels[channelId];
+        if (channel) {
+            if (categories[channel.categoryName.toUpperCase()]){
+                categories[channel.categoryName.toUpperCase()].push(channel);
+            } else {
+                categories[channel.categoryName.toUpperCase()] = [channel];
+            }
         }
-    });
-    // useEffect(() => {
-    //     categories = {};
-
-    // }, [channels])
+    })
 
     const handleAddChannelClick = categoryName => e => {
         e.preventDefault();

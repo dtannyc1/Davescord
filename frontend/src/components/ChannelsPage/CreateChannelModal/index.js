@@ -33,10 +33,11 @@ const CreateChannelModal = ({visible, setVisible, categoryName, setWebsocketRest
                 categoryName: newCategoryName,
                 description: newDescription
             }
-            let newChannel = await dispatch(createChannel(channel))
-            closeMenu();
-            history.push(`/channels/${serverId}/${newChannel.id}`)
-            setWebsocketRestart(!websocketRestart) // force restart websockets
+            dispatch(createChannel(channel)).then(newChannel => {
+                closeMenu();
+                history.push(`/channels/${serverId}/${newChannel.id}`)
+                setWebsocketRestart(!websocketRestart) // force restart websockets
+            })
         }
     }
 

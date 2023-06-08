@@ -42,7 +42,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     useEffect(() => {
         if (serverId !== "@me") {
             try {
-                dispatch(addSubscription(serverId))
+                dispatch(addSubscription(serverId)).catch(() => {})
                 dispatch(fetchServer(serverId))
                     .catch(error => {
                         history.push('/channels/@me/')
@@ -78,7 +78,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
             <div className="channels-column1-holder">
                 <div className="channels-column1">
 
-                    <Link to='/channels/@me' preventScrollReset={true} className={(serverId === "@me") ? "icon selected" : "icon"}>
+                    <Link to='/channels/@me' className={(serverId === "@me") ? "icon selected" : "icon"}>
                         <img src={icon} alt="davescord-icon"/>
                         <div className="channels-left-selector"></div>
                     </Link>

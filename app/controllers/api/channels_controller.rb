@@ -23,7 +23,7 @@ class Api::ChannelsController < ApplicationController
     end
 
     def update
-        @channel = Channel.find(params[:id])
+        @channel = Channel.includes(:messages).find(params[:id])
 
         if @channel
             if (@channel.server.owner_id == current_user.id)

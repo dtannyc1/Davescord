@@ -171,6 +171,7 @@ const serverReducer = (state = {}, action) => {
         case ADD_CHANNEL:
             nextState[action.channel.serverId].channels ||= [];
             nextState[action.channel.serverId].channels.push(action.channel.id)
+            nextState[action.channel.serverId].channels = [...new Set(nextState[action.channel.serverId].channels)]
             return nextState;
         case REMOVE_CURRENT_USER:
             return ({});
