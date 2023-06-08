@@ -117,6 +117,11 @@
     max-width: 160px;
 }
 
+.channels-channel-item:hover .channels-channel-name.owner {
+    color: white;
+    max-width: 160px;
+}
+
 .channels-channel-name {
     font-size: 15px;
     font-weight: 400;
