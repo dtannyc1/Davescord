@@ -64,8 +64,6 @@ const ChannelsPage = ({setWebsocketRestart}) => {
             return (
                 <Redirect to={`/channels/${serverId}/${firstChannelId}`}/>
             )
-    } else {
-        console.log(currentChannels[channelId])
     }
 
     return (

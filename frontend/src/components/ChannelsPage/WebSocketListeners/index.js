@@ -4,7 +4,7 @@ import consumer from '../../../consumer';
 import { addMessage, removeMessage } from '../../../store/message';
 import { setUnreadChannel, setUnreadServer } from "../../../store/unread";
 import { addChannel, removeChannel } from "../../../store/channel";
-import { removeServer } from "../../../store/server";
+import { fetchServer, removeServer } from "../../../store/server";
 // import { useParams } from "react-router-dom";
 
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
@@ -12,6 +12,7 @@ export const DESTROY_MESSAGE = 'DESTROY_MESSAGE';
 export const RECEIVE_CHANNEL = 'RECEIVE_CHANNEL';
 export const DESTROY_CHANNEL = 'DESTROY_CHANNEL';
 export const RECEIVE_SERVER = 'RECEIVE_SERVER';
+export const UPDATE_SERVER = 'UPDATE_SERVER';
 export const DESTROY_SERVER = 'DESTROY_SERVER';
 
 const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
@@ -51,24 +52,22 @@ const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
                 { received: ({type, channel, channelId, serverId}) => {
                         switch (type) {
                             case RECEIVE_CHANNEL:
-                                console.log('received channel!')
                                 dispatch(addChannel(channel))
                                 setWebsocketRestart(!websocketRestart) // force reset websockets
                                 break;
                             case DESTROY_CHANNEL:
-                                console.log('destroyed channel!')
                                 dispatch(removeChannel(channelId))
                                 break;
                             case RECEIVE_SERVER:
-                                console.log('received server!')
                                 setWebsocketRestart(!websocketRestart) // force reset websockets
                                 break;
+                            case UPDATE_SERVER:
+                                dispatch(fetchServer(serverId))
+                                break
                             case DESTROY_SERVER:
-                                console.log('destroyed server!')
                                 dispatch(removeServer(serverId))
                                 break
                             default:
-                                console.log('default action')
                                 break;
                         }
                     }

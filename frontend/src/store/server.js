@@ -81,7 +81,6 @@ export const fetchServer = (serverId) => async dispatch => {
             throw res
         }
     } catch (errors) {
-        console.log("threw error")
         throw errors
     }
 }

@@ -40,6 +40,9 @@ class Api::ServersController < ApplicationController
         if @server
             if (@server.owner_id == current_user.id)
                 if @server.update(server_params)
+                    ServersChannel.broadcast_to(@server,
+                        type: 'UPDATE_SERVER',
+                        serverId: @server.id)
                     render :show
                 end
             else
