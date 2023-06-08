@@ -70,6 +70,9 @@
     padding-bottom: 20px;
     cursor: pointer;
 }
+.server-modal-main-top > form {
+    padding-top: 36px;
+}
 
 .server-modal-main-top > form > label {
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -155,6 +158,12 @@
 .server-modal-create-button:hover {
     background-color: rgb(65, 75, 182);
     transition: background-color 0.2s;
+}
+
+.server-modal-create-button:disabled{
+    background-color: rgba(88, 101, 242, 0.5);
+    transition: background-color 0.2s;
+    cursor: not-allowed;
 }
 
 .hidden {

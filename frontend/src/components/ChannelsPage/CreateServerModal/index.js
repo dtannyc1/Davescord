@@ -60,7 +60,7 @@ const CreateServerModal = ({visible, setVisible, setWebsocketRestart}) => {
                             <p>Give your new server a personality with a name
                                 and an icon. You can always change it later.
                             </p>
-                            <img className="server-modal-image-upload" src={image_upload} alt="upload"/>
+                            {/* <img className="server-modal-image-upload" src={image_upload} alt="upload"/> */}
                             <form>
                                 <label htmlFor="new-server-input">SERVER NAME </label>
 
@@ -76,7 +76,7 @@ const CreateServerModal = ({visible, setVisible, setWebsocketRestart}) => {
                         <div className="server-modal-main-bottom">
                             <button className="server-modal-back-button" onClick={e => {setNewServerName(defaultServerName.current); setVisible(false)}}>Back</button>
 
-                            <button className="server-modal-create-button" onClick={handleServerCreation}>Create</button>
+                            <button className="server-modal-create-button" disabled={(newServerName.length > 0) ? null : true} onClick={handleServerCreation}>Create</button>
                         </div>
                     </div>
                 </div>
