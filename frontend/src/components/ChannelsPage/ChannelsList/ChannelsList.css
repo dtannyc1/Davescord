@@ -25,6 +25,8 @@
 .channels-category-name {
     padding-left: 11px;
     display: flex;
+    align-items: center;
+    height: 25px;
 }
 
 .channels-category-name:before {
