@@ -205,10 +205,15 @@
 
 .channels-channel-item.unread {
     color: white;
-    margin-left: 5px;
+    /* margin-left: 5px; */
+    padding-left: 5px;
 }
 
-.channels-channel-item.unread:before {
+.channels-channel-item.unread:hover{
+    width: 205px;
+}
+
+.channels-channel-item.unread .channels-main-text:before {
     content: '';
     display: block;
     width:0;
