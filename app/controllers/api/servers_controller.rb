@@ -9,7 +9,7 @@ class Api::ServersController < ApplicationController
     end
 
     def show
-        @server = Server.includes(channels: [:messages]).includes(:subscribers).find(params[:id])
+        @server = Server.includes(channels: [:messages]).includes(:subscribers).find_by(id: params[:id])
 
         if @server
             render :show

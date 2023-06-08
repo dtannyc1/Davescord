@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import './CreateServerModal.css'
 import background from '../../../assets/create_server_background.svg';
 import image_upload from '../../../assets/create_server_image_upload.svg';
-import { createServer, fetchServer } from "../../../store/server";
+import { createServer} from "../../../store/server";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { addChannel, createChannel } from "../../../store/channel";
 import { useContext } from "react";
@@ -38,7 +38,6 @@ const CreateServerModal = ({visible, setVisible, setWebsocketRestart}) => {
 
             history.push(`/channels/${newServer.id}/${newChannel.id}`)
 
-            debugger
             setWebsocketRestart(!websocketRestart) // force restart websockets
         }
     }

@@ -42,40 +42,47 @@ export const fetchServers = () => async dispatch => {
 }
 
 export const fetchServer = (serverId) => async dispatch => {
-    let res = await csrfFetch(`/api/servers/${serverId}`)
+    try{
+        const res = await csrfFetch(`/api/servers/${serverId}`)
 
-    if (res.ok) {
-        let data = await res.json();
-        let messages = {};
-        let subscribers = {};
+        if (res.ok) {
+            let data = await res.json();
+            let messages = {};
+            let subscribers = {};
 
-        // parse information about channels into its own slice of state
-        if (data.channels){
-            for (const [key, channel] of Object.entries(data.channels)){
-                if (channel.messages) {
-                    messages = {...messages, ...channel.messages};
-                    data.channels[key].messages = Object.values(channel.messages).map(message => message.id)
-                } else {
-                    data.channels[key].messages = [];
+            // parse information about channels into its own slice of state
+            if (data.channels){
+                for (const [key, channel] of Object.entries(data.channels)){
+                    if (channel.messages) {
+                        messages = {...messages, ...channel.messages};
+                        data.channels[key].messages = Object.values(channel.messages).map(message => message.id)
+                    } else {
+                        data.channels[key].messages = [];
+                    }
                 }
             }
-        }
 
-        // parse information about subscribers into its own slice of state
-        if (data.subscribers) {
-            subscribers = data.subscribers;
-            data.subscribers = Object.values(data.subscribers).map(subscriber => subscriber.id)
-        }
+            // parse information about subscribers into its own slice of state
+            if (data.subscribers) {
+                subscribers = data.subscribers;
+                data.subscribers = Object.values(data.subscribers).map(subscriber => subscriber.id)
+            }
 
-        // store info about channels, messages, and users separately
-        dispatch(addUsers(subscribers))
-        dispatch(addChannels(data.channels))
-        dispatch(addMessages(messages))
+            // store info about channels, messages, and users separately
+            dispatch(addUsers(subscribers))
+            dispatch(addChannels(data.channels))
+            dispatch(addMessages(messages))
 
-        if (data.channels) {
-            data.channels = Object.values(data.channels).map(channel => channel.id)
+            if (data.channels) {
+                data.channels = Object.values(data.channels).map(channel => channel.id)
+            }
+            dispatch(addServer(data))
+        } else {
+            throw res
         }
-        dispatch(addServer(data))
+    } catch (errors) {
+        console.log("threw error")
+        throw errors
     }
 }
 

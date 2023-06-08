@@ -15,7 +15,7 @@ import ServerDetailsMenu from "../ServerDetailsMenu";
 import ChannelNameHeader from "./ChannelNameHeader";
 import CreateChannelModal from "./CreateChannelModal";
 import ChannelDetailsMenu from "./ChannelDetailMenu";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import MessageList from "./MessageList";
 import SubscriberList from "./SubscriberList";
 import { addSubscription } from "../../store/subscription";
@@ -23,6 +23,7 @@ import { addSubscription } from "../../store/subscription";
 const ChannelsPage = ({setWebsocketRestart}) => {
     const {serverId, channelId} = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
     const [showServerModal, setShowServerModal] = useState(false);
@@ -38,10 +39,19 @@ const ChannelsPage = ({setWebsocketRestart}) => {
 
     useEffect(() => {
         if (serverId !== "@me") {
-            dispatch(addSubscription(serverId))
-            dispatch(fetchServer(serverId))
+            try {
+                dispatch(addSubscription(serverId))
+                dispatch(fetchServer(serverId))
+                    .catch(error => {
+                        history.push('/channels/@me')
+                        return null;
+                    })
+            } catch (errors) {
+                history.push('/channels/@me')
+                return null;
+            }
         }
-    }, [dispatch, serverId])
+    }, [dispatch, serverId, history])
 
     if (serverId !== "@me" && channelId === undefined && currentServer && currentServer.channels && currentServer.channels.length > 0) {
         return (

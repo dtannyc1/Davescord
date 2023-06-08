@@ -4,8 +4,8 @@ import consumer from '../../../consumer';
 import { addMessage, removeMessage } from '../../../store/message';
 import { setUnreadChannel, setUnreadServer } from "../../../store/unread";
 import { addChannel, removeChannel } from "../../../store/channel";
-import { destroyServer, removeServer } from "../../../store/server";
-import { useParams } from "react-router-dom";
+import { removeServer } from "../../../store/server";
+// import { useParams } from "react-router-dom";
 
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const DESTROY_MESSAGE = 'DESTROY_MESSAGE';
@@ -16,7 +16,7 @@ export const DESTROY_SERVER = 'DESTROY_SERVER';
 
 const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
     const dispatch = useDispatch();
-    const {serverId, channelId} = useParams();
+    // const {serverId, channelId} = useParams();
     const subscribedServers = useSelector(state => Object.values(state.servers))
 
     useEffect(() => {
