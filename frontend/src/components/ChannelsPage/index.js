@@ -26,6 +26,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     const history = useHistory();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
+    const currentChannels = useSelector(state => state.channels);
     const [showServerModal, setShowServerModal] = useState(false);
     const [showChannelModal, setShowChannelModal] = useState(false);
     const [showServerDetail, setShowServerDetail] = useState(false);
@@ -53,10 +54,18 @@ const ChannelsPage = ({setWebsocketRestart}) => {
         }
     }, [dispatch, serverId, history])
 
-    if (serverId !== "@me" && channelId === undefined && currentServer && currentServer.channels && currentServer.channels.length > 0) {
-        return (
-            <Redirect to={`/channels/${serverId}/${currentServer?.channels[0]}`}/>
-        )
+    if (serverId !== "@me" && channelId === undefined &&
+        currentServer && currentServer.channels &&
+        currentServer.channels.length > 0 ||
+        currentChannels && currentChannels[channelId] === undefined &&
+        Object.keys(currentChannels).length > 0) {
+
+            let firstChannelId = Object.values(currentChannels)[0].id;
+            return (
+                <Redirect to={`/channels/${serverId}/${firstChannelId}`}/>
+            )
+    } else {
+        console.log(currentChannels[channelId])
     }
 
     return (
