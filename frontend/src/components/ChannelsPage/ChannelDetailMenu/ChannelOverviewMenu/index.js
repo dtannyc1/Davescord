@@ -67,9 +67,9 @@ const ChannelOverviewMenu = ({visibility, visibilitySetter}) => {
                         <input className='channel-overview-input' type='text' value={description} onChange={e => setDescription(e.target.value)}/>
                     </form>
                 </div>
-                <div className={(originalChannelName.current.replace(/\s+/g, '-').toLowerCase() !== channelName.replace(/\s+/g, '-').toLowerCase() ||
+                <div className={((originalChannelName.current.replace(/\s+/g, '-').toLowerCase() !== channelName.replace(/\s+/g, '-').toLowerCase() ||
                                  originalChannelCategory.current !== category ||
-                                 originalChannelTopicName.current !== description )
+                                 originalChannelTopicName.current !== description) && channelName.length > 0 && category.length > 0)
                         ? 'save-button-holder' : 'save-button-holder hidden'}>
                     <div className="save-button-text">Careful - you have unsaved changes!</div>
                     <div className="buttons">
