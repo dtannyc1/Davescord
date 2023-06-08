@@ -23,7 +23,7 @@
     width: 220px;
 }
 .channels-category-name {
-    padding-left: 10px;
+    padding-left: 11px;
     display: flex;
 }
 
@@ -38,7 +38,7 @@
     font-size: 25px;
     font-weight: 400;
     position: relative;
-    right: 0px;
+    right: -1px;
     width: fit-content;
     margin: 0;
     padding: 0;
