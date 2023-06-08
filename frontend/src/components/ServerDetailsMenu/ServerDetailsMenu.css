@@ -62,6 +62,9 @@
     font-size: 12px;
     color: rgb(148, 155, 164);
     cursor: default;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .server-details-sidebar > ul > li.server-details-title:hover {
@@ -95,8 +98,8 @@
     position: absolute;
     background-color: transparent;
     font-size: 60px;
-    /* left: 740px; */
-    /* top: 60px; */
+    left: min(calc(100% - 96px), 740px);
+    top: 60px;
     cursor: pointer;
     width: 36px;
     filter: invert(99%) sepia(1%) saturate(2416%) hue-rotate(176deg) brightness(97%) contrast(82%);
