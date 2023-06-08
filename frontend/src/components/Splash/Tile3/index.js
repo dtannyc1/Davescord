@@ -5,8 +5,8 @@ const Tile3 = () => {
     return (
         <div className="tile3-holder">
             <div className="tile3-text">
-                <h3>Where hanging out is easy</h3>
-                <p>Grab a seat in a voice channel when you’re free. Friends in your server can see you’re around and instantly pop in to talk without having to call.</p>
+                <h3>Where live chat happens with WebSockets</h3>
+                <p>Instantly communicate with your community in real time using WebSockets connected to the Rails backend via Action Cable</p>
             </div>
             <img className="tile3-image" src={voice_channel} alt="davescord voice channel demo"/>
         </div>

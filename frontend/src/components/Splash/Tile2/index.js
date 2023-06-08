@@ -6,8 +6,8 @@ const Tile2 = () => {
         <div className="tile2-holder">
             <img className="tile2-image" src={channels} alt="davescord channel demo"/>
             <div className="tile2-text">
-                <h3>Create an invite-only place where you belong</h3>
-                <p>Discord servers are organized into topic-based channels where you can collaborate, share, and just talk about your day without clogging up a group chat.</p>
+                <h3>Create a place where you belong</h3>
+                <p>This Discord clone allows users to create servers which are organized into topic-based channels where they can collaborate and share ideas without clogging up a group chat.</p>
             </div>
         </div>
     )
