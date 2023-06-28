@@ -38,7 +38,8 @@
     border-radius: 5px;
     padding: 10px;
     max-width: 640px;
-    width: calc(100% - 40px);
+    /* width: calc((100% - 40px) / 2); */
+    width: 100%;
 }
 
 .overview-menu div .save-button-holder {
@@ -109,4 +110,35 @@
 .overview-menu .buttons {
     width: fit-content;
     display: flex;
+}
+
+.overview-menu .flex-row {
+    display: flex;
+    width: min(calc(100% - 40px), 740px);
+}
+
+.overview-menu .left-option {
+    width: 100%;
+    display: flex;
+}
+
+.overview-menu .left-option label {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.overview-menu .left-option label img {
+    width: 80%;
+    cursor: pointer;
+}
+
+.overview-menu .left-option > div {
+    width: 60%;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(206, 206, 206);
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.25;
 }
