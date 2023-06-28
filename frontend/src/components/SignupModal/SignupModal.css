@@ -147,18 +147,18 @@
     margin-top: 5px;
 }
 
-.signup-form .signup-bottom > p {
+.signup-form .signup-bottom p {
     color: #B5BAC1;
     font-weight: 300;
     cursor: default;
 }
 
-.signup-form .signup-bottom > p > a {
+.signup-form .signup-bottom p > a {
     font-weight: 400;
     cursor: pointer;
 }
 
-.signup-form .signup-bottom > p > span {
+.signup-form .signup-bottom p > span {
     font-weight: 400;
     font-size: 12px;
     border: none;
@@ -168,6 +168,12 @@
     cursor: pointer;
 }
 
-.signup-form .signup-bottom > p > span:hover {
+.signup-form .signup-bottom p > span:hover {
     text-decoration: underline;
+}
+
+.signup-options-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

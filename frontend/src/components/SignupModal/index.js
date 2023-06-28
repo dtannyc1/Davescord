@@ -1,6 +1,6 @@
 import { useState} from "react";
 import {useDispatch} from "react-redux";
-import { signupUser } from "../../store/session";
+import { signupUser, loginUser } from "../../store/session";
 import { Link } from "react-router-dom";
 import "./SignupModal.css"
 import ModalBackground from "../ModalBackground";
@@ -64,6 +64,23 @@ const SignUpModal = props => {
         }
     }
 
+    const demoLogin = async e => {
+        e.preventDefault();
+
+        setErrors([]);
+        try{
+            await dispatch(loginUser({credential: "demo-login", password: "password"}))
+            // clear input fields
+            setEmail('')
+            setUsername('')
+            setPassword('')
+        } catch (err) {
+            // console.log("demo-login error")
+            // console.log(err.errors)
+            setErrors(err.errors)
+        }
+    }
+
     return (
         <div className="signup-modal-holder">
             <ModalBackground/>
@@ -81,7 +98,10 @@ const SignUpModal = props => {
 
                     <button>Continue</button>
                     <div className="signup-bottom">
-                        <p><Link to="/login">Already have an account?</Link></p>
+                        <div className="signup-options-buttons">
+                            <p><Link to="/login">Already have an account?</Link></p>
+                            <p>Login as the <span onClick={demoLogin}>Demo User</span></p>
+                        </div>
                         <br/>
                         <br/>
                         <p>By registering, you agree to consider hiring me:&nbsp;
