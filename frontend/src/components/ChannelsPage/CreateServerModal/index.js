@@ -16,7 +16,7 @@ const CreateServerModal = ({visible, setVisible, setWebsocketRestart}) => {
     const currentUser = useSelector(state => state.users[currentUserId]);
     let defaultServerName = useRef((currentUser) ? `${currentUser.username}'s server` : '');
     const [newServerName, setNewServerName] = useState(defaultServerName);
-    const [photoFile, setPhotoFile] = useState (null);
+    const [photoFile, setPhotoFile] = useState(null);
     const websocketRestart = useContext(WebsocketContext);
     const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
 

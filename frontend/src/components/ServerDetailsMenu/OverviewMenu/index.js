@@ -11,7 +11,7 @@ const OverviewMenu = ({visibility, visibilitySetter}) => {
     const currentServer = useSelector(state => state.servers[serverId]);
     let originalServerName = useRef(currentServer ? currentServer.serverName : '');
     const [serverName, setServerName] = useState(originalServerName.current);
-    const [photoFile, setPhotoFile] = useState (null);
+    const [photoFile, setPhotoFile] = useState(null);
     const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
 
     useEffect(() => {
@@ -47,17 +47,18 @@ const OverviewMenu = ({visibility, visibilitySetter}) => {
             <div>
                 <div className="flex-row">
                     <div className="left-option">
-                        <label htmlFor="server-image-input">
+                        <label className="server-image-input" htmlFor="server-image-input">
                             {photoFile ? <img className="server-image-upload" src={URL.createObjectURL(photoFile)} alt="upload"/>
                                 : (currentServer?.photoUrl ? <img className="server-image" src={currentServer.photoUrl} alt="upload"/>
                                 : <img className="server-image-upload" src={image_upload} alt="upload"/>)}
-                            <input type="file" id="server-image-input" name="file" accept="image/*" onChange={handleFile}/>
+                            <input type="file" id="server-image-input" name="file3" accept="image/*" onChange={handleFile}/>
                         </label>
                         <div>
                             We recommend an image of at least 512x512 for the server.
-                            <div className='server-image-upload-button'>
+                            <label htmlFor="server-image-input2" className='server-image-upload-button'>
                                 Upload Image
-                            </div>
+                                <input type="file" id="server-image-input2" name="file2" accept="image/*" size = "50" onChange={handleFile}/>
+                            </label>
                         </div>
                     </div>
                     <div>
