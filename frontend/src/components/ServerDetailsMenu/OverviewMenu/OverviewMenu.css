@@ -126,10 +126,14 @@
     width: 40%;
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 .overview-menu .left-option label img {
+    aspect-ratio: 1 / 1;
     width: 80%;
+    object-fit: cover;
+    border-radius: 100%;
     cursor: pointer;
 }
 
@@ -141,4 +145,29 @@
     font-size: 14px;
     font-weight: 300;
     line-height: 1.25;
+}
+
+#server-image-input {
+    display: none;
+}
+
+.overview-menu .left-option label:hover:after {
+    content: 'CHANGE \A ICON';
+    position: absolute;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    width: 80%;
+    border-radius: 100%;
+    border: 1px solid rgb(30, 31, 34);
+    background-color: rgb(30, 31, 34);
+    white-space: pre;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    font-size: 10px;
+    line-height: 1.25;
+    font-weight: 600;
 }
