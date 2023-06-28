@@ -10,7 +10,14 @@ class Api::SubscriptionsController < ApplicationController
             @server = @subscription.server
             render 'api/servers/show'
         else
-            render json: {errors: @subscription.errors.full_messages}, status: 422
+            @subscription = Subscription.find_by(subscription_params, subscriber_id: current_user.id)
+            if (@subscription)
+                @server = @subscription.server
+                render 'api/servers/show'
+            else
+                render json: {errors: @subscription.errors.full_messages}, status: 422
+            end
+
         end
     end
 
