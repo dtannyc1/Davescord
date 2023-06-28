@@ -10,6 +10,7 @@
 .user-item-img {
     width: 34px;
     height: 34px;
+    object-fit: cover;
     margin: 8px;
     border-radius: 15px;
 }
