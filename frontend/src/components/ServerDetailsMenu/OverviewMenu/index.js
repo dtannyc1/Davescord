@@ -47,16 +47,17 @@ const OverviewMenu = ({visibility, visibilitySetter}) => {
             <div>
                 <div className="flex-row">
                     <div className="left-option">
-                        <label htmlFor="server-image-input" onClick={() => console.log('click')}>
+                        <label htmlFor="server-image-input">
                             {photoFile ? <img className="server-image-upload" src={URL.createObjectURL(photoFile)} alt="upload"/>
                                 : (currentServer?.photoUrl ? <img className="server-image" src={currentServer.photoUrl} alt="upload"/>
                                 : <img className="server-image-upload" src={image_upload} alt="upload"/>)}
-                        </label>
-                        <form>
                             <input type="file" id="server-image-input" name="file" accept="image/*" onChange={handleFile}/>
-                        </form>
+                        </label>
                         <div>
                             We recommend an image of at least 512x512 for the server.
+                            <div className='server-image-upload-button'>
+                                Upload Image
+                            </div>
                         </div>
                     </div>
                     <div>
