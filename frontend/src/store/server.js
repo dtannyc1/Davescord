@@ -120,10 +120,11 @@ export const parseServerData = (data, dispatch) => {
     dispatch(addServer(data))
 }
 
-export const createServer = (server) => async dispatch => {
+export const createServer = (formData) => async dispatch => {
     let res = await csrfFetch('/api/servers', {
         method: "POST",
-        body: JSON.stringify(server)
+        // body: JSON.stringify(server)
+        body: formData
     })
 
     if (res.ok) {

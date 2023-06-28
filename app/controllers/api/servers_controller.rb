@@ -1,7 +1,7 @@
 class Api::ServersController < ApplicationController
     before_action(:require_logged_in, only: [:index, :show, :create, :update, :destroy])
 
-    wrap_parameters include: Server.attribute_names
+    wrap_parameters include: Server.attribute_names + [:photo]
 
     def index
         @servers = current_user.subscribed_servers.includes(:channels)
@@ -70,6 +70,6 @@ class Api::ServersController < ApplicationController
 
     private
     def server_params
-        params.require(:server).permit(:server_name, :owner_id, :server_image)
+        params.require(:server).permit(:server_name, :owner_id, :server_image, :photo)
     end
 end

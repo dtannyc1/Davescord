@@ -24,8 +24,13 @@ const CreateServerModal = ({visible, setVisible, setWebsocketRestart}) => {
         e.preventDefault();
 
         if (newServerName.length > 0) {
-            let server = {server_name: newServerName}
-            let newServer = await dispatch(createServer(server))
+            const formData = new FormData();
+            formData.append('server[server_name]', newServerName);
+            if (photoFile) {
+                formData.append('server[photo]', photoFile)
+            }
+            // let server = {server_name: newServerName}
+            let newServer = await dispatch(createServer(formData))
             let channel = {
                 channel_name: "general",
                 serverId: newServer.id,
