@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams, Link } from "react-router-dom";
 import './ServerList.css'
 
-const ServerList = ({activeServer}) => {
+const ServerList = () => {
     const servers = useSelector(state => Object.values(state.servers));
     const unreadServers = useSelector(state => state.unread.servers);
+    const {serverId} = useParams();
 
     if (!servers) return null;
 
@@ -15,7 +16,7 @@ const ServerList = ({activeServer}) => {
 
                 if (server.photoUrl) {
                     return <div className={`server-item${unreadStatus}`} key={server.id} >
-                        <Link to={`/channels/${server.id}`} className={(parseInt(activeServer) === server.id) ? "selected" : null}>
+                        <Link to={`/channels/${server.id}`} className={(parseInt(serverId) === server.id) ? "selected" : null}>
                             <img src={server.photoUrl} alt={server.serverName}/>
                             <div className="channels-left-selector"></div>
                         </Link>
@@ -23,7 +24,7 @@ const ServerList = ({activeServer}) => {
                     </div>
                 } else{
                     return <div className={`server-item${unreadStatus}`} key={server.id} >
-                        <Link to={`/channels/${server.id}`} className={(parseInt(activeServer) === server.id) ? "selected" : null}>
+                        <Link to={`/channels/${server.id}`} className={(parseInt(serverId) === server.id) ? "selected" : null}>
                             <div className="server-image">
                                 {server.serverName.toUpperCase().charAt(0)}
                             </div>

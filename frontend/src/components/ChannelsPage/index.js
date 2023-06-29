@@ -42,12 +42,19 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     useEffect(() => {
         if (serverId !== "@me") {
             try {
-                dispatch(addSubscription(serverId)).catch(() => {})
-                dispatch(fetchServer(serverId))
-                    .catch(error => {
+                // should only fetch server if new subscription is made,
+                // otherwise we already have everything about the server that we need
+
+                dispatch(addSubscription(serverId))
+                    .catch(() => {
                         history.push('/channels/@me/')
                         return null;
                     })
+                // dispatch(fetchServer(serverId))
+                //     .catch(() => {
+                //         history.push('/channels/@me/')
+                //         return null;
+                //     })
             } catch (errors) {
                 history.push('/channels/@me/')
                 return null;
@@ -85,7 +92,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                     <span className="tooltip">Direct Messages</span>
                     <hr className="channels-divider"/>
 
-                    <ServerList activeServer={serverId}/>
+                    <ServerList/>
 
                     <div className="channels-add-server-button" onClick={e => setShowServerModal(true)}>
                         <div>+</div>

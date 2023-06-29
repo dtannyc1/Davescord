@@ -4,7 +4,7 @@ import consumer from '../../../consumer';
 import { addMessage, removeMessage } from '../../../store/message';
 import { setUnreadChannel, setUnreadServer } from "../../../store/unread";
 import { addChannel, removeChannel } from "../../../store/channel";
-import { fetchServer, removeServer } from "../../../store/server";
+import { addServer, fetchServer, removeServer } from "../../../store/server";
 // import { useParams } from "react-router-dom";
 
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
@@ -52,18 +52,23 @@ const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
                 { received: ({type, channel, channelId, serverId}) => {
                         switch (type) {
                             case RECEIVE_CHANNEL:
-                                dispatch(addChannel(channel))
-                                setWebsocketRestart(!websocketRestart) // force reset websockets
+                                dispatch(addChannel(channel)).then(()=> {
+                                    setWebsocketRestart(!websocketRestart) // force reset websockets
+                                })
                                 break;
                             case DESTROY_CHANNEL:
                                 dispatch(removeChannel(channelId))
                                 break;
                             case RECEIVE_SERVER:
-                                setWebsocketRestart(!websocketRestart) // force reset websockets
+                                dispatch(fetchServer(serverId)).then(() => {
+                                    setWebsocketRestart(!websocketRestart) // force reset websockets
+                                })
                                 break;
                             case UPDATE_SERVER:
-                                dispatch(fetchServer(serverId))
-                                break
+                                dispatch(fetchServer(serverId)).then(() => {
+                                    setWebsocketRestart(!websocketRestart) // force reset websockets
+                                })
+                                break;
                             case DESTROY_SERVER:
                                 dispatch(removeServer(serverId))
                                 break
