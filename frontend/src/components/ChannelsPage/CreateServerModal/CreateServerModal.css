@@ -63,13 +63,24 @@
     line-height: 1.5;
 }
 
-.server-modal-main-top > img {
+.server-modal-main-top .server-modal-image-upload {
     width: 80px;
     height: 80px;
-    padding-top: 16px;
-    padding-bottom: 20px;
+    margin-top: 16px;
+    margin-bottom: 20px;
     cursor: pointer;
 }
+
+.server-modal-main-top .server-modal-uploaded-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-top: 16px;
+    margin-bottom: 20px;
+    border-radius: 80px;
+    cursor: pointer;
+}
+
 .server-modal-main-top > form {
     padding-top: 36px;
 }
@@ -167,5 +178,9 @@
 }
 
 .hidden {
+    display: none;
+}
+
+#file-input {
     display: none;
 }

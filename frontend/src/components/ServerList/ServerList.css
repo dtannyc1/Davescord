@@ -13,6 +13,7 @@
     align-items: center;
     width: 51px;
     height: 51px;
+    object-fit: cover;
     border-radius: 25.5px;
     /* margin: 5px; */
     color: white;
@@ -25,14 +26,14 @@
 }
 
 .server-item > a:hover, .server-item > a.selected{
-    border-radius: 18px;
+    border-radius: 18.5px; /* weird background pixels appear if 18px*/
     background-color: #5865f2;
     transition: background-color 0.2s, border-radius 0.2s;
 }
 
 .server-item > a:hover > img, .server-item > a.selected > img {
     border-radius: 18px;
-    background-color: #5865f2;
+    background-color: transparent;
     transition: background-color 0.2s, border-radius 0.2s;
 }
 

@@ -16,9 +16,9 @@ const ServerNameHeader = ({setDetailVisibility}) => {
 
     useEffect(() => {
         const hideDetails = e => {
-            e.preventDefault()
-            e.stopPropagation();
             if (e.target.className !== "server-details-dropdown" && visible) {
+                e.preventDefault();
+                e.stopPropagation();
                 setVisible(false);
             }
         }
@@ -33,6 +33,7 @@ const ServerNameHeader = ({setDetailVisibility}) => {
         e.preventDefault()
         e.stopPropagation();
         setDetailVisibility(true);
+        setVisible(false);
     }
 
     const leaveServer = e => {

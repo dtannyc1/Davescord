@@ -65,6 +65,9 @@ class User < ApplicationRecord
         class_name: :PrivateChat,
         inverse_of: :user_2,
         dependent: :destroy)
+
+    has_one_attached :photo
+
     # FIGVAPEBRR
 
     def self.find_by_credentials(credential, password)

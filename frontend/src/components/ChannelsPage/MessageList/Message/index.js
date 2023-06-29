@@ -121,8 +121,8 @@ const Message = ({message, prevMessage, deleteButtonVisible, editButtonVisible})
     if (!prevMessage) {
         return (
             <div className='message-holder'>
-                {users[message.authorId].profilePicture ?
-                    <img className='user-item-img' src={users[message.authorId].profilePicture} alt={users[message.authorId].username}/>:
+                {users[message.authorId].photoUrl ?
+                    <img className='user-item-img' src={users[message.authorId].photoUrl} alt={users[message.authorId].username}/>:
                     ((users[message.authorId].color) ?
                     <div style={{backgroundColor: users[message.authorId].color}} className='user-item-img-placeholder'>{`${users[message.authorId].username.toUpperCase().charAt(0)}`}</div> :
                     <div className='user-item-img-placeholder'>{`${users[message.authorId].username.toUpperCase().charAt(0)}`}</div>)
@@ -139,8 +139,8 @@ const Message = ({message, prevMessage, deleteButtonVisible, editButtonVisible})
     } else if (prevMessage && prevMessage.authorId !== message.authorId) {
         return (
             <div className='message-holder'>
-                {users[message.authorId].profilePicture ?
-                    <img className='user-item-img' src={users[message.authorId].profilePicture} alt={users[message.authorId].username}/>:
+                {users[message.authorId].photoUrl ?
+                    <img className='user-item-img' src={users[message.authorId].photoUrl} alt={users[message.authorId].username}/>:
                     ((users[message.authorId].color) ?
                     <div style={{backgroundColor: users[message.authorId].color}} className='user-item-img-placeholder'>{`${users[message.authorId].username.toUpperCase().charAt(0)}`}</div> :
                     <div className='user-item-img-placeholder'>{`${users[message.authorId].username.toUpperCase().charAt(0)}`}</div>)

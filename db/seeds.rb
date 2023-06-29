@@ -6,7 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+require "open-uri"
+
 ApplicationRecord.transaction do
+
     puts "Destroying tables..."
     # Unnecessary if using `rails db:seed:replant`
     User.destroy_all
@@ -25,22 +28,22 @@ ApplicationRecord.transaction do
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
     User.create!(
-      username: 'demo-login',
-      email: 'demo@user.io',
-      color: Faker::Color.hex_color + "40",
-      password: 'password'#,
-    #   profile_picture: "https://loremflickr.com/50/50/dog?random=0"
+        username: 'demo-login',
+        email: 'demo@user.io',
+        color: Faker::Color.hex_color + "40",
+        password: 'password'#,
+        #   profile_picture: "https://loremflickr.com/50/50/dog?random=0"
     )
 
     # More users
-    20.times do |ii|
-      User.create!({
-        username: Faker::Internet.unique.username(specifier: 3),
-        email: Faker::Internet.unique.email,
-        color: Faker::Color.hex_color + "40",
-        password: 'password'#,
-        # profile_picture: "https://loremflickr.com/50/50/dog?random=" + ii.to_s
-      })
+    19.times do |ii|
+        User.create!({
+            username: Faker::Internet.unique.username(specifier: 3),
+            email: Faker::Internet.unique.email,
+            color: Faker::Color.hex_color + "40",
+            password: 'password'#,
+            # profile_picture: "https://loremflickr.com/50/50/dog?random=" + ii.to_s
+        })
     end
 
     Server.create!({
@@ -127,6 +130,18 @@ ApplicationRecord.transaction do
             end
         end
     end
+end
 
-    puts "Done!"
-  end
+puts "Attaching photos to users"
+User.all.each_with_index do |user, ii|
+    user.photo.attach(io: URI.open("https://davescord-seeds.s3.amazonaws.com/assets/user_icons/#{(ii + 1).to_s.rjust(2, "0")}.jpg"),
+                        filename: 'user_icons_' + (ii + 1).to_s.rjust(2, "0") + '.jpg')
+end
+
+puts "Attaching photos to servers"
+Server.all.each_with_index do |server, ii|
+    server.photo.attach(io: URI.open("https://davescord-seeds.s3.amazonaws.com/assets/server_icons/#{(ii + 1).to_s.rjust(2, "0")}.jpg"),
+                        filename: 'server_icons_' + (ii + 1).to_s.rjust(2, "0") + '.jpg')
+end
+
+puts "Done!"

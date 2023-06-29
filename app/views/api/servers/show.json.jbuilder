@@ -19,6 +19,7 @@ json.subscribers do
     @server.subscribers.each do |subscriber|
         json.set! subscriber.id do
             json.extract!(subscriber, :id, :username, :profile_picture, :status, :color)
+            json.photoUrl subscriber.photo.attached? ? subscriber.photo.url : nil
         end
     end
 end

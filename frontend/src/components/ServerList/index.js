@@ -13,10 +13,10 @@ const ServerList = ({activeServer}) => {
             {servers.map(server => {
                 let unreadStatus = (unreadServers[server.id]) ? " unread" : "";
 
-                if (server.serverImage) {
+                if (server.photoUrl) {
                     return <div className={`server-item${unreadStatus}`} key={server.id} >
                         <Link to={`/channels/${server.id}`} className={(parseInt(activeServer) === server.id) ? "selected" : null}>
-                            <img src={server.serverImage} alt={server.serverName}/>
+                            <img src={server.photoUrl} alt={server.serverName}/>
                             <div className="channels-left-selector"></div>
                         </Link>
                         <span className="tooltip">{server.serverName}</span>
