@@ -41,4 +41,5 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 160px;
+    height: 20px;
 }
