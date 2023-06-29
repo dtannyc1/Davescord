@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_08_134643) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_29_153049) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_134643) do
     t.datetime "updated_at", null: false
     t.index ["category_name"], name: "index_channels_on_category_name"
     t.index ["server_id"], name: "index_channels_on_server_id"
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.bigint "friender_id", null: false
+    t.bigint "friendee_id", null: false
+    t.string "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friendee_id"], name: "index_friends_on_friendee_id"
+    t.index ["friender_id", "friendee_id"], name: "index_friends_on_friender_id_and_friendee_id", unique: true
+    t.index ["friender_id"], name: "index_friends_on_friender_id"
   end
 
   create_table "messages", force: :cascade do |t|

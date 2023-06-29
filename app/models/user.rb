@@ -66,6 +66,24 @@ class User < ApplicationRecord
         inverse_of: :user_2,
         dependent: :destroy)
 
+    has_many(:outgoingFriendRequests,
+        primary_key: :id,
+        foreign_key: :friender_id,
+        class_name: :Friend,
+        inverse_of: :friender,
+        dependent: :destroy)
+
+    has_many(:incomingFriendRequests,
+        primary_key: :id,
+        foreign_key: :friendee_id,
+        class_name: :Friend,
+        inverse_of: :friendee,
+        dependent: :destroy)
+
+    has_many(:friends,
+        through: :outgoingFriendRequests,
+        source: :friendee)
+
     has_one_attached :photo
 
     # FIGVAPEBRR
