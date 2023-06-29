@@ -9,10 +9,6 @@
     width: calc(100% - 80px);
 }
 
-.overview-menu div {
-    width: 100%;
-}
-
 .overview-menu > h3 {
     color: white;
     font-size: 20px;
@@ -80,13 +76,13 @@
 }
 
 .overview-save-button{
-    color: rgb(206, 206, 206);
+    color: rgb(255, 255, 255);
     padding: 5px 16px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
     font-size: 14px;
-    background-color: rgb(36, 128, 70);
+    background-color: hsl(142, 100%, 28%);
     white-space: nowrap;
 }
 
@@ -118,8 +114,14 @@
 }
 
 .overview-menu .left-option {
-    width: 100%;
+    width: 50%;
     display: flex;
+}
+
+.overview-menu .right-option {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
 }
 
 .overview-menu .left-option label {
@@ -130,8 +132,9 @@
 }
 
 .overview-menu .left-option label img {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1;
     width: 80%;
+    /* height: min(80%, auto); */
     object-fit: cover;
     border-radius: 100%;
     cursor: pointer;
@@ -151,6 +154,11 @@
     display: none;
 }
 
+.overview-menu .left-option .server-image-input {
+    width: 40%;
+    height: fit-content;
+}
+
 .overview-menu .left-option .server-image-input:hover:after {
     content: 'CHANGE \A ICON';
     position: absolute;
@@ -158,8 +166,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    aspect-ratio: 1 / 1;
     width: 80%;
+    height: 100%;
+    /* height: min(80%, auto); */
     border-radius: 100%;
     border: 1px solid rgb(30, 31, 34);
     background-color: rgb(30, 31, 34);

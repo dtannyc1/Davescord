@@ -66,7 +66,7 @@ const OverviewMenu = ({visibility, visibilitySetter}) => {
                             </label>
                         </div>
                     </div>
-                    <div>
+                    <div className='right-option'>
                         <span className='overview-input-title'>server name</span>
                         <form>
                             <input className='overview-input' type='text' value={serverName} onChange={e => setServerName(e.target.value)}/>
