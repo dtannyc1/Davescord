@@ -27,8 +27,13 @@ const OverviewMenu = ({visibility, visibilitySetter}) => {
 
     const changeServer = e => {
         e.preventDefault();
-        currentServer.serverName = serverName;
-        dispatch(updateServer(currentServer));
+        const formData = new FormData();
+        formData.append('server[server_name]', serverName);
+        if (photoFile) {
+            formData.append('server[photo]', photoFile)
+        }
+        // currentServer.serverName = serverName;
+        dispatch(updateServer(formData, serverId));
         visibilitySetter(false);
     }
 
@@ -68,11 +73,11 @@ const OverviewMenu = ({visibility, visibilitySetter}) => {
                         </form>
                     </div>
                 </div>
-                <div className={(originalServerName.current === serverName || serverName.length === 0) ?
+                <div className={((originalServerName.current === serverName || serverName.length === 0 ) && (!photoFile)) ?
                         'save-button-holder hidden' : 'save-button-holder'}>
                     <div className="save-button-text">Careful - you have unsaved changes!</div>
                     <div className="buttons">
-                        <button className='overview-reset-button' onClick={e => setServerName(originalServerName.current)}>Reset</button>
+                        <button className='overview-reset-button' onClick={e => {setPhotoFile(null); setServerName(originalServerName.current)}}>Reset</button>
                         <button className='overview-save-button' onClick={changeServer}>Save Changes</button>
                     </div>
                 </div>

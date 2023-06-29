@@ -134,10 +134,11 @@ export const createServer = (formData) => async dispatch => {
     }
 }
 
-export const updateServer = (server) => async dispatch => {
-    let res = await csrfFetch(`/api/servers/${server.id}`, {
+export const updateServer = (formData, serverId) => async dispatch => {
+    let res = await csrfFetch(`/api/servers/${serverId}`, {
         method: "PATCH",
-        body: JSON.stringify({server: server})
+        // body: JSON.stringify({server: server})
+        body: formData
     })
 
     if (res.ok) {
