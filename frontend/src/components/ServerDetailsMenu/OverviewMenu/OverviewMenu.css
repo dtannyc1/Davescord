@@ -5,7 +5,8 @@
     align-items: flex-start;
 
     padding: 60px 40px;
-    height: calc(100vh - 120px);
+    padding-bottom: 120px;
+    height: calc(100vh - 180px);
     width: calc(100% - 80px);
 }
 
