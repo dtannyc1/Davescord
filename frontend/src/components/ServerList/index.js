@@ -46,9 +46,7 @@ const ServerList = () => {
 
     useEffect(()=> {
         // here just to force a rerender when servers load
-        if (!tmpServers) {
-            setTmpServers(servers);
-        }
+        setTmpServers(servers);
     }, [servers])
 
     return (

@@ -21,13 +21,9 @@ import { fetchServers} from "../../store/server";
 import { fetchUser } from "../../store/user";
 
 const ChannelsPage = ({setWebsocketRestart}) => {
-    const {serverId, channelId} = useParams();
+    const {serverId} = useParams();
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
-    const servers = useSelector(state => state.servers);
-
-    // const currentServer = useSelector(state => state.servers[serverId]);
-    // const currentChannels = useSelector(state => state.channels);
 
     const [showServerModal, setShowServerModal] = useState(false);
     const [showChannelModal, setShowChannelModal] = useState(false);
@@ -35,20 +31,6 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     const [showChannelDetail, setShowChannelDetail] = useState(false);
 
     const categoryName = useRef();
-
-    // if ((serverId !== "@me" && channelId === undefined &&
-    //     currentServer && currentServer.channels &&
-    //     currentServer.channels.length > 0) ||
-    //     (serverId !== "@me" && currentChannels && currentChannels[channelId] === undefined &&
-    //     Object.keys(currentChannels).length > 0)) {
-
-    //         if (Object.values(currentChannels).length > 0){
-    //             let firstChannelId = Object.values(currentChannels)[0].id;
-    //             return (
-    //                 <Redirect to={`/channels/${serverId}/${firstChannelId}`}/>
-    //             )
-    //         }
-    // }
 
     useEffect(() => {
         dispatch(fetchServers())
