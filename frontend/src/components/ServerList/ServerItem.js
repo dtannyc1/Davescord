@@ -5,8 +5,9 @@ import { useRef } from "react";
 import { useEffect } from "react";
 
 const ServerItem = ({server}) => {
-    const unread = useSelector(state => state.unread.servers[server.id]);
     const {serverId} = useParams();
+    const unread = useSelector(state => state.unread.servers[server.id]);
+    const currentServer = useSelector(state => state.servers[serverId]);
     const output = useRef();
 
     useEffect(() => {
@@ -35,7 +36,7 @@ const ServerItem = ({server}) => {
                 </div>
             )
         }
-    }, [unread])
+    }, [unread, currentServer])
 
     return output.current
 }
