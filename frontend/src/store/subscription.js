@@ -17,8 +17,6 @@ export const addSubscription = (serverId) => async dispatch  => {
             let data = await res.json();
             if (data.createdSubscription) {
                 dispatch(fetchServer(data.serverId))
-            } else {
-                console.log(data)
             }
             // parseServerData(data, dispatch);
             // return data

@@ -52,22 +52,19 @@ const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
                 { received: ({type, channel, channelId, serverId}) => {
                         switch (type) {
                             case RECEIVE_CHANNEL:
-                                dispatch(addChannel(channel)).then(()=> {
-                                    setWebsocketRestart(!websocketRestart) // force reset websockets
-                                })
+                                dispatch(addChannel(channel))
+                                setWebsocketRestart(!websocketRestart) // force reset websockets
                                 break;
                             case DESTROY_CHANNEL:
                                 dispatch(removeChannel(channelId))
                                 break;
                             case RECEIVE_SERVER:
-                                dispatch(fetchServer(serverId)).then(() => {
-                                    setWebsocketRestart(!websocketRestart) // force reset websockets
-                                })
+                                dispatch(fetchServer(serverId))
+                                setWebsocketRestart(!websocketRestart) // force reset websockets
                                 break;
                             case UPDATE_SERVER:
-                                dispatch(fetchServer(serverId)).then(() => {
-                                    setWebsocketRestart(!websocketRestart) // force reset websockets
-                                })
+                                dispatch(fetchServer(serverId))
+                                setWebsocketRestart(!websocketRestart) // force reset websockets
                                 break;
                             case DESTROY_SERVER:
                                 dispatch(removeServer(serverId))

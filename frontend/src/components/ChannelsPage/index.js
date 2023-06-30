@@ -46,15 +46,13 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                 // otherwise we already have everything about the server that we need
 
                 dispatch(addSubscription(serverId))
+                    .then(() => {
+                        dispatch(fetchServer(serverId))
+                    })
                     .catch(() => {
                         history.push('/channels/@me/')
                         return null;
                     })
-                // dispatch(fetchServer(serverId))
-                //     .catch(() => {
-                //         history.push('/channels/@me/')
-                //         return null;
-                //     })
             } catch (errors) {
                 history.push('/channels/@me/')
                 return null;
