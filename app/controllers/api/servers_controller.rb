@@ -4,7 +4,7 @@ class Api::ServersController < ApplicationController
     wrap_parameters include: Server.attribute_names + [:photo]
 
     def index
-        @servers = current_user.subscribed_servers.includes(:channels)
+        @servers = current_user.subscribed_servers.includes(channels: [:messages]).includes(:subscribers)
         render :index
     end
 
@@ -26,9 +26,9 @@ class Api::ServersController < ApplicationController
         if @server.save
             Subscription.create!({subscriber_id: current_user.id,
                         server_id: @server.id})
-            ServersChannel.broadcast_to(@server,
-                        type: 'RECEIVE_SERVER',
-                        serverId: @server.id)
+            # ServersChannel.broadcast_to(@server,
+            #             type: 'RECEIVE_SERVER',
+            #             serverId: @server.id)
             render :show
         else
             render json: @server.errors.full_messages, status: 422

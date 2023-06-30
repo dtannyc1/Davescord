@@ -1,37 +1,58 @@
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import './ServerList.css'
+import ServerItem from "./ServerItem";
+import { useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
+import { fetchServer } from "../../store/server";
+import { addSubscription } from "../../store/subscription";
+import { useState } from 'react';
 
-const ServerList = ({activeServer}) => {
-    const servers = useSelector(state => Object.values(state.servers));
-    const unreadServers = useSelector(state => state.unread.servers);
 
-    if (!servers) return null;
+const ServerList = () => {
+    const {serverId, channelId} = useParams();
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const servers = useSelector(state => state.servers);
+    const [tmpServers, setTmpServers] = useState(null);
+
+    useEffect(() => {
+        if (serverId !== "@me") {
+            try {
+                // should only fetch server if new subscription is made,
+                // otherwise we already have everything about the server that we need?
+                // that would mean fetching all the messages at the start for every single server...
+                // what if fetchServer doesnt actually update server slice of state?
+
+                dispatch(addSubscription(parseInt(serverId)))
+                    .then(() => {
+                        dispatch(fetchServer(parseInt(serverId)))
+                        .then(() => {
+                            if ((channelId === undefined && servers[parseInt(serverId)]?.channels?.length > 0)) {
+                                    let firstChannelId = servers[parseInt(serverId)].channels[0];
+                                    history.push(`/channels/${parseInt(serverId)}/${firstChannelId}`)
+                            }
+                        })
+                    })
+                    .catch(() => {
+                        history.push('/channels/@me/')
+                        return null;
+                    })
+            } catch (errors) {
+                history.push('/channels/@me/')
+                return null;
+            }
+        }
+    }, [dispatch, serverId, history])
+
+    useEffect(()=> {
+        // here just to force a rerender when servers load
+        setTmpServers(servers);
+    }, [servers])
 
     return (
         <>
-            {servers.map(server => {
-                let unreadStatus = (unreadServers[server.id]) ? " unread" : "";
-
-                if (server.photoUrl) {
-                    return <div className={`server-item${unreadStatus}`} key={server.id} >
-                        <Link to={`/channels/${server.id}`} className={(parseInt(activeServer) === server.id) ? "selected" : null}>
-                            <img src={server.photoUrl} alt={server.serverName}/>
-                            <div className="channels-left-selector"></div>
-                        </Link>
-                        <span className="tooltip">{server.serverName}</span>
-                    </div>
-                } else{
-                    return <div className={`server-item${unreadStatus}`} key={server.id} >
-                        <Link to={`/channels/${server.id}`} className={(parseInt(activeServer) === server.id) ? "selected" : null}>
-                            <div className="server-image">
-                                {server.serverName.toUpperCase().charAt(0)}
-                            </div>
-                            <div className="channels-left-selector"></div>
-                        </Link>
-                        <span className="tooltip">{server.serverName}</span>
-                    </div>
-                }
+            {Object.values(servers).map(server => {
+                return <ServerItem server={server}  key={server.id}/>
             })}
         </>
     )

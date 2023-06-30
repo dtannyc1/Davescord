@@ -15,12 +15,12 @@ const CreateChannelModal = ({visible, setVisible, categoryName, setWebsocketRest
     // const currentUserId = useSelector(state => state.session.currentUserId);
     // const currentUser = useSelector(state => state.users[currentUserId]);
     const [newChannelName, setNewChannelName] = useState('');
-    const [newCategoryName, setNewCategoryName] = useState(categoryName ? categoryName : '');
+    const [newCategoryName, setNewCategoryName] = useState(categoryName ? categoryName.current : '');
     const [newDescription, setNewDescription] = useState('');
     const websocketRestart = useContext(WebsocketContext);
 
     useEffect(() => {
-        setNewCategoryName(categoryName ? categoryName : '');
+        setNewCategoryName(categoryName ? categoryName.current : '');
     }, [categoryName])
 
     const handleChannelCreation = async e => {
@@ -43,7 +43,7 @@ const CreateChannelModal = ({visible, setVisible, categoryName, setWebsocketRest
 
     const closeMenu = () => {
         setNewChannelName('');
-        setNewCategoryName(categoryName ? categoryName : '');
+        setNewCategoryName(categoryName ? categoryName.current : '');
         setNewDescription('');
         setVisible(false);
     }

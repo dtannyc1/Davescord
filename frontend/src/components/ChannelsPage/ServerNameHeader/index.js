@@ -47,12 +47,12 @@ const ServerNameHeader = ({setDetailVisibility}) => {
     return (
         <>
             <div className="server-name-holder" onClick={e => setVisible(true)}>
-                <div className="server-name">{currentServer.serverName}</div>
+                <div className="server-name">{currentServer?.serverName}</div>
                 <div className="server-fake-dropdown">v</div>
             </div>
             <div className={visible ? "server-details-holder" : "server-details-holder hidden"}>
                 <div className="server-details-dropdown">
-                    { (currentServer.ownerId === currentUserId) ?
+                    { (currentServer?.ownerId === currentUserId) ?
                         <div className="server-details-option" onClick={openSettingsPage}>
                             <span>Server Settings</span>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

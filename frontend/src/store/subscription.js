@@ -1,4 +1,4 @@
-import { parseServerData, removeServer } from "./server"
+import { fetchServer, parseServerData, removeServer } from "./server"
 import csrfFetch from "./csrf";
 
 // action types
@@ -15,8 +15,11 @@ export const addSubscription = (serverId) => async dispatch  => {
 
         if (res.ok) {
             let data = await res.json();
-            parseServerData(data, dispatch);
-            return data
+            if (data.createdSubscription) {
+                dispatch(fetchServer(data.serverId))
+            }
+            // parseServerData(data, dispatch);
+            // return data
         } else {
             throw res;
         }

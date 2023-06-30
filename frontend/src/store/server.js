@@ -48,7 +48,6 @@ export const fetchServer = (serverId) => async dispatch => {
         if (res.ok) {
             let data = await res.json();
             let messages = {};
-            let subscribers = {};
 
             // parse information about channels into its own slice of state
             if (data.channels){
@@ -62,21 +61,11 @@ export const fetchServer = (serverId) => async dispatch => {
                 }
             }
 
-            // parse information about subscribers into its own slice of state
-            if (data.subscribers) {
-                subscribers = data.subscribers;
-                data.subscribers = Object.values(data.subscribers).map(subscriber => subscriber.id)
-            }
-
             // store info about channels, messages, and users separately
-            dispatch(addUsers(subscribers))
-            dispatch(addChannels(data.channels))
+            dispatch(addUsers(data.subscribers))
+            dispatch(addChannels(data.channels || []))
             dispatch(addMessages(messages))
-
-            if (data.channels) {
-                data.channels = Object.values(data.channels).map(channel => channel.id)
-            }
-            dispatch(addServer(data))
+            // dispatch(addServer(data.server))
         } else {
             throw res
         }
@@ -87,7 +76,6 @@ export const fetchServer = (serverId) => async dispatch => {
 
 export const parseServerData = (data, dispatch) => {
     let messages = {};
-    let subscribers = {};
 
     // parse information about channels into its own slice of state
     if (data.channels){
@@ -101,29 +89,16 @@ export const parseServerData = (data, dispatch) => {
         }
     }
 
-    // parse information about subscribers into its own slice of state
-    if (data.subscribers) {
-        subscribers = data.subscribers;
-        data.subscribers = Object.values(data.subscribers).map(subscriber => subscriber.id)
-    }
-
     // store info about channels, messages, and users separately
-    dispatch(addUsers(subscribers))
+    dispatch(addUsers(data.subscribers))
     dispatch(addChannels(data.channels || []))
     dispatch(addMessages(messages))
-
-    if (data.channels) {
-        data.channels = Object.values(data.channels).map(channel => channel.id)
-    } else {
-        data.channels = []
-    }
-    dispatch(addServer(data))
+    dispatch(addServer(data.server))
 }
 
 export const createServer = (formData) => async dispatch => {
     let res = await csrfFetch('/api/servers', {
         method: "POST",
-        // body: JSON.stringify(server)
         body: formData
     })
 
@@ -137,7 +112,6 @@ export const createServer = (formData) => async dispatch => {
 export const updateServer = (formData, serverId) => async dispatch => {
     let res = await csrfFetch(`/api/servers/${serverId}`, {
         method: "PATCH",
-        // body: JSON.stringify({server: server})
         body: formData
     })
 

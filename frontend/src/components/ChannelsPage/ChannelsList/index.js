@@ -2,7 +2,7 @@ import './ChannelsList.css'
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
-const ChannelsList = ({showCreateChannel, setCategoryName, setShowChannelDetail}) => {
+const ChannelsList = ({showCreateChannel, categoryName, setShowChannelDetail}) => {
     const history = useHistory();
     const {serverId, channelId} = useParams();
     const currentUserId = useSelector(state => state.session.currentUserId);
@@ -23,10 +23,11 @@ const ChannelsList = ({showCreateChannel, setCategoryName, setShowChannelDetail}
         }
     })
 
-    const handleAddChannelClick = categoryName => e => {
+    const handleAddChannelClick = catName => e => {
         e.preventDefault();
         e.stopPropagation();
-        setCategoryName(categoryName)
+        // setCategoryName(categoryName)
+        categoryName.current = catName;
         showCreateChannel(true);
     }
 

@@ -2,11 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import './ChannelsPage.css';
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { fetchServer, fetchServers } from "../../store/server";
 import icon from '../../assets/Davescord-icon.svg'
 import ServerList from "../ServerList";
 import CurrentUserProfile from "../CurrentUserProfile";
-import { fetchUser } from "../../store/user";
 import CreateServerModal from "./CreateServerModal";
 import ServerNameHeader from "./ServerNameHeader";
 import Searchbar from "./Searchbar";
@@ -15,59 +13,29 @@ import ServerDetailsMenu from "../ServerDetailsMenu";
 import ChannelNameHeader from "./ChannelNameHeader";
 import CreateChannelModal from "./CreateChannelModal";
 import ChannelDetailsMenu from "./ChannelDetailMenu";
-import { Redirect, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import MessageList from "./MessageList";
 import SubscriberList from "./SubscriberList";
-import { addSubscription } from "../../store/subscription";
 import FriendsNameHeader from "./FriendsNameHeader";
+import { useRef } from "react";
+import { fetchServers} from "../../store/server";
+import { fetchUser } from "../../store/user";
 
 const ChannelsPage = ({setWebsocketRestart}) => {
-    const {serverId, channelId} = useParams();
+    const {serverId} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
     const currentUserId = useSelector(state => state.session.currentUserId);
-    const currentServer = useSelector(state => state.servers[serverId]);
-    const currentChannels = useSelector(state => state.channels);
+
     const [showServerModal, setShowServerModal] = useState(false);
     const [showChannelModal, setShowChannelModal] = useState(false);
     const [showServerDetail, setShowServerDetail] = useState(false);
     const [showChannelDetail, setShowChannelDetail] = useState(false);
-    const [categoryName, setCategoryName] = useState('');
+
+    const categoryName = useRef();
 
     useEffect(() => {
         dispatch(fetchServers())
         dispatch(fetchUser(currentUserId))
     }, [dispatch, currentUserId])
-
-    useEffect(() => {
-        if (serverId !== "@me") {
-            try {
-                dispatch(addSubscription(serverId)).catch(() => {})
-                dispatch(fetchServer(serverId))
-                    .catch(error => {
-                        history.push('/channels/@me/')
-                        return null;
-                    })
-            } catch (errors) {
-                history.push('/channels/@me/')
-                return null;
-            }
-        }
-    }, [dispatch, serverId, history])
-
-    if ((serverId !== "@me" && channelId === undefined &&
-        currentServer && currentServer.channels &&
-        currentServer.channels.length > 0) ||
-        (serverId !== "@me" && currentChannels && currentChannels[channelId] === undefined &&
-        Object.keys(currentChannels).length > 0)) {
-
-            if (Object.values(currentChannels).length > 0){
-                let firstChannelId = Object.values(currentChannels)[0].id;
-                return (
-                    <Redirect to={`/channels/${serverId}/${firstChannelId}`}/>
-                )
-            }
-    }
 
     return (
         <div className="channels-page">
@@ -85,9 +53,9 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                     <span className="tooltip">Direct Messages</span>
                     <hr className="channels-divider"/>
 
-                    <ServerList activeServer={serverId}/>
+                    <ServerList/>
 
-                    <div className="channels-add-server-button" onClick={e => setShowServerModal(true)}>
+                    <div className="channels-add-server-button" onClick={() => setShowServerModal(true)}>
                         <div>+</div>
                         <span className="tooltip">Add a Server</span>
                     </div>
@@ -96,9 +64,9 @@ const ChannelsPage = ({setWebsocketRestart}) => {
             </div>
             <div className="channels-column2-holder">
                 <div className="channels-column2">
-                    {(currentServer) ? <ServerNameHeader setDetailVisibility={setShowServerDetail}/> : <Searchbar/>}
+                    {(serverId !== "@me") ? <ServerNameHeader setDetailVisibility={setShowServerDetail}/> : <Searchbar/>}
 
-                    {(serverId === "@me") ? <div></div>: <ChannelsList showCreateChannel={setShowChannelModal} setCategoryName={setCategoryName} setShowChannelDetail={setShowChannelDetail}/>}
+                    {(serverId === "@me") ? <div></div>: <ChannelsList showCreateChannel={setShowChannelModal} categoryName={categoryName} setShowChannelDetail={setShowChannelDetail}/>}
 
                     <CurrentUserProfile/>
                 </div>
