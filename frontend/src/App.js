@@ -33,9 +33,9 @@ function App() {
                     <ChannelsPage setWebsocketRestart={setWebsocketRestart}/>
                     : <Redirect to="/login"/>}
             </Route>
-            {/* {(subscribedServers && subscribedServers.length > 0) ?
+            {(subscribedServers && subscribedServers.length > 0) ?
                     <WebSocketListeners websocketRestart={websocketRestart} setWebsocketRestart={setWebsocketRestart}/>
-                 : null} */}
+                 : null}
         </WebsocketContext.Provider>
     );
 }
