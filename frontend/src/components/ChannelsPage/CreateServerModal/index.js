@@ -33,18 +33,19 @@ const CreateServerModal = ({visible, setVisible, setWebsocketRestart}) => {
             let newServer = await dispatch(createServer(formData))
             let channel = {
                 channel_name: "general",
-                serverId: newServer.id,
+                serverId: newServer.server.id,
                 categoryName: "Text Channels",
                 description: ""
             }
 
+            debugger
             setNewServerName(defaultServerName.current);
             setPhotoFile(null);
             setVisible(false)
             let newChannel = await dispatch(createChannel(channel))
             dispatch(addChannel(newChannel))
 
-            history.push(`/channels/${newServer.id}/${newChannel.id}`)
+            history.push(`/channels/${newServer.server.id}/${newChannel.id}`)
 
             setWebsocketRestart(!websocketRestart) // force restart websockets
         }
