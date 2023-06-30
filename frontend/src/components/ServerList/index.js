@@ -13,7 +13,7 @@ const ServerList = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const servers = useSelector(state => state.servers);
-    const [tmpServers, setTmpServers] = useState();
+    const [tmpServers, setTmpServers] = useState(null);
 
     useEffect(() => {
         if (serverId !== "@me") {
@@ -46,14 +46,10 @@ const ServerList = () => {
 
     useEffect(()=> {
         // here just to force a rerender when servers load
-        setTmpServers(servers);
+        if (!tmpServers) {
+            setTmpServers(servers);
+        }
     }, [servers])
-
-    // if ((serverId !== "@me" && channelId === undefined &&
-    //     servers[parseInt(serverId)]?.channels?.length > 0)) {
-    //         let firstChannelId = servers[parseInt(serverId)].channels[0];
-    //         history.push(`/channels/${parseInt(serverId)}/${firstChannelId}`)
-    // }
 
     return (
         <>
