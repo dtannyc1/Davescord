@@ -35,7 +35,6 @@ const ServerItem = ({server}) => {
                 </div>
             )
         }
-        debugger
     }, [unread])
 
     return output.current

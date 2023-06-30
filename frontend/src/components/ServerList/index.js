@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
 import './ServerList.css'
 import ServerItem from "./ServerItem";
 
