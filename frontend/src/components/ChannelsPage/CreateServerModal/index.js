@@ -38,10 +38,9 @@ const CreateServerModal = ({visible, setVisible, setWebsocketRestart}) => {
                 description: ""
             }
 
-            debugger
             setNewServerName(defaultServerName.current);
             setPhotoFile(null);
-            setVisible(false)
+            setVisible(false);
             let newChannel = await dispatch(createChannel(channel))
             dispatch(addChannel(newChannel))
 

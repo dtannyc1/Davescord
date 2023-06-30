@@ -65,7 +65,7 @@ export const fetchServer = (serverId) => async dispatch => {
             dispatch(addUsers(data.subscribers))
             dispatch(addChannels(data.channels))
             dispatch(addMessages(messages))
-            dispatch(addServer(data.server))
+            // dispatch(addServer(data.server))
         } else {
             throw res
         }

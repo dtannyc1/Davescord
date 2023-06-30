@@ -43,7 +43,9 @@ const ChannelsPage = ({setWebsocketRestart}) => {
         if (serverId !== "@me") {
             try {
                 // should only fetch server if new subscription is made,
-                // otherwise we already have everything about the server that we need
+                // otherwise we already have everything about the server that we need?
+                // that would mean fetching all the messages at the start for every single server...
+                // what if fetchServer doesnt actually update server slice of state?
 
                 dispatch(addSubscription(serverId))
                     .then(() => {
