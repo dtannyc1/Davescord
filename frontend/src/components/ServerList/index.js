@@ -2,28 +2,18 @@ import './ServerList.css'
 import ServerItem from "./ServerItem";
 import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Redirect, useHistory } from "react-router-dom";
-import { fetchServers, fetchServer } from "../../store/server";
-import { fetchUser } from "../../store/user";
+import { useParams, useHistory } from "react-router-dom";
+import { fetchServer } from "../../store/server";
 import { addSubscription } from "../../store/subscription";
+import { useState } from 'react';
 
 
 const ServerList = () => {
     const {serverId, channelId} = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
-    const currentUserId = useSelector(state => state.session.currentUserId);
     const servers = useSelector(state => state.servers);
-    // useEffect(() => {
-
-    // }, [servers])
-
-    // if (!servers) return null;
-
-    useEffect(() => {
-        dispatch(fetchServers())
-        dispatch(fetchUser(currentUserId))
-    }, [dispatch, currentUserId])
+    const [tmpServers, setTmpServers] = useState();
 
     useEffect(() => {
         if (serverId !== "@me") {
@@ -36,6 +26,12 @@ const ServerList = () => {
                 dispatch(addSubscription(parseInt(serverId)))
                     .then(() => {
                         dispatch(fetchServer(parseInt(serverId)))
+                        .then(() => {
+                            if ((channelId === undefined && servers[parseInt(serverId)]?.channels?.length > 0)) {
+                                    let firstChannelId = servers[parseInt(serverId)].channels[0];
+                                    history.push(`/channels/${parseInt(serverId)}/${firstChannelId}`)
+                            }
+                        })
                     })
                     .catch(() => {
                         history.push('/channels/@me/')
@@ -48,11 +44,16 @@ const ServerList = () => {
         }
     }, [dispatch, serverId, history])
 
-    if ((serverId !== "@me" && channelId === undefined &&
-        servers[parseInt(serverId)]?.channels?.length > 0)) {
-            let firstChannelId = servers[parseInt(serverId)].channels[0];
-            history.push(`/channels/${parseInt(serverId)}/${firstChannelId}`)
-    }
+    useEffect(()=> {
+        // here just to force a rerender when servers load
+        setTmpServers(servers);
+    }, [servers])
+
+    // if ((serverId !== "@me" && channelId === undefined &&
+    //     servers[parseInt(serverId)]?.channels?.length > 0)) {
+    //         let firstChannelId = servers[parseInt(serverId)].channels[0];
+    //         history.push(`/channels/${parseInt(serverId)}/${firstChannelId}`)
+    // }
 
     return (
         <>

@@ -13,14 +13,19 @@ import ServerDetailsMenu from "../ServerDetailsMenu";
 import ChannelNameHeader from "./ChannelNameHeader";
 import CreateChannelModal from "./CreateChannelModal";
 import ChannelDetailsMenu from "./ChannelDetailMenu";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import MessageList from "./MessageList";
 import SubscriberList from "./SubscriberList";
 import FriendsNameHeader from "./FriendsNameHeader";
 import { useRef } from "react";
+import { fetchServers} from "../../store/server";
+import { fetchUser } from "../../store/user";
 
 const ChannelsPage = ({setWebsocketRestart}) => {
     const {serverId, channelId} = useParams();
+    const dispatch = useDispatch();
+    const currentUserId = useSelector(state => state.session.currentUserId);
+    const servers = useSelector(state => state.servers);
+
     // const currentServer = useSelector(state => state.servers[serverId]);
     // const currentChannels = useSelector(state => state.channels);
 
@@ -44,6 +49,11 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     //             )
     //         }
     // }
+
+    useEffect(() => {
+        dispatch(fetchServers())
+        dispatch(fetchUser(currentUserId))
+    }, [dispatch, currentUserId])
 
     return (
         <div className="channels-page">
