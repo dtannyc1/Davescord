@@ -129,7 +129,7 @@ const Message = ({message, prevMessage, deleteButtonVisible, editButtonVisible})
                 }
                 <div className='message-main'>
                     <span className='message-user-info'>
-                        {users[message.authorId]?.username}
+                        {users[message.authorId] ? users[message.authorId].username : "unknown user"}
                         <span className='message-datetime'>{formatDate(message.createdAt)}</span>
                     </span>
                     {messageBody()}
@@ -147,7 +147,7 @@ const Message = ({message, prevMessage, deleteButtonVisible, editButtonVisible})
                 }
                 <div className='message-main'>
                     <span className='message-user-info'>
-                        {users[message.authorId]?.username}
+                        {users[message.authorId] ? users[message.authorId].username : "unknown user"}
                         <span className='message-datetime'>{formatDate(message.createdAt)}</span>
                     </span>
                     {messageBody()}
