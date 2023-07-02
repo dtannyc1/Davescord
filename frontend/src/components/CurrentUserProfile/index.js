@@ -22,7 +22,7 @@ const CurrentUserProfile = () => {
         <div className="current-user-profile">
             <div>
                 {(currentUser.photoUrl) ?
-                <img className='user-item-img' src={currentUser.photoUrl} alt={currentUser.username}/> :
+                <img className='user-item-img' src={currentUser.photoUrl} alt={currentUser.username.toUpperCase().charAt(0)}/> :
                 ((currentUser.color) ?
                 <div style={{backgroundColor: currentUser.color}} className='user-item-img-placeholder'>{`${currentUser.username.toUpperCase().charAt(0)}`}</div> :
                 <div className='user-item-img-placeholder'>{`${currentUser.username.toUpperCase().charAt(0)}`}</div>)

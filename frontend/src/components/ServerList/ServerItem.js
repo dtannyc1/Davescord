@@ -17,7 +17,7 @@ const ServerItem = ({server}) => {
             output.current = (
                 <div className={`server-item${unreadStatus}`}>
                     <Link to={`/channels/${server.id}`} className={(parseInt(serverId) === server.id) ? "selected" : null}>
-                        <img src={server.photoUrl} alt={server.serverName}/>
+                        <img src={server.photoUrl} alt={server.serverName.toUpperCase().charAt(0)}/>
                         <div className="channels-left-selector"></div>
                     </Link>
                     <span className="tooltip">{server.serverName}</span>
