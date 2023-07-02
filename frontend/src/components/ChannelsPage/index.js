@@ -53,7 +53,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                     <span className="tooltip">Direct Messages</span>
                     <hr className="channels-divider"/>
 
-                    <ServerList/>
+                    <ServerList setWebsocketRestart={setWebsocketRestart}/>
 
                     <div className="channels-add-server-button" onClick={() => setShowServerModal(true)}>
                         <div>+</div>

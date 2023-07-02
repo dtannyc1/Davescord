@@ -74,6 +74,39 @@ export const fetchServer = (serverId) => async dispatch => {
     }
 }
 
+export const fetchServerFull = (serverId) => async dispatch => {
+    try{
+        const res = await csrfFetch(`/api/servers/${serverId}`)
+
+        if (res.ok) {
+            let data = await res.json();
+            let messages = {};
+
+            // parse information about channels into its own slice of state
+            if (data.channels){
+                for (const [key, channel] of Object.entries(data.channels)){
+                    if (channel.messages) {
+                        messages = {...messages, ...channel.messages};
+                        data.channels[key].messages = Object.values(channel.messages).map(message => message.id)
+                    } else {
+                        data.channels[key].messages = [];
+                    }
+                }
+            }
+
+            // store info about channels, messages, and users separately
+            dispatch(addUsers(data.subscribers))
+            dispatch(addChannels(data.channels || []))
+            dispatch(addMessages(messages))
+            dispatch(addServer(data.server))
+        } else {
+            throw res
+        }
+    } catch (errors) {
+        throw errors
+    }
+}
+
 export const parseServerData = (data, dispatch) => {
     let messages = {};
 
