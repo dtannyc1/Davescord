@@ -46,6 +46,8 @@ const ServerList = ({setWebsocketRestart}) => {
                 history.push('/channels/@me/')
                 return null;
             }
+        } else {
+            setTmpServers([])
         }
     }, [dispatch, serverId, history])
 
