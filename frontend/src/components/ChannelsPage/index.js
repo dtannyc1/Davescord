@@ -64,7 +64,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
             </div>
             <div className="channels-column2-holder">
                 <div className="channels-column2">
-                    {(serverId !== "@me") ? <ServerNameHeader setDetailVisibility={setShowServerDetail}/> : <Searchbar/>}
+                    {(serverId !== "@me") ? <ServerNameHeader setDetailVisibility={setShowServerDetail} showCreateChannel={setShowChannelModal} categoryName={categoryName}/> : <Searchbar/>}
 
                     {(serverId === "@me") ? <div></div>: <ChannelsList showCreateChannel={setShowChannelModal} categoryName={categoryName} setShowChannelDetail={setShowChannelDetail}/>}
 
