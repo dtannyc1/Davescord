@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import './ChannelsList.css'
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
@@ -7,21 +8,27 @@ const ChannelsList = ({showCreateChannel, categoryName, setShowChannelDetail}) =
     const {serverId, channelId} = useParams();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
-    const currentChannelIds = currentServer ? currentServer.channels : [];
     const channels = useSelector(state => state.channels);
     const unreadChannels = useSelector(state => state.unread.channels)
+    // const currentChannelIds = currentServer ? currentServer.channels : [];
+    // const currentChannelIds = useRef([]);
+    const categories = useRef({});
 
-    let categories = {};
-    currentChannelIds.forEach(channelId => {
-        let channel = channels[channelId];
-        if (channel) {
-            if (categories[channel.categoryName.toUpperCase()]){
-                categories[channel.categoryName.toUpperCase()].push(channel);
-            } else {
-                categories[channel.categoryName.toUpperCase()] = [channel];
+    useEffect(() => {
+        let tmpcategories = {};
+        let currentChannelIds = currentServer ? currentServer.channels : [];
+        currentChannelIds.forEach(channelId => {
+            let channel = channels[channelId];
+            if (channel) {
+                if (tmpcategories[channel.categoryName.toUpperCase()]){
+                    tmpcategories[channel.categoryName.toUpperCase()].push(channel);
+                } else {
+                    tmpcategories[channel.categoryName.toUpperCase()] = [channel];
+                }
             }
-        }
-    })
+        })
+        categories.current = tmpcategories;
+    }, [currentServer, channels])
 
     const handleAddChannelClick = catName => e => {
         e.preventDefault();
@@ -42,7 +49,7 @@ const ChannelsList = ({showCreateChannel, categoryName, setShowChannelDetail}) =
 
     return (
         <div className='channels-list-holder'>
-            {Object.values(categories).map((categoryArray, ii) => {
+            {Object.values(categories.current).map((categoryArray, ii) => {
                 return (
                     <div key={ii}>
                         <div className="channels-category-name-holder">
