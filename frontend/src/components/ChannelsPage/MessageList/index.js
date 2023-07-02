@@ -34,6 +34,10 @@ const MessageList = () => {
     }, [channel, messages, dispatch])
 
     useEffect(() => {
+        setBody('');
+    }, [serverId, channelId])
+
+    useEffect(() => {
         listEnd.current?.scrollIntoView({behavior: 'instant'})
     }, [messageList])
 
