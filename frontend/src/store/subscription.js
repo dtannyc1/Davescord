@@ -1,4 +1,4 @@
-import { fetchServer, fetchServerFull, parseServerData, removeServer } from "./server"
+import { fetchServerFull, removeServer } from "./server"
 import csrfFetch from "./csrf";
 
 // action types
