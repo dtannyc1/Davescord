@@ -1,4 +1,4 @@
-import { ADD_CHANNEL, addChannels } from "./channel";
+import { ADD_CHANNEL, REMOVE_CHANNEL, addChannels } from "./channel";
 import csrfFetch from "./csrf";
 import { addMessages } from "./message";
 import { REMOVE_CURRENT_USER } from './session.js';
@@ -181,6 +181,9 @@ const serverReducer = (state = {}, action) => {
             nextState[action.channel.serverId].channels ||= [];
             nextState[action.channel.serverId].channels.push(action.channel.id)
             nextState[action.channel.serverId].channels = [...new Set(nextState[action.channel.serverId].channels)]
+            return nextState;
+        case REMOVE_CHANNEL:
+            nextState[action.serverId].channels.splice(nextState[action.serverId].channels.indexOf(action.channelId))
             return nextState;
         case REMOVE_CURRENT_USER:
             return ({});

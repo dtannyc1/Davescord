@@ -22,10 +22,11 @@ export const addChannel = channel => {
     }
 }
 
-export const removeChannel = channelId => {
+export const removeChannel = (channelId, serverId) => {
     return {
         type: REMOVE_CHANNEL,
-        channelId
+        channelId,
+        serverId
     }
 }
 

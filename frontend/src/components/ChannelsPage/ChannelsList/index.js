@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import './ChannelsList.css'
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { useState } from 'react';
 
 const ChannelsList = ({showCreateChannel, categoryName, setShowChannelDetail}) => {
     const history = useHistory();
@@ -12,7 +13,8 @@ const ChannelsList = ({showCreateChannel, categoryName, setShowChannelDetail}) =
     const unreadChannels = useSelector(state => state.unread.channels)
     // const currentChannelIds = currentServer ? currentServer.channels : [];
     // const currentChannelIds = useRef([]);
-    const categories = useRef({});
+    // const categories = useRef({});
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         let tmpcategories = {};
@@ -27,7 +29,7 @@ const ChannelsList = ({showCreateChannel, categoryName, setShowChannelDetail}) =
                 }
             }
         })
-        categories.current = tmpcategories;
+        setCategories(tmpcategories);
     }, [currentServer, channels])
 
     const handleAddChannelClick = catName => e => {
@@ -49,7 +51,7 @@ const ChannelsList = ({showCreateChannel, categoryName, setShowChannelDetail}) =
 
     return (
         <div className='channels-list-holder'>
-            {Object.values(categories.current).map((categoryArray, ii) => {
+            {Object.values(categories).map((categoryArray, ii) => {
                 return (
                     <div key={ii}>
                         <div className="channels-category-name-holder">

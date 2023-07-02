@@ -56,7 +56,8 @@ const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
                                 setWebsocketRestart(!websocketRestart) // force reset websockets
                                 break;
                             case DESTROY_CHANNEL:
-                                dispatch(removeChannel(channelId))
+                                console.log("removing: " + serverId + channelId)
+                                dispatch(removeChannel(channelId, serverId))
                                 break;
                             case RECEIVE_SERVER:
                                 dispatch(fetchServer(serverId))
