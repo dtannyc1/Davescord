@@ -10,6 +10,10 @@
     width: calc(100% - 80px);
 }
 
+.overview-menu > div {
+    width: 100%;
+}
+
 .overview-menu > h3 {
     color: white;
     font-size: 20px;
@@ -26,6 +30,10 @@
     cursor: default;
     display: block;
     padding-bottom: 12px;
+}
+
+.overview-menu .right-option form {
+    padding-bottom: 20px;
 }
 
 .overview-menu .overview-input {
@@ -151,16 +159,16 @@
     line-height: 1.25;
 }
 
-#server-image-input {
+#user-image-input {
     display: none;
 }
 
-.overview-menu .left-option .server-image-input {
+.overview-menu .left-option .user-image-input {
     width: 40%;
     height: fit-content;
 }
 
-.overview-menu .left-option .server-image-input:hover:after {
+.overview-menu .left-option .user-image-input:hover:after {
     content: 'CHANGE \A ICON';
     position: absolute;
     z-index: 20;
@@ -182,7 +190,7 @@
     font-weight: 600;
 }
 
-.overview-menu .left-option .server-image-upload-button {
+.overview-menu .left-option .user-image-upload-button {
     margin-top: 20px;
     padding: 8px 15px;
     border: solid 1px rgba(255, 255, 255, 0.1);
@@ -195,12 +203,12 @@
     font-weight: 400;
 }
 
-.overview-menu .left-option .server-image-upload-button:hover {
+.overview-menu .left-option .user-image-upload-button:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border: solid 1px rgba(255, 255, 255, 0);
     transition: background-color 0.3s;
 }
 
-#server-image-input2 {
+#user-image-input2 {
     display: none;
 }
