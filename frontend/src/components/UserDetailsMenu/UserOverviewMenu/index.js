@@ -7,8 +7,8 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentUser = useSelector(state => state.users[currentUserId]);
-    const [newUsername, setNewUsername] = useState(currentUser? currentUser.username : "");
-    const [newEmail, setNewEmail] = useState(currentUser?.email);
+    const [newUsername, setNewUsername] = useState(currentUser ? currentUser.username : "");
+    const [newEmail, setNewEmail] = useState(currentUser?.email ? currentUser?.email : "");
     const [newPassword, setNewPassword] = useState('');
     const [newPassword2, setNewPassword2] = useState('');
     const [errors, setErrors] = useState([]);
@@ -16,11 +16,7 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
     const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
 
     useEffect(() => {
-        setNewUsername(currentUser? currentUser.username : "");
-        setNewEmail(currentUser?.email);
-        setNewPassword('');
-        setNewPassword2('');
-        setErrors([]);
+        resetInputs();
     }, [currentUser])
 
     useEffect(() => {
@@ -52,6 +48,14 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
         }
     }
 
+    const resetInputs = () => {
+        setNewUsername(currentUser? currentUser.username : "");
+        setNewEmail(currentUser?.email ? currentUser?.email : "");
+        setNewPassword('');
+        setNewPassword2('');
+        setErrors([]);
+    }
+
     return (
         <div className="overview-menu">
             <h3>Overview</h3>
@@ -79,19 +83,21 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
                         </form>
                         <span className='overview-input-title'>Email</span>
                         <form>
-                            <input className='overview-input' type='text' value={newUsername} onChange={e => setNewUsername(e.target.value)}/>
+                            <input className='overview-input' type='text' value={newEmail} onChange={e => setNewEmail(e.target.value)}/>
                         </form>
                         <span className='overview-input-title'>Password</span>
                         <form>
-                            <input className='overview-input' type='text' value={newUsername} onChange={e => setNewUsername(e.target.value)}/>
+                            <input className='overview-input' type='text' value={newPassword} onChange={e => setNewPassword(e.target.value)}/>
                         </form>
                     </div>
                 </div>
-                <div className={((currentUser?.username === newUsername || newUsername?.length === 0 ) && (!photoFile)) ?
+                <div className={((currentUser?.username === newUsername || newUsername?.length === 0 )
+                                && (!photoFile)
+                                && (currentUser?.email === newEmail || newEmail?.length === 0 )) ?
                         'save-button-holder hidden' : 'save-button-holder'}>
                     <div className="save-button-text">Careful - you have unsaved changes!</div>
                     <div className="buttons">
-                        <button className='overview-reset-button' onClick={e => {setPhotoFile(null); setNewUsername(currentUser?.username)}}>Reset</button>
+                        <button className='overview-reset-button' onClick={resetInputs}>Reset</button>
                         <button className='overview-save-button' onClick={updateUser}>Save Changes</button>
                     </div>
                 </div>
