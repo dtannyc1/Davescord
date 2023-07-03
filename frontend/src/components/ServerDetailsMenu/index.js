@@ -49,8 +49,8 @@ const ServerDetailsMenu = ({visible, setVisible}) => {
                     {/* <ul>
                         <li className="server-details-title">user management</li>
                         <li className={showMembers ? "selected" : null} onClick={e => setMenu("members")}>Members</li>
-                    </ul> */}
-                    <hr className="server-details-divider"/>
+                    </ul>
+                    <hr className="server-details-divider"/> */}
                     <ul>
                         <li onClick={handleDeletion}>Delete Server</li>
                     </ul>

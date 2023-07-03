@@ -4,7 +4,7 @@ import { logoutUser } from "../../store/session";
 import { useHistory } from "react-router-dom";
 
 
-const CurrentUserProfile = () => {
+const CurrentUserProfile = ({setDetailVisibility}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const currentUserId = useSelector(state => state.session.currentUserId);
@@ -36,7 +36,7 @@ const CurrentUserProfile = () => {
                     </div>
                 </div>
             </div>
-            <button className="logout-button" onClick={handleLogout}>Logout</button>
+            <button className="logout-button" onClick={() => setDetailVisibility(true)}>Logout</button>
         </div>
     )
 }

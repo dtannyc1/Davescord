@@ -19,6 +19,7 @@ import FriendsNameHeader from "./FriendsNameHeader";
 import { useRef } from "react";
 import { fetchServers} from "../../store/server";
 import { fetchUser } from "../../store/user";
+import UserDetailsMenu from "../UserDetailsMenu";
 
 const ChannelsPage = ({setWebsocketRestart}) => {
     const {serverId} = useParams();
@@ -29,6 +30,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     const [showChannelModal, setShowChannelModal] = useState(false);
     const [showServerDetail, setShowServerDetail] = useState(false);
     const [showChannelDetail, setShowChannelDetail] = useState(false);
+    const [showUserDetail, setShowUserDetail] = useState(false);
 
     const categoryName = useRef();
 
@@ -43,6 +45,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
             <CreateChannelModal visible={showChannelModal} setVisible={setShowChannelModal} categoryName={categoryName} setWebsocketRestart={setWebsocketRestart}/>
             <ServerDetailsMenu visible={showServerDetail} setVisible={setShowServerDetail} />
             <ChannelDetailsMenu visible={showChannelDetail} setVisible={setShowChannelDetail} />
+            <UserDetailsMenu visible={showUserDetail} setVisible={setShowUserDetail} />
             <div className="channels-column1-holder">
                 <div className="channels-column1">
 
@@ -68,7 +71,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
 
                     {(serverId === "@me") ? <div></div>: <ChannelsList showCreateChannel={setShowChannelModal} categoryName={categoryName} setShowChannelDetail={setShowChannelDetail}/>}
 
-                    <CurrentUserProfile/>
+                    <CurrentUserProfile setDetailVisibility={setShowUserDetail}/>
                 </div>
             </div>
             <div className="channels-column3-holder">
