@@ -1,27 +1,36 @@
+import { useEffect, useRef } from 'react';
 import './ChannelsList.css'
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { useState } from 'react';
 
 const ChannelsList = ({showCreateChannel, categoryName, setShowChannelDetail}) => {
     const history = useHistory();
     const {serverId, channelId} = useParams();
     const currentUserId = useSelector(state => state.session.currentUserId);
     const currentServer = useSelector(state => state.servers[serverId]);
-    const currentChannelIds = currentServer ? currentServer.channels : [];
     const channels = useSelector(state => state.channels);
     const unreadChannels = useSelector(state => state.unread.channels)
+    // const currentChannelIds = currentServer ? currentServer.channels : [];
+    // const currentChannelIds = useRef([]);
+    // const categories = useRef({});
+    const [categories, setCategories] = useState([]);
 
-    let categories = {};
-    currentChannelIds.forEach(channelId => {
-        let channel = channels[channelId];
-        if (channel) {
-            if (categories[channel.categoryName.toUpperCase()]){
-                categories[channel.categoryName.toUpperCase()].push(channel);
-            } else {
-                categories[channel.categoryName.toUpperCase()] = [channel];
+    useEffect(() => {
+        let tmpcategories = {};
+        let currentChannelIds = currentServer ? currentServer.channels : [];
+        currentChannelIds.forEach(channelId => {
+            let channel = channels[channelId];
+            if (channel) {
+                if (tmpcategories[channel.categoryName.toUpperCase()]){
+                    tmpcategories[channel.categoryName.toUpperCase()].push(channel);
+                } else {
+                    tmpcategories[channel.categoryName.toUpperCase()] = [channel];
+                }
             }
-        }
-    })
+        })
+        setCategories(tmpcategories);
+    }, [currentServer, channels])
 
     const handleAddChannelClick = catName => e => {
         e.preventDefault();

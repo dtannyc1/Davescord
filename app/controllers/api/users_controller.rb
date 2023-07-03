@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
 
-    wrap_parameters include: User.attribute_names + ['password']
+    wrap_parameters include: User.attribute_names + ['password'] + [:photo]
 
     def index
         @users = User.all
@@ -26,6 +26,22 @@ class Api::UsersController < ApplicationController
             render :show
         else
             render json: { errors: @user.errors.full_messages }, status: 422 # maybe make these full errors
+        end
+    end
+
+    def update
+        @user = User.find(params[:id])
+
+        if @user
+            if (@user.id == current_user.id)
+                if (@user.update(user_params))
+                    render :show
+                end
+            else
+                render json: {errors: 'Unauthorized, must be logged in to update user info'}, status: :unauthorized
+            end
+        else
+            render json: {errors: "User not found"}, status: 404
         end
     end
 

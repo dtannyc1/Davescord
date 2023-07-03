@@ -122,14 +122,14 @@ const Message = ({message, prevMessage, deleteButtonVisible, editButtonVisible})
         return (
             <div className='message-holder'>
                 {users[message.authorId]?.photoUrl ?
-                    <img className='user-item-img' src={users[message.authorId]?.photoUrl} alt={users[message.authorId]?.username}/>:
+                    <img className='user-item-img' src={users[message.authorId]?.photoUrl} alt={users[message.authorId]?.username.toUpperCase().charAt(0)}/>:
                     ((users[message.authorId]?.color) ?
                     <div style={{backgroundColor: users[message.authorId]?.color}} className='user-item-img-placeholder'>{`${users[message.authorId]?.username.toUpperCase().charAt(0)}`}</div> :
                     <div className='user-item-img-placeholder'>{users[message.authorId] ? `${users[message.authorId]?.username.toUpperCase().charAt(0)}`: "U"}</div>)
                 }
                 <div className='message-main'>
                     <span className='message-user-info'>
-                        {users[message.authorId]?.username}
+                        {users[message.authorId] ? users[message.authorId].username : "unknown user"}
                         <span className='message-datetime'>{formatDate(message.createdAt)}</span>
                     </span>
                     {messageBody()}
@@ -140,14 +140,14 @@ const Message = ({message, prevMessage, deleteButtonVisible, editButtonVisible})
         return (
             <div className='message-holder'>
                 {users[message.authorId]?.photoUrl ?
-                    <img className='user-item-img' src={users[message.authorId]?.photoUrl} alt={users[message.authorId]?.username}/>:
+                    <img className='user-item-img' src={users[message.authorId]?.photoUrl} alt={users[message.authorId]?.username.toUpperCase().charAt(0)}/>:
                     ((users[message.authorId]?.color) ?
                     <div style={{backgroundColor: users[message.authorId]?.color}} className='user-item-img-placeholder'>{`${users[message.authorId]?.username.toUpperCase().charAt(0)}`}</div> :
                     <div className='user-item-img-placeholder'>{users[message.authorId] ? `${users[message.authorId]?.username.toUpperCase().charAt(0)}`: "U"}</div>)
                 }
                 <div className='message-main'>
                     <span className='message-user-info'>
-                        {users[message.authorId]?.username}
+                        {users[message.authorId] ? users[message.authorId].username : "unknown user"}
                         <span className='message-datetime'>{formatDate(message.createdAt)}</span>
                     </span>
                     {messageBody()}

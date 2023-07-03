@@ -5,15 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { fetchServer } from "../../store/server";
 import { addSubscription } from "../../store/subscription";
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { WebsocketContext } from "../../App";
 
 
-const ServerList = () => {
+const ServerList = ({setWebsocketRestart}) => {
     const {serverId, channelId} = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
     const servers = useSelector(state => state.servers);
     const [tmpServers, setTmpServers] = useState(null);
+    const websocketRestart = useContext(WebsocketContext);
 
     useEffect(() => {
         if (serverId !== "@me") {
@@ -24,12 +26,15 @@ const ServerList = () => {
                 // what if fetchServer doesnt actually update server slice of state?
 
                 dispatch(addSubscription(parseInt(serverId)))
-                    .then(() => {
+                    .then((serverCreated) => {
                         dispatch(fetchServer(parseInt(serverId)))
                         .then(() => {
                             if ((channelId === undefined && servers[parseInt(serverId)]?.channels?.length > 0)) {
                                     let firstChannelId = servers[parseInt(serverId)].channels[0];
                                     history.push(`/channels/${parseInt(serverId)}/${firstChannelId}`)
+                            }
+                            if (serverCreated) {
+                                setWebsocketRestart(!websocketRestart) // force restart websockets
                             }
                         })
                     })
@@ -41,6 +46,8 @@ const ServerList = () => {
                 history.push('/channels/@me/')
                 return null;
             }
+        } else {
+            setTmpServers([])
         }
     }, [dispatch, serverId, history])
 

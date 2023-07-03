@@ -1,0 +1,120 @@
+.user-details-menu {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    z-index: 20;
+    position: relative;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.user-details-left {
+    position: relative;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 31%;
+    min-width: 240px;
+    padding: 60px 0px;
+    padding-bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 20;
+    background-color: rgb(43, 45, 49);
+    transform: rotate(0deg);
+}
+
+.user-details-sidebar {
+    width: 240px;
+    padding: 6px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.user-details-sidebar > ul{
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.user-details-sidebar > ul > li {
+    color: rgb(219, 222, 225);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.user-details-sidebar > ul > li.selected {
+    background-color: rgba(78, 80, 88, 0.6);
+    color: white;
+}
+
+.user-details-sidebar > ul > li:hover {
+    background-color: rgba(78, 80, 88, 0.3);
+}
+
+.user-details-sidebar > ul > li.user-details-title {
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 12px;
+    color: rgb(148, 155, 164);
+    cursor: default;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-details-sidebar > ul > li.user-details-title:hover {
+    background-color: transparent;
+}
+
+.user-details-divider {
+    width: 144px;
+    position: relative;
+    bottom: 0px;
+    margin: 1px;
+    margin-left: 40px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 1px;
+    background-color: rgb(49, 51, 56);
+    outline: none;
+    height: 1px;
+    border: none;
+}
+
+.user-details-right{
+    /* width: calc(100vw - 240px); */
+    width: calc(100% - max(31%, 240px));
+    background-color: rgb(49, 51, 56);
+    position: absolute;
+    left: calc(max(31%, 240px));
+}
+
+.user-details-exit {
+    position: absolute;
+    background-color: transparent;
+    font-size: 60px;
+    left: min(calc(100% - 96px), 740px);
+    top: 60px;
+    cursor: pointer;
+    width: 36px;
+    filter: invert(99%) sepia(1%) saturate(2416%) hue-rotate(176deg) brightness(97%) contrast(82%);
+}
+
+.user-details-exit:hover {
+    filter: invert(89%) sepia(91%) saturate(2625%) hue-rotate(183deg) brightness(124%) contrast(87%);
+}
+
+.user-details-exit g {
+    fill: white;
+}
+
+.hidden {
+    display: none;
+}

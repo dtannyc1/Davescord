@@ -51,7 +51,7 @@
     left: -72px;
     width: 100vw;
     height: 100vh;
-    z-index: 10;
+    z-index: 30;
 }
 
 .server-details-dropdown {
@@ -83,6 +83,7 @@
     height: 15px;
     width: 15px;
     fill: rgb(173, 173, 173);
+    stroke: rgb(173, 173, 173);
 }
 
 .server-details-option:hover {
@@ -91,6 +92,7 @@
 }
 
 .server-details-option:hover > svg{
+    stroke: white;
     fill: white;
 }
 

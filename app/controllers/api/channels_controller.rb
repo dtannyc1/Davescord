@@ -47,7 +47,8 @@ class Api::ChannelsController < ApplicationController
         if (@channel.server.owner_id == current_user.id)
             ServersChannel.broadcast_to(@channel.server,
                 type: 'DESTROY_CHANNEL',
-                channelId: @channel.id)
+                channelId: @channel.id,
+                serverId: @channel.server.id)
             @channel.destroy
             render json: nil
         else

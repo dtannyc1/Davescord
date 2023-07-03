@@ -19,6 +19,7 @@ import FriendsNameHeader from "./FriendsNameHeader";
 import { useRef } from "react";
 import { fetchServers} from "../../store/server";
 import { fetchUser } from "../../store/user";
+import UserDetailsMenu from "../UserDetailsMenu";
 
 const ChannelsPage = ({setWebsocketRestart}) => {
     const {serverId} = useParams();
@@ -29,6 +30,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     const [showChannelModal, setShowChannelModal] = useState(false);
     const [showServerDetail, setShowServerDetail] = useState(false);
     const [showChannelDetail, setShowChannelDetail] = useState(false);
+    const [showUserDetail, setShowUserDetail] = useState(false);
 
     const categoryName = useRef();
 
@@ -43,6 +45,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
             <CreateChannelModal visible={showChannelModal} setVisible={setShowChannelModal} categoryName={categoryName} setWebsocketRestart={setWebsocketRestart}/>
             <ServerDetailsMenu visible={showServerDetail} setVisible={setShowServerDetail} />
             <ChannelDetailsMenu visible={showChannelDetail} setVisible={setShowChannelDetail} />
+            <UserDetailsMenu visible={showUserDetail} setVisible={setShowUserDetail} />
             <div className="channels-column1-holder">
                 <div className="channels-column1">
 
@@ -53,7 +56,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                     <span className="tooltip">Direct Messages</span>
                     <hr className="channels-divider"/>
 
-                    <ServerList/>
+                    <ServerList setWebsocketRestart={setWebsocketRestart}/>
 
                     <div className="channels-add-server-button" onClick={() => setShowServerModal(true)}>
                         <div>+</div>
@@ -64,11 +67,11 @@ const ChannelsPage = ({setWebsocketRestart}) => {
             </div>
             <div className="channels-column2-holder">
                 <div className="channels-column2">
-                    {(serverId !== "@me") ? <ServerNameHeader setDetailVisibility={setShowServerDetail}/> : <Searchbar/>}
+                    {(serverId !== "@me") ? <ServerNameHeader setDetailVisibility={setShowServerDetail} showCreateChannel={setShowChannelModal} categoryName={categoryName}/> : <Searchbar/>}
 
                     {(serverId === "@me") ? <div></div>: <ChannelsList showCreateChannel={setShowChannelModal} categoryName={categoryName} setShowChannelDetail={setShowChannelDetail}/>}
 
-                    <CurrentUserProfile/>
+                    <CurrentUserProfile setDetailVisibility={setShowUserDetail}/>
                 </div>
             </div>
             <div className="channels-column3-holder">

@@ -21,7 +21,7 @@ const CreateChannelModal = ({visible, setVisible, categoryName, setWebsocketRest
 
     useEffect(() => {
         setNewCategoryName(categoryName ? categoryName.current : '');
-    }, [categoryName])
+    }, [categoryName.current])
 
     const handleChannelCreation = async e => {
         e.preventDefault();

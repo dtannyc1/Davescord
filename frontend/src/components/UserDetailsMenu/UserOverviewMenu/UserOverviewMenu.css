@@ -1,0 +1,214 @@
+.overview-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 60px 40px;
+    padding-bottom: 120px;
+    height: calc(100vh - 180px);
+    width: calc(100% - 80px);
+}
+
+.overview-menu > div {
+    width: 100%;
+}
+
+.overview-menu > h3 {
+    color: white;
+    font-size: 20px;
+    padding-bottom: 20px;
+    cursor: default;
+}
+
+.overview-menu .overview-input-title {
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 12px;
+    color: rgb(148, 155, 164);
+    cursor: default;
+    display: block;
+    padding-bottom: 12px;
+}
+
+.overview-menu .right-option form {
+    padding-bottom: 20px;
+}
+
+.overview-menu .overview-input {
+    background-color: rgb(30, 31, 34);
+    color: rgb(186, 194, 204);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 640px;
+    /* width: calc((100% - 40px) / 2); */
+    width: 100%;
+}
+
+.overview-menu div .save-button-holder {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    max-width: 630px;
+    width: calc(100% - 130px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    position: absolute;
+    bottom: 20px;
+    cursor: default;
+    font-size: 15px;
+    transition: opacity 0.2s;
+}
+
+.overview-menu .save-button-holder > div{
+    color: white;
+    padding-left: 5px;
+    background-color: transparent;
+}
+
+.overview-reset-button{
+    color: rgb(206, 206, 206);
+    padding: 5px 10px;
+    font-size: 14px;
+    margin-right: 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.overview-reset-button:hover {
+    text-decoration: underline;
+}
+
+.overview-save-button{
+    color: rgb(255, 255, 255);
+    padding: 5px 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: hsl(142, 100%, 28%);
+    white-space: nowrap;
+}
+
+.overview-save-button:hover{
+    background-color: rgb(26, 99, 52);
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.overview-menu .save-button-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 267px;
+    width: auto;
+}
+
+.overview-menu .buttons {
+    width: fit-content;
+    display: flex;
+}
+
+.overview-menu .flex-row {
+    display: flex;
+    width: min(calc(100% - 40px), 740px);
+}
+
+.overview-menu .left-option {
+    width: 50%;
+    display: flex;
+}
+
+.overview-menu .right-option {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.overview-menu .left-option label {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.overview-menu .left-option label img {
+    aspect-ratio: 1;
+    width: 80%;
+    /* height: min(80%, auto); */
+    object-fit: cover;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.overview-menu .left-option > div {
+    width: 60%;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(206, 206, 206);
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.25;
+}
+
+#user-image-input {
+    display: none;
+}
+
+.overview-menu .left-option .user-image-input {
+    width: 40%;
+    height: fit-content;
+}
+
+.overview-menu .left-option .user-image-input:hover:after {
+    content: 'CHANGE \A ICON';
+    position: absolute;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    /* height: min(80%, auto); */
+    border-radius: 100%;
+    border: 1px solid rgb(30, 31, 34);
+    background-color: rgb(30, 31, 34);
+    white-space: pre;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    font-size: 10px;
+    line-height: 1.25;
+    font-weight: 600;
+}
+
+.overview-menu .left-option .user-image-upload-button {
+    margin-top: 20px;
+    padding: 8px 15px;
+    border: solid 1px rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+    color: white;
+    width: fit-content;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 400;
+}
+
+.overview-menu .left-option .user-image-upload-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: solid 1px rgba(255, 255, 255, 0);
+    transition: background-color 0.3s;
+}
+
+#user-image-input2 {
+    display: none;
+}

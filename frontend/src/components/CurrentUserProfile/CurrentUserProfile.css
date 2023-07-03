@@ -79,3 +79,29 @@
     margin: 8px;
     cursor: pointer;
 }
+
+.current-user-profile .user-settings{
+    color: white;
+    border-radius: 15px;
+    background-color: none;
+    border: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-right: 11px;
+}
+
+.current-user-profile .user-settings svg {
+    height: 20px;
+    width: 20px;
+    fill: rgb(173, 173, 173);
+}
+
+.current-user-profile .user-settings:hover svg {
+    fill: white;
+}
