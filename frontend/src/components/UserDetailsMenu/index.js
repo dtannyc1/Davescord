@@ -44,7 +44,7 @@ const UserDetailsMenu = ({visible, setVisible}) => {
                         <li className={showOverview ? "selected" : null} onClick={e => setMenu("overview")}>Profile</li>
                     </ul>
                     <hr className="user-details-divider"/>
-                    <ul>
+                    <ul className="user-details-logout-button">
                         <li onClick={handleLogout}>
                             <div>Logout</div>
                             <svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg">
