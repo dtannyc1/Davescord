@@ -46,6 +46,19 @@
     font-size: 15px;
     font-weight: 400;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-details-sidebar > ul > li div {
+    background-color: transparent;
+}
+
+.user-details-sidebar > ul > li svg {
+    width: 15px;
+    height: 15px;
+    fill: rgb(219, 222, 225);
+    background-color: transparent;
 }
 
 .user-details-sidebar > ul > li.selected {
@@ -55,6 +68,14 @@
 
 .user-details-sidebar > ul > li:hover {
     background-color: rgba(78, 80, 88, 0.3);
+}
+
+.user-details-sidebar > ul > li:hover div{
+    color: white;
+}
+
+.user-details-sidebar > ul > li:hover svg{
+    fill: white;
 }
 
 .user-details-sidebar > ul > li.user-details-title {
@@ -74,17 +95,16 @@
 }
 
 .user-details-divider {
-    width: 144px;
     position: relative;
     bottom: 0px;
     margin: 1px;
     margin-left: 40px;
     margin-top: 10px;
     margin-bottom: 5px;
-    padding: 1px;
+    margin-right: 10px;
     background-color: rgb(49, 51, 56);
     outline: none;
-    height: 1px;
+    height: 1.5px;
     border: none;
 }
 
