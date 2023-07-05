@@ -138,3 +138,22 @@
 .hidden {
     display: none;
 }
+
+.dev-links-holder {
+    margin-left: 60px;
+    margin-right: 30px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dev-links-holder i{
+    color: rgb(219, 222, 225);
+    transition: transform 0.25s;
+}
+
+.dev-links-holder i:hover{
+    color: white;
+    transform: scale(1.2);
+    transition: transform 0.25s;
+}

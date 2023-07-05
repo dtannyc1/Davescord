@@ -30,6 +30,11 @@ const UserDetailsMenu = ({visible, setVisible}) => {
         history.push('/')
     }
 
+    const openExternalLink = (e, link) => {
+        e.preventDefault();
+        window.open(link, "_blank")
+    }
+
     return (
         <div className={visible ? "user-details-menu" : "user-details-menu hidden"}>
             <div className="user-details-left">
@@ -50,6 +55,22 @@ const UserDetailsMenu = ({visible, setVisible}) => {
                         </li>
                     </ul>
                     <hr className="user-details-divider"/>
+                    <div className='dev-links-holder'>
+                        <a href='https://www.linkedin.com/in/dtannyc1/'
+                            onClick={e => openExternalLink(e, 'https://www.linkedin.com/in/dtannyc1/')}>
+                            <i className="fa-brands fa-linkedin fa-xl"></i>
+                        </a>
+
+                        <a href='https://wellfound.com/u/david-tan-47'
+                            onClick={e => openExternalLink(e, 'https://wellfound.com/u/david-tan-47')}>
+                            <i className="fa-brands fa-angellist fa-xl"></i>
+                        </a>
+
+                        <a href='https://github.com/dtannyc1'
+                            onClick={e => openExternalLink(e, 'https://github.com/dtannyc1')}>
+                            <i className="fa-brands fa-github fa-xl"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div className="user-details-right">
