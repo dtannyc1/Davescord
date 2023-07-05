@@ -35,13 +35,14 @@ const UserDetailsMenu = ({visible, setVisible}) => {
             <div className="user-details-left">
                 <div className="user-details-sidebar">
                     <ul>
-                        <li className="user-details-title">{currentUser?.username}</li>
-                        <li className={showOverview ? "selected" : null} onClick={e => setMenu("overview")}>Overview</li>
+                        <li className="user-details-title">User Settings</li>
+                        <li className={showOverview ? "selected" : null} onClick={e => setMenu("overview")}>Profile</li>
                     </ul>
                     <hr className="user-details-divider"/>
                     <ul>
                         <li onClick={handleLogout}>Logout</li>
                     </ul>
+                    <hr className="user-details-divider"/>
                 </div>
             </div>
             <div className="user-details-right">

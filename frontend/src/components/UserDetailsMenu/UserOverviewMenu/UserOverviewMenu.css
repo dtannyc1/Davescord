@@ -169,7 +169,7 @@
 }
 
 .overview-menu .left-option .user-image-input:hover:after {
-    content: 'CHANGE \A ICON';
+    content: 'CHANGE \A AVATAR';
     position: absolute;
     z-index: 20;
     display: flex;
@@ -179,8 +179,8 @@
     height: 100%;
     /* height: min(80%, auto); */
     border-radius: 100%;
-    border: 1px solid rgb(30, 31, 34);
-    background-color: rgb(30, 31, 34);
+    border: 1px solid rgba(30, 31, 34, 0);
+    background-color: rgba(30, 31, 34, 0.85);
     white-space: pre;
     text-align: center;
     cursor: pointer;

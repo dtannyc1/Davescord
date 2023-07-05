@@ -74,17 +74,16 @@
 }
 
 .server-details-divider {
-    width: 144px;
     position: relative;
     bottom: 0px;
     margin: 1px;
     margin-left: 40px;
     margin-top: 10px;
     margin-bottom: 5px;
-    padding: 1px;
+    margin-right: 10px;
     background-color: rgb(49, 51, 56);
     outline: none;
-    height: 1px;
+    height: 1.5px;
     border: none;
 }
 

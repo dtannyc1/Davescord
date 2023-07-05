@@ -9,6 +9,7 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
     const currentUser = useSelector(state => state.users[currentUserId]);
     const [newUsername, setNewUsername] = useState(currentUser ? currentUser.username : "");
     const [newEmail, setNewEmail] = useState(currentUser?.email ? currentUser?.email : "");
+    const [newColor, setNewColor] = useState(currentUser?.color ? currentUser.color : "")
     const [newPassword, setNewPassword] = useState('');
     const [newPassword2, setNewPassword2] = useState('');
     const [errors, setErrors] = useState([]);
@@ -58,7 +59,7 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
 
     return (
         <div className="overview-menu">
-            <h3>Overview</h3>
+            <h3>User Profile</h3>
             <div>
                 <div className="flex-row">
                     <div className="left-option">
