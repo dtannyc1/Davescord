@@ -50,4 +50,21 @@
     width: 30%;
     height: 60px;
     border-radius: 30px;
+    cursor: pointer;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: none;
+    padding: 0;
+}
+
+.overview-menu .user-color::-webkit-color-swatch{
+    border-radius: 5px;
+    border: none;
+}
+
+.overview-menu .user-color::-moz-color-swatch,
+.overview-menu .user-color::-moz-focus-inner{
+    border-radius: 5px;
+    border: none;
 }

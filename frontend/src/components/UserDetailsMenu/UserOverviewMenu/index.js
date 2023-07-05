@@ -76,6 +76,8 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
                         <form>
                             <input className='user-color'
                                    type="color"
+                                   name="color"
+                                   id="color"
                                    value={newColor}
                                    onChange={e => setNewColor(e.target.value)}/>
                         </form>
