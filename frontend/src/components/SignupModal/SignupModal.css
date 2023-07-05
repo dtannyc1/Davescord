@@ -28,7 +28,7 @@
 }
 
 .signup-modal {
-    width: 480px;
+    width: 496px;
     height: 480px;
     background-color: #313338;
     border-radius: 5px;
@@ -61,7 +61,7 @@
 
 .signup-form{
     font-size: 12px;
-    width: 416px;
+    width: 432px;
 }
 
 .signup-form > label {
