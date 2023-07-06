@@ -35,7 +35,14 @@
 .user-card .user-card-data {
     background-color: black;
     margin: 15px;
+    margin-top: 68px;
     border-radius: 10px;
     width: calc(100% - 30px);
-    height: calc(100% - 60px - 30px)
+    height: calc(100% - 60px - 68px - 15px)
+}
+
+.user-card .user-card-data .user-card-displayName {
+    color: white;
+    margin-left: 10px;
+    padding-top: 15px;
 }

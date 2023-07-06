@@ -29,6 +29,7 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('user[username]', newUsername);
+        debugger
         formData.append('user[color]', newColor);
         if (photoFile) {
             formData.append('user[photo]', photoFile)
@@ -97,7 +98,7 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
                         </div> */}
                         <span className='overview-input-title'>Preview</span>
                         <div className='user-item-card-holder'>
-                            <UserItemCard color={newColor} imageSrc={photoFile ? URL.createObjectURL(photoFile) : (currentUser?.photoUrl ? currentUser.photoUrl : image_upload)}/>
+                            <UserItemCard displayName={newUsername} color={newColor} imageSrc={photoFile ? URL.createObjectURL(photoFile) : (currentUser?.photoUrl ? currentUser.photoUrl : image_upload)}/>
                         </div>
                     </div>
 
