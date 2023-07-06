@@ -30,6 +30,18 @@ export const fetchUser = userId => async dispatch => {
     }
 }
 
+export const updateUser = (formData, userId) => async dispatch => {
+    let res = await csrfFetch(`/api/users/${userId}`, {
+        method: "PATCH",
+        body: formData
+    });
+
+    if (res.ok) {
+        let data = await res.json();
+        dispatch(addUser(data.user))
+    }
+}
+
 // reducer
 const usersReducer = (state = {}, action) => {
     const nextState = {...state};

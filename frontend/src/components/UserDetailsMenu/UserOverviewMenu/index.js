@@ -3,6 +3,7 @@ import './UserOverviewMenu.css'
 import { useEffect, useRef, useState } from 'react';
 import image_upload from '../../../assets/create_server_image_upload.svg';
 import UserItemCard from '../../UserItemCard';
+import { updateUser } from '../../../store/user';
 
 const UserOverviewMenu = ({visibility, visibilitySetter}) => {
     const dispatch = useDispatch();
@@ -25,17 +26,15 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
         }
     }, [visibility])
 
-    const updateUser = e => {
+    const updateUserData = e => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('user[username]', newUsername);
-        debugger
         formData.append('user[color]', newColor);
         if (photoFile) {
             formData.append('user[photo]', photoFile)
         }
-        // currentServer.serverName = serverName;
-        // dispatch(updateServer(formData, serverId));
+        dispatch(updateUser(formData, currentUserId));
         visibilitySetter(false);
     }
 
@@ -110,7 +109,7 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
                     <div className="save-button-text">Careful - you have unsaved changes!</div>
                     <div className="buttons">
                         <button className='overview-reset-button' onClick={resetInputs}>Reset</button>
-                        <button className='overview-save-button' onClick={updateUser}>Save Changes</button>
+                        <button className='overview-save-button' onClick={updateUserData}>Save Changes</button>
                     </div>
                 </div>
             </div>
