@@ -38,7 +38,7 @@
 }
 
 .splashfooter-linkholder > ul > li {
-    margin-top: 14px;
+    margin-top: 20px;
 }
 
 .splashfooter-linkholder > ul > li > a {
@@ -46,9 +46,16 @@
     color: white;
     text-decoration: none;
     font-weight: 400;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-.splashfooter-linkholder > ul > li > a:hover {
+.splashfooter-linkholder > ul > li > a div{
+    margin-left: 10px
+}
+
+.splashfooter-linkholder > ul > li > a:hover div{
     text-decoration: underline;
 }
 

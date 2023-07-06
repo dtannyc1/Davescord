@@ -46,6 +46,19 @@
     font-size: 15px;
     font-weight: 400;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-details-sidebar > ul > li div {
+    background-color: transparent;
+}
+
+.user-details-sidebar > ul > li svg {
+    width: 15px;
+    height: 15px;
+    fill: rgb(219, 222, 225);
+    background-color: transparent;
 }
 
 .user-details-sidebar > ul > li.selected {
@@ -55,6 +68,18 @@
 
 .user-details-sidebar > ul > li:hover {
     background-color: rgba(78, 80, 88, 0.3);
+}
+
+.user-details-sidebar > ul > li:hover div{
+    color: white;
+}
+
+.user-details-sidebar > ul > li:hover svg{
+    fill: white;
+}
+
+.user-details-sidebar .user-details-logout-button {
+    margin-top: 10px;
 }
 
 .user-details-sidebar > ul > li.user-details-title {
@@ -74,17 +99,16 @@
 }
 
 .user-details-divider {
-    width: 144px;
     position: relative;
     bottom: 0px;
     margin: 1px;
     margin-left: 40px;
     margin-top: 10px;
     margin-bottom: 5px;
-    padding: 1px;
+    margin-right: 10px;
     background-color: rgb(49, 51, 56);
     outline: none;
-    height: 1px;
+    height: 1.5px;
     border: none;
 }
 
@@ -117,4 +141,23 @@
 
 .hidden {
     display: none;
+}
+
+.dev-links-holder {
+    margin-left: 60px;
+    margin-right: 30px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dev-links-holder i{
+    color: rgb(219, 222, 225);
+    transition: transform 0.25s;
+}
+
+.dev-links-holder i:hover{
+    color: white;
+    transform: scale(1.2);
+    transition: transform 0.25s;
 }

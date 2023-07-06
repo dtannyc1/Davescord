@@ -20,6 +20,7 @@ class Api::UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
+        @user.color ||= Faker::Color.hex_color
 
         if (@user.save)
             login!(@user)
@@ -47,6 +48,6 @@ class Api::UsersController < ApplicationController
 
     private
     def user_params
-        params.require(:user).permit(:username, :password, :email, :profile_picture, :status, :color)
+        params.require(:user).permit(:username, :password, :email, :profile_picture, :status, :color, :photo)
     end
 end

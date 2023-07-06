@@ -30,7 +30,7 @@ ApplicationRecord.transaction do
     User.create!(
         username: 'demo-login',
         email: 'demo@user.io',
-        color: Faker::Color.hex_color + "40",
+        color: Faker::Color.hex_color,
         password: 'password'#,
         #   profile_picture: "https://loremflickr.com/50/50/dog?random=0"
     )
@@ -40,7 +40,7 @@ ApplicationRecord.transaction do
         User.create!({
             username: Faker::Internet.unique.username(specifier: 3),
             email: Faker::Internet.unique.email,
-            color: Faker::Color.hex_color + "40",
+            color: Faker::Color.hex_color,
             password: 'password'#,
             # profile_picture: "https://loremflickr.com/50/50/dog?random=" + ii.to_s
         })
