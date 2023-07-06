@@ -22,7 +22,7 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
     useEffect(() => {
         if (!visibility){
             setNewUsername(currentUser?.username)
-            setNewColor(currentUser?.color.slice(0,7))
+            setNewColor(currentUser?.color?.slice(0,7))
         }
     }, [visibility])
 
@@ -49,7 +49,8 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
 
     const resetInputs = () => {
         setNewUsername(currentUser? currentUser.username : "");
-        setNewColor(currentUser?.color.slice(0,7))
+        setNewColor(currentUser?.color ? currentUser.color.slice(0,7) : "#FFFFFF");
+        setPhotoFile(null);
         setErrors([]);
     }
 
@@ -104,7 +105,7 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
                 </div>
                 <div className={((currentUser?.username === newUsername || newUsername?.length === 0 )
                                 && (!photoFile)
-                                && (currentUser?.color.slice(0,7) === newColor)) ?
+                                && (currentUser?.color?.slice(0,7) === newColor || (!currentUser?.color && newColor === "#FFFFFF"))) ?
                         'save-button-holder hidden' : 'save-button-holder'}>
                     <div className="save-button-text">Careful - you have unsaved changes!</div>
                     <div className="buttons">
