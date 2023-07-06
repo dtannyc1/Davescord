@@ -95,7 +95,10 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
                             We recommend an image of at least 512x512 for the user.
 
                         </div> */}
-                        <UserItemCard color={newColor} imageSrc={photoFile ? URL.createObjectURL(photoFile) : (currentUser?.photoUrl ? currentUser.photoUrl : image_upload)}/>
+                        <span className='overview-input-title'>Preview</span>
+                        <div className='user-item-card-holder'>
+                            <UserItemCard color={newColor} imageSrc={photoFile ? URL.createObjectURL(photoFile) : (currentUser?.photoUrl ? currentUser.photoUrl : image_upload)}/>
+                        </div>
                     </div>
 
                 </div>
