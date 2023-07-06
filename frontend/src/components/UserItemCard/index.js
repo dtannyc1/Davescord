@@ -5,7 +5,8 @@ const UserItemCard = ({displayName, color, imageSrc, footer}) => {
         <div className='user-card'>
             <div className='user-card-banner' style={{backgroundColor: `${color}`}}></div>
             <div className='user-card-image-holder'>
-                <img className='user-card-image' src={imageSrc} />
+                {imageSrc ? <img className='user-card-image' src={imageSrc} /> :
+                <div className='user-card-image' style={{backgroundColor: `${color}`}}>{displayName?.toUpperCase().charAt(0)}</div>}
             </div>
             <div className='user-card-data'>
                 <div className='user-card-displayName'>

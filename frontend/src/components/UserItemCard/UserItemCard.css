@@ -30,6 +30,16 @@
     position: relative;
     top: 8px;
     left: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 34px;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 50px;
+    line-height: 1;
+    color: white;
+    cursor: default;
 }
 
 .user-card .user-card-data {

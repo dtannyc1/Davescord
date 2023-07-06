@@ -86,19 +86,9 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
                     </div>
 
                     <div className="right-option">
-                        {/* <label className="user-image-input" htmlFor="user-image-input">
-                            {photoFile ? <img className="user-image-upload" src={URL.createObjectURL(photoFile)} alt="upload"/>
-                                : (currentUser?.photoUrl ? <img className="user-image" src={currentUser.photoUrl} alt="upload"/>
-                                : <img className="user-image-upload" src={image_upload} alt="upload"/>)}
-                            <input type="file" id="user-image-input" name="file3" accept="image/*" onChange={handleFile}/>
-                        </label>
-                        <div>
-                            We recommend an image of at least 512x512 for the user.
-
-                        </div> */}
                         <span className='overview-input-title'>Preview</span>
                         <div className='user-item-card-holder'>
-                            <UserItemCard displayName={newUsername} color={newColor} imageSrc={photoFile ? URL.createObjectURL(photoFile) : (currentUser?.photoUrl ? currentUser.photoUrl : image_upload)}/>
+                            <UserItemCard displayName={newUsername} color={newColor} imageSrc={photoFile ? URL.createObjectURL(photoFile) : (currentUser?.photoUrl ? currentUser.photoUrl : null)}/>
                         </div>
                     </div>
 
