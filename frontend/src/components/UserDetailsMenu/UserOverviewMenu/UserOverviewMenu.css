@@ -1,8 +1,24 @@
+.overview-menu .div-fill {
+    width: 100%;
+}
+
+.overview-menu .flex-row {
+    display: flex;
+    width: min(calc(100% - 40px), 740px);
+}
+
 .overview-menu .left-option {
     display: flex;
     flex-direction: column;
     width: 47.5%;
     margin-right: 2.5%;
+}
+
+.overview-menu .right-option {
+    width: 47.5%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2.5%;
 }
 
 .overview-menu .left-option form {

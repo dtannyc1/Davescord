@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './UserOverviewMenu.css'
 import { useEffect, useRef, useState } from 'react';
 import image_upload from '../../../assets/create_server_image_upload.svg';
+import UserItemCard from '../../UserItemCard';
 
 const UserOverviewMenu = ({visibility, visibilitySetter}) => {
     const dispatch = useDispatch();
@@ -55,7 +56,7 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
     return (
         <div className="overview-menu">
             <h3>User Profile</h3>
-            <div>
+            <div className="div-fill">
                 <div className="flex-row">
                     <div className='left-option'>
                         <span className='overview-input-title'>Display Name</span>
@@ -84,7 +85,7 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
                     </div>
 
                     <div className="right-option">
-                        <label className="user-image-input" htmlFor="user-image-input">
+                        {/* <label className="user-image-input" htmlFor="user-image-input">
                             {photoFile ? <img className="user-image-upload" src={URL.createObjectURL(photoFile)} alt="upload"/>
                                 : (currentUser?.photoUrl ? <img className="user-image" src={currentUser.photoUrl} alt="upload"/>
                                 : <img className="user-image-upload" src={image_upload} alt="upload"/>)}
@@ -93,12 +94,14 @@ const UserOverviewMenu = ({visibility, visibilitySetter}) => {
                         <div>
                             We recommend an image of at least 512x512 for the user.
 
-                        </div>
+                        </div> */}
+                        <UserItemCard color={newColor} imageSrc={photoFile ? URL.createObjectURL(photoFile) : (currentUser?.photoUrl ? currentUser.photoUrl : image_upload)}/>
                     </div>
 
                 </div>
                 <div className={((currentUser?.username === newUsername || newUsername?.length === 0 )
-                                && (!photoFile)) ?
+                                && (!photoFile)
+                                && (currentUser?.color.slice(0,7) === newColor)) ?
                         'save-button-holder hidden' : 'save-button-holder'}>
                     <div className="save-button-text">Careful - you have unsaved changes!</div>
                     <div className="buttons">
