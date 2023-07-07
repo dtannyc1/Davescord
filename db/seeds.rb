@@ -31,18 +31,23 @@ ApplicationRecord.transaction do
         username: 'demo-login',
         email: 'demo@user.io',
         color: Faker::Color.hex_color,
-        password: 'password'#,
-        #   profile_picture: "https://loremflickr.com/50/50/dog?random=0"
+        password: 'password'
+    )
+
+    User.create!(
+        username: 'David',
+        email: 'david@user.io',
+        color: Faker::Color.hex_color,
+        password: 'password'
     )
 
     # More users
-    19.times do |ii|
+    18.times do |ii|
         User.create!({
             username: Faker::Internet.unique.username(specifier: 3),
             email: Faker::Internet.unique.email,
             color: Faker::Color.hex_color,
-            password: 'password'#,
-            # profile_picture: "https://loremflickr.com/50/50/dog?random=" + ii.to_s
+            password: 'password'
         })
     end
 

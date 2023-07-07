@@ -69,14 +69,26 @@ const SignUpModal = props => {
 
         setErrors([]);
         try{
-            await dispatch(loginUser({credential: "demo-login", password: "password"}))
+            dispatch(loginUser({credential: "demo-login", password: "password"}))
             // clear input fields
             setEmail('')
             setUsername('')
             setPassword('')
         } catch (err) {
-            // console.log("demo-login error")
-            // console.log(err.errors)
+            setErrors(err.errors)
+        }
+    }
+
+    const demoLogin2 = async e => {
+        e.preventDefault();
+
+        setErrors([]);
+        try{
+            dispatch(loginUser({credential: "David", password: "password"}))
+            setEmail('')
+            setUsername('')
+            setPassword('')
+        } catch (err) {
             setErrors(err.errors)
         }
     }
@@ -100,7 +112,7 @@ const SignUpModal = props => {
                     <div className="signup-bottom">
                         <div className="signup-options-buttons">
                             <p><Link to="/login">Already have an account?</Link></p>
-                            <p>Login as the <span onClick={demoLogin}>Demo User</span></p>
+                            <p>Login as <span onClick={demoLogin}>Demo User 1</span> or <span onClick={demoLogin}>Demo User 2</span></p>
                         </div>
                         <br/>
                         <br/>
