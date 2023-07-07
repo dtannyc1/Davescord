@@ -57,6 +57,19 @@ const LoginModal = props => {
         }
     }
 
+    const demoLogin2 = async e => {
+        e.preventDefault();
+
+        setErrors([]);
+        try{
+            await dispatch(loginUser({credential: "David", password: "password"}))
+            setPassword('')
+            setCredential('')
+        } catch (err) {
+            setErrors(err.errors)
+        }
+    }
+
     return (
         <div className="login-modal-holder">
             <ModalBackground/>
@@ -75,7 +88,9 @@ const LoginModal = props => {
                     <button>Log In</button>
                     <div className="login-bottom">
                         <p>Need an account? <Link to="/register">Register</Link></p>
-                        <p>Login as the <span onClick={demoLogin}>Demo User</span></p>
+                        <p>
+                            Login as <span onClick={demoLogin}>Demo User 1</span> or <span onClick={demoLogin2}>Demo User 2</span>
+                        </p>
                     </div>
                 </form>
             </div>
