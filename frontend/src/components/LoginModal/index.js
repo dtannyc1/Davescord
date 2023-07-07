@@ -62,7 +62,7 @@ const LoginModal = props => {
 
         setErrors([]);
         try{
-            await dispatch(loginUser({credential: "David", password: "password"}))
+            dispatch(loginUser({credential: "David", password: "password"}))
             setPassword('')
             setCredential('')
         } catch (err) {
