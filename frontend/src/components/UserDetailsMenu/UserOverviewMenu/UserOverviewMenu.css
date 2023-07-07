@@ -91,3 +91,11 @@
     background-color: transparent;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
 }
+
+.overview-menu .overview-input-title.error {
+    color: #FA777C;
+}
+
+.overview-menu .overview-input.error {
+    border: 1px solid #FA777C;
+}
