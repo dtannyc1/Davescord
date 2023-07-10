@@ -11,6 +11,7 @@ __Technologies, Libraries, and APIs__
 - React and Redux Frontend
 - PostgreSQL Database
 - WebSockets via Action Cable
+- AWS
 - HTML
 - CSS
 
@@ -22,6 +23,7 @@ Using Davescord, users can:
 - Create, read, update, and destroy their own servers and channels within their own servers
 - Create, read, update, and destroy messages in servers they are subscribed to
 - See changes to their subscribed servers in real time, including message posts, message edits, message deletion, and more.
+- Create, read, and update their profile pictures and server images
 
 __Code Snippets__
 ----
@@ -191,7 +193,6 @@ useEffect(() => {
 __Future Plans:__
 ----
 The work for this project is not yet complete. In the near future, I plan to implement the following features:
-- Image storage related to user profiles and server images via AWS
 - A friend request system as well as the ability to send private messages to other users
 - A robust server invite system which allows server subscribers to create invitation links which have expiration dates
 - WebSocket integration of user statuses so users can see if their friends are online
