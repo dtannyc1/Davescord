@@ -1,9 +1,12 @@
 [![Main Logo](frontend/src/assets/Davescord-logo.svg)](https://davescord.onrender.com/)
 
+
+[![Demo](frontend/src/assets/DavescordDemoMain.gif)](https://davescord.onrender.com/)
+
 __Background__
 ----
 
-Davescord is a clone of Discord, a communication platform in which users can build their own servers and channels to have organized discussions about any topic they are interested in. Users subscribed to the same server can chat in near real time, and they recieve unread message notifications if they are not currently in the channel that the message was sent in. The major functionality of this web application was written in two weeks.
+Davescord is a clone of Discord, a communication platform in which users can build their own servers and channels to have organized discussions about any topic they are interested in. Users subscribed to the same server can chat in real time, and they recieve unread message notifications if they are not currently in the channel that the message was sent in.
 
 __Technologies, Libraries, and APIs__
 ----
@@ -20,8 +23,9 @@ __Key Features__
 
 Using Davescord, users can:
 - Create their own account and log in securely
-- Create, read, update, and destroy their own servers and channels within their own servers
+- Create, read, update, and destroy their own servers as well as channels within their own servers
 - Create, read, update, and destroy messages in servers they are subscribed to
+- Create, read, and update their profile pictures and server images
 - See changes to their subscribed servers in real time, including message posts, message edits, message deletion, and more.
 - Create, read, and update their profile pictures and server images
 
@@ -31,6 +35,8 @@ __Code Snippets__
 Here are some highlights of the code behind this website:
 
 __Server Creation__
+
+[![Server Creation](frontend/src/assets/DavescordDemoServerCreation.gif)](https://davescord.onrender.com/)
 
 Any user who is logged in has the option to create their own server. The UI prevents users from creating a server with no name. Upon creation of the server, the user is automatically subscribed to the server and a default general channel is created so they can start sending messages immediately.
 
@@ -123,7 +129,9 @@ As the owner of a server, users will have the option either add a new channel to
 
 __Live Communication__
 
-When a user first logs in, the frontend mounts a component which creates WebSocket subscriptions to every channel in every server they are subscribed to as well as WebSocket subscriptions to the servers themselves. Each of these subscriptions listen for changes to the backend state and respond by updating the frontend state for all users who are listening to the corresponding WebSocket subscription. These subscriptions are created in a React useEffect which has proper cleanup of all the WebSocket subscriptions as well as a way to restart all of the subscriptions.
+[![Demo](frontend/src/assets/DavescordDemo.gif)](https://davescord.onrender.com/)
+
+When a user first logs in, a component is mounted on the frontend which creates WebSocket subscriptions to every channel in every server they are subscribed to as well as WebSocket subscriptions to the servers themselves. Each of these subscriptions listen for changes to the backend state and respond by updating the frontend state for all users who are listening to the corresponding WebSocket subscription. These subscriptions are created in a React useEffect which has proper cleanup of all the WebSocket subscriptions as well as a way to restart all of the subscriptions.
 
 ```
 useEffect(() => {
