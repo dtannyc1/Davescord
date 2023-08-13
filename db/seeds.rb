@@ -16,6 +16,8 @@ ApplicationRecord.transaction do
     Server.destroy_all
     Subscription.destroy_all
     Message.destroy_all
+    Friend.destroy_all
+    PrivateChat.destroy_all
 
     puts "Resetting primary keys..."
     # For easy testing, so that after seeding, the first `User` has `id` of 1
@@ -24,6 +26,8 @@ ApplicationRecord.transaction do
     ApplicationRecord.connection.reset_pk_sequence!('subscriptions')
     ApplicationRecord.connection.reset_pk_sequence!('channels')
     ApplicationRecord.connection.reset_pk_sequence!('messages')
+    ApplicationRecord.connection.reset_pk_sequence!('friends')
+    ApplicationRecord.connection.reset_pk_sequence!('private_chats')
 
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
@@ -78,7 +82,7 @@ ApplicationRecord.transaction do
         })
     end
 
-    puts "Creating subscriptions..."
+    puts "Creating subscriptions and friends..."
     [1,2,4,5,8,11,12,16,17,18,19].each do |server_num|
         if (Server.find(server_num).owner_id != 1)
             Subscription.create!({
@@ -87,6 +91,8 @@ ApplicationRecord.transaction do
             })
         end
     end
+
+    friends = Hash.new {|h, k| h[k] = Array.new}
 
     User.all.each do |user|
         if (user.id != 1)
@@ -102,6 +108,21 @@ ApplicationRecord.transaction do
                         server_id: server_num
                     })
                 end
+            end
+        end
+
+        # also add friends
+        num_friends = rand(3..5)
+        until (friends[user.id].length >= num_friends)
+            friend_id = rand(1..20)
+            if (friend_id != user.id && !friends[user.id].include?(friend_id))
+                Friend.create!({
+                    friender_id: user.id,
+                    friendee_id: friend_id,
+                    status: "approved"
+                })
+                friends[user.id].push(friend_id)
+                friends[friend_id].push(user.id)
             end
         end
     end
