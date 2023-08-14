@@ -2,6 +2,10 @@ class Api::FriendsController < ApplicationController
     def index
         # get list of all friends for current user
         # all friender and friendee options
+        @frienders = Friend.where(friender_id: current_user.id).includes(:friendee)
+        @friendees = Friend.where(friendee_id: current_user.id).includes(:friender)
+
+        render :index
     end
 
     def create
