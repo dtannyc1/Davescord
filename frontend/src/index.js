@@ -7,6 +7,7 @@ import './index.css';
 import App from './App';
 import configureStore from './store';
 import * as sessionActions from './store/session'
+import * as friendsActions from './store/friend'
 import csrfFetch from './store/csrf';
 
 const store = configureStore();
@@ -15,6 +16,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions;
+  window.friendsActions = friendsActions;
 }
 
 function Root() {

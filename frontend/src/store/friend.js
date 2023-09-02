@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { addUsers } from "./user";
 
 // action types
 const ADD_FRIEND = 'friends/ADD_FRIEND';
@@ -28,9 +29,18 @@ export const removeFriend = friendId => {
 }
 
 // thunk action creators
+export const fetchFriends = () => async dispatch => {
+    let res = await csrfFetch('/api/friends')
+
+    if (res.ok){
+        let data = await res.json();
+        dispatch(addFriends(data.friends));
+        dispatch(addUsers(data.users));
+    }
+}
+
 
 // reducer
-
 const friendsReducer = (state = {}, action) => {
     let nextState = {...state};
 
