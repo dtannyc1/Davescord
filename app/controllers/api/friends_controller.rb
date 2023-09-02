@@ -11,6 +11,14 @@ class Api::FriendsController < ApplicationController
     def create
         # create new friend request
         # default to pending
+        params[:friend][:friender_id] = current_user.id
+        @friend = Friend.new(friends_params)
+
+        if @friend.save
+            render :show
+        else
+            render json: @friend.errors.full_messages, status: 422
+        end
 
     end
 
