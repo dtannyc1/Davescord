@@ -21,6 +21,7 @@ import { useRef } from "react";
 import { fetchServers} from "../../store/server";
 import { fetchUser } from "../../store/user";
 import UserDetailsMenu from "../UserDetailsMenu";
+import { fetchFriends } from "../../store/friend";
 
 const ChannelsPage = ({setWebsocketRestart}) => {
     const {serverId} = useParams();
@@ -38,6 +39,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     useEffect(() => {
         dispatch(fetchServers())
         dispatch(fetchUser(currentUserId))
+        dispatch(fetchFriends())
     }, [dispatch, currentUserId])
 
     return (
