@@ -16,7 +16,7 @@ class Api::FriendsController < ApplicationController
         @friend = Friend.new(friends_params)
 
         if @friend.save
-            @friendee = User.where(friendee_id: params[:friend][:friendee_id])
+            @friendee = User.where(id: params[:friend][:friendee_id])
             render :show
         else
             render json: @friend.errors.full_messages, status: 422
