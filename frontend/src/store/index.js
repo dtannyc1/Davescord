@@ -6,6 +6,7 @@ import usersReducer from './user';
 import channelsReducer from './channel';
 import messagesReducer from './message';
 import unreadReducer from './unread';
+import friendsReducer from './friend';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     users: usersReducer,
     channels: channelsReducer,
     messages: messagesReducer,
-    unread: unreadReducer
+    unread: unreadReducer,
+    friends: friendsReducer
 });
 
 let enhancer;

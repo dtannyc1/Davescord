@@ -14,6 +14,7 @@ import ChannelNameHeader from "./ChannelNameHeader";
 import CreateChannelModal from "./CreateChannelModal";
 import ChannelDetailsMenu from "./ChannelDetailMenu";
 import MessageList from "./MessageList";
+import FriendsList from "./FriendsList";
 import SubscriberList from "./SubscriberList";
 import FriendsNameHeader from "./FriendsNameHeader";
 import { useRef } from "react";
@@ -69,7 +70,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                 <div className="channels-column2">
                     {(serverId !== "@me") ? <ServerNameHeader setDetailVisibility={setShowServerDetail} showCreateChannel={setShowChannelModal} categoryName={categoryName}/> : <Searchbar/>}
 
-                    {(serverId === "@me") ? <div></div>: <ChannelsList showCreateChannel={setShowChannelModal} categoryName={categoryName} setShowChannelDetail={setShowChannelDetail}/>}
+                    {(serverId === "@me") ? <FriendsList/>: <ChannelsList showCreateChannel={setShowChannelModal} categoryName={categoryName} setShowChannelDetail={setShowChannelDetail}/>}
 
                     <CurrentUserProfile setDetailVisibility={setShowUserDetail}/>
                 </div>
