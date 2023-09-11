@@ -2,6 +2,9 @@ import './FriendListItem.css';
 
 const FriendListItem = ({user}) => {
 
+    // Note: On clicking a friendlistitem, it should redirect to the
+    // corresponding direct message
+
     return (
         <li key={user.id} className="friend-list-item">
             <div>

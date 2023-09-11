@@ -9,6 +9,7 @@ const FriendsList = () => {
     // only visible when /channels/@me
     // should render a list of all friends
         // search bar at top
+        // "Online - 23" should show how many friends have an online status?
         // a list of all friends underneath
 
     const friendsList = useSelector(state => state.friends);
@@ -16,7 +17,7 @@ const FriendsList = () => {
 
     return (
         <>
-            {/* <div>Online</div> */}
+            {/* <div>Online - 23</div> */}
             <ul className='friends-list'>
                 {Object.values(friendsList).map(friend => {
                     if (userList[friend.userId]) {

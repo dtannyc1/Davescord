@@ -3,7 +3,7 @@ ul.friends-list {
     height: calc(100% - 15px);
     margin-left: 20px;
     padding-right: 30px;
-    margin-top: 15px;
+    padding-top: 15px;
 
     overflow-x: hidden;
     overflow-y: scroll;
