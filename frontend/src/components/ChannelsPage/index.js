@@ -72,7 +72,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                 <div className="channels-column2">
                     {(serverId !== "@me") ? <ServerNameHeader setDetailVisibility={setShowServerDetail} showCreateChannel={setShowChannelModal} categoryName={categoryName}/> : <Searchbar/>}
 
-                    {(serverId === "@me") ? <FriendsList/>: <ChannelsList showCreateChannel={setShowChannelModal} categoryName={categoryName} setShowChannelDetail={setShowChannelDetail}/>}
+                    {(serverId === "@me") ? <></>: <ChannelsList showCreateChannel={setShowChannelModal} categoryName={categoryName} setShowChannelDetail={setShowChannelDetail}/>}
 
                     <CurrentUserProfile setDetailVisibility={setShowUserDetail}/>
                 </div>
@@ -81,7 +81,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                 <div className="channels-column3">
                     {(serverId === "@me") ? <FriendsNameHeader/> : <ChannelNameHeader/>}
                     <div className="channels-column3-main-content">
-                        {(serverId === "@me") ? <div></div> : <MessageList/>}
+                        {(serverId === "@me") ? <FriendsList/> : <MessageList/>}
                         {(serverId === "@me") ? null : <SubscriberList/>}
                     </div>
                 </div>

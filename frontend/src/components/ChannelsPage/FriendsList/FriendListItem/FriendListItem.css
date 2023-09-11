@@ -1,0 +1,70 @@
+.friend-list-item {
+    width: calc(100%);
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px rgba(255, 255, 255, 0.1) solid;
+    border-bottom: 1px rgba(255, 255, 255, 0.1) solid;
+    border-radius: 10px;
+    background-color: transparent;
+    align-items: center;
+}
+
+li.friend-list-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-top: none;
+    border-bottom: none;
+}
+
+li.friend-list-item:hover > * {
+    background-color: transparent;
+}
+
+.friend-item-img {
+    width: 34px;
+    height: 34px;
+    object-fit: cover;
+    margin: 8px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.friend-item-img-placeholder {
+    min-width: 34px;
+    min-height: 34px;
+    width: 34px;
+    height: 34px;
+    margin: 8px;
+    display: flex;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 5px;
+}
+
+.friend-list-username {
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding-left: 5px;
+    color: white;
+}
+
+.friend-list-status {
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    padding-top: 7px;
+    padding-left: 5px;
+    color: rgba(255, 255, 255, 0.7);
+}

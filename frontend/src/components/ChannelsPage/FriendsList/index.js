@@ -15,7 +15,7 @@ const FriendsList = () => {
     const userList = useSelector(state => state.users);
 
     return (
-        <ul>
+        <ul className='friends-list'>
             {Object.values(friendsList).map(friend => {
                 if (userList[friend.userId]) {
                     return <FriendListItem user={userList[friend.userId]}/>
