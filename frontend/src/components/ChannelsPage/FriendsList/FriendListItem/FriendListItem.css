@@ -74,4 +74,6 @@ li.friend-list-item:hover > * {
     padding-top: 7px;
     padding-left: 5px;
     color: rgba(255, 255, 255, 0.7);
+    display: flexbox;
+    line-height: 100%;
 }

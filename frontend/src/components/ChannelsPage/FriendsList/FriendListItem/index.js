@@ -20,7 +20,7 @@ const FriendListItem = ({user}) => {
                     {user.username}
                 </div>
                 <div className="friend-list-status">
-                    {user.status ? user.status : "Idle"}
+                    {user.status ? user.status : null}
                 </div>
             </div>
         </li>
