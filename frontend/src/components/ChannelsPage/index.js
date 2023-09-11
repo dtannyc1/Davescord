@@ -81,7 +81,11 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                 <div className="channels-column3">
                     {(serverId === "@me") ? <FriendsNameHeader/> : <ChannelNameHeader/>}
                     <div className="channels-column3-main-content">
-                        {(serverId === "@me") ? <FriendsList/> : <MessageList/>}
+                        {(serverId === "@me") ? <div className="friends-list-column3">
+                            {/* <div className='friends-list-searchbar'>to do</div> */}
+                            <FriendsList/>
+
+                        </div> : <MessageList/>}
                         {(serverId === "@me") ? null : <SubscriberList/>}
                     </div>
                 </div>

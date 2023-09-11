@@ -15,15 +15,18 @@ const FriendsList = () => {
     const userList = useSelector(state => state.users);
 
     return (
-        <ul className='friends-list'>
-            {Object.values(friendsList).map(friend => {
-                if (userList[friend.userId]) {
-                    return <FriendListItem user={userList[friend.userId]}/>
-                } else {
-                    return <></>
-                }
-            })}
-        </ul>
+        <>
+            {/* <div>Online</div> */}
+            <ul className='friends-list'>
+                {Object.values(friendsList).map(friend => {
+                    if (userList[friend.userId]) {
+                        return <FriendListItem user={userList[friend.userId]}/>
+                    } else {
+                        return <></>
+                    }
+                })}
+            </ul>
+        </>
     )
 }
 
