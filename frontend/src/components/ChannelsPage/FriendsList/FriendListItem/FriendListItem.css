@@ -1,19 +1,27 @@
 .friend-list-item {
     width: calc(100%);
     display: flex;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
     border-top: 1px rgba(255, 255, 255, 0.1) solid;
-    border-bottom: 1px rgba(255, 255, 255, 0.1) solid;
-    border-radius: 10px;
+    /* border-bottom: 1px rgba(255, 255, 255, 0.1) solid; */
     background-color: transparent;
+    border-radius: none;
     align-items: center;
+    cursor: pointer;
 }
 
 li.friend-list-item:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-top: none;
     border-bottom: none;
+    margin-left: 0px;
+    padding-left: 10px;
+    margin-right: 0px;
+    padding-right: 10px;
+    border-radius: 10px;
 }
 
 li.friend-list-item:hover > * {
