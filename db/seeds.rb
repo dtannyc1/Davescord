@@ -93,6 +93,7 @@ ApplicationRecord.transaction do
     end
 
     friends = Hash.new {|h, k| h[k] = Array.new}
+    private_chats = Hash.new {|h, k| h[k] = Array.new}
 
     User.all.each do |user|
         if (user.id != 1)
@@ -123,6 +124,20 @@ ApplicationRecord.transaction do
                 })
                 friends[user.id].push(friend_id)
                 friends[friend_id].push(user.id)
+            end
+        end
+
+        # create private chats
+        num_priv_chats = rand(3..5)
+        until (private_chats[user.id].length >= num_priv_chats)
+            friend_id = rand(1..20)
+            if (friend_id != user.id && !private_chats[user.id].include?(friend_id))
+                PrivateChat.create!({
+                    user_1_id: user.id,
+                    user_2_id: friend_id
+                })
+                private_chats[user.id].push(friend_id)
+                private_chats[friend_id].push(user.id)
             end
         end
     end
