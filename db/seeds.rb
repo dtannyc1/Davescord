@@ -181,14 +181,14 @@ ApplicationRecord.transaction do
                 PrivateMessage.create!({
                     author_id: private_chat.user_1_id,
                     private_chat_id: private_chat.id,
-                    body: Faker::Movies::StarWars.quote
+                    body: Faker::TvShows::DrWho.quote
                 })
             end
             rand(0..5).times do
                 PrivateMessage.create!({
                     author_id: private_chat.user_2_id,
                     private_chat_id: private_chat.id,
-                    body: Faker::Movies::StarWars.quote
+                    body: Faker::TvShows::DrWho.quote
                 })
             end
         end
