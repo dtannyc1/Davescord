@@ -8,8 +8,8 @@ const FriendsNameHeader = () => {
     // const channel = useSelector(state => state.channels[channelId]);
     const currentUserId = useSelector(state => state.session.currentUserId);
     const privateChats = useSelector(state => state.privateChats);
-    const users = useSelector(state => state.users);
     const [friendId, setFriendId] = useState(null);
+    const friend = useSelector(state => state.users[friendId]);
 
     useEffect(() => {
         if (channelId && privateChats){
@@ -35,17 +35,22 @@ const FriendsNameHeader = () => {
         )
     } else {
         return (
+            <>
+            {friend ?
             <div className='friend-name-holder'>
                 <div className='friend-server-name'>
-                    {(users[friendId]?.photoUrl) ?
-                        <img className='user-item-img' src={users[friendId]?.photoUrl} alt={users[friendId]?.username.toUpperCase().charAt(0)}/> :
-                        ((users[friendId]?.color) ?
-                            <div style={{backgroundColor: users[friendId]?.color}} className='user-item-img-placeholder'>{`${users[friendId]?.username.toUpperCase().charAt(0)}`}</div> :
-                            <div className='user-item-img-placeholder'>{`${users[friendId]?.username.toUpperCase().charAt(0)}`}</div>)
+                    {(friend.photoUrl) ?
+                        <img className='user-item-img' src={friend.photoUrl} alt={friend.username.toUpperCase().charAt(0)}/> :
+                        ((friend.color) ?
+                            <div style={{backgroundColor: friend.color}} className='user-item-img-placeholder'>{`${friend.username.toUpperCase().charAt(0)}`}</div> :
+                            <div className='user-item-img-placeholder'>{`${friend.username.toUpperCase().charAt(0)}`}</div>)
                     }
-                    {users[friendId]?.username}
+                    {friend.username}
                 </div>
-            </div>
+            </div> :
+            <>
+            </>}
+            </>
         )
     }
 }
