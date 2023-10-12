@@ -3,6 +3,7 @@ import './PrivateChatsList.css'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchPrivateChats } from '../../../store/privatechats';
+import PrivateChatItem from './PrivateChatItem';
 
 const PrivateChatsList = () => {
     const currentUserId = useSelector(state => state.session.currentUserId);
@@ -18,7 +19,7 @@ const PrivateChatsList = () => {
             <div className='channels-category-name'>Direct Messages</div>
             {privateChats ? Object.values(privateChats).map(privateChat => {
                 return (
-                    <div>{privateChat.user1Id} + {privateChat.user2Id}</div>
+                    <PrivateChatItem privateChat={privateChat}/>
                 )
             }) : <></>}
         </div>

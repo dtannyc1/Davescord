@@ -1,0 +1,64 @@
+
+.private-chat-item{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 200px;
+    padding: 0px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.private-chat-item:hover{
+    background-color: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+}
+
+.private-chat-item:hover > div {
+    background-color: transparent;
+}
+
+.user-item-img {
+    width: 34px;
+    height: 34px;
+    object-fit: cover;
+    margin: 8px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+
+.user-item-img-placeholder {
+    min-width: 34px;
+    min-height: 34px;
+    width: 34px;
+    height: 34px;
+    margin: 8px;
+    display: flex;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 5px;
+}
+
+.private-chat-item-text {
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 160px;
+    height: 20px;
+}
