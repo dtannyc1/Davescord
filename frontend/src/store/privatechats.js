@@ -34,11 +34,13 @@ export const fetchPrivateChats = () => async dispatch => {
     if (res.ok){
         let data = await res.json();
         dispatch(addPrivateChats(data.privateChats))
+    } else {
+        console.log("error")
     }
 }
 
 export const fetchPrivateChat = (privateChatId) => async dispatch => {
-    let res = await csrfFetch(`/api/private_chats/${privateChatId}`)
+    let res = await csrfFetch(`/api/privateChats/${privateChatId}`)
 
     if (res.ok) {
         let data = await res.json();

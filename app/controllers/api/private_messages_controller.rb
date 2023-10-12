@@ -1,4 +1,4 @@
-class Api::PrivatemessagesController < ApplicationController
+class Api::PrivateMessagesController < ApplicationController
     before_action(:require_logged_in, only: [:index, :show, :create, :update, :destroy])
 
     def index

@@ -22,6 +22,7 @@ import { fetchServers} from "../../store/server";
 import { fetchUser } from "../../store/user";
 import UserDetailsMenu from "../UserDetailsMenu";
 import { fetchFriends } from "../../store/friend";
+import PrivateChatsList from "./PrivateChatsList";
 
 const ChannelsPage = ({setWebsocketRestart}) => {
     const {serverId} = useParams();
@@ -72,7 +73,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                 <div className="channels-column2">
                     {(serverId !== "@me") ? <ServerNameHeader setDetailVisibility={setShowServerDetail} showCreateChannel={setShowChannelModal} categoryName={categoryName}/> : <Searchbar/>}
 
-                    {(serverId === "@me") ? <></>: <ChannelsList showCreateChannel={setShowChannelModal} categoryName={categoryName} setShowChannelDetail={setShowChannelDetail}/>}
+                    {(serverId === "@me") ? <PrivateChatsList/>: <ChannelsList showCreateChannel={setShowChannelModal} categoryName={categoryName} setShowChannelDetail={setShowChannelDetail}/>}
 
                     <CurrentUserProfile setDetailVisibility={setShowUserDetail}/>
                 </div>
