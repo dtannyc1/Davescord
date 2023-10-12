@@ -41,6 +41,26 @@ export const fetchPrivateMessages = (privateChatId) => async dispatch => {
     }
 }
 
+export const createPrivateMessage = (privateChatId, body) => async () => {
+    await csrfFetch(`/api/private_chats/${privateChatId}/private_messages`, {
+        method: "POST",
+        body: JSON.stringify({privateMessage: {body: body}})
+    });
+}
+
+export const updatePrivateMessage = (privateMessage) => async () => {
+    await csrfFetch(`/api/private_messages/${privateMessage.id}`, {
+        method: "PUT",
+        body: JSON.stringify({privateMessage: privateMessage})
+    })
+}
+
+export const deletePrivateMessage = (privateMessageId) => async () => {
+    await csrfFetch(`/api/private_messages/${privateMessageId}`, {
+        method: "DELETE"
+    })
+}
+
 // reducer
 const privateMessagesReducer = (state = {}, action) => {
     let nextState = {...state}
