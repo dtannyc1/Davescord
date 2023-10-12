@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { ADD_PRIVATE_MESSAGE, REMOVE_PRIVATE_MESSAGE } from "./privatemessages";
 
 // action types
 const ADD_PRIVATE_CHAT = 'privatechats/ADD_PRIVATE_CHAT';
@@ -82,6 +83,19 @@ const privateChatsReducer = (state = {}, action) => {
             return {...action.privateChats}
         case REMOVE_PRIVATE_CHAT:
             delete nextState[action.privateChatId]
+            return nextState
+        case ADD_PRIVATE_MESSAGE:
+            if (nextState[action.privateChatId]){
+                nextState[action.privateChatId].messages ||= [];
+                nextState[action.privateChatId].messages.push(action.message.id)
+                nextState[action.privateChatId].messages = [...new Set(nextState[action.privateChatId].messages)]
+            }
+            return nextState
+        case REMOVE_PRIVATE_MESSAGE:
+            if (nextState[action.privateChatId]){
+                let idx = nextState[action.privateChatId].messages.indexOf(action.privateMessageId);
+                nextState[action.privateChatId].messages.splice(idx,1)
+            }
             return nextState
         default:
             return state
