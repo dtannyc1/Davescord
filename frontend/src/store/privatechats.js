@@ -20,7 +20,7 @@ const addPrivateChats = privateChats => {
     }
 }
 
-const removePrivateChat = (privateChatId) => {
+export const removePrivateChat = (privateChatId) => {
     return {
         type: REMOVE_PRIVATE_CHAT,
         privateChatId
@@ -28,6 +28,46 @@ const removePrivateChat = (privateChatId) => {
 }
 
 // thunk action creators
+export const fetchPrivateChats = () => async dispatch => {
+    let res = await csrfFetch('/api/private_chats')
+
+    if (res.ok){
+        let data = await res.json();
+        dispatch(addPrivateChats(data.privateChats))
+    }
+}
+
+export const fetchPrivateChat = (privateChatId) => async dispatch => {
+    let res = await csrfFetch(`/api/private_chats/${privateChatId}`)
+
+    if (res.ok) {
+        let data = await res.json();
+        dispatch(addPrivateChat(data.privateChat))
+    } else {
+        throw res
+    }
+}
+
+export const createPrivateChat = (privateChat) => async dispatch => {
+    let res = await csrfFetch(`/api/private_chats`,{
+        method: "POST",
+        body: JSON.stringify({privateChat: privateChat})
+    });
+
+    if (res.ok){
+        let data = await res.json();
+        return data;
+    }
+}
+
+export const deletePrivateChat = (privateChatId) => async dispatch => {
+    await csrfFetch(`/api/private_chats/${privateChatId}`, {
+        method: "DELETE"
+    })
+}
+
+
+
 
 // reducer
 const privateChatsReducer = (state = {}, action) => {
