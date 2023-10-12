@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import './PrivateMessageList.css'
+import './PrivateMessagesList.css'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Message from '../MessageList/Message';
+import { fetchPrivateMessages } from '../../../store/privatemessages';
 
 const PrivateMessagesList = () => {
     const currentUserId = useSelector(state => state.session.currentUserId);
@@ -25,6 +26,14 @@ const PrivateMessagesList = () => {
             }
         }
     }, [privateChat])
+
+    useEffect(() => {
+        if (channelId){
+            if (!privateChat.messages){
+                dispatch(fetchPrivateMessages(channelId))
+            }
+        }
+    }, [channelId])
 
     useEffect(() => {
         if (privateChat) {
@@ -69,7 +78,7 @@ const PrivateMessagesList = () => {
                 <div ref={listEnd} className="message-end"/>
             </div>
             <form className="message-input-form" onSubmit={handleMessageSubmit}>
-                <input type="text" value={body} placeholder={`Message @${friend.username}`} onChange={e => setBody(e.target.value)}/>
+                <input type="text" value={body} placeholder={`Message @${friend?.username}`} onChange={e => setBody(e.target.value)}/>
             </form>
         </div>
     )

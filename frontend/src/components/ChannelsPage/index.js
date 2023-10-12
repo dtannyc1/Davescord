@@ -23,6 +23,7 @@ import { fetchUser } from "../../store/user";
 import UserDetailsMenu from "../UserDetailsMenu";
 import { fetchFriends } from "../../store/friend";
 import PrivateChatsList from "./PrivateChatsList";
+import PrivateMessagesList from "./PrivateMessagesList";
 
 const ChannelsPage = ({setWebsocketRestart}) => {
     const {serverId, channelId} = useParams();
@@ -88,7 +89,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                                     {/* <div className='friends-list-searchbar'>to do</div> */}
                                     <FriendsList/>
                                 </> :
-                                <>Private Message List</>
+                                <PrivateMessagesList/>
                             }
 
                         </div> : <MessageList/>}
