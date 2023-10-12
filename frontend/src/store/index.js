@@ -7,6 +7,8 @@ import channelsReducer from './channel';
 import messagesReducer from './message';
 import unreadReducer from './unread';
 import friendsReducer from './friend';
+import privateChatsReducer from './privatechats';
+import privateMessagesReducer from './privatemessages';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
@@ -15,7 +17,9 @@ const rootReducer = combineReducers({
     channels: channelsReducer,
     messages: messagesReducer,
     unread: unreadReducer,
-    friends: friendsReducer
+    friends: friendsReducer,
+    privateChats: privateChatsReducer,
+    privateMessages: privateMessagesReducer
 });
 
 let enhancer;
