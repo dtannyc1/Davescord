@@ -52,6 +52,13 @@ class User < ApplicationRecord
         inverse_of: :author,
         dependent: :destroy)
 
+    has_many(:private_messages,
+        primary_key: :id,
+        foreign_key: :author_id,
+        class_name: :PrivateMessage,
+        inverse_of: :author,
+        dependent: :destroy)
+
     has_many(:private_chats_1,
         primary_key: :id,
         foreign_key: :user_1_id,

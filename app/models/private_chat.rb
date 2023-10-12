@@ -22,4 +22,10 @@ class PrivateChat < ApplicationRecord
         foreign_key: :user_2_id,
         class_name: :User)
 
+    has_many(:private_messages,
+        primary_key: :id,
+        foreign_key: :private_chat_id,
+        class_name: :PrivateMessage,
+        inverse_of: :private_chat,
+        dependent: :destroy)
 end
