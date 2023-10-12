@@ -1,5 +1,5 @@
 import csrfFetch from "./csrf";
-import { ADD_PRIVATE_MESSAGE, REMOVE_PRIVATE_MESSAGE } from "./privatemessages";
+import { ADD_PRIVATE_MESSAGE, ADD_PRIVATE_MESSAGES, REMOVE_PRIVATE_MESSAGE } from "./privatemessages";
 
 // action types
 const ADD_PRIVATE_CHAT = 'privatechats/ADD_PRIVATE_CHAT';
@@ -41,7 +41,7 @@ export const fetchPrivateChats = () => async dispatch => {
 }
 
 export const fetchPrivateChat = (privateChatId) => async dispatch => {
-    let res = await csrfFetch(`/api/privateChats/${privateChatId}`)
+    let res = await csrfFetch(`/api/private_chats/${privateChatId}`)
 
     if (res.ok) {
         let data = await res.json();
@@ -88,6 +88,17 @@ const privateChatsReducer = (state = {}, action) => {
             if (nextState[action.privateChatId]){
                 nextState[action.privateChatId].messages ||= [];
                 nextState[action.privateChatId].messages.push(action.message.id)
+                nextState[action.privateChatId].messages = [...new Set(nextState[action.privateChatId].messages)]
+            }
+            return nextState
+        case ADD_PRIVATE_MESSAGES:
+            if (nextState[action.privateChatId]){
+                let keys = Object.keys(action.messages).map(key => parseInt(key));
+                if (nextState[action.privateChatId].messages){
+                    nextState[action.privateChatId].messages.concat(keys)
+                } else {
+                    nextState[action.privateChatId].messages = keys
+                }
                 nextState[action.privateChatId].messages = [...new Set(nextState[action.privateChatId].messages)]
             }
             return nextState
