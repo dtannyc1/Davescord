@@ -18,6 +18,7 @@ ApplicationRecord.transaction do
     Message.destroy_all
     Friend.destroy_all
     PrivateChat.destroy_all
+    PrivateMessage.destroy_all
 
     puts "Resetting primary keys..."
     # For easy testing, so that after seeding, the first `User` has `id` of 1
@@ -28,6 +29,7 @@ ApplicationRecord.transaction do
     ApplicationRecord.connection.reset_pk_sequence!('messages')
     ApplicationRecord.connection.reset_pk_sequence!('friends')
     ApplicationRecord.connection.reset_pk_sequence!('private_chats')
+    ApplicationRecord.connection.reset_pk_sequence!('private_messages')
 
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
@@ -168,6 +170,26 @@ ApplicationRecord.transaction do
                         body: Faker::Movies::StarWars.quote
                     })
                 end
+            end
+        end
+    end
+
+    puts "Creating private messages..."
+    rand(1..3).times do
+        PrivateChat.all.each do |private_chat|
+            rand(0..5).times do
+                PrivateMessage.create!({
+                    author_id: private_chat.user_1_id,
+                    private_chat_id: private_chat.id,
+                    body: Faker::Movies::StarWars.quote
+                })
+            end
+            rand(0..5).times do
+                PrivateMessage.create!({
+                    author_id: private_chat.user_2_id,
+                    private_chat_id: private_chat.id,
+                    body: Faker::Movies::StarWars.quote
+                })
             end
         end
     end
