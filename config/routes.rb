@@ -16,8 +16,10 @@ Rails.application.routes.draw do
         end
         resources :messages, only: [:update, :destroy]
         resource :session, only: [:show, :create, :destroy]
-        resources :private_chats, only: [:index, :create, :destroy]
-        resources :private_messages, only: [:index, :create, :update, :destroy]
+        resources :private_chats, only: [:index, :create, :destroy] do
+            resources :private_messages, only: [:index, :create]
+        end
+        resources :private_messages, only: [:update, :destroy]
     end
 
     get '*path', to: "static_pages#frontend_index"
