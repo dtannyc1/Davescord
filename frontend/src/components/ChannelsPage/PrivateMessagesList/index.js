@@ -29,7 +29,8 @@ const PrivateMessagesList = () => {
 
     useEffect(() => {
         if (channelId){
-            if (!privateChat.messages){
+            if (!privateChat?.messages){
+                // load all private messages if havent visited it before
                 dispatch(fetchPrivateMessages(channelId))
             }
         }
@@ -37,7 +38,7 @@ const PrivateMessagesList = () => {
 
     useEffect(() => {
         if (privateChat) {
-            setMessageList(privateChat.messages || []);
+            setMessageList(privateChat?.messages || []);
 
             // dispatch(removeUnreadChannel(channel.id))
 
