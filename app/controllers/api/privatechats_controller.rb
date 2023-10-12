@@ -21,6 +21,12 @@ class Api::PrivatechatsController < ApplicationController
         end
     end
 
+    def show
+        # get all messages for a specific private chat
+        @private_chat = PrivateChat.find(params[:id]).includes(:private_messages)
+        render :show
+    end
+
     def destroy
         @private_chat = PrivateChat.find(params[:id])
 
