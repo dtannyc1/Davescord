@@ -2,7 +2,9 @@ class Api::PrivatechatsController < ApplicationController
     before_action(:require_logged_in, only: [:index, :show, :create, :update, :destroy])
 
     def index
-
+        @private_chats_1 = current_user.private_chats_1.includes(:private_messages)
+        @private_chats_2 = current_user.private_chats_2.includes(:private_messages)
+        render :index
     end
 
     def create
