@@ -1,11 +1,25 @@
 import './FriendsNameHeader.css'
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from 'react';
 
 const FriendsNameHeader = () => {
     const {serverId, channelId} = useParams();
     // const channel = useSelector(state => state.channels[channelId]);
-    const friend = useSelector(state => state.users[channelId]);
+    const currentUserId = useSelector(state => state.session.currentUserId);
+    const privateChats = useSelector(state => state.privateChats);
+    const users = useSelector(state => state.users);
+    const [friendId, setFriendId] = useState(null);
+
+    useEffect(() => {
+        if (channelId && privateChats){
+            if (privateChats[channelId]?.user1Id === currentUserId){
+                setFriendId(privateChats[channelId]?.user2Id)
+            } else {
+                setFriendId(privateChats[channelId]?.user1Id)
+            }
+        }
+    }, [privateChats, channelId])
 
     if (!channelId) {
         return (
@@ -21,16 +35,17 @@ const FriendsNameHeader = () => {
         )
     } else {
         return (
-            // <div className='channel-name-holder'>
-            //     <div className='channel-server-name'>
-            //         {`${channel?.channelName.replace(/\s+/g, '-').toLowerCase()}`}
-            //         <div className='channel-server-description'>{`${channel?.description}`}</div>
-            //     </div>
-
-            // </div>
-            <>
-
-            </>
+            <div className='friend-name-holder'>
+                <div className='friend-server-name'>
+                    {(users[friendId]?.photoUrl) ?
+                        <img className='user-item-img' src={users[friendId]?.photoUrl} alt={users[friendId]?.username.toUpperCase().charAt(0)}/> :
+                        ((users[friendId]?.color) ?
+                            <div style={{backgroundColor: users[friendId]?.color}} className='user-item-img-placeholder'>{`${users[friendId]?.username.toUpperCase().charAt(0)}`}</div> :
+                            <div className='user-item-img-placeholder'>{`${users[friendId]?.username.toUpperCase().charAt(0)}`}</div>)
+                    }
+                    {users[friendId]?.username}
+                </div>
+            </div>
         )
     }
 }

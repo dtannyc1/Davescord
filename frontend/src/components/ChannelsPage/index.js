@@ -25,7 +25,7 @@ import { fetchFriends } from "../../store/friend";
 import PrivateChatsList from "./PrivateChatsList";
 
 const ChannelsPage = ({setWebsocketRestart}) => {
-    const {serverId} = useParams();
+    const {serverId, channelId} = useParams();
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
 
@@ -83,8 +83,13 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                     {(serverId === "@me") ? <FriendsNameHeader/> : <ChannelNameHeader/>}
                     <div className="channels-column3-main-content">
                         {(serverId === "@me") ? <div className="friends-list-column3">
-                            {/* <div className='friends-list-searchbar'>to do</div> */}
-                            <FriendsList/>
+                            {(channelId === undefined) ?
+                                <>
+                                    {/* <div className='friends-list-searchbar'>to do</div> */}
+                                    <FriendsList/>
+                                </> :
+                                <>Private Message List</>
+                            }
 
                         </div> : <MessageList/>}
                         {(serverId === "@me") ? null : <SubscriberList/>}
