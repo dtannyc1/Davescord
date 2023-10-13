@@ -10,6 +10,7 @@ class Api::PrivateMessagesController < ApplicationController
     def create
         @private_message = PrivateMessage.new(private_messages_params)
         @private_message.author_id = current_user.id
+        @private_message.private_chat_id = params[:private_chat_id]
 
         if (@private_message.save)
 
@@ -40,7 +41,19 @@ class Api::PrivateMessagesController < ApplicationController
     end
 
     def destroy
+        @private_message = PrivateMessage.find(params[:id])
 
+        if (@private_message)
+            if (@private_message.author_id == current_user.id)
+                # Broadcast websocket here
+                @private_message.destroy
+                render json: nil
+            else
+                render json: {errors: 'Unauthorized, must be author to delete private message'}, status: :unauthorized
+            end
+        else
+            render json: {errors: "Private message not found"}, status: 404
+        end
     end
 
     private

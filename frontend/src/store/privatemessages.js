@@ -1,5 +1,4 @@
 import csrfFetch from "./csrf";
-import { addMessages } from "./message";
 
 // action types
 export const ADD_PRIVATE_MESSAGE = 'private_messages/ADD_PRIVATE_MESSAGE';
