@@ -6,7 +6,7 @@ import { setUnreadChannel, setUnreadPrivateChat, setUnreadServer } from "../../.
 import { addChannel, removeChannel } from "../../../store/channel";
 import { addServer, fetchServer, removeServer } from "../../../store/server";
 import { addPrivateMessage, removePrivateMessage } from "../../../store/privatemessages";
-import { addPrivateChat } from "../../../store/privatechats";
+import { addPrivateChat, fetchPrivateChat } from "../../../store/privatechats";
 // import { useParams } from "react-router-dom";
 
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
@@ -24,6 +24,7 @@ const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
     const dispatch = useDispatch();
     // const {serverId, channelId} = useParams();
     const subscribedServers = useSelector(state => Object.values(state.servers))
+    const currentUserId = useSelector(state => state.session.currentUserId);
 
     useEffect(() => {
         let allSubscriptions = [];
@@ -85,8 +86,8 @@ const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
         });
 
         let subscription = consumer.subscriptions.create(
-            { channel: 'UsersChannel', id: channelId },
-            { received: ({type, privateMessage, privateMessageId, privateChat, privateChatId}) => {
+            { channel: 'UsersChannel', id: currentUserId },
+            { received: ({type, privateMessage, privateMessageId, privateChatId}) => {
                     switch (type) {
                         case RECEIVE_PRIVATE_MESSAGE:
                             dispatch(setUnreadPrivateChat(privateChatId));
@@ -96,7 +97,7 @@ const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
                             dispatch(removePrivateMessage(privateMessageId, privateChatId))
                             break;
                         case RECEIVE_PRIVATE_CHAT:
-                            dispatch(addPrivateChat(privateChat))
+                            dispatch(fetchPrivateChat(privateChatId))
                             setWebsocketRestart(!websocketRestart) // force reset websockets
                             break;
                         default:
@@ -112,7 +113,7 @@ const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
                 subscription?.unsubscribe();
             })
         }
-    }, [websocketRestart])
+    }, [websocketRestart, currentUserId])
 
     return (
         <div className="mounted-websockets"></div>
