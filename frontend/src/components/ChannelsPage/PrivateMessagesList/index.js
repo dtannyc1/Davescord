@@ -30,6 +30,8 @@ const PrivateMessagesList = () => {
     }, [privateChat])
 
     useEffect(() => {
+        // should fetchPrivateMessages if the data doesnt exist?
+        // dispatch(fetchPrivateMessages(channelId))
         if (channelId){
             if (!privateChat?.messages){
                 // load all private messages if havent visited it before
@@ -43,7 +45,16 @@ const PrivateMessagesList = () => {
 
     useEffect(() => {
         if (privateChat) {
-            setMessageList(privateChat?.messages || []);
+            // if (channelId) dispatch(fetchPrivateMessages(channelId))
+            if (privateChat.messages){
+                let data = privateChat.messages.map(id => {return privateMessages[id]?.id});
+                if (data.every(el => el)) {
+                    setMessageList(privateChat.messages)
+                } else {
+                    dispatch(fetchPrivateMessages(channelId))
+                }
+            }
+            // setMessageList(privateChat?.messages || []);
             dispatch(removeUnreadPrivateChat(channelId))
         }
     }, [privateChat, privateMessages, dispatch])

@@ -95,11 +95,12 @@ const privateChatsReducer = (state = {}, action) => {
             if (nextState[action.privateChatId]){
                 let keys = Object.keys(action.messages).map(key => parseInt(key));
                 if (nextState[action.privateChatId].messages){
-                    nextState[action.privateChatId].messages = nextState[action.privateChatId].messages.concat(keys).sort((a,b) => {
-                        if (a < b) return -1;
-                        if (a === b) return 0;
-                        return 1;
-                    });
+                    // nextState[action.privateChatId].messages = nextState[action.privateChatId].messages.concat(keys).sort((a,b) => {
+                    //     if (a < b) return -1;
+                    //     if (a === b) return 0;
+                    //     return 1;
+                    // });
+                    nextState[action.privateChatId].messages = nextState[action.privateChatId].messages.concat(keys);
                 } else {
                     nextState[action.privateChatId].messages = keys
                 }

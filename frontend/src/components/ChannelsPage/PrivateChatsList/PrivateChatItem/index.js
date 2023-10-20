@@ -14,23 +14,23 @@ const PrivateChatItem = ({privateChat}) => {
     const [otherUserId, setOtherUserId] = useState(null);
 
     useEffect(() => {
-        if (privateChat.user1Id === currentUserId){
-            if (privateChat.user2Id && !users[privateChat.user2Id]){
-                dispatch(fetchUser(privateChat.user2Id))
+        if (privateChat?.user1Id === currentUserId){
+            if (privateChat?.user2Id && !users[privateChat?.user2Id]){
+                dispatch(fetchUser(privateChat?.user2Id))
             }
-            setOtherUserId(privateChat.user2Id);
+            setOtherUserId(privateChat?.user2Id);
         } else {
-            if (privateChat.user1Id && !users[privateChat.user1Id]){
-                dispatch(fetchUser(privateChat.user1Id))
+            if (privateChat?.user1Id && !users[privateChat?.user1Id]){
+                dispatch(fetchUser(privateChat?.user1Id))
             }
-            setOtherUserId(privateChat.user1Id);
+            setOtherUserId(privateChat?.user1Id);
         }
     }, [dispatch, privateChat])
 
     let handleClick = function(e){
         e.stopPropagation();
-        if (parseInt(privateChat.id) !== channelId){
-            history.push(`/channels/@me/${parseInt(privateChat.id)}`)
+        if (parseInt(privateChat?.id) !== channelId){
+            history.push(`/channels/@me/${parseInt(privateChat?.id)}`)
         }
     }
 
