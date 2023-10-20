@@ -2,9 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import consumer from '../../../consumer';
 import { addMessage, removeMessage } from '../../../store/message';
-import { setUnreadChannel, setUnreadServer } from "../../../store/unread";
+import { setUnreadChannel, setUnreadPrivateChat, setUnreadServer } from "../../../store/unread";
 import { addChannel, removeChannel } from "../../../store/channel";
 import { addServer, fetchServer, removeServer } from "../../../store/server";
+import { addPrivateMessage, removePrivateMessage } from "../../../store/privatemessages";
+import { addPrivateChat } from "../../../store/privatechats";
 // import { useParams } from "react-router-dom";
 
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
@@ -59,7 +61,7 @@ const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
                                 setWebsocketRestart(!websocketRestart) // force reset websockets
                                 break;
                             case DESTROY_CHANNEL:
-                                console.log("removing: " + serverId + channelId)
+                                // console.log("removing: " + serverId + channelId)
                                 dispatch(removeChannel(channelId, serverId))
                                 break;
                             case RECEIVE_SERVER:
@@ -84,14 +86,18 @@ const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
 
         let subscription = consumer.subscriptions.create(
             { channel: 'UsersChannel', id: channelId },
-            { received: ({type, privateMessage, privateMessageId, privateChatId}) => {
+            { received: ({type, privateMessage, privateMessageId, privateChat, privateChatId}) => {
                     switch (type) {
                         case RECEIVE_PRIVATE_MESSAGE:
-                            dispatch(setUnreadChannel(channelId));
-                            dispatch(addMessage(message, channelId));
+                            dispatch(setUnreadPrivateChat(privateChatId));
+                            dispatch(addPrivateMessage(privateMessage, privateChatId));
                             break;
                         case DESTROY_PRIVATE_MESSAGE:
-                            dispatch(removeMessage(messageId, channelId))
+                            dispatch(removePrivateMessage(privateMessageId, privateChatId))
+                            break;
+                        case RECEIVE_PRIVATE_CHAT:
+                            dispatch(addPrivateChat(privateChat))
+                            setWebsocketRestart(!websocketRestart) // force reset websockets
                             break;
                         default:
                             break;

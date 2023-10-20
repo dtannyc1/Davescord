@@ -7,7 +7,7 @@ const ADD_PRIVATE_CHATS = 'privatechats/ADD_PRIVATE_CHATS';
 const REMOVE_PRIVATE_CHAT = 'privatechats/REMOVE_PRIVATE_CHATS';
 
 // action creators
-const addPrivateChat = privateChat => {
+export const addPrivateChat = privateChat => {
     return {
         type: ADD_PRIVATE_CHAT,
         privateChat
