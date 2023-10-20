@@ -9,6 +9,9 @@ import { addServer, fetchServer, removeServer } from "../../../store/server";
 
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const DESTROY_MESSAGE = 'DESTROY_MESSAGE';
+export const RECEIVE_PRIVATE_MESSAGE = 'RECEIVE_PRIVATE_MESSAGE';
+export const DESTROY_PRIVATE_MESSAGE = 'DESTROY_PRIVATE_MESSAGE';
+export const RECEIVE_PRIVATE_CHAT = 'RECEIVE_PRIVATE_CHAT';
 export const RECEIVE_CHANNEL = 'RECEIVE_CHANNEL';
 export const DESTROY_CHANNEL = 'DESTROY_CHANNEL';
 export const RECEIVE_SERVER = 'RECEIVE_SERVER';
@@ -77,7 +80,26 @@ const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
                 }
             )
             allSubscriptions.push(subscription)
-        })
+        });
+
+        let subscription = consumer.subscriptions.create(
+            { channel: 'UsersChannel', id: channelId },
+            { received: ({type, privateMessage, privateMessageId, privateChatId}) => {
+                    switch (type) {
+                        case RECEIVE_PRIVATE_MESSAGE:
+                            dispatch(setUnreadChannel(channelId));
+                            dispatch(addMessage(message, channelId));
+                            break;
+                        case DESTROY_PRIVATE_MESSAGE:
+                            dispatch(removeMessage(messageId, channelId))
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        )
+        allSubscriptions.push(subscription)
 
         return () => {
             allSubscriptions.forEach(subscription => {
