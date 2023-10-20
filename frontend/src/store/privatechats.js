@@ -95,7 +95,11 @@ const privateChatsReducer = (state = {}, action) => {
             if (nextState[action.privateChatId]){
                 let keys = Object.keys(action.messages).map(key => parseInt(key));
                 if (nextState[action.privateChatId].messages){
-                    nextState[action.privateChatId].messages.concat(keys)
+                    nextState[action.privateChatId].messages = nextState[action.privateChatId].messages.concat(keys).sort((a,b) => {
+                        if (a < b) return -1;
+                        if (a === b) return 0;
+                        return 1;
+                    });
                 } else {
                     nextState[action.privateChatId].messages = keys
                 }
@@ -104,8 +108,10 @@ const privateChatsReducer = (state = {}, action) => {
             return nextState
         case REMOVE_PRIVATE_MESSAGE:
             if (nextState[action.privateChatId]){
-                let idx = nextState[action.privateChatId].messages.indexOf(action.privateMessageId);
-                nextState[action.privateChatId].messages.splice(idx,1)
+                let idx = nextState[action.privateChatId].messages?.indexOf(action.privateMessageId);
+                if (idx && idx !== -1){
+                    nextState[action.privateChatId].messages.splice(idx,1)
+                }
             }
             return nextState
         default:

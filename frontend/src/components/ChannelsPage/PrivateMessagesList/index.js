@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Message from '../MessageList/Message';
 import { createPrivateMessage, fetchPrivateMessages } from '../../../store/privatemessages';
+import { removeUnreadPrivateChat } from '../../../store/unread';
 
 const PrivateMessagesList = () => {
     const currentUserId = useSelector(state => state.session.currentUserId);
@@ -16,6 +17,7 @@ const PrivateMessagesList = () => {
     const listEnd = useRef();
     const [friendId, setFriendId] = useState(null);
     const friend = useSelector(state => state.users[friendId]);
+    const unreadPrivateMessages = useSelector(state => state.unread.privateChats)
 
     useEffect(() => {
         if (privateChat){
@@ -32,6 +34,9 @@ const PrivateMessagesList = () => {
             if (!privateChat?.messages){
                 // load all private messages if havent visited it before
                 dispatch(fetchPrivateMessages(channelId))
+            } else if (unreadPrivateMessages[channelId]){
+                // just refetch if there are unread messages?
+                dispatch(fetchPrivateMessages(channelId))
             }
         }
     }, [channelId])
@@ -39,12 +44,7 @@ const PrivateMessagesList = () => {
     useEffect(() => {
         if (privateChat) {
             setMessageList(privateChat?.messages || []);
-
-            // dispatch(removeUnreadChannel(channel.id))
-
-            // if (channelList?.every(channelNum => !unreadChannels[channelNum])) {
-            //     dispatch(removeUnreadServer(serverId))
-            // }
+            dispatch(removeUnreadPrivateChat(channelId))
         }
     }, [privateChat, privateMessages, dispatch])
 

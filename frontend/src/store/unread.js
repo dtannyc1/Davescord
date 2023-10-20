@@ -53,7 +53,7 @@ export const removeUnreadPrivateChat = (privateChatId) => {
 // thunk actions
 
 // reducer
-const initialState = {servers: {}, channels: {}}
+const initialState = {servers: {}, channels: {}, privateChats: {}}
 const unreadReducer = (state = initialState, action) => {
     let nextState = {...state};
     switch (action.type) {

@@ -92,7 +92,7 @@ const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
                     switch (type) {
                         case RECEIVE_PRIVATE_MESSAGE:
                             console.log('private message received!')
-                            // dispatch(setUnreadPrivateChat(privateChatId));
+                            dispatch(setUnreadPrivateChat(privateChatId));
                             dispatch(addPrivateMessage(privateMessage, privateChatId));
                             break;
                         case DESTROY_PRIVATE_MESSAGE:
