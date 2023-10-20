@@ -13,8 +13,18 @@ class Api::PrivateMessagesController < ApplicationController
         @private_message.private_chat_id = params[:private_chat_id]
 
         if (@private_message.save)
+            @private_chat = PrivateChat.find(params[:private_chat_id])
 
-            # Broadcast WebSocket here
+            # broadcast to both users
+            UsersChannel.broadcast_to(@private_chat.user_1_id,
+                type: 'RECEIVE_PRIVATE_MESSAGE',
+                privateChatId: @private_chat.id,
+                privateMessage: from_template('api/private_messages/_new_show', private_message: @private_message))
+            UsersChannel.broadcast_to(@private_chat.user_2_id,
+                type: 'RECEIVE_PRIVATE_MESSAGE',
+                privateChatId: @private_chat.id,
+                privateMessage: from_template('api/private_messages/_new_show', private_message: @private_message))
+
             render :show
         else
             render json: {errors: @private_message.errors.full_messages}, status: 422
@@ -28,7 +38,19 @@ class Api::PrivateMessagesController < ApplicationController
         if (@private_message)
             if (@private_message.author_id == current_user.id)
                 if (@private_message.update(private_messages_params))
-                    # Broadcast WebSocket here
+
+                    @private_chat = PrivateChat.find(@private_message.private_chat_id)
+                    # broadcast to both users
+                    UsersChannel.broadcast_to(@private_chat.user_1_id,
+                        type: 'RECEIVE_PRIVATE_MESSAGE',
+                        privateChatId: @private_chat.id,
+                        privateMessage: from_template('api/private_messages/_new_show', private_message: @private_message))
+
+                    UsersChannel.broadcast_to(@private_chat.user_2_id,
+                        type: 'RECEIVE_PRIVATE_MESSAGE',
+                        privateChatId: @private_chat.id,
+                        privateMessage: from_template('api/private_messages/_new_show', private_message: @private_message))
+
 
                     render :show
                 end
@@ -46,6 +68,17 @@ class Api::PrivateMessagesController < ApplicationController
         if (@private_message)
             if (@private_message.author_id == current_user.id)
                 # Broadcast websocket here
+                @private_chat = PrivateChat.find(@private_message.private_chat_id)
+                UsersChannel.broadcast_to(@private_chat.user_1_id,
+                        type: 'DESTROY_PRIVATE_MESSAGE',
+                        privateChatId: @private_chat.id,
+                        privateMessageId: @private_message.id)
+
+                UsersChannel.broadcast_to(@private_chat.user_2_id,
+                        type: 'DESTROY_PRIVATE_MESSAGE',
+                        privateChatId: @private_chat.id,
+                        privateMessageId: @private_message.id)
+
                 @private_message.destroy
                 render json: nil
             else
