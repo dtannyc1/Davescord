@@ -85,12 +85,14 @@ const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
             allSubscriptions.push(subscription)
         });
 
+        console.log(currentUserId)
         let subscription = consumer.subscriptions.create(
             { channel: 'UsersChannel', id: currentUserId },
             { received: ({type, privateMessage, privateMessageId, privateChatId}) => {
                     switch (type) {
                         case RECEIVE_PRIVATE_MESSAGE:
-                            dispatch(setUnreadPrivateChat(privateChatId));
+                            console.log('private message received!')
+                            // dispatch(setUnreadPrivateChat(privateChatId));
                             dispatch(addPrivateMessage(privateMessage, privateChatId));
                             break;
                         case DESTROY_PRIVATE_MESSAGE:
@@ -101,6 +103,7 @@ const WebSocketListeners = ({websocketRestart, setWebsocketRestart}) => {
                             setWebsocketRestart(!websocketRestart) // force reset websockets
                             break;
                         default:
+                            console.log('got something')
                             break;
                     }
                 }

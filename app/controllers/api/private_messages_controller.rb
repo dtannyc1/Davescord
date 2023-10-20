@@ -16,11 +16,11 @@ class Api::PrivateMessagesController < ApplicationController
             @private_chat = PrivateChat.find(params[:private_chat_id])
 
             # broadcast to both users
-            UsersChannel.broadcast_to(@private_chat.user_1_id,
+            UsersChannel.broadcast_to(@private_chat.user_1,
                 type: 'RECEIVE_PRIVATE_MESSAGE',
                 privateChatId: @private_chat.id,
                 privateMessage: from_template('api/private_messages/_new_show', private_message: @private_message))
-            UsersChannel.broadcast_to(@private_chat.user_2_id,
+            UsersChannel.broadcast_to(@private_chat.user_2,
                 type: 'RECEIVE_PRIVATE_MESSAGE',
                 privateChatId: @private_chat.id,
                 privateMessage: from_template('api/private_messages/_new_show', private_message: @private_message))
@@ -41,12 +41,12 @@ class Api::PrivateMessagesController < ApplicationController
 
                     @private_chat = PrivateChat.find(@private_message.private_chat_id)
                     # broadcast to both users
-                    UsersChannel.broadcast_to(@private_chat.user_1_id,
+                    UsersChannel.broadcast_to(@private_chat.user_1,
                         type: 'RECEIVE_PRIVATE_MESSAGE',
                         privateChatId: @private_chat.id,
                         privateMessage: from_template('api/private_messages/_new_show', private_message: @private_message))
 
-                    UsersChannel.broadcast_to(@private_chat.user_2_id,
+                    UsersChannel.broadcast_to(@private_chat.user_2,
                         type: 'RECEIVE_PRIVATE_MESSAGE',
                         privateChatId: @private_chat.id,
                         privateMessage: from_template('api/private_messages/_new_show', private_message: @private_message))
@@ -69,12 +69,12 @@ class Api::PrivateMessagesController < ApplicationController
             if (@private_message.author_id == current_user.id)
                 # Broadcast websocket here
                 @private_chat = PrivateChat.find(@private_message.private_chat_id)
-                UsersChannel.broadcast_to(@private_chat.user_1_id,
+                UsersChannel.broadcast_to(@private_chat.user_1,
                         type: 'DESTROY_PRIVATE_MESSAGE',
                         privateChatId: @private_chat.id,
                         privateMessageId: @private_message.id)
 
-                UsersChannel.broadcast_to(@private_chat.user_2_id,
+                UsersChannel.broadcast_to(@private_chat.user_2,
                         type: 'DESTROY_PRIVATE_MESSAGE',
                         privateChatId: @private_chat.id,
                         privateMessageId: @private_message.id)
@@ -91,6 +91,6 @@ class Api::PrivateMessagesController < ApplicationController
 
     private
     def private_messages_params
-        params.require(:private_messages).permit(:private_chat_id, :body)
+        params.require(:private_message).permit(:private_chat_id, :body)
     end
 end

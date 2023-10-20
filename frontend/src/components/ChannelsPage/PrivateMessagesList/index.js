@@ -3,7 +3,7 @@ import './PrivateMessagesList.css'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Message from '../MessageList/Message';
-import { fetchPrivateMessages } from '../../../store/privatemessages';
+import { createPrivateMessage, fetchPrivateMessages } from '../../../store/privatemessages';
 
 const PrivateMessagesList = () => {
     const currentUserId = useSelector(state => state.session.currentUserId);
@@ -59,7 +59,7 @@ const PrivateMessagesList = () => {
     const handleMessageSubmit = e => {
         e.preventDefault();
         if (body.length > 0) {
-            // dispatch(); // create private message
+            dispatch(createPrivateMessage(channelId, body))
             setBody('');
             listEnd.current?.scrollIntoView({behavior: 'instant'});
         }
@@ -74,7 +74,8 @@ const PrivateMessagesList = () => {
                                 message={privateMessages[messageId]}
                                 prevMessage={(ii > 0) ? privateMessages[messageList[ii-1]] : null}
                                 deleteButtonVisible={privateMessages[messageId].authorId === currentUserId}
-                                editButtonVisible={privateMessages[messageId].authorId === currentUserId}/>
+                                editButtonVisible={privateMessages[messageId].authorId === currentUserId}
+                                isPrivateMessage={true}/>
                 })}
                 <div ref={listEnd} className="message-end"/>
             </div>
