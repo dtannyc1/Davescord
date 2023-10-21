@@ -37,7 +37,9 @@ const PrivateChatItem = ({privateChat}) => {
     return (
         <>
         {users[otherUserId] ?
-            <div key={users[otherUserId]?.id} className='private-chat-item' onClick={e => handleClick(e)}>
+            <div key={users[otherUserId]?.id}
+                className={parseInt(channelId) === parseInt(privateChat?.id) ? 'private-chat-item selected' : 'private-chat-item'}
+                onClick={e => handleClick(e)}>
                 {(users[otherUserId]?.photoUrl) ?
                     <img className='user-item-img' src={users[otherUserId]?.photoUrl} alt={users[otherUserId]?.username.toUpperCase().charAt(0)}/> :
                     ((users[otherUserId]?.color) ?

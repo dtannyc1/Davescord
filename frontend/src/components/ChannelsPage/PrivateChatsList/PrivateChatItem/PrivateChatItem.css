@@ -5,7 +5,7 @@
     align-items: center;
     min-width: 200px;
     padding: 0px;
-    margin: 10px;
+    margin: 5px 10px;
     border-radius: 5px;
 }
 
@@ -61,4 +61,18 @@
     text-overflow: ellipsis;
     width: 160px;
     height: 20px;
+}
+
+.private-chat-item.selected {
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.private-chat-item.selected > div {
+    background-color: transparent;
+}
+
+.private-chat-item.selected .private-chat-item-text{
+    font-weight: 600;
+    color: white;
 }
