@@ -27,7 +27,7 @@ const PrivateChatsList = () => {
 
     return (
         <div className="private-chats-list-holder">
-            <div className='channels-category-name'>Direct Messages</div>
+            <div className='private-chats-category-name'>Direct Messages</div>
             {privateChats && sortedPrivateChats.current ? sortedPrivateChats.current.map(privateChatId => {
                 return (
                     <PrivateChatItem privateChat={privateChats[privateChatId]}/>
