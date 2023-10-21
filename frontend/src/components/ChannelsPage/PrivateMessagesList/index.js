@@ -77,7 +77,7 @@ const PrivateMessagesList = () => {
     }
 
     return (
-        <div className='messages-panel'>
+        <div className='private-messages-panel'>
             <div className="message-list-holder">
                 {messageList.map((messageId, ii) => {
                     return <Message

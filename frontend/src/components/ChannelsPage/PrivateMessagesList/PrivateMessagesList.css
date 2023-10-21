@@ -1,0 +1,9 @@
+.private-messages-panel {
+    width: calc(100%);
+    height: calc(100% - 20px);
+    padding-top: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+}
