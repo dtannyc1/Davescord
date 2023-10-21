@@ -40,10 +40,10 @@ const FriendsNameHeader = () => {
             <div className='friend-name-holder'>
                 <div className='friend-server-name'>
                     {(friend.photoUrl) ?
-                        <img className='user-item-img' src={friend.photoUrl} alt={friend.username.toUpperCase().charAt(0)}/> :
+                        <img className='header user-item-img' src={friend.photoUrl} alt={friend.username.toUpperCase().charAt(0)}/> :
                         ((friend.color) ?
-                            <div style={{backgroundColor: friend.color}} className='user-item-img-placeholder'>{`${friend.username.toUpperCase().charAt(0)}`}</div> :
-                            <div className='user-item-img-placeholder'>{`${friend.username.toUpperCase().charAt(0)}`}</div>)
+                            <div style={{backgroundColor: friend.color}} className='header user-item-img-placeholder'>{`${friend.username.toUpperCase().charAt(0)}`}</div> :
+                            <div className='header user-item-img-placeholder'>{`${friend.username.toUpperCase().charAt(0)}`}</div>)
                     }
                     {friend.username}
                 </div>
