@@ -3,19 +3,30 @@ class Api::PrivateMessagesController < ApplicationController
 
     def index
         @private_chat = PrivateChat.find(params[:private_chat_id])
+        
+        if (@private_chat.user_1_id != current_user.id && 
+            @private_chat.user_2_id != current_user.id)
+            render json: {errors: 'Unauthorized'}, status: :unauthorized
+            return
+        end
 
         render :index
     end
 
     def create
+        @private_chat = PrivateChat.find(params[:private_chat_id])
+        
+        if (@private_chat.user_1_id != current_user.id && 
+            @private_chat.user_2_id != current_user.id)
+            render json: {errors: 'Unauthorized'}, status: :unauthorized
+            return
+        end
+
         @private_message = PrivateMessage.new(private_messages_params)
         @private_message.author_id = current_user.id
         @private_message.private_chat_id = params[:private_chat_id]
 
         if (@private_message.save)
-            @private_chat = PrivateChat.find(params[:private_chat_id])
-
-            # broadcast to both users
             UsersChannel.broadcast_to(@private_chat.user_1,
                 type: 'RECEIVE_PRIVATE_MESSAGE',
                 privateChatId: @private_chat.id,
@@ -29,7 +40,6 @@ class Api::PrivateMessagesController < ApplicationController
         else
             render json: {errors: @private_message.errors.full_messages}, status: 422
         end
-
     end
 
     def update
