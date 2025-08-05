@@ -109,7 +109,7 @@ ApplicationRecord.transaction do
             friendee_id: user_id,
             status: "accepted"
         })
-        
+
         # David friends
         Friend.create!({
             friender_id: 2,
@@ -142,21 +142,6 @@ ApplicationRecord.transaction do
                         server_id: server_num
                     })
                 end
-            end
-        end
-
-        # also add friends
-        num_friends = rand(3..5)
-        until (friends[user.id].length >= num_friends)
-            friend_id = rand(1..20)
-            if (friend_id != user.id && !friends[user.id].include?(friend_id))
-                Friend.create!({
-                    friender_id: user.id,
-                    friendee_id: friend_id,
-                    status: "approved"
-                })
-                friends[user.id].push(friend_id)
-                friends[friend_id].push(user.id)
             end
         end
 
