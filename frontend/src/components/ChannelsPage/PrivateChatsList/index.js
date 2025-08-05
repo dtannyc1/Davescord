@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import './PrivateChatsList.css'
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { fetchPrivateChats } from '../../../store/privatechats';
 import PrivateChatItem from './PrivateChatItem';
 
@@ -30,7 +29,7 @@ const PrivateChatsList = () => {
             <div className='private-chats-category-name'>Direct Messages</div>
             {privateChats && sortedPrivateChats.current ? sortedPrivateChats.current.map(privateChatId => {
                 return (
-                    <PrivateChatItem privateChat={privateChats[privateChatId]}/>
+                    <PrivateChatItem key={privateChatId} privateChat={privateChats[privateChatId]}/>
                 )
             }) : <></>}
         </div>

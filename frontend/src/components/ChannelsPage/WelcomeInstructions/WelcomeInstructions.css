@@ -1,19 +1,36 @@
 .welcome-instructions {
-    padding: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
+    width: 100%;
+    height: calc(100% + 50px);
     color: #dcddde;
     line-height: 1.6;
+    font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    min-height: 0;
+    max-height: calc(100% + 50px - 4rem);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.welcome-instructions-inner {
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box;
+    max-height: 100%;
+    padding: 1rem;
+    margin-bottom: 2rem;
 }
 
 .welcome-header {
     text-align: center;
-    margin-bottom: 2rem;
 }
 
 .welcome-header h1 {
     color: #ffffff;
-    font-size: 2.5rem;
+    font-size: 20px;
+    margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     font-weight: 600;
 }
@@ -21,6 +38,7 @@
 .welcome-header p {
     color: #b9bbbe;
     font-size: 1.1rem;
+    margin-bottom: 1.5rem;
 }
 
 .instructions-section {
@@ -32,7 +50,7 @@
 }
 
 .instructions-section h2 {
-    color: #5865f2;
+    color: #ffffff;
     font-size: 1.3rem;
     margin-bottom: 1rem;
     font-weight: 600;
@@ -62,17 +80,17 @@
     padding: 0.8rem;
     border-radius: 4px;
     margin: 0.5rem 0;
-    font-family: 'Consolas', 'Monaco', monospace;
     border-left: 3px solid #5865f2;
 }
 
 .instructions-footer {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 0rem;
     padding: 1rem;
     background-color: #36393f;
     border-radius: 8px;
     border: 1px solid #40444b;
+    margin-bottom: 2rem;
 }
 
 .instructions-footer p {
