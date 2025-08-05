@@ -24,6 +24,7 @@ import UserDetailsMenu from "../UserDetailsMenu";
 import { fetchFriends } from "../../store/friend";
 import PrivateChatsList from "./PrivateChatsList";
 import PrivateMessagesList from "./PrivateMessagesList";
+import WelcomeInstructions from "./WelcomeInstructions";
 
 const ChannelsPage = ({setWebsocketRestart}) => {
     const {serverId, channelId} = useParams();
@@ -86,7 +87,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                         {(serverId === "@me") ? <div className="friends-list-column3">
                             {(channelId === undefined) ?
                                 <>
-                                    {/* <div className='friends-list-searchbar'>to do</div> */}
+                                    <WelcomeInstructions/>
                                     <FriendsList/>
                                 </> :
                                 <PrivateMessagesList/>
