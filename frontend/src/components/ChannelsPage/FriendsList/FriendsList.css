@@ -1,0 +1,28 @@
+ul.friends-list {
+    width: calc(100% - 60px);
+    height: calc(100% - 15px);
+    margin-left: 20px;
+    padding-right: 30px;
+    padding-top: 15px;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-color: rgb(31, 31, 34) rgb(43, 45, 49);
+}
+
+ul.friends-list::-webkit-scrollbar {
+    width: 10px;
+    position: relative;
+}
+
+ul.friends-list::-webkit-scrollbar-track{
+    background: rgb(43, 45, 49);
+    border-radius: 10px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+ul.friends-list::-webkit-scrollbar-thumb{
+    background: rgb(31, 31, 34);
+    border-radius: 10px;
+}

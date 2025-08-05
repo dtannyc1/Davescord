@@ -23,10 +23,10 @@ function App() {
                 <Splash/>
             </Route>
             <Route path="/login">
-                {currentUserId ? <Redirect to="/channels/@me"/> : <LoginModal/>}
+                {currentUserId ? <Redirect to="/channels/@me/welcome"/> : <LoginModal/>}
             </Route>
             <Route path="/register">
-                {currentUserId ? <Redirect to="/channels/@me"/> : <SignUpModal/>}
+                {currentUserId ? <Redirect to="/channels/@me/welcome"/> : <SignUpModal/>}
             </Route>
             <Route path="/channels/:serverId/:channelId?">
                 {currentUserId ?

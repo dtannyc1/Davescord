@@ -18,6 +18,7 @@ ApplicationRecord.transaction do
     Message.destroy_all
     Friend.destroy_all
     PrivateChat.destroy_all
+    PrivateMessage.destroy_all
 
     puts "Resetting primary keys..."
     # For easy testing, so that after seeding, the first `User` has `id` of 1
@@ -28,6 +29,7 @@ ApplicationRecord.transaction do
     ApplicationRecord.connection.reset_pk_sequence!('messages')
     ApplicationRecord.connection.reset_pk_sequence!('friends')
     ApplicationRecord.connection.reset_pk_sequence!('private_chats')
+    ApplicationRecord.connection.reset_pk_sequence!('private_messages')
 
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
@@ -92,7 +94,39 @@ ApplicationRecord.transaction do
         end
     end
 
+    # Create specific friend relationship between demo-login (id: 1) and David (id: 2)
+    Friend.create!({
+        friender_id: 1,  # demo-login
+        friendee_id: 2,  # David
+        status: "accepted"
+    })
+
+    # Add some additional friends for demo-login and David
+    [3, 4, 5, 6].each do |user_id|
+        # demo-login friends
+        Friend.create!({
+            friender_id: 1,
+            friendee_id: user_id,
+            status: "accepted"
+        })
+
+        # David friends
+        Friend.create!({
+            friender_id: 2,
+            friendee_id: user_id,
+            status: "accepted"
+        })
+    end
+
+    # Add a pending friend request for demo-login
+    Friend.create!({
+        friender_id: 7,
+        friendee_id: 1,
+        status: "pending"
+    })
+
     friends = Hash.new {|h, k| h[k] = Array.new}
+    private_chats = Hash.new {|h, k| h[k] = Array.new}
 
     User.all.each do |user|
         if (user.id != 1)
@@ -111,18 +145,17 @@ ApplicationRecord.transaction do
             end
         end
 
-        # also add friends
-        num_friends = rand(3..5)
-        until (friends[user.id].length >= num_friends)
+        # create private chats
+        num_priv_chats = rand(3..5)
+        until (private_chats[user.id].length >= num_priv_chats)
             friend_id = rand(1..20)
-            if (friend_id != user.id && !friends[user.id].include?(friend_id))
-                Friend.create!({
-                    friender_id: user.id,
-                    friendee_id: friend_id,
-                    status: "approved"
+            if (friend_id != user.id && !private_chats[user.id].include?(friend_id))
+                PrivateChat.create!({
+                    user_1_id: user.id,
+                    user_2_id: friend_id
                 })
-                friends[user.id].push(friend_id)
-                friends[friend_id].push(user.id)
+                private_chats[user.id].push(friend_id)
+                private_chats[friend_id].push(user.id)
             end
         end
     end
@@ -153,6 +186,26 @@ ApplicationRecord.transaction do
                         body: Faker::Movies::StarWars.quote
                     })
                 end
+            end
+        end
+    end
+
+    puts "Creating private messages..."
+    rand(1..3).times do
+        PrivateChat.all.each do |private_chat|
+            rand(0..5).times do
+                PrivateMessage.create!({
+                    author_id: private_chat.user_1_id,
+                    private_chat_id: private_chat.id,
+                    body: Faker::TvShows::DrWho.quote
+                })
+            end
+            rand(0..5).times do
+                PrivateMessage.create!({
+                    author_id: private_chat.user_2_id,
+                    private_chat_id: private_chat.id,
+                    body: Faker::TvShows::DrWho.quote
+                })
             end
         end
     end

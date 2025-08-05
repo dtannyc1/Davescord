@@ -205,3 +205,25 @@ The work for this project is not yet complete. In the near future, I plan to imp
 - A robust server invite system which allows server subscribers to create invitation links which have expiration dates
 - WebSocket integration of user statuses so users can see if their friends are online
 - Video chatting with friends using WebRTC
+
+
+__Basic Instructions:__
+
+Quick Commands Summary:
+
+Terminal 1 - Backend
+```
+sudo service postgresql start
+bundle install
+rails db:setup  # or rails db:seed if already setup
+rails server
+```
+
+Terminal 2 - Frontend
+```
+cd frontend
+npm install
+npm start
+```
+
+You'll need both servers running simultaneously to use the application.

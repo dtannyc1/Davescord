@@ -2,8 +2,9 @@ import './Message.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateMessage, deleteMessage } from '../../../../store/message';
 import { useState } from 'react';
+import { deletePrivateMessage, updatePrivateMessage } from '../../../../store/privatemessages';
 
-const Message = ({message, prevMessage, deleteButtonVisible, editButtonVisible}) => {
+const Message = ({message, prevMessage, deleteButtonVisible, editButtonVisible, isPrivateMessage}) => {
     const dispatch = useDispatch();
     const users = useSelector(state => state.users);
     const [editMessage, setEditMessage] = useState(false);
@@ -44,17 +45,29 @@ const Message = ({message, prevMessage, deleteButtonVisible, editButtonVisible})
     const handleDeleteMessage = e => {
         e.preventDefault();
         e.stopPropagation();
+        if (!isPrivateMessage){
         dispatch(deleteMessage(message.id, message.channelId));
+        } else {
+            dispatch(deletePrivateMessage(message.id))
+        }
     }
 
     const handleUpdateMessage = e => {
         e.preventDefault();
         if (newBody.length > 0){
             message.body = newBody;
-            dispatch(updateMessage(message))
+            if (!isPrivateMessage){
+                dispatch(updateMessage(message))
+            } else {
+                dispatch(updatePrivateMessage(message))
+            }
             setEditMessage(false);
         } else {
-            dispatch(deleteMessage(message.id, message.channelId));
+            if (!isPrivateMessage){
+                dispatch(deleteMessage(message.id, message.channelId));
+            } else {
+                dispatch(deletePrivateMessage(message.id))
+            }
         }
     }
 

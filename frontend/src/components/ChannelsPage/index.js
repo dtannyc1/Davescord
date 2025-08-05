@@ -14,15 +14,20 @@ import ChannelNameHeader from "./ChannelNameHeader";
 import CreateChannelModal from "./CreateChannelModal";
 import ChannelDetailsMenu from "./ChannelDetailMenu";
 import MessageList from "./MessageList";
+import FriendsList from "./FriendsList";
 import SubscriberList from "./SubscriberList";
 import FriendsNameHeader from "./FriendsNameHeader";
 import { useRef } from "react";
 import { fetchServers} from "../../store/server";
 import { fetchUser } from "../../store/user";
 import UserDetailsMenu from "../UserDetailsMenu";
+import { fetchFriends } from "../../store/friend";
+import PrivateChatsList from "./PrivateChatsList";
+import PrivateMessagesList from "./PrivateMessagesList";
+import WelcomeInstructions from "./WelcomeInstructions";
 
 const ChannelsPage = ({setWebsocketRestart}) => {
-    const {serverId} = useParams();
+    const {serverId, channelId} = useParams();
     const dispatch = useDispatch();
     const currentUserId = useSelector(state => state.session.currentUserId);
 
@@ -37,6 +42,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     useEffect(() => {
         dispatch(fetchServers())
         dispatch(fetchUser(currentUserId))
+        dispatch(fetchFriends())
     }, [dispatch, currentUserId])
 
     return (
@@ -69,7 +75,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                 <div className="channels-column2">
                     {(serverId !== "@me") ? <ServerNameHeader setDetailVisibility={setShowServerDetail} showCreateChannel={setShowChannelModal} categoryName={categoryName}/> : <Searchbar/>}
 
-                    {(serverId === "@me") ? <div></div>: <ChannelsList showCreateChannel={setShowChannelModal} categoryName={categoryName} setShowChannelDetail={setShowChannelDetail}/>}
+                    {(serverId === "@me") ? <PrivateChatsList/>: <ChannelsList showCreateChannel={setShowChannelModal} categoryName={categoryName} setShowChannelDetail={setShowChannelDetail}/>}
 
                     <CurrentUserProfile setDetailVisibility={setShowUserDetail}/>
                 </div>
@@ -78,7 +84,15 @@ const ChannelsPage = ({setWebsocketRestart}) => {
                 <div className="channels-column3">
                     {(serverId === "@me") ? <FriendsNameHeader/> : <ChannelNameHeader/>}
                     <div className="channels-column3-main-content">
-                        {(serverId === "@me") ? <div></div> : <MessageList/>}
+                        {(serverId === "@me") ? <div className="friends-list-column3">
+                            {(channelId === "welcome") ?
+                                <WelcomeInstructions/> :
+                            (channelId === undefined) ?
+                                <FriendsList/> :
+                                <PrivateMessagesList/>
+                            }
+
+                        </div> : <MessageList/>}
                         {(serverId === "@me") ? null : <SubscriberList/>}
                     </div>
                 </div>
