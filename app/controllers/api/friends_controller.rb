@@ -24,7 +24,7 @@ class Api::FriendsController < ApplicationController
     end
 
     def update
-        @friend = Friend.find(params[:id])
+        @friend = Friend.includes(:friender, :friendee).find(params[:id])
         
         if @friend.friendee_id != current_user.id
             render json: {errors: 'Unauthorized, only friendee can update status'}, status: :unauthorized

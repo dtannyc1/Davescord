@@ -2,14 +2,14 @@ class Api::PrivateChatsController < ApplicationController
     before_action(:require_logged_in, only: [:index, :show, :create, :update, :destroy])
 
     def index
-        @private_chats_1 = PrivateChat.where(user_1_id: current_user.id).includes(:private_messages, :user_2)
-        @private_chats_2 = PrivateChat.where(user_2_id: current_user.id).includes(:private_messages, :user_1)
+        @private_chats_1 = PrivateChat.where(user_1_id: current_user.id).includes(:private_messages, :user_1, :user_2)
+        @private_chats_2 = PrivateChat.where(user_2_id: current_user.id).includes(:private_messages, :user_1, :user_2)
 
         render :index
     end
 
     def show
-        @private_chat = PrivateChat.find(params[:id])
+        @private_chat = PrivateChat.includes(:user_1, :user_2, :private_messages).find(params[:id])
 
         if (@private_chat.user_1_id != current_user.id &&
             @private_chat.user_2_id != current_user.id)
