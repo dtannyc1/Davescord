@@ -94,6 +94,37 @@ ApplicationRecord.transaction do
         end
     end
 
+    # Create specific friend relationship between demo-login (id: 1) and David (id: 2)
+    Friend.create!({
+        friender_id: 1,  # demo-login
+        friendee_id: 2,  # David
+        status: "accepted"
+    })
+
+    # Add some additional friends for demo-login and David
+    [3, 4, 5, 6].each do |user_id|
+        # demo-login friends
+        Friend.create!({
+            friender_id: 1,
+            friendee_id: user_id,
+            status: "accepted"
+        })
+        
+        # David friends
+        Friend.create!({
+            friender_id: 2,
+            friendee_id: user_id,
+            status: "accepted"
+        })
+    end
+
+    # Add a pending friend request for demo-login
+    Friend.create!({
+        friender_id: 7,
+        friendee_id: 1,
+        status: "pending"
+    })
+
     friends = Hash.new {|h, k| h[k] = Array.new}
     private_chats = Hash.new {|h, k| h[k] = Array.new}
 
