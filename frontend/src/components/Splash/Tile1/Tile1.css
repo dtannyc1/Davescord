@@ -32,7 +32,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 780px;
-    max-width: calc(100% - 20px);
+    max-width: calc(100% - 40px);
     z-index: 10;
     background-color: transparent;
 }
