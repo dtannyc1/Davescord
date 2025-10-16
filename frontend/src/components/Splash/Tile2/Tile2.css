@@ -41,3 +41,28 @@
     width: calc(100% - 540px);
     max-width: 678px;
 }
+
+@media screen and (max-width: 1200px) {
+    .tile2-text {
+        padding-left: 0px;
+    }
+
+    .tile2-image {
+        width: calc(100% - 400px);
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .tile2-holder {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tile2-image {
+        width: 100%;
+        max-width: 500px;
+    }
+}
