@@ -64,3 +64,39 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 15px;
     transition: color 0.2s, box-shadow 0.2s;
 }
+
+
+@media screen and (max-width: 768px) {
+  /* Medium Screens */
+  .navbar-holder {
+    flex-direction: column;
+  }
+
+  .navbar-login {
+    position: absolute;
+    right: 40px;
+  }
+
+  .main-logo-link {
+    margin-right: auto;
+    height: 39px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+  /* Small Screens*/
+  .navbar-login {
+    right: 10px;
+  }
+
+  .navbar-holder {
+    padding: 12px 10px;
+  }
+
+  .navbar-links > a {
+    margin: 10px 0px;
+  }
+}

@@ -4,7 +4,7 @@ import './MainLogo.css'
 
 const MainLogo = props => {
     return (
-        <Link to="/">
+        <Link to="/" className="main-logo-link">
             <img className="main-logo" src={logo} alt="Davescord Logo"/>
         </Link>
     )

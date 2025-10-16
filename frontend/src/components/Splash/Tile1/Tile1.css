@@ -1,6 +1,7 @@
 
 .tile1-holder {
     width: 100%;
+    max-width: 100%;
     height: 626px;
     background-color: #404eed;
 
