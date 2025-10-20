@@ -6,7 +6,7 @@
     font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgb(31, 31, 34) rgb(43, 45, 49);
@@ -17,12 +17,11 @@
 }
 
 .welcome-instructions-inner {
-    max-width: 800px;
+    max-width: 1100px;
     width: 100%;
     box-sizing: border-box;
     max-height: 100%;
-    padding: 1rem;
-    margin-bottom: 2rem;
+    padding: 0rem 1rem;
 }
 
 .welcome-header {
@@ -43,11 +42,18 @@
     margin-bottom: 1.5rem;
 }
 
+.instructions-section-1 {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+}
+
 .instructions-section {
     background-color: #2f3136;
     border-radius: 8px;
     padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     border: 1px solid #40444b;
 }
 
@@ -62,6 +68,7 @@
 .instructions-section ol {
     margin-left: 1.5rem;
     color: #dcddde;
+    list-style: disc;
 }
 
 .instructions-section li {
@@ -69,8 +76,12 @@
 }
 
 .demo-section {
-    border: 2px solid #5865f2;
-    background-color: #383a40;
+    border: 1px solid #40444b;
+    background-color: #2f3136;
+}
+
+.demo-section ol {
+    list-style: auto;
 }
 
 .demo-section p {
@@ -92,11 +103,23 @@
     background-color: #36393f;
     border-radius: 8px;
     border: 1px solid #40444b;
-    margin-bottom: 2rem;
 }
 
 .instructions-footer p {
     color: #b9bbbe;
     font-style: italic;
     margin: 0;
+}
+
+
+@media screen and (max-width: 1080px) {
+    .instructions-section-1 {
+        flex-direction: column;
+        align-items: center;
+        gap: 0rem;
+    }
+
+    .instructions-section {
+        align-self: stretch;
+    }
 }
