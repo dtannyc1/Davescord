@@ -11,7 +11,8 @@
 .message-list-holder {
     width: calc(100% - 4px);
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
+    scrollbar-width: thin;
     margin-right: 4px;
 
     /* hiding scroll bar */
