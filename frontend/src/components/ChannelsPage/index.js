@@ -36,6 +36,8 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     const [showServerDetail, setShowServerDetail] = useState(false);
     const [showChannelDetail, setShowChannelDetail] = useState(false);
     const [showUserDetail, setShowUserDetail] = useState(false);
+    const [mobileShow3, setMobileShow3] = useState(false);    
+
 
     const categoryName = useRef();
 
@@ -46,7 +48,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     }, [dispatch, currentUserId])
 
     return (
-        <div className="channels-page">
+        <div className={mobileShow3 ? "channels-page mobile3" : "channels-page"}>
             <CreateServerModal visible={showServerModal} setVisible={setShowServerModal} setWebsocketRestart={setWebsocketRestart}/>
             <CreateChannelModal visible={showChannelModal} setVisible={setShowChannelModal} categoryName={categoryName} setWebsocketRestart={setWebsocketRestart}/>
             <ServerDetailsMenu visible={showServerDetail} setVisible={setShowServerDetail} />

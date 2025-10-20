@@ -28,6 +28,13 @@
     height: 20px;
 }
 
+@media screen and (max-width: 480px) {
+
+    .server-name {
+        width: calc(100% - 76px);
+    }
+}
+
 .server-fake-dropdown {
     padding-left: 5px;
     font-family: Arial, sans-serif;

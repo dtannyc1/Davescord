@@ -58,6 +58,7 @@
     position: absolute;
     height: 100vh;
     width: 240px;
+    overflow-x: hidden;
 }
 
 .channels-column3-holder {
@@ -68,6 +69,7 @@
     width: calc(100% - 72px - 240px);
     background-color: transparent;
     z-index: 2;
+    transition: width 0.5s ease-in-out, left 0.5s ease-in-out;
 }
 
 .channels-column3{
@@ -215,4 +217,24 @@
 
 .channels-column3-main-content .friends-list-column3{
     width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+    .channels-column2 {
+        width: calc(100%);
+    }
+
+    .channels-column2-holder { 
+        width: calc(100% - 70px);
+    }
+
+    .channels-column3-holder {
+        left: 100%;
+        width: 0px;
+    }
+
+    .channels-page.mobileShow3 .channels-column3-holder {
+        left: calc(0px);
+        width: calc(100%);
+    }
 }
