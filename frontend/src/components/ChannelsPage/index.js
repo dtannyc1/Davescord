@@ -57,7 +57,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
             <div className="channels-column1-holder">
                 <div className="channels-column1">
 
-                    <Link to='/channels/@me' className={(serverId === "@me") ? "icon selected" : "icon"}>
+                    <Link to='/channels/@me/welcome' className={(serverId === "@me") ? "icon selected" : "icon"}>
                         <img src={icon} alt="davescord-icon"/>
                         <div className="channels-left-selector"></div>
                     </Link>
