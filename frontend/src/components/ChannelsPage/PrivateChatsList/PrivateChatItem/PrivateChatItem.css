@@ -76,3 +76,13 @@
     font-weight: 600;
     color: white;
 }
+
+@media screen and (max-width: 480px) {
+    .private-chat-item {
+        width: calc(100% - 20px);
+    }
+
+    .private-chat-item-text {
+        width: calc(100% - 60px);
+    }
+}

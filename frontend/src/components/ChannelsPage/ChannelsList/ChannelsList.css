@@ -243,6 +243,7 @@
 
     .channels-main-text {
         width: 100%;
+        min-width: 100%;
     }
 
     .channels-channel-item {

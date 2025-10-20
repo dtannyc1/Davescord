@@ -29,3 +29,9 @@
 .channels-searchbar > input::placeholder {
     color:rgba(194, 203, 214, 0.6);
 }
+
+@media screen and (max-width: 480px) {
+    .channels-searchbar {
+        width: 100%;
+    }
+}
