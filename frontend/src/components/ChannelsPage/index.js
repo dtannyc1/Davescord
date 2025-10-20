@@ -49,10 +49,6 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     }, [dispatch, currentUserId])
 
     useEffect(() => {
-        console.log('ChannelsPage detected mobileExpand change:', mobileExpand);
-    }, [mobileExpand]);
-
-    useEffect(() => {
         // Collapse mobile view when navigating to a different server
         setMobileExpand(false);
     }, [serverId]);

@@ -76,7 +76,6 @@ const ChannelsList = ({showCreateChannel, categoryName, setShowChannelDetail}) =
                                     onClick={e => {
                                         history.push(`/channels/${serverId}/${channel.id}`)
                                         setMobileExpand(true);
-                                        console.log('mobileExpand set to true')
                                     }}
                                 >
                                     <div className="channels-main-text">
