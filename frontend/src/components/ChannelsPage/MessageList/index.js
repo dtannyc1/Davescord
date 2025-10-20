@@ -51,7 +51,12 @@ const MessageList = () => {
     }
 
     return (
-        <div className='messages-panel'>
+        <div className='messages-panel'
+            onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+            }}
+        >
             <div className="message-list-holder">
                 {messageList.map((messageId, ii) => {
                     return <Message
