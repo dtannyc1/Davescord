@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import './ChannelsPage.css';
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import icon from '../../assets/Davescord-icon.svg'
 import ServerList from "../ServerList";
@@ -26,6 +26,8 @@ import PrivateChatsList from "./PrivateChatsList";
 import PrivateMessagesList from "./PrivateMessagesList";
 import WelcomeInstructions from "./WelcomeInstructions";
 
+export const MobileContext = createContext(null);
+
 const ChannelsPage = ({setWebsocketRestart}) => {
     const {serverId, channelId} = useParams();
     const dispatch = useDispatch();
@@ -36,8 +38,7 @@ const ChannelsPage = ({setWebsocketRestart}) => {
     const [showServerDetail, setShowServerDetail] = useState(false);
     const [showChannelDetail, setShowChannelDetail] = useState(false);
     const [showUserDetail, setShowUserDetail] = useState(false);
-    const [mobileShow3, setMobileShow3] = useState(false);    
-
+    const [mobileExpand, setMobileExpand] = useState(false);  
 
     const categoryName = useRef();
 
@@ -47,59 +48,70 @@ const ChannelsPage = ({setWebsocketRestart}) => {
         dispatch(fetchFriends())
     }, [dispatch, currentUserId])
 
+    useEffect(() => {
+        console.log('ChannelsPage detected mobileExpand change:', mobileExpand);
+    }, [mobileExpand]);
+
+    useEffect(() => {
+        // Collapse mobile view when navigating to a different server
+        setMobileExpand(false);
+    }, [serverId]);
+
     return (
-        <div className={mobileShow3 ? "channels-page mobile3" : "channels-page"}>
-            <CreateServerModal visible={showServerModal} setVisible={setShowServerModal} setWebsocketRestart={setWebsocketRestart}/>
-            <CreateChannelModal visible={showChannelModal} setVisible={setShowChannelModal} categoryName={categoryName} setWebsocketRestart={setWebsocketRestart}/>
-            <ServerDetailsMenu visible={showServerDetail} setVisible={setShowServerDetail} />
-            <ChannelDetailsMenu visible={showChannelDetail} setVisible={setShowChannelDetail} />
-            <UserDetailsMenu visible={showUserDetail} setVisible={setShowUserDetail} />
-            <div className="channels-column1-holder">
-                <div className="channels-column1">
+        <MobileContext.Provider value={{ mobileExpand, setMobileExpand }}>
+            <div className={mobileExpand ? "channels-page mobile3" : "channels-page"}>
+                <CreateServerModal visible={showServerModal} setVisible={setShowServerModal} setWebsocketRestart={setWebsocketRestart}/>
+                <CreateChannelModal visible={showChannelModal} setVisible={setShowChannelModal} categoryName={categoryName} setWebsocketRestart={setWebsocketRestart}/>
+                <ServerDetailsMenu visible={showServerDetail} setVisible={setShowServerDetail} />
+                <ChannelDetailsMenu visible={showChannelDetail} setVisible={setShowChannelDetail} />
+                <UserDetailsMenu visible={showUserDetail} setVisible={setShowUserDetail} />
+                <div className="channels-column1-holder">
+                    <div className="channels-column1">
 
-                    <Link to='/channels/@me/welcome' className={(serverId === "@me") ? "icon selected" : "icon"}>
-                        <img src={icon} alt="davescord-icon"/>
-                        <div className="channels-left-selector"></div>
-                    </Link>
-                    <span className="tooltip">Direct Messages</span>
-                    <hr className="channels-divider"/>
+                        <Link to='/channels/@me/welcome' className={(serverId === "@me") ? "icon selected" : "icon"}>
+                            <img src={icon} alt="davescord-icon"/>
+                            <div className="channels-left-selector"></div>
+                        </Link>
+                        <span className="tooltip">Direct Messages</span>
+                        <hr className="channels-divider"/>
 
-                    <ServerList setWebsocketRestart={setWebsocketRestart}/>
+                        <ServerList setWebsocketRestart={setWebsocketRestart}/>
 
-                    <div className="channels-add-server-button" onClick={() => setShowServerModal(true)}>
-                        <div>+</div>
-                        <span className="tooltip">Add a Server</span>
-                    </div>
+                        <div className="channels-add-server-button" onClick={() => setShowServerModal(true)}>
+                            <div>+</div>
+                            <span className="tooltip">Add a Server</span>
+                        </div>
 
-                </div>
-            </div>
-            <div className="channels-column2-holder">
-                <div className="channels-column2">
-                    {(serverId !== "@me") ? <ServerNameHeader setDetailVisibility={setShowServerDetail} showCreateChannel={setShowChannelModal} categoryName={categoryName}/> : <Searchbar/>}
-
-                    {(serverId === "@me") ? <PrivateChatsList/>: <ChannelsList showCreateChannel={setShowChannelModal} categoryName={categoryName} setShowChannelDetail={setShowChannelDetail}/>}
-
-                    <CurrentUserProfile setDetailVisibility={setShowUserDetail}/>
-                </div>
-            </div>
-            <div className="channels-column3-holder">
-                <div className="channels-column3">
-                    {(serverId === "@me") ? <FriendsNameHeader/> : <ChannelNameHeader/>}
-                    <div className="channels-column3-main-content">
-                        {(serverId === "@me") ? <div className="friends-list-column3">
-                            {(channelId === "welcome") ?
-                                <WelcomeInstructions/> :
-                            (channelId === undefined) ?
-                                <FriendsList/> :
-                                <PrivateMessagesList/>
-                            }
-
-                        </div> : <MessageList/>}
-                        {(serverId === "@me") ? null : <SubscriberList/>}
                     </div>
                 </div>
+                <div className="channels-column2-holder">
+                    <div className="channels-column2">
+                        {(serverId !== "@me") ? <ServerNameHeader setDetailVisibility={setShowServerDetail} showCreateChannel={setShowChannelModal} categoryName={categoryName}/> : <Searchbar/>}
+
+                        {(serverId === "@me") ? <PrivateChatsList/>: <ChannelsList showCreateChannel={setShowChannelModal} categoryName={categoryName} setShowChannelDetail={setShowChannelDetail}/>}
+
+                        <CurrentUserProfile setDetailVisibility={setShowUserDetail}/>
+                    </div>
+                </div>
+                <div className="channels-column3-holder">
+                    <div className="channels-column3">
+                        {(serverId === "@me") ? <FriendsNameHeader/> : <ChannelNameHeader/>}
+                        <div className="channels-column3-main-content">
+                            {(serverId === "@me") ? <div className="friends-list-column3">
+                                {(channelId === "welcome") ?
+                                    <WelcomeInstructions/> :
+                                (channelId === undefined) ?
+                                    <FriendsList/> :
+                                    <PrivateMessagesList/>
+                                }
+
+                            </div> : <MessageList/>}
+                            {(serverId === "@me") ? null : <SubscriberList/>}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </MobileContext.Provider>
     )
 }
 

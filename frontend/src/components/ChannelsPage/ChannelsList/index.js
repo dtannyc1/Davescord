@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect } from 'react';
 import './ChannelsList.css'
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { useState } from 'react';
+import { MobileContext } from '..';
 
 const ChannelsList = ({showCreateChannel, categoryName, setShowChannelDetail}) => {
     const history = useHistory();
@@ -15,6 +16,8 @@ const ChannelsList = ({showCreateChannel, categoryName, setShowChannelDetail}) =
     // const currentChannelIds = useRef([]);
     // const categories = useRef({});
     const [categories, setCategories] = useState([]);
+
+    const { setMobileExpand } = useContext(MobileContext);
 
     useEffect(() => {
         let tmpcategories = {};
@@ -65,7 +68,17 @@ const ChannelsList = ({showCreateChannel, categoryName, setShowChannelDetail}) =
                             let unreadStatus = (unreadChannels[channel.id]) ? " unread" : "";
 
                             return (
-                                <span key={channel.id} className={(parseInt(channelId) === channel.id) ? `channels-channel-item selected${unreadStatus}` : `channels-channel-item${unreadStatus}`} onClick={e => history.push(`/channels/${serverId}/${channel.id}`)}>
+                                <span 
+                                    key={channel.id} 
+                                    className={(parseInt(channelId) === channel.id) ? 
+                                                `channels-channel-item selected${unreadStatus}` : 
+                                                `channels-channel-item${unreadStatus}`} 
+                                    onClick={e => {
+                                        history.push(`/channels/${serverId}/${channel.id}`)
+                                        setMobileExpand(true);
+                                        console.log('mobileExpand set to true')
+                                    }}
+                                >
                                     <div className="channels-main-text">
                                         <div className='channels-hashtag'>#</div>
                                         <div className={`channels-channel-name${currentServer?.ownerId === currentUserId ? " owner" : ""}`}>{`${channel.channelName.replace(/\s+/g, '-').toLowerCase()}`}</div>
