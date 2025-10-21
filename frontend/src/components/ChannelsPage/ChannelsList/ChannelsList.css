@@ -1,5 +1,5 @@
 .channels-list-holder {
-    width: calc(100vw - 72px);
+    width: calc(100dvw - 72px);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -236,7 +236,7 @@
 }
 
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
     .channels-category-name-holder {
         width: calc(100% - 20px);
     }

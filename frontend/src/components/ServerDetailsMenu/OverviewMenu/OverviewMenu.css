@@ -6,7 +6,7 @@
 
     padding: 60px 40px;
     padding-bottom: 120px;
-    height: calc(100vh - 180px);
+    height: calc(100dvh - 180px);
     width: calc(100% - 80px);
 }
 
