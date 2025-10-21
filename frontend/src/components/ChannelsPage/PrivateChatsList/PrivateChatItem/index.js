@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import './PrivateChatItem.css'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchUser } from '../../../../store/user';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { MobileContext } from '../..';
 
 const PrivateChatItem = ({privateChat}) => {
     const dispatch = useDispatch();
@@ -12,6 +13,8 @@ const PrivateChatItem = ({privateChat}) => {
     const users = useSelector(state => state.users);
     const currentUserId = useSelector(state => state.session.currentUserId);
     const [otherUserId, setOtherUserId] = useState(null);
+
+    const { setMobileExpand } = useContext(MobileContext);
 
     useEffect(() => {
         if (privateChat?.user1Id === currentUserId){
@@ -31,6 +34,7 @@ const PrivateChatItem = ({privateChat}) => {
         e.stopPropagation();
         if (parseInt(privateChat?.id) !== channelId){
             history.push(`/channels/@me/${parseInt(privateChat?.id)}`)
+            setMobileExpand((expanded) => !expanded);
         }
     }
 

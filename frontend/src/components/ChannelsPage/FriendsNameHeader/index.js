@@ -1,7 +1,8 @@
 import './FriendsNameHeader.css'
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { MobileContext } from '..';
 
 const FriendsNameHeader = () => {
     const {serverId, channelId} = useParams();
@@ -10,6 +11,8 @@ const FriendsNameHeader = () => {
     const privateChats = useSelector(state => state.privateChats);
     const [friendId, setFriendId] = useState(null);
     const friend = useSelector(state => state.users[friendId]);
+
+    const { setMobileExpand } = useContext(MobileContext);
 
     useEffect(() => {
         if (channelId && privateChats){
@@ -38,6 +41,15 @@ const FriendsNameHeader = () => {
             <>
             {friend ?
             <div className='friend-name-holder'>
+                <button className='channel-name-back-button'
+                    onClick={e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setMobileExpand((expanded) => !expanded);
+                    }}
+                >
+                    &#8592;
+                </button>
                 <div className='friend-server-name'>
                     {(friend.photoUrl) ?
                         <img className='header user-item-img' src={friend.photoUrl} alt={friend.username.toUpperCase().charAt(0)}/> :

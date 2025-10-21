@@ -1,5 +1,6 @@
 .tile3-holder {
     width: 100%;
+    max-width: 100%;
     height: 680px;
     background-color: #F6F6F6;
 
@@ -14,6 +15,7 @@
 
 .tile3-text {
     width: 420px;
+    max-width: 100%;
     padding-right: 100px;
     margin-left: 20px;
 }
@@ -40,4 +42,35 @@
 .tile3-image {
     width: calc(100% - 540px);
     max-width: 678px;
+}
+
+@media screen and (max-width: 1200px) {
+    .tile3-text {
+        padding-right: 0px;
+    }
+
+    .tile3-image {
+        width: calc(100% - 400px);
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .tile3-holder {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tile3-image {
+        width: calc(100% - 40px);
+        max-width: 420px;
+    }
+    
+    .tile3-text {
+        max-width: calc(100% - 40px);
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }

@@ -29,6 +29,7 @@
 
 .login-modal {
     width: 480px;
+    max-width: calc(100% - 20px);
     height: 400px;
     background-color: #313338;
     border-radius: 5px;
@@ -62,6 +63,7 @@
 .login-form{
     font-size: 12px;
     width: 416px;
+    max-width: calc(100% - 50px);
 }
 
 .login-form > label {

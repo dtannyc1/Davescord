@@ -26,6 +26,7 @@
     align-items: center;
     width: 220px;
 }
+
 .channels-category-name {
     padding-left: 11px;
     display: flex;
@@ -233,3 +234,39 @@
 .channels-channel-item.unread .channels-hashtag {
     color: rgb(148, 155, 164);
 }
+
+
+@media screen and (max-width: 480px) {
+    .channels-category-name-holder {
+        width: calc(100% - 20px);
+    }
+
+    .channels-main-text {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .channels-channel-item {
+        width: calc(100% - 40px);
+    }
+
+    .channels-channel-name {
+        max-width: 100%;
+    }
+
+    .channels-channel-item.selected .channels-channel-name.owner {
+        max-width: calc(100% - 50px);
+    }
+
+    .channels-edit-sign {
+        right: 14px;
+        top: 2px;
+        height: 100%; 
+    }
+
+    .channels-edit-sign svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+

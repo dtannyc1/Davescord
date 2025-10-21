@@ -1,8 +1,10 @@
 
 .channels-page {
     background-color: #202225;
-    width: 100%;
+    width: 100dvw;
+    min-width: 100dvw;
     height: 100%;
+    overflow-x: hidden;
     /* z-index: -10; */
     position: absolute;
     display: grid;
@@ -25,7 +27,8 @@
     align-items: flex-start;
     position: absolute;
     overflow-y: scroll;
-    width: calc(100vw - 9px);
+    width: calc(100dvw - 9px);
+    min-width: calc(100dvw - 9px);
     height: 100vh;
 
     /* hiding scroll bar */
@@ -58,16 +61,17 @@
     position: absolute;
     height: 100vh;
     width: 240px;
+    overflow-x: hidden;
 }
 
 .channels-column3-holder {
     position: absolute;
     top: 0;
-    left: calc(72px + 240px);
     bottom: 0;
-    width: calc(100% - 72px - 240px);
     background-color: transparent;
     z-index: 2;
+    left: calc(72px + 240px);
+    width: calc(100% - 72px - 240px);
 }
 
 .channels-column3{
@@ -215,4 +219,31 @@
 
 .channels-column3-main-content .friends-list-column3{
     width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+    .channels-column2 {
+        width: calc(100%);
+    }
+
+    .channels-column2-holder { 
+        width: calc(100% - 70px);
+    }
+
+    .channels-page.mobile3-collapsed .channels-column3-holder {
+        left: 100dvw;
+        width: 0dvw;
+        transform: translateX(0dvw);
+        transition: transform 0.5s ease-in-out, width 0.5s ease-in-out 0.5s;
+        will-change: transform;
+    }
+
+    .channels-page.mobile3 .channels-column3-holder {
+        left: 100dvw;
+        width: 100%;
+        transform: translateX(-100dvw);
+        z-index: 11;
+        transition: transform 0.5s ease-in-out;
+        will-change: transform;
+    }
 }

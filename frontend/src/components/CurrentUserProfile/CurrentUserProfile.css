@@ -105,3 +105,9 @@
 .current-user-profile .user-settings:hover svg {
     fill: white;
 }
+
+@media screen and (max-width: 480px) {
+    .current-user-profile {
+        width: 100%;
+    }  
+}

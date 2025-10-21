@@ -1,5 +1,6 @@
 .tile2-holder {
     width: 100%;
+    max-width: 100%;
     height: 680px;
     background-color: white;
 
@@ -14,6 +15,7 @@
 
 .tile2-text {
     width: 420px;
+    max-width: 100%;
     padding-left: 120px;
 }
 
@@ -39,4 +41,35 @@
 .tile2-image {
     width: calc(100% - 540px);
     max-width: 678px;
+}
+
+@media screen and (max-width: 1200px) {
+    .tile2-text {
+        padding-left: 0px;
+    }
+
+    .tile2-image {
+        width: calc(100% - 400px);
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .tile2-holder {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tile2-image {
+        width: calc(100% - 40px);
+        max-width: 420px;
+    }
+
+    .tile2-text {
+        max-width: calc(100% - 40px);
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
