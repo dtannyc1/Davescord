@@ -25,7 +25,7 @@ const ChannelNameHeader = () => {
                 onClick={e => {
                     e.preventDefault();
                     e.stopPropagation();
-                    setMobileExpand(false);
+                    setMobileExpand((expanded) => !expanded);
                 }}
             >
                 &#8592;

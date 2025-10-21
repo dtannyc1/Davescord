@@ -74,8 +74,12 @@ const ChannelsList = ({showCreateChannel, categoryName, setShowChannelDetail}) =
                                                 `channels-channel-item selected${unreadStatus}` : 
                                                 `channels-channel-item${unreadStatus}`} 
                                     onClick={e => {
-                                        history.push(`/channels/${serverId}/${channel.id}`)
-                                        setMobileExpand(true);
+                                        setMobileExpand((expanded) => !expanded);
+                                        if (window.innerWidth <= 480) {
+                                            setTimeout(() => history.push(`/channels/${serverId}/${channel.id}`), 500);
+                                        } else {
+                                            history.push(`/channels/${serverId}/${channel.id}`)
+                                        }
                                     }}
                                 >
                                     <div className="channels-main-text">

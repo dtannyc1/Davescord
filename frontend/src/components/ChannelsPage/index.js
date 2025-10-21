@@ -48,14 +48,11 @@ const ChannelsPage = ({setWebsocketRestart}) => {
         dispatch(fetchFriends())
     }, [dispatch, currentUserId])
 
-    useEffect(() => {
-        // Collapse mobile view when navigating to a different server
-        setMobileExpand(false);
-    }, [serverId]);
-
     return (
         <MobileContext.Provider value={{ mobileExpand, setMobileExpand }}>
-            <div className={mobileExpand ? "channels-page mobile3" : "channels-page"}>
+            <div
+                className={(mobileExpand ? "channels-page mobile3" : "channels-page mobile3-collapsed")}
+            >
                 <CreateServerModal visible={showServerModal} setVisible={setShowServerModal} setWebsocketRestart={setWebsocketRestart}/>
                 <CreateChannelModal visible={showChannelModal} setVisible={setShowChannelModal} categoryName={categoryName} setWebsocketRestart={setWebsocketRestart}/>
                 <ServerDetailsMenu visible={showServerDetail} setVisible={setShowServerDetail} />
