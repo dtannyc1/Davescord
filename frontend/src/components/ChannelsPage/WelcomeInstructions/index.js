@@ -1,11 +1,31 @@
+import { useContext, useEffect } from 'react';
 import './WelcomeInstructions.css';
+import { MobileContext } from '..';
 
 const WelcomeInstructions = () => {
+    const { setMobileExpand } = useContext(MobileContext);
+
+    useEffect(() => {
+        setMobileExpand(true);
+    }, [])
+
     return (
         <div className="welcome-instructions">
             <div className="welcome-instructions-inner">
+                
                 <div className="welcome-header">
-                    <h1>Welcome to Davescord!</h1>
+                    <div style={{position: "relative"}}>
+                        <button className='welcome-page-back-button'
+                            onClick={e => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                setMobileExpand((expanded) => !expanded);
+                            }}
+                        >
+                            &#8592;
+                        </button>
+                        <h1>Welcome to Davescord!</h1>
+                    </div>
                     <p>Here's how to get started exploring this Discord clone</p>
                 </div>
 

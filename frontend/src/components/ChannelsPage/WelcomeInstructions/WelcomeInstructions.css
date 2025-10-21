@@ -111,6 +111,10 @@
     margin: 0;
 }
 
+.welcome-page-back-button {
+    display: none;
+}
+
 
 @media screen and (max-width: 1080px) {
     .instructions-section-1 {
@@ -121,5 +125,20 @@
 
     .instructions-section {
         align-self: stretch;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .welcome-page-back-button {
+        position: absolute;
+        top: -0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 8px;
+        border: none;
+        font-size: 24px;
+        color: white;
+        font-weight: 900;
     }
 }
