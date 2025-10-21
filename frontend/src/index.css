@@ -10,6 +10,7 @@
     width: 100dvw;
     min-width: 100dvw;
     height: 100dvh;
+    max-height: 100dvh;
     position: absolute;
     left: 0;
     right: 0;

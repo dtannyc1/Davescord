@@ -128,7 +128,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
     .welcome-page-back-button {
         position: absolute;
         top: -0.25rem;

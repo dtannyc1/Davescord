@@ -1,6 +1,6 @@
 .user-details-menu {
-    min-width: 100vw;
-    min-height: 100vh;
+    min-width: 100dvw;
+    min-height: 100dvh;
     display: flex;
     z-index: 20;
     position: relative;
@@ -113,7 +113,7 @@
 }
 
 .user-details-right{
-    /* width: calc(100vw - 240px); */
+    /* width: calc(100dvw - 240px); */
     width: calc(100% - max(31%, 240px));
     background-color: rgb(49, 51, 56);
     position: absolute;

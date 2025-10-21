@@ -29,7 +29,7 @@
     overflow-y: scroll;
     width: calc(100dvw - 9px);
     min-width: calc(100dvw - 9px);
-    height: 100vh;
+    height: 100dvh;
 
     /* hiding scroll bar */
     -ms-overflow-style: none;
@@ -59,7 +59,7 @@
     grid-template-rows: 50px auto 50px;
     z-index: 1;
     position: absolute;
-    height: 100vh;
+    height: 100dvh;
     width: 240px;
     overflow-x: hidden;
 }
@@ -79,7 +79,7 @@
     grid-column-end: 4;
     background-color: rgb(49, 51, 56);
     position: absolute;
-    height: 100vh;
+    height: 100dvh;
     width: 100%;
 }
 
@@ -221,7 +221,7 @@
     width: 100%;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
     .channels-column2 {
         width: calc(100%);
     }

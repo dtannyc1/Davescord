@@ -28,7 +28,7 @@
     height: 20px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
 
     .server-name {
         width: calc(100% - 76px);
@@ -56,8 +56,8 @@
     position: absolute;
     background-color: transparent;
     left: -72px;
-    width: 100vw;
-    height: 100vh;
+    width: 100dvw;
+    height: 100dvh;
     z-index: 30;
 }
 

@@ -1,5 +1,5 @@
 .tile1-main {
-    width: 100vw;
+    width: 100dvw;
     height: 626px;
     background-color: #404eed;
     display: flex;
@@ -87,7 +87,7 @@
 
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
     .tile1-text {
         margin-top: 100px;
     }
